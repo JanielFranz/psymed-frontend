@@ -1,4 +1,6 @@
 export class User {
+
+  //#region Atributes
   protected id: number;
   protected name: string;
   protected lastName: string;
@@ -15,4 +17,23 @@ export class User {
     this.birthDate = birthDate;
   }
 
+  //#endregion
+
+  //#region Methods
+  public getFullName(): string{
+    return `${this.name} ${this.lastName}`;
+  }
+
+  public logIn(){
+    // TODO: add log in logic.
+  }
+
+  public logOut(){
+    // TODO: add log out logic.
+  }
+
+  public update(){
+    // TODO: add update logic.
+  }
+  //#endregion
 }
