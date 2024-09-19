@@ -1,4 +1,142 @@
 {
-  "patients": [],
-  "mental-health-professionals": []
+  "accounts": [
+    {
+      "id": 1,
+      "userName": "Jhon",
+      "password": "123456",
+      "role": 1
+    }
+  ],
+  "patients": [
+    {
+      "id": 1,
+      "name": "Jane",
+      "lastName": "Doe",
+      "email": "janet@gasd.com",
+      "idAccount": 1,
+      "idClinicalHistory": 1
+    }
+  ],
+  "mental-health-professionals": [
+    {
+      "id": 1,
+      "name": "John",
+      "lastName": "Doe",
+      "email": "jhon@gmai.com",
+      "idAccount": 1
+    }
+  ],
+  "notes": [
+    {
+      "id": 1,
+      "description": "Patient is doing well and is responding to the treatment",
+      "symptoms": "The patient have some symptoms like headache, dizziness, and fatigue"
+    }
+  ],
+  "sessions": [
+    {
+      "id": 1,
+      "idProfessional": 1,
+      "idPatient": 1,
+      "idNote": 1,
+      "appointmentDate": "2021-06-01",
+      "sessionTime": 2,
+      "createdAt": "2021-06-01",
+      "updatedAt": "2021-06-01"
+    }
+  ],
+
+  "treatments": [
+    {
+      "id": 1,
+      "idPatient": 1,
+      "idProfessional": 1,
+      "name": "Cognitive Behavioral Therapy",
+      "description": "Cognitive-behavioral therapy (CBT) is a short-term, goal-oriented psychotherapy treatment that takes a hands-on, practical approach to problem-solving. Its goal is to change patterns of thinking or behavior that are behind people's difficulties, and so change the way they feel.",
+      "startDate": "2021-06-01",
+      "endDate": "2021-06-30"
+    }
+  ],
+  "pills": [
+    {
+      "id": 1,
+      "name": "Paracetamol",
+      "description": "Paracetamol, also known as acetaminophen, is a medication used to treat pain and fever. It is typically used for mild to moderate pain relief."
+    }
+  ],
+  "prescriptionPills": [
+    {
+      "id": 1,
+      "idPill": 1,
+      "quantity": 30,
+      "prescription": "Take 1 pill every 8 hours"
+    }
+  ],
+  "medicalPrescriptions": [
+    {
+      "id": 1,
+      "name": "Prescription 1",
+      "description": "This is the first prescription",
+      "startDate": "2021-06-01",
+      "endDate": "2021-06-30",
+      "idPatient": 1,
+      "idProfessional": 1,
+      "createdAt": "2021-06-01",
+      "updatedAt": "2021-06-01"
+    }
+  ],
+
+  "specialities": [
+    {
+      "id": 1,
+      "idProfessional": "Psychiatrist",
+      "name": "Psychiatrist"
+    }
+  ],
+  "clinicalHistories": [
+    {
+      "id": 1,
+      "reason": "The patient is suffering from anxiety",
+      "createdAt": "2021-06-01",
+      "updatedAt": "2021-06-01"
+    }
+  ],
+  "diagnostics": [
+    {
+      "id": 1,
+      "name": "Anxiety",
+      "description": "Anxiety is your body's natural response to stress. It's a feeling of fear or apprehension about what's to come. The first day of school, going to a job interview, or giving a speech may cause most people to feel fearful and nervous.",
+      "idClinicalHistory": 1,
+      "createdAt": "2021-06-01",
+      "updatedAt": "2021-06-01"
+    }
+  ],
+  "moodStates": [
+    {
+      "id": 1,
+      "nameState": "Happy"
+    }
+  ],
+  "patientMoods": [
+    {
+      "id": 1,
+      "idPatient": 1,
+      "idMoodState": 1,
+      "createdAt": "2021-06-01"
+    }
+  ],
+
+  "biologicalFunctions": [
+    {
+      "id": 1,
+      "hunger": 5,
+      "hydration": 5,
+      "sleep": 5,
+      "energy": 5,
+      "createdAt": "2021-06-01",
+      "updatedAt": "2021-06-01",
+      "idPatient": 1
+    }
+  ]
+
 }
