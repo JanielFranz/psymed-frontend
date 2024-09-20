@@ -68,6 +68,7 @@
     {
       "id": 1,
       "idPill": 1,
+      "idMedicalPrescription": 1,
       "quantity": 30,
       "prescription": "Take 1 pill every 8 hours"
     }
