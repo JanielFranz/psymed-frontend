@@ -1,5 +1,6 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {Patient} from "../../../shared/model/patient.entity";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-patient-create-and-edit',
@@ -10,20 +11,38 @@ import {Patient} from "../../../shared/model/patient.entity";
 })
 export class PatientCreateAndEditComponent {
 
-  //#region Methods
+  //#region Atributes
   @Input() patient: Patient;
-  @Input() editMode: false;
+  @Input() editMode: boolean = false;
 
-  @Output() patientAdded = new EventEmitter();
-  @Output() patientUpdated = new EventEmitter<Patient>();
-  @Output() editCanceled = new EventEmitter();
+  @Output() protected patientAddRequest = new EventEmitter<Patient>();
+  @Output() protected patientUpdateRequest = new EventEmitter<Patient>();
+  @Output() protected canceledRequest = new EventEmitter<void>();
+
+  @ViewChild('patientForm', {static: false}) patientForm!: NgForm;
 
   //#region
 
   //#region Methods
   constructor(){
     this.patient = {} as Patient;
+    this.editMode = false;
   }
+
+  private resetEditState(){
+    this.patient = {} as Patient;
+  }
+
+  onSumbit(){
+    if(this.patientForm.form.valid){
+      let emitter = this.editCanceled? this.patientUpdated : this.patientAdded;
+      emitter.emit(this.patient);
+      this.resetEditState()
+    }
+  }
+
+
+
 
   //#endregion
 
