@@ -57,36 +57,60 @@
       "endDate": "2021-06-30"
     }
   ],
-  "pills": [
+  "medications": [
     {
       "id": 1,
       "name": "Paracetamol",
-      "description": "Paracetamol, also known as acetaminophen, is a medication used to treat pain and fever. It is typically used for mild to moderate pain relief."
+      "description": "Paracetamol, also known as acetaminophen, is a medication used to treat pain and fever. It is typically used for mild to moderate pain relief.",
+      "startDate": "2021-06-01T00:00:00.000Z",
+      "endDate": "2021-06-30T00:00:00.000Z",
+      "interval": "Take every 8 hours",
+      "quantity": 30
+    },
+    {
+      "id": 2,
+      "name": "Ibuprofen",
+      "description": "Ibuprofen is a nonsteroidal anti-inflammatory drug (NSAID) used to reduce fever and relieve pain or inflammation.",
+      "startDate": "2021-07-01T00:00:00.000Z",
+      "endDate": "2021-07-31T00:00:00.000Z",
+      "interval": "Take every 6 hours",
+      "quantity": 20
     }
   ],
-  "prescriptionPills": [
+  "prescriptions": [
     {
       "id": 1,
-      "idPill": 1,
-      "idMedicalPrescription": 1,
-      "quantity": 30,
-      "prescription": "Take 1 pill every 8 hours"
+      "pills": [1, 2],
+      "description": "Take 1 pill every 8 hours."
+    },
+    {
+      "id": 2,
+      "pills": [],
+      "description": "Take 2 pills every 6 hours."
     }
   ],
   "medicalPrescriptions": [
     {
       "id": 1,
-      "name": "Prescription 1",
-      "description": "This is the first prescription",
-      "startDate": "2021-06-01",
-      "endDate": "2021-06-30",
-      "idPatient": 1,
-      "idProfessional": 1,
-      "createdAt": "2021-06-01",
-      "updatedAt": "2021-06-01"
+      "patientId": 1,
+      "professionalId": 1,
+      "name": "Prescription for Anxiety",
+      "description": "This is a medical prescription for treating anxiety.",
+      "createdAt": "2021-06-01T00:00:00.000Z",
+      "updatedAt": "2021-06-01T00:00:00.000Z",
+      "prescription": [1]
+    },
+    {
+      "id": 2,
+      "patientId": 2,
+      "professionalId": 1,
+      "name": "Prescription for Pain Management",
+      "description": "This is a medical prescription for managing pain.",
+      "createdAt": "2021-07-01T00:00:00.000Z",
+      "updatedAt": "2021-07-01T00:00:00.000Z",
+      "prescription": [2]
     }
   ],
-
   "specialities": [
     {
       "id": 1,
