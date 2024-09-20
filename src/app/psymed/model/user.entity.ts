@@ -16,22 +16,17 @@ export class User {
     this.password = password;
     this.birthDate = birthDate;
   }
-
   //#endregion
-
   //#region Methods
   public getFullName(): string{
     return `${this.name} ${this.lastName}`;
   }
-
   public logIn(){
     // TODO: add log in logic.
   }
-
   public logOut(){
     // TODO: add log out logic.
   }
-
   public update(){
     // TODO: add update logic.
   }
