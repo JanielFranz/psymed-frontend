@@ -2,13 +2,13 @@ export class ClinicalHistory {
 
   //#region Atributes
   private background: string;
-  private consoultationReason: string;
+  private consultationReason: string;
   private symptoms: string;
   private date: Date;
 
   constructor(background: string = '', consultationReason: string= '', symptoms: string= '', date: Date= new Date())  {
     this.background = background;
-    this.consoultationReason = consultationReason;
+    this.consultationReason = consultationReason;
     this.symptoms = symptoms;
     this.date = date;
   }
