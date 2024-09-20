@@ -1,10 +1,10 @@
-export class ClinicalDiagnosis {
+export class ClinicalHistory {
 
   //#region Atributes
   private background: string;
   private consoultationReason: string;
   private symptoms: string;
-    private date: Date;
+  private date: Date;
 
   constructor(background: string = '', consultationReason: string= '', symptoms: string= '', date: Date= new Date())  {
     this.background = background;
