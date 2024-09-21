@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {PatientService} from "../../shared/services/patient.service";
+import {Patient} from "../../shared/model/patient.entity";
 
 @Component({
   selector: 'app-components',
@@ -10,13 +11,16 @@ import {PatientService} from "../../shared/services/patient.service";
 })
 export class DashboardComponent implements OnInit {
 
+  protected patientData!: Patient;
+
     constructor(private patientService: PatientService) {
     }
     private getPatientById(id: number) {
       console.log("Entro aca")
       this.patientService.getById(id)
-        .subscribe(patient => {
-          console.log(patient);
+        .subscribe((response: Patient) => {
+          this.patientData = response;
+          console.log("response", response.accessName);
         })
 
     }

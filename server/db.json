@@ -465,5 +465,11 @@
       "updatedAt": "2021-08-01",
       "idPatient": 3
     }
+  ],
+  "patient_notifications": [
+    {
+      "idPatient": 1,
+      "unseenNotificationCount": 2
+    }
   ]
 }

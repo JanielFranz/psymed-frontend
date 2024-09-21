@@ -19,20 +19,24 @@ export class User {
   //#endregion
 
   //#region Methods
-  public getFullName(): string{
+  public get FullName(): string{
     return `${this.name} ${this.lastName}`;
   }
 
-  public logIn(){
-    // TODO: add log in logic.
+  public get accessName() {
+    return this.name;
   }
 
-  public logOut(){
-    // TODO: add log out logic.
-  }
-
-  public update(){
-    // TODO: add update logic.
-  }
+  // public logIn(){
+  //   // TODO: add log in logic.
+  // }
+  //
+  // public logOut(){
+  //   // TODO: add log out logic.
+  // }
+  //
+  // public update(){
+  //   // TODO: add update logic.
+  // }
   //#endregion
 }
