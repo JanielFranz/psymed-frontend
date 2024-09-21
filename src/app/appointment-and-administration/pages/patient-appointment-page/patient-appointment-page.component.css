@@ -22,7 +22,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #308C83;
+  background-color: #00a39c;
   padding: 15px;
   border-radius: 10px;
   color: white;
@@ -42,7 +42,7 @@
 }
 
 .notes-button button {
-  background-color: #10BEAE;
+  background-color: #038c8c;
   color: white;
   border-radius: 5px;
 }

@@ -7,14 +7,19 @@
     <!-- Loop through sessions to create a card for each appointment -->
     <div *ngFor="let session of dataSource.data" class="session-card">
       <div class="appointment-details">
+        <!-- Appointment Date and Time -->
         <p class="date">{{ session.appointmentDate | date: 'fullDate' }}</p>
         <p class="time">{{ session.sessionTime }} hrs</p>
       </div>
+
       <div class="professional-details">
+        <!-- Display the Professional ID and Service Type (Terapy) -->
         <p><strong>Patient ID:</strong> {{ session.idPatient }}</p>
         <p>Terapy</p>
       </div>
+
       <div class="notes-button">
+        <!-- Button for Notes -->
         <button mat-raised-button color="primary">Notes</button>
       </div>
     </div>
