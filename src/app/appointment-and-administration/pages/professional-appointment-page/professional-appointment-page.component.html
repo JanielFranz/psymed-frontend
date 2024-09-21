@@ -1,6 +1,6 @@
 <div class="main-content">
   <div class="header">
-    <h2>Appointment Calendar</h2>
+    <h2>Appointments Calendar</h2>
   </div>
 
   <div class="card-container">
@@ -12,9 +12,9 @@
         <p class="time">{{ session.sessionTime }} hrs</p>
       </div>
 
-      <div class="professional-details">
-        <!-- Display the Professional ID and Service Type (Terapy) -->
-        <p><strong>Patient ID:</strong> {{ session.idPatient }}</p>
+      <div class="patient-details">
+        <!-- Display the Patient Name and Last Name -->
+        <p><strong>Patient:</strong> {{ patientMap[session.idPatient].name }} {{ patientMap[session.idPatient].lastName }}</p>
         <p>Terapy</p>
       </div>
 

@@ -1,9 +1,9 @@
 export class User {
 
   //#region Atributes
-  protected id: number;
-  protected name: string;
-  protected lastName: string;
+  id: number;
+  name: string;
+  lastName: string;
   protected email: string;
   protected idAccount: number;
 
