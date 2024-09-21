@@ -12,13 +12,16 @@ export class DashboardComponent implements OnInit {
 
     constructor(private patientService: PatientService) {
     }
-    private getPatientById(id: number): void {
+    private getPatientById(id: number) {
+      console.log("Entro aca")
       this.patientService.getById(id)
         .subscribe(patient => {
           console.log(patient);
         })
+
     }
     ngOnInit(): void {
+      console.log("on init")
       this.getPatientById(1);
     }
 
