@@ -5,16 +5,15 @@ export class User {
   protected name: string;
   protected lastName: string;
   protected email: string;
-  protected password: string;
-  protected birthDate: string;
+  protected idAccount: number;
 
-  constructor(id: number = 0, name: string= '', lastName: string= '', email: string='', password: string='', birthDate: string='') {
+
+  constructor(id: number = 0, name: string= '', lastName: string= '', email: string='', idAccount = 0) {
     this.id = id;
     this.name = name;
     this.lastName = lastName;
     this.email = email;
-    this.password = password;
-    this.birthDate = birthDate;
+    this.idAccount = idAccount;
   }
 
   //#endregion
