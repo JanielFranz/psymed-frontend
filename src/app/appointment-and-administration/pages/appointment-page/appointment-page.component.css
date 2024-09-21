@@ -1,0 +1,48 @@
+.header {
+  background-color: #10294c;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.card-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background-color: #C2F2ED;
+}
+
+.session-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #308C83;
+  padding: 15px;
+  border-radius: 10px;
+  color: white;
+}
+
+.appointment-details {
+  flex: 1;
+}
+
+.professional-details {
+  flex: 1;
+  text-align: left;
+}
+
+.notes-button {
+  flex: 0;
+}
+
+.notes-button button {
+  background-color: #10BEAE;
+  color: white;
+  border-radius: 5px;
+}
+
+.date, .time {
+  margin: 0;
+}

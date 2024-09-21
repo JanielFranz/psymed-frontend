@@ -1,0 +1,22 @@
+<div class="main-content">
+  <div class="header">
+    <h2>Appointment Calendar</h2>
+  </div>
+
+  <div class="card-container">
+    <!-- Loop through sessions to create a card for each appointment -->
+    <div *ngFor="let session of dataSource.data" class="session-card">
+      <div class="appointment-details">
+        <p class="date">{{ session.appointmentDate | date: 'fullDate' }}</p>
+        <p class="time">{{ session.sessionTime }}</p>
+      </div>
+      <div class="professional-details">
+        <p>{{ session.idPatient }}</p>
+        <p>Terapy</p>
+      </div>
+      <div class="notes-button">
+        <button mat-raised-button color="primary">Notes</button>
+      </div>
+    </div>
+  </div>
+</div>
