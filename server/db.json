@@ -65,7 +65,8 @@
       "startDate": "2021-06-01T00:00:00.000Z",
       "endDate": "2021-06-30T00:00:00.000Z",
       "interval": "Take every 8 hours",
-      "quantity": 30
+      "quantity": 30,
+      "status": "0"
     },
     {
       "id": 2,
@@ -74,7 +75,8 @@
       "startDate": "2021-07-01T00:00:00.000Z",
       "endDate": "2021-07-31T00:00:00.000Z",
       "interval": "Take every 6 hours",
-      "quantity": 20
+      "quantity": 20,
+      "status": "1"
     }
   ],
   "prescriptions": [
