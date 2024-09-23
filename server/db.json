@@ -1,31 +1,31 @@
 {
   "accounts": [
     {
-      "id": 1,
+      "id": "1",
       "userName": "Jhon",
       "password": "123456",
       "role": 1
     },
     {
-      "id": 2,
+      "id": "2",
       "userName": "juan",
       "password": "abcdef",
       "role": 1
     },
     {
-      "id": 3,
+      "id": "3",
       "userName": "Michael",
       "password": "admin123",
       "role": 2
     },
     {
-      "id": 4,
+      "id": "4",
       "userName": "jane",
       "password": "aeiou",
       "role": 2
     },
     {
-      "id": 5,
+      "id": "5",
       "userName": "Sarah",
       "password": "adminaeiou",
       "role": 2
@@ -33,14 +33,14 @@
   ],
   "professionals": [
     {
-      "id": 1,
+      "id": "1",
       "name": "John",
       "lastName": "Doe",
       "email": "john.doe@example.com",
       "idAccount": 1
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Juan",
       "lastName": "Perez",
       "email": "juan.perez@example.com",
@@ -49,7 +49,7 @@
   ],
   "patients": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Michael",
       "lastName": "Smith",
       "email": "mich.smith@example.com",
@@ -57,7 +57,7 @@
       "idClinicalHistory": 1
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Jane",
       "lastName": "Doe",
       "email": "jane.Doe@example.com",
@@ -65,7 +65,7 @@
       "idClinicalHistory": 2
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Sarah",
       "lastName": "Johnson",
       "email": "sarah.johnson@example.com",
@@ -75,34 +75,34 @@
   ],
   "notes": [
     {
-      "id": 1,
+      "id": "1",
       "description": "Patient is doing well and is responding to the treatment.",
       "symptoms": "The patient has some symptoms like headache, dizziness, and fatigue."
     },
     {
-      "id": 2,
+      "id": "2",
       "description": "Patient shows improvement in mood and social interactions.",
       "symptoms": "Occasional anxiety and trouble sleeping."
     },
     {
-      "id": 3,
+      "id": "3",
       "description": "Patient reports feeling more energetic and motivated.",
       "symptoms": "Minor headaches and occasional sadness."
     },
     {
-      "id": 4,
+      "id": "4",
       "description": "Patient is struggling with stress related to work.",
       "symptoms": "Increased irritability and fatigue."
     },
     {
-      "id": 5,
+      "id": "5",
       "description": "Patient is feeling overwhelmed but is seeking help.",
       "symptoms": "Symptoms include anxiety and restlessness."
     }
   ],
   "sessions": [
     {
-      "id": 1,
+      "id": "1",
       "idProfessional": 1,
       "idPatient": 1,
       "idNote": 1,
@@ -112,7 +112,7 @@
       "updatedAt": "2021-06-01"
     },
     {
-      "id": 2,
+      "id": "2",
       "idProfessional": 2,
       "idPatient": 2,
       "idNote": 2,
@@ -122,7 +122,7 @@
       "updatedAt": "2021-06-05"
     },
     {
-      "id": 3,
+      "id": "3",
       "idProfessional": 1,
       "idPatient": 3,
       "idNote": 3,
@@ -132,7 +132,7 @@
       "updatedAt": "2021-06-10"
     },
     {
-      "id": 4,
+      "id": "4",
       "idProfessional": 1,
       "idPatient": 1,
       "idNote": 4,
@@ -142,7 +142,7 @@
       "updatedAt": "2021-06-15"
     },
     {
-      "id": 5,
+      "id": "5",
       "idProfessional": 2,
       "idPatient": 2,
       "idNote": 5,
@@ -154,7 +154,7 @@
   ],
   "treatments": [
     {
-      "id": 1,
+      "id": "1",
       "idPatient": 1,
       "idProfessional": 1,
       "name": "Cognitive Behavioral Therapy",
@@ -163,7 +163,7 @@
       "endDate": "2021-06-30"
     },
     {
-      "id": 2,
+      "id": "2",
       "idPatient": 2,
       "idProfessional": 2,
       "name": "Dialectical Behavior Therapy",
@@ -172,7 +172,7 @@
       "endDate": "2021-07-31"
     },
     {
-      "id": 3,
+      "id": "3",
       "idPatient": 3,
       "idProfessional": 1,
       "name": "Mindfulness-Based Stress Reduction",
@@ -183,7 +183,7 @@
   ],
   "medications": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Paracetamol",
       "description": "Paracetamol, also known as acetaminophen, is a medication used to treat pain and fever. It is typically used for mild to moderate pain relief.",
       "startDate": "2021-06-01T00:00:00.000Z",
@@ -192,7 +192,7 @@
       "quantity": 30
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Ibuprofen",
       "description": "Ibuprofen is a nonsteroidal anti-inflammatory drug (NSAID) used to reduce fever and relieve pain or inflammation.",
       "startDate": "2021-07-01T00:00:00.000Z",
@@ -201,7 +201,7 @@
       "quantity": 20
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Amoxicillin",
       "description": "Amoxicillin is a penicillin antibiotic used to treat a variety of bacterial infections.",
       "startDate": "2021-08-01T00:00:00.000Z",
@@ -210,18 +210,27 @@
       "quantity": 30
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Cetirizine",
       "description": "Cetirizine is an antihistamine used to relieve allergy symptoms such as sneezing, runny nose, and itchy eyes.",
       "startDate": "2021-09-01T00:00:00.000Z",
       "endDate": "2021-09-30T00:00:00.000Z",
       "interval": "Take once daily",
       "quantity": 30
+    },
+    {
+      "id": 0,
+      "name": "Oeuwba",
+      "description": "1",
+      "startDate": "2024-09-25T05:00:00.000Z",
+      "endDate": "2024-09-27T05:00:00.000Z",
+      "interval": "1",
+      "quantity": 1
     }
   ],
   "prescriptions": [
     {
-      "id": 1,
+      "id": "1",
       "medications": [
         {
           "id": 1,
@@ -237,7 +246,7 @@
       "description": "This prescription includes medications needed to treat your condition. Follow the instructions for use and do not forget to attend your follow-up appointments."
     },
     {
-      "id": 2,
+      "id": "2",
       "medications": [
         {
           "id": 4,
@@ -258,9 +267,9 @@
       "description": "It is recommended that you follow this medication prescription to ensure optimal recovery. Take the time to understand the dosages and schedule of administration."
     }
   ],
-  "medicalPrescriptions":[
+  "medicalPrescriptions": [
     {
-      "id": 1,
+      "id": "1",
       "patientId": 1,
       "professionalId": 1,
       "name": "Prescription for Anxiety",
@@ -287,7 +296,7 @@
       ]
     },
     {
-      "id": 2,
+      "id": "2",
       "patientId": 2,
       "professionalId": 1,
       "name": "Prescription for Pain Management",
@@ -319,36 +328,36 @@
   ],
   "specialities": [
     {
-      "id": 1,
+      "id": "1",
       "idProfessional": "1",
       "name": "Psychiatrist"
     },
     {
-      "id": 2,
+      "id": "2",
       "idProfessional": "2",
       "name": "Clinical Psychologist"
     },
     {
-      "id": 3,
+      "id": "3",
       "idProfessional": "1",
       "name": "Psychiatric Nurse"
     }
   ],
   "clinicalHistories": [
     {
-      "id": 1,
+      "id": "1",
       "reason": "The patient is suffering from anxiety.",
       "createdAt": "2021-06-01",
       "updatedAt": "2021-06-01"
     },
     {
-      "id": 2,
+      "id": "2",
       "reason": "The patient has a history of depression.",
       "createdAt": "2021-07-01",
       "updatedAt": "2021-07-01"
     },
     {
-      "id": 3,
+      "id": "3",
       "reason": "The patient is experiencing chronic stress due to work.",
       "createdAt": "2021-08-01",
       "updatedAt": "2021-08-01"
@@ -356,7 +365,7 @@
   ],
   "diagnostics": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Anxiety",
       "description": "Anxiety is your body's natural response to stress. It's a feeling of fear or apprehension about what's to come. The first day of school, going to a job interview, or giving a speech may cause most people to feel fearful and nervous.",
       "idClinicalHistory": 1,
@@ -364,7 +373,7 @@
       "updatedAt": "2021-06-01"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Depression",
       "description": "Depression is a mood disorder that causes a persistent feeling of sadness and loss of interest. It affects how you feel, think, and handle daily activities.",
       "idClinicalHistory": 2,
@@ -372,7 +381,7 @@
       "updatedAt": "2021-07-01"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Chronic Stress",
       "description": "Chronic stress can occur when the body experiences stress continuously over a long period. It can affect your physical and emotional health.",
       "idClinicalHistory": 3,
@@ -382,53 +391,53 @@
   ],
   "moodStates": [
     {
-      "id": 1,
+      "id": "1",
       "nameState": "Happy"
     },
     {
-      "id": 2,
+      "id": "2",
       "nameState": "Sad"
     },
     {
-      "id": 3,
+      "id": "3",
       "nameState": "Anxious"
     },
     {
-      "id": 4,
+      "id": "4",
       "nameState": "Angry"
     },
     {
-      "id": 5,
+      "id": "5",
       "nameState": "Calm"
     }
   ],
   "patientMoods": [
     {
-      "id": 1,
+      "id": "1",
       "idPatient": 1,
       "idMoodState": 1,
       "createdAt": "2021-06-01"
     },
     {
-      "id": 2,
+      "id": "2",
       "idPatient": 2,
       "idMoodState": 2,
       "createdAt": "2021-07-01"
     },
     {
-      "id": 3,
+      "id": "3",
       "idPatient": 3,
       "idMoodState": 3,
       "createdAt": "2021-08-01"
     },
     {
-      "id": 4,
+      "id": "4",
       "idPatient": 1,
       "idMoodState": 4,
       "createdAt": "2021-06-15"
     },
     {
-      "id": 5,
+      "id": "5",
       "idPatient": 2,
       "idMoodState": 5,
       "createdAt": "2021-07-15"
@@ -436,7 +445,7 @@
   ],
   "biologicalFunctions": [
     {
-      "id": 1,
+      "id": "1",
       "hunger": 5,
       "hydration": 5,
       "sleep": 5,
@@ -446,7 +455,7 @@
       "idPatient": 1
     },
     {
-      "id": 2,
+      "id": "2",
       "hunger": 3,
       "hydration": 4,
       "sleep": 2,
@@ -456,7 +465,7 @@
       "idPatient": 2
     },
     {
-      "id": 3,
+      "id": "3",
       "hunger": 4,
       "hydration": 5,
       "sleep": 3,
@@ -469,7 +478,8 @@
   "patientNotifications": [
     {
       "idPatient": 1,
-      "unseenNotificationCount": 2
+      "unseenNotificationCount": 2,
+      "id": "93ed"
     }
   ],
   "patient-mood-analytic": [
@@ -480,7 +490,8 @@
       "happyMood": "3",
       "neutralMood": "2",
       "soSadMood": "3",
-      "soHappyMood": "1"
+      "soHappyMood": "1",
+      "id": "0119"
     },
     {
       "month": "03",
@@ -489,7 +500,8 @@
       "happyMood": "1",
       "neutralMood": "3",
       "soSadMood": "1",
-      "soHappyMood": "2"
+      "soHappyMood": "2",
+      "id": "bcdf"
     }
   ]
 }
