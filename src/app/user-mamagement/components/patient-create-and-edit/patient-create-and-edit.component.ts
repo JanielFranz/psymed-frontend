@@ -1,5 +1,6 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {Patient} from "../../../shared/model/patient.entity";
+import {FormGroup, NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-patient-create-and-edit',
@@ -9,25 +10,41 @@ import {Patient} from "../../../shared/model/patient.entity";
   styleUrl: './patient-create-and-edit.component.css'
 })
 export class PatientCreateAndEditComponent {
+  @Input() patient!: Patient;
+  @Input() editMode: boolean = false;
 
-  //#region Methods
-  @Input() patient: Patient;
-  @Input() editMode: false;
+  @Output() protected patientAdd = new EventEmitter<Patient>();
+  @Output() protected patientUpdate = new EventEmitter<Patient>();
+  @Output() protected patientCancel = new EventEmitter<void>();
 
-  @Output() patientAdded = new EventEmitter();
-  @Output() patientUpdated = new EventEmitter<Patient>();
-  @Output() editCanceled = new EventEmitter();
+  @ViewChild('patientForm', {static: false}) protected patientForm!: NgForm;
 
-  //#region
-
-  //#region Methods
-  constructor(){
-    this.patient = {} as Patient;
+  constructor() {
+    this.patient = new Patient();
   }
 
-  //#endregion
+  private resetEditState(){
+    this.patient = new Patient();
+    this.editMode = false;
+    this.patientForm.reset();
+  }
 
+  private isValid = () => this.patientForm.valid;
+  protected isEditMode =(): boolean => this.editMode;
 
+  protected onSubmit(){
+    if (this.isValid()){
+      let emitter = this.isEditMode() ? this.patientUpdate : this.patientAdd;
+      emitter.emit(this.patient);
+      this.resetEditState();
+    }else{
+      console.error('The form data is invalid');
+    }
+  }
 
+  protected onCancel(){
+    this.patientCancel.emit();
+    this.resetEditState();
+  }
 
 }
