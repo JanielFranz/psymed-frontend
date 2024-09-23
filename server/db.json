@@ -466,10 +466,30 @@
       "idPatient": 3
     }
   ],
-  "patient_notifications": [
+  "patientNotifications": [
     {
       "idPatient": 1,
       "unseenNotificationCount": 2
+    }
+  ],
+  "patientMoodAnalytic": [
+    {
+      "month": "2",
+      "year": "2024",
+      "sadMood": "1",
+      "happyMood": "3",
+      "neutralMood": "2",
+      "soSadMood": "3",
+      "soHappyMood": "1"
+    },
+    {
+      "month": "3",
+      "year": "2024",
+      "sadMood": "3",
+      "happyMood": "1",
+      "neutralMood": "3",
+      "soSadMood": "1",
+      "soHappyMood": "2"
     }
   ]
 }
