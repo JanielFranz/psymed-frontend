@@ -472,9 +472,9 @@
       "unseenNotificationCount": 2
     }
   ],
-  "patientMoodAnalytic": [
+  "patient-mood-analytic": [
     {
-      "month": "2",
+      "month": "02",
       "year": "2024",
       "sadMood": "1",
       "happyMood": "3",
@@ -483,7 +483,7 @@
       "soHappyMood": "1"
     },
     {
-      "month": "3",
+      "month": "03",
       "year": "2024",
       "sadMood": "3",
       "happyMood": "1",
