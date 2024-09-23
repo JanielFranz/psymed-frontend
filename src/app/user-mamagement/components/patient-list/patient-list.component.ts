@@ -32,11 +32,31 @@ export class PatientListComponent implements OnInit,AfterViewInit{
     console.log(this.patientData);
   }
 
+  //#region Methods
+  protected onEditItem(item: Patient){
+    this.editMode = true;
+    this.patientData = item;
+  }
+
+  private deletePatient(id: number){
+    // TODO: Delete patient
+  }
+
+
+  getAllPatients(){
+    // TODO: Get all patients
+  }
+
+
   ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   ngOnInit() {
+    this.getAllPatients();
   }
+
 
 
 }
