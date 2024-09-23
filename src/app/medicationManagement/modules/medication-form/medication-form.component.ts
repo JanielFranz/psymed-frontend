@@ -64,4 +64,6 @@ export class MedicationFormComponent implements OnInit {
       console.error('Form is invalid');
     }
   }
+
+  protected readonly window = window;
 }

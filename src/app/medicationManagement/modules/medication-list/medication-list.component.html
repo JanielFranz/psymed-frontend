@@ -1,12 +1,14 @@
-<p>medication-list works!</p>
-
 <div class="medication-list">
-  <div *ngFor="let medication of medications" class="medication-card">
-    <h3>{{ medication.name }}</h3>
-    <p>Description: {{ medication.description }}</p>
-    <p>Quantity: {{ medication.quantity }}</p>
-    <p>Start Date: {{ medication.startDate | date }}</p>
-    <p>End Date: {{ medication.endDate | date }}</p>
-    <p>Interval: {{ medication.interval }}</p>
-  </div>
+  <mat-card *ngFor="let medication of medications" class="medication-card">
+    <mat-card-header>
+      <mat-card-title>{{ medication.name }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Description: {{ medication.description }}</p>
+      <p>Quantity: {{ medication.quantity }}</p>
+      <p>Start Date: {{ medication.startDate | date }}</p>
+      <p>End Date: {{ medication.endDate | date }}</p>
+      <p>Interval: {{ medication.interval }}</p>
+    </mat-card-content>
+  </mat-card>
 </div>

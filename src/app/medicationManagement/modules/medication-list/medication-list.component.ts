@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { MedicationService } from '../../services/medication.service';
 import { Medication } from '../../models/medication.entity';
 import { CommonModule } from '@angular/common';
+import {MatCardModule} from '@angular/material/card';
 
 @Component({
   selector: 'app-medication-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatCardModule],
   templateUrl: './medication-list.component.html',
   styleUrls: ['./medication-list.component.css']
 })
