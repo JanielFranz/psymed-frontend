@@ -45,7 +45,7 @@ export class MedicationFormComponent implements OnInit {
     this.medicationService.getById(id).subscribe({
       next: (response: Medication) => {
         this.medicationData = response;
-        console.log("Medication data retrieved:", this.medicationData.name);
+        console.log("Medication data retrieved:", this.medicationData);
       },
       error: (error) => {
         console.error("Failed to fetch medication data:", error);
