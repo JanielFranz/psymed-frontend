@@ -28,25 +28,30 @@
   color: white;
 }
 
-.appointment-details {
-  flex: 1;
-}
-
-.professional-details {
+.appointment-details, .patient-details, .professional-details {
   flex: 1;
   text-align: left;
 }
 
 .notes-button {
   flex: 0;
+  text-align: right;
 }
 
 .notes-button button {
   background-color: #10BEAE;
   color: white;
   border-radius: 5px;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.notes-button button:hover {
+  background-color: #0ea299;
 }
 
 .date, .time {
   margin: 0;
+  text-align: left;
 }

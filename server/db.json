@@ -104,9 +104,13 @@
     {
       "id": 1,
       "idProfessional": 1,
-      "idPatient": 1,
+      "patient": {
+        "id": 1,
+        "name": "Michael",
+        "lastName": "Smith"
+      },
       "idNote": 1,
-      "appointmentDate": "2021-06-01",
+      "appointmentDate": "2021-06-01T09:00:00",
       "sessionTime": 2,
       "createdAt": "2021-06-01",
       "updatedAt": "2021-06-01"
@@ -114,9 +118,13 @@
     {
       "id": 2,
       "idProfessional": 2,
-      "idPatient": 2,
+      "patient": {
+        "id": 2,
+        "name": "Jane",
+        "lastName": "Doe"
+      },
       "idNote": 2,
-      "appointmentDate": "2021-06-05",
+      "appointmentDate": "2021-06-01T09:00:00",
       "sessionTime": 1.5,
       "createdAt": "2021-06-05",
       "updatedAt": "2021-06-05"
@@ -124,32 +132,16 @@
     {
       "id": 3,
       "idProfessional": 1,
-      "idPatient": 3,
+      "patient": {
+        "id": 3,
+        "name": "Sarah",
+        "lastName": "Johnson"
+      },
       "idNote": 3,
-      "appointmentDate": "2021-06-10",
+      "appointmentDate": "2021-06-01T09:00:00",
       "sessionTime": 1,
       "createdAt": "2021-06-10",
       "updatedAt": "2021-06-10"
-    },
-    {
-      "id": 4,
-      "idProfessional": 1,
-      "idPatient": 1,
-      "idNote": 4,
-      "appointmentDate": "2021-06-15",
-      "sessionTime": 2,
-      "createdAt": "2021-06-15",
-      "updatedAt": "2021-06-15"
-    },
-    {
-      "id": 5,
-      "idProfessional": 2,
-      "idPatient": 2,
-      "idNote": 5,
-      "appointmentDate": "2021-06-20",
-      "sessionTime": 1.5,
-      "createdAt": "2021-06-20",
-      "updatedAt": "2021-06-20"
     }
   ],
   "treatments": [

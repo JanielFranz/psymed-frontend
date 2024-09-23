@@ -8,7 +8,8 @@ import { MatTableModule } from "@angular/material/table";
 import { MatSortModule } from "@angular/material/sort";
 import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
-import {MatCard, MatCardContent} from "@angular/material/card";
+import { MatCard, MatCardContent } from "@angular/material/card";
+import { formatDate } from '@angular/common'; // Import this utility
 
 @Component({
   selector: 'app-appointment-page',
@@ -27,7 +28,7 @@ import {MatCard, MatCardContent} from "@angular/material/card";
 })
 export class AppointmentPageComponent implements OnInit, AfterViewInit {
 
-  protected columnsToDisplay: string[] = ['id', 'idProfessional', 'idPatient', 'appointmentDate', 'sessionTime'];
+  protected columnsToDisplay: string[] = ['id', 'idProfessional', 'patientName', 'appointmentDate', 'sessionTime'];
   protected dataSource!: MatTableDataSource<Session>;
 
   @ViewChild(MatSort) sort!: MatSort;
@@ -51,5 +52,14 @@ export class AppointmentPageComponent implements OnInit, AfterViewInit {
     this.sessionService.getAll().subscribe((sessions: Session[]) => {
       this.dataSource.data = sessions;
     });
+  }
+
+  // Method to calculate the end time
+  calculateEndTime(appointmentDate: string, sessionTime: number): string {
+    const startTime = new Date(appointmentDate);
+    const endTime = new Date(startTime.getTime() + sessionTime * 60 * 60 * 1000); // Add sessionTime in hours
+
+    // Format the end time as 'shortTime'
+    return formatDate(endTime, 'shortTime', 'en-US');
   }
 }

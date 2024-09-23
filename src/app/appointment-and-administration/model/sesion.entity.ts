@@ -7,6 +7,11 @@ export class Session {
   sessionTime: number;
   createdAt: string;
   updatedAt: string;
+  patient: {
+    id: number;
+    name: string;
+    lastName: string;
+  };
 
   constructor(session: {
     id?: number,
@@ -16,7 +21,12 @@ export class Session {
     appointmentDate?: string,
     sessionTime?: number,
     createdAt?: string,
-    updatedAt?: string
+    updatedAt?: string,
+    patient?: {
+      id: number,
+      name: string,
+      lastName: string
+    }
   }) {
     this.id = session.id || 0;
     this.idProfessional = session.idProfessional || 0;
@@ -26,5 +36,6 @@ export class Session {
     this.sessionTime = session.sessionTime || 0;
     this.createdAt = session.createdAt || '';
     this.updatedAt = session.updatedAt || '';
+    this.patient = session.patient || { id: 0, name: '', lastName: '' };
   }
 }

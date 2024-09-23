@@ -3,7 +3,7 @@ import { FormsModule, NgForm } from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
-import {Session} from "../model/sesion.entity";
+import { Session } from "../model/sesion.entity";
 
 @Component({
   selector: 'app-session-create-and-edit',
@@ -32,11 +32,23 @@ export class SessionCreateAndEditComponent {
   //#region Methods
 
   constructor() {
-    this.session = new Session({});
+    this.session = new Session({
+      patient: {
+        id: 0,
+        name: '',
+        lastName: ''
+      }
+    });
   }
 
   private resetEditState() {
-    this.session = new Session({});
+    this.session = new Session({
+      patient: {
+        id: 0,
+        name: '',
+        lastName: ''
+      }
+    });
     this.editMode = false;
     this.sessionForm.reset();
   }

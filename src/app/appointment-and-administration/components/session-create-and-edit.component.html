@@ -1,4 +1,3 @@
-<!-- Create and Edit Session -->
 <h2>{{ isEditMode() ? 'Edit Session' : 'New Session' }}</h2>
 <div class="form-section">
   <form #sessionForm="ngForm" (submit)="onSubmit()" class="form-row">
@@ -20,7 +19,17 @@
 
     <!-- Patient ID Field -->
     <mat-form-field id="patient-id-form-field" class="short-text-field">
-      <input [(ngModel)]="session.idPatient" matInput name="idPatient" placeholder="Patient ID" required type="number">
+      <input [(ngModel)]="session.patient.id" matInput name="patientId" placeholder="Patient ID" required type="number">
+    </mat-form-field>
+
+    <!-- Patient Name Field -->
+    <mat-form-field id="patient-name-form-field" class="short-text-field">
+      <input [(ngModel)]="session.patient.name" matInput name="patientName" placeholder="Patient Name" required type="text">
+    </mat-form-field>
+
+    <!-- Patient Last Name Field -->
+    <mat-form-field id="patient-lastname-form-field" class="short-text-field">
+      <input [(ngModel)]="session.patient.lastName" matInput name="patientLastName" placeholder="Patient Last Name" required type="text">
     </mat-form-field>
 
     <!-- Note ID Field -->
