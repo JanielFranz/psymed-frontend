@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {MoodAnalytic} from "../../model/mood-analytic.entity";
-import {ChartType, ChartOptions, ChartData } from "chart.js";
+import {ChartType, ChartOptions, ChartData} from "chart.js";
 import {BaseChartDirective} from "ng2-charts";
 
 
@@ -13,8 +13,7 @@ import {BaseChartDirective} from "ng2-charts";
   templateUrl: './pie-chart.component.html',
   styleUrl: './pie-chart.component.css'
 })
-export class PieChartComponent implements OnInit {
-
+export class PieChartComponent implements OnChanges {
 // #region Attributes
   @Input() moodAnalytics!: MoodAnalytic;
   pieChartData!: ChartData<ChartType, string[], string>
@@ -26,7 +25,13 @@ export class PieChartComponent implements OnInit {
 // #endregion
 
   // #region Methods
-  ngOnInit(): void {
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes['moodAnalytics']){
+      this.updateChart();
+    }
+  }
+
+  private updateChart() {
     this.pieChartData = {
       labels: this.pieChartLabels,
       datasets: [
@@ -37,10 +42,13 @@ export class PieChartComponent implements OnInit {
             this.moodAnalytics.happyMood,
             this.moodAnalytics.soHappyMood
           ],
-          backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56' , 'grey', 'white']
+          backgroundColor: ['purple', '#36A2EB', 'grey', 'blue', '#FFCE56']
         }
       ]
     }
   }
+
+
+
   // #endRegion
 }
