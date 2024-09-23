@@ -74,7 +74,6 @@ export class PieFilterComponent {
         this.yearFilterRequested.emit(this.selectedYear);
       }
 
-      //TODO Think About an Emmit Event
     }
   // #endregion
 }
