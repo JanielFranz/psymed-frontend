@@ -23,14 +23,13 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrls: ['./medication-form.component.css']
 })
 export class MedicationFormComponent implements OnInit {
-  protected medicationData!: Medication;
   medicationForm!: FormGroup;  // Define the form group
 
   constructor(private fb: FormBuilder, private medicationService: MedicationService) {}
 
   ngOnInit(): void {
     console.log("on init");
-    this.getMedicationById(1);
+    this.medicationService.getMedicationById(2);
     this.medicationForm = this.fb.group({
       name: ['', Validators.required],
       frequency: ['', Validators.required],
@@ -40,26 +39,20 @@ export class MedicationFormComponent implements OnInit {
     });
   }
 
-  private getMedicationById(id: number) {
-    console.log("Fetching medication data...");
-    this.medicationService.getById(id).subscribe({
-      next: (response: Medication) => {
-        this.medicationData = response;
-        console.log("Medication data retrieved:", this.medicationData);
-      },
-      error: (error) => {
-        console.error("Failed to fetch medication data:", error);
-      },
-      complete: () => {
-        console.log("Medication data fetch completed");
-      }
-    });
-  }
-
-  onSubmit() {
+  onSubmit(): void {
     if (this.medicationForm.valid) {
-      const newMedication = this.medicationForm.value;
-      this.medicationService.create(newMedication).subscribe({
+      const formValues = this.medicationForm.value;
+      const newMedication = new Medication({
+        name: formValues.name,
+        description: formValues.frequency,
+        id: 0, // Assuming ID is auto-generated
+        startDate: formValues.startDate,
+        endDate: formValues.endDate,
+        interval: formValues.frequency,
+        quantity: formValues.quantity
+      });
+
+      this.medicationService.createMedication(newMedication).subscribe({
         next: (response) => {
           console.log('Medication saved:', response);
         },

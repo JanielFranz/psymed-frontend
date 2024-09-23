@@ -4,16 +4,24 @@ export class Medication {
   id: number;
   startDate: Date;
   endDate: Date;
-  interval: String;
+  interval: string;
   quantity: number;
 
-  constructor() {
-    this.name = '';
-    this.description = '';
-    this.id = 0;
-    this.startDate = new Date();
-    this.endDate = new Date();
-    this.interval= '';
-    this.quantity = 0;
+  constructor(medicationData: {
+    name?: string,
+    description?: string,
+    id?: number,
+    startDate?: Date,
+    endDate?: Date,
+    interval?: string,
+    quantity?: number
+  }) {
+    this.name = medicationData.name || '';
+    this.description = medicationData.description || '';
+    this.id = medicationData.id || 0;
+    this.startDate = medicationData.startDate || new Date();
+    this.endDate = medicationData.endDate || new Date();
+    this.interval = medicationData.interval || '';
+    this.quantity = medicationData.quantity || 0;
   }
 }
