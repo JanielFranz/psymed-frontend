@@ -1,8 +1,8 @@
 import {User} from "./user.entity";
 
-export class Patient extends User{
+export class ProfessionalEntity extends User {
+
   constructor() {
     super();
-
   }
 }

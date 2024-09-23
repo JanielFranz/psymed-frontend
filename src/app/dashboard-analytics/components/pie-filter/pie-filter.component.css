@@ -1,0 +1,13 @@
+.filter-section{
+  display: flex;
+  justify-content: center;
+}
+
+.input-list{
+  margin-right: 1.3rem;
+}
+
+h2 {
+  display: flex;
+  justify-content: center;
+}
