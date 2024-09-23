@@ -52,8 +52,7 @@ export class PieFilterComponent {
   public selectedYear: string | null = null;
   public selectedMonth: string | null = null;
 
-  @Output() protected monthFilterRequested = new EventEmitter<any>();
-  @Output() protected yearFilterRequested = new EventEmitter<any>();
+  @Output() protected dataFilterRequested = new EventEmitter<{ month: string | null, year: string | null }>();
   // #endregion
 
   // #region Methods
@@ -67,11 +66,10 @@ export class PieFilterComponent {
     console.log(this.selectedMonth, this.selectedYear);
     return true;
   }
-  onFilter() {
+  filterRequest() {
       if (this.validateInputText()) {
         console.log("Filtering by year: " + this.selectedYear + " and month: " + this.selectedMonth);
-        this.monthFilterRequested.emit(this.selectedMonth);
-        this.yearFilterRequested.emit(this.selectedYear);
+        this.dataFilterRequested.emit({ month: this.selectedMonth, year: this.selectedYear })
       }
 
     }
