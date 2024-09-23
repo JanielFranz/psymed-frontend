@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import {BaseChartDirective} from "ng2-charts";
+import {PieFilterComponent} from "../../components/pie-filter/pie-filter.component";
 
 @Component({
   selector: 'app-analytics-dashboard',
   standalone: true,
   imports: [
-    BaseChartDirective
+    BaseChartDirective,
+    PieFilterComponent
   ],
   templateUrl: './analytics-dashboard.component.html',
   styleUrl: './analytics-dashboard.component.css'
