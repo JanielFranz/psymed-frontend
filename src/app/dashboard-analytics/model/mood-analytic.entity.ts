@@ -7,11 +7,11 @@ export class MoodAnalytic {
   soSadMood: string;
   soHappyMood: string;
 
-  constructor(moodAnalytic: {year: string, month: string,
+  constructor(moodAnalytic: {year?: string, month?: string,
   sadMood?: string, happyMood?: string, neutralMood?: string,
   soSadMood?: string, soHappyMood?: string}) {
-    this.year = moodAnalytic.year;
-    this.month = moodAnalytic.month;
+    this.year = moodAnalytic.year || '0';
+    this.month = moodAnalytic.month || '0';
     this.sadMood = moodAnalytic.sadMood || '0';
     this.happyMood = moodAnalytic.happyMood || '0';
     this.neutralMood = moodAnalytic.neutralMood || '0';
