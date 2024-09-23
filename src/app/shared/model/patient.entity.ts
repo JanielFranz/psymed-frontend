@@ -9,22 +9,22 @@ export class Patient extends User{
   private idClinicalHistory: string;
 
   constructor(patient: {
-    id: number;
-    userName: string;
-    password: string;
-    role: string;
-    name: string;
-    lastName: string;
-    email: string;
+    id?: number;
+    userName?: string;
+    password?: string;
+    role?: string;
+    name?: string;
+    lastName?: string;
+    email?: string;
     idAccount?: string;
-    idClinicalHistory: string
-  }) {
+    idClinicalHistory?: string
+  } = {}) {
 
-    super(patient.id, patient.userName, patient.password, patient.role);
-    this.name = patient.name;
-    this.lastName = patient.lastName;
-    this.email = patient.email;
-    this.idAccount = patient.idAccount;
-    this.idClinicalHistory = patient.idClinicalHistory;
+    super(patient.id || 0, patient.userName || '', patient.password || '', patient.role || '');
+    this.name = patient.name || '';
+    this.lastName = patient.lastName || '';
+    this.email = patient.email || '';
+    this.idAccount = patient.idAccount || '';
+    this.idClinicalHistory = patient.idClinicalHistory || '';
   }
 }
