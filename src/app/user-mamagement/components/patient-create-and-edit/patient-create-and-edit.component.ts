@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {Patient} from "../../../shared/model/patient.entity";
-import {NgForm} from "@angular/forms";
+import {FormGroup, NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-patient-create-and-edit',
@@ -10,43 +10,41 @@ import {NgForm} from "@angular/forms";
   styleUrl: './patient-create-and-edit.component.css'
 })
 export class PatientCreateAndEditComponent {
-
-  //#region Atributes
-  @Input() patient: Patient;
+  @Input() patient!: Patient;
   @Input() editMode: boolean = false;
 
-  @Output() protected patientAddRequest = new EventEmitter<Patient>();
-  @Output() protected patientUpdateRequest = new EventEmitter<Patient>();
-  @Output() protected canceledRequest = new EventEmitter<void>();
+  @Output() protected patientAdd = new EventEmitter<Patient>();
+  @Output() protected patientUpdate = new EventEmitter<Patient>();
+  @Output() protected patientCancel = new EventEmitter<void>();
 
-  @ViewChild('patientForm', {static: false}) patientForm!: NgForm;
+  @ViewChild('patientForm', {static: false}) protected patientForm!: NgForm;
 
-  //#region
-
-  //#region Methods
-  constructor(){
-    this.patient = {} as Patient;
-    this.editMode = false;
+  constructor() {
+    this.patient = new Patient();
   }
 
   private resetEditState(){
-    this.patient = {} as Patient;
+    this.patient = new Patient();
+    this.editMode = false;
+    this.patientForm.reset();
   }
 
-  onSumbit(){
-    if(this.patientForm.form.valid){
-      let emitter = this.editCanceled? this.patientUpdated : this.patientAdded;
+  private isValid = () => this.patientForm.valid;
+  protected isEditMode =(): boolean => this.editMode;
+
+  protected onSubmit(){
+    if (this.isValid()){
+      let emitter = this.isEditMode() ? this.patientUpdate : this.patientAdd;
       emitter.emit(this.patient);
-      this.resetEditState()
+      this.resetEditState();
+    }else{
+      console.error('The form data is invalid');
     }
   }
 
-
-
-
-  //#endregion
-
-
-
+  protected onCancel(){
+    this.patientCancel.emit();
+    this.resetEditState();
+  }
 
 }

@@ -1,28 +1,21 @@
 export class User {
 
-  //#region Atributes
+  //#region Attributes
   protected id: number;
-  protected name: string;
-  protected lastName: string;
-  protected email: string;
+  protected userName: string;
   protected password: string;
-  protected birthDate: string;
+  protected role: string;
 
-  constructor(id: number = 0, name: string= '', lastName: string= '', email: string='', password: string='', birthDate: string='') {
+  constructor(id: number = 0, userName: string= '', password: string='', role: string='') {
     this.id = id;
-    this.name = name;
-    this.lastName = lastName;
-    this.email = email;
+    this.userName = userName;
     this.password = password;
-    this.birthDate = birthDate;
+    this.role = role;
   }
 
   //#endregion
 
   //#region Methods
-  public getFullName(): string{
-    return `${this.name} ${this.lastName}`;
-  }
 
   public logIn(){
     // TODO: add log in logic.
