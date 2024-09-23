@@ -16,6 +16,7 @@ import {PieFilterComponent} from "../../components/pie-filter/pie-filter.compone
   styleUrl: './analytics-dashboard.component.css'
 })
 export class AnalyticsDashboardComponent implements OnInit{
+  // #region Attributes
   protected moodAnalyticData!: MoodAnalytic;
 
   constructor(private moodAnalyticService: MoodAnalyticService) {
@@ -24,6 +25,12 @@ export class AnalyticsDashboardComponent implements OnInit{
 
 
 
+// #endregion
+
+  // #region Methods
+  onFilterRequested(date: {month: any, year: any}){
+    this.getMoodAnalyticDataByDate(date.month, date.year)
+  }
   getMoodAnalyticDataByDate(month: string, year: string) {
     this.moodAnalyticService.findByDate(month, year).subscribe((response: MoodAnalytic | null) => {
       if(response){
@@ -37,8 +44,11 @@ export class AnalyticsDashboardComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.getMoodAnalyticDataByDate('03', '2024');
+    console.log("Start")
   }
+  // #endregion Methods
+
+
 
 
 }
