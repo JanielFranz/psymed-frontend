@@ -36,5 +36,10 @@ export class MedicationService extends BaseService<Medication>{
     console.log("Creating medication...");
     return this.create(medication);
   }
+  public getAllMedications(): Observable<Medication[]> {
+    console.log("Fetching all medications...");
+    return this.getAll();
+  }
+
 
 }
