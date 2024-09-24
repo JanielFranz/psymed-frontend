@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-medication-form',
@@ -23,12 +24,22 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrls: ['./medication-form.component.css']
 })
 export class MedicationFormComponent implements OnInit {
-  medicationForm!: FormGroup;  // Define the form group
-  patientId: number = 2;
-  constructor(private fb: FormBuilder, private medicationService: MedicationService) {}
+  medicationForm!: FormGroup;  // we Define the form group
+  patientId!: number; // Define the patient ID as a number
+  constructor(private fb: FormBuilder, private medicationService: MedicationService, private route: ActivatedRoute) {
+  }
+
+  /**
+   * @description
+   * This method is called when the component is initialized.
+   */
 
   ngOnInit(): void {
     console.log("on init");
+
+    this.patientId = +this.route.snapshot.paramMap.get('patientId')!; // Get the patient ID from the route using the ActivatedRoute service
+    console.log("Patient ID:", this.patientId); // Log the patient ID to the console for security
+
     this.medicationForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
@@ -39,10 +50,14 @@ export class MedicationFormComponent implements OnInit {
     });
   }
 
+  /**
+   * @description
+   * This method is called when the form is submitted.
+   */
   onSubmit(): void {
     if (this.medicationForm.valid) {
       const formValues = this.medicationForm.value;
-      const newMedication = new Medication({
+      const newMedication = new Medication({  // Create a new medication object using the form values
         name: formValues.name,
         description: formValues.description,
         id: 0, // Assuming ID is auto-generated
@@ -65,6 +80,5 @@ export class MedicationFormComponent implements OnInit {
       console.error('Form is invalid');
     }
   }
-
-  protected readonly window = window;
+  protected readonly window = window; // Define the window object
 }
