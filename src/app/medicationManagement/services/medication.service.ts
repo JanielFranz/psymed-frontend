@@ -21,10 +21,6 @@ export class MedicationService extends BaseService<Medication>{
     medication.patientId = patientId;
     return this.create(medication);
   }
-  public getAllMedications(): Observable<Medication[]> {
-    console.log("Fetching all medications...");
-    return this.getAll();
-  }
   public getMedicationsByPatientId(patientId: number): Observable<Medication[]> {
     console.log(`Fetching medications for patientId: ${patientId}...`);
     const url = `${this.resourcePath()}?patientId=${patientId}`;
