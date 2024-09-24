@@ -60,7 +60,6 @@ export class MedicationFormComponent implements OnInit {
       const newMedication = new Medication({  // Create a new medication object using the form values
         name: formValues.name,
         description: formValues.description,
-        id: 0, // Assuming ID is auto-generated
         startDate: formValues.startDate,
         endDate: formValues.endDate,
         interval: formValues.interval,

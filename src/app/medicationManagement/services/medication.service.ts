@@ -7,8 +7,7 @@ import {catchError, Observable, retry} from "rxjs";
   providedIn: 'root'
 })
 export class MedicationService extends BaseService<Medication>{
-  protected override resourceEndpoint = '/medications';
-  private medicationData: Medication | null = null;
+
 
   constructor() {
     super();
