@@ -519,6 +519,7 @@
   ],
   "patient-mood-analytic": [
     {
+      "idPatient": "01",
       "month": "02",
       "year": "2024",
       "sadMood": "1",
@@ -529,6 +530,7 @@
       "id": "0119"
     },
     {
+      "idPatient": "01",
       "month": "03",
       "year": "2024",
       "sadMood": "3",
