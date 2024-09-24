@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Patient} from "../../../shared/model/patient.entity";
 import {PatientService} from "../../../shared/services/patient.service";
 import {PatientListComponent} from "../../components/patient-list/patient-list.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-patient-management',
@@ -15,7 +16,7 @@ import {PatientListComponent} from "../../components/patient-list/patient-list.c
 export class PatientManagementComponent implements OnInit{
   protected patients!: Array<Patient>
 
-  constructor(private patientService: PatientService) {
+  constructor(private patientService: PatientService, private router: Router) {
 
   }
 
@@ -30,8 +31,24 @@ export class PatientManagementComponent implements OnInit{
     })
   }
 
-  onPatientSelected(patient: Patient) {
-    console.log('patientSelected', patient.id);
+  onMedicationManagementSelected(feature:{patient: Patient, feature: string}) {
+    console.log('patientSelected', feature.patient.id);
+
+    switch(feature.feature) {
+      case 'edit':
+        this.router.navigate(['/edit-patient', feature.patient.id]).then();
+        break;
+      case 'medication':
+        this.router.navigate(['/medication-management', feature.patient.id]).then();
+        break;
+      case 'statistics':
+        this.router.navigate(['/dashboard-analytics']).then();
+        break;
+      case 'appointments':
+        this.router.navigate(['/appointments', feature.patient.id]).then();
+        break;
+    }
+
   }
 
 }
