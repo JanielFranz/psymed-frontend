@@ -2,12 +2,16 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core'
 import {BaseChartDirective} from "ng2-charts";
 import {BiologicalAnalytic} from "../../model/biological-analytic.entity";
 import {ChartData, ChartType} from "chart.js";
+import {MatCard, MatCardContent, MatCardTitle} from "@angular/material/card";
 //SHOULD I USE VIEWCHILD??????
 @Component({
   selector: 'app-bar-chart',
   standalone: true,
   imports: [
-    BaseChartDirective
+    BaseChartDirective,
+    MatCard,
+    MatCardTitle,
+    MatCardContent
   ],
   templateUrl: './bar-chart.component.html',
   styleUrl: './bar-chart.component.css'

@@ -2,13 +2,17 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core'
 import {MoodAnalytic} from "../../model/mood-analytic.entity";
 import {ChartType, ChartOptions, ChartData} from "chart.js";
 import {BaseChartDirective} from "ng2-charts";
+import {MatCard, MatCardContent, MatCardTitle} from "@angular/material/card";
 
 
 @Component({
   selector: 'app-pie-chart',
   standalone: true,
   imports: [
-    BaseChartDirective
+    BaseChartDirective,
+    MatCard,
+    MatCardTitle,
+    MatCardContent
   ],
   templateUrl: './pie-chart.component.html',
   styleUrl: './pie-chart.component.css'

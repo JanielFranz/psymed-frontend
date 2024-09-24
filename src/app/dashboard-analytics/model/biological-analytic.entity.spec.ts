@@ -1,7 +1,7 @@
-import { BiologicalAnalyticEntity } from './biological-analytic.entity';
+import { BiologicalAnalytic } from './biological-analytic.entity';
 
-describe('BiologicalAnalyticEntity', () => {
+describe('BiologicalAnalytic', () => {
   it('should create an instance', () => {
-    expect(new BiologicalAnalyticEntity()).toBeTruthy();
+    expect(new BiologicalAnalytic({idPatient: '1'})).toBeTruthy();
   });
 });

@@ -1,8 +1,16 @@
 <div style="width: 280px; height: 280px;" >
-  <canvas class="pie-chart"  baseChart
-          [data]="pieChartData"
-          [labels]="pieChartLabels"
-          [type]="'pie'"
-  >
-  </canvas>
+  <mat-card appearance="outlined">
+    <mat-card-title>
+      Total number of moods
+    </mat-card-title>
+    <mat-card-content class="content">
+      <canvas class="pie-chart"  baseChart
+              [data]="pieChartData"
+              [labels]="pieChartLabels"
+              [type]="'pie'"
+      >
+      </canvas>
+      </mat-card-content>
+
+    </mat-card>
 </div>
