@@ -221,46 +221,6 @@
       "interval": "Take once daily",
       "quantity": 30,
       "patientId": 1
-    },
-    {
-      "id": "0",
-      "name": "Oeuwba",
-      "description": "1",
-      "startDate": "2024-09-25T05:00:00.000Z",
-      "endDate": "2024-09-27T05:00:00.000Z",
-      "interval": "1",
-      "quantity": 1,
-      "patientId": 2
-    },
-    {
-      "id": "0",
-      "name": "antidepressed",
-      "description": "siempre",
-      "startDate": "2024-09-24T05:00:00.000Z",
-      "endDate": "2024-09-28T05:00:00.000Z",
-      "interval": "siempre",
-      "quantity": 5,
-      "patientId": 1
-    },
-    {
-      "id": "0",
-      "name": "pala",
-      "description": "todos los dias",
-      "startDate": "2024-09-24T05:00:00.000Z",
-      "endDate": "2024-09-28T05:00:00.000Z",
-      "interval": "todos los dias",
-      "quantity": 12,
-      "patientId": 2
-    },
-    {
-      "id": "0",
-      "name": "antidepresivos",
-      "description": "es una potente dorga broer",
-      "startDate": "2024-09-23T05:00:00.000Z",
-      "endDate": "2024-09-28T05:00:00.000Z",
-      "interval": "cada 8 horas o cuando las voces ganen",
-      "quantity": 2,
-      "patientId": 2
     }
   ],
   "prescriptions": [
