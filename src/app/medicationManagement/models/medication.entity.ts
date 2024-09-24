@@ -6,6 +6,7 @@ export class Medication {
   endDate: Date;
   interval: string;
   quantity: number;
+  patientId: number;
 
   constructor(medicationData: {
     name?: string,
@@ -14,7 +15,8 @@ export class Medication {
     startDate?: Date,
     endDate?: Date,
     interval?: string,
-    quantity?: number
+    quantity?: number,
+    patientId?: number
   }) {
     this.name = medicationData.name || '';
     this.description = medicationData.description || '';
@@ -23,5 +25,6 @@ export class Medication {
     this.endDate = medicationData.endDate || new Date();
     this.interval = medicationData.interval || '';
     this.quantity = medicationData.quantity || 0;
+    this.patientId = medicationData.patientId || 0;
   }
 }
