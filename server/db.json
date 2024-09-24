@@ -102,54 +102,64 @@
   ],
   "sessions": [
     {
-      "id": "1",
+      "id": 17,
       "idProfessional": 1,
-      "idPatient": 1,
+      "idPatient": 0,
       "idNote": 1,
-      "appointmentDate": "2021-06-01",
-      "sessionTime": 2,
-      "createdAt": "2021-06-01",
-      "updatedAt": "2021-06-01"
+      "appointmentDate": "2024-09-03T16:11:00.000Z",
+      "sessionTime": 11,
+      "createdAt": "2024-09-24T06:50:13.681Z",
+      "updatedAt": "2024-09-24T06:50:13.681Z",
+      "patient": {
+        "id": 1,
+        "name": "Michael",
+        "lastName": "Smith"
+      }
     },
     {
-      "id": "2",
-      "idProfessional": 2,
-      "idPatient": 2,
-      "idNote": 2,
-      "appointmentDate": "2021-06-05",
-      "sessionTime": 1.5,
-      "createdAt": "2021-06-05",
-      "updatedAt": "2021-06-05"
-    },
-    {
-      "id": "3",
+      "id": 21,
       "idProfessional": 1,
-      "idPatient": 3,
-      "idNote": 3,
-      "appointmentDate": "2021-06-10",
+      "idPatient": 0,
+      "idNote": 1,
+      "appointmentDate": "1110-12-31T16:19:12.000Z",
+      "sessionTime": 11,
+      "createdAt": "2024-09-24T19:15:56.586Z",
+      "updatedAt": "2024-09-24T19:15:56.586Z",
+      "patient": {
+        "id": 1,
+        "name": "Michael",
+        "lastName": "Smith"
+      }
+    },
+    {
+      "id": 22,
+      "idProfessional": 1,
+      "idPatient": 0,
+      "idNote": 1,
+      "appointmentDate": "+111111-01-01T16:01:00.000Z",
       "sessionTime": 1,
-      "createdAt": "2021-06-10",
-      "updatedAt": "2021-06-10"
+      "createdAt": "2024-09-24T19:22:49.873Z",
+      "updatedAt": "2024-09-24T19:22:49.873Z",
+      "patient": {
+        "id": 1,
+        "name": "Michael",
+        "lastName": "Smith"
+      }
     },
     {
-      "id": "4",
+      "id": 23,
       "idProfessional": 1,
-      "idPatient": 1,
-      "idNote": 4,
-      "appointmentDate": "2021-06-15",
-      "sessionTime": 2,
-      "createdAt": "2021-06-15",
-      "updatedAt": "2021-06-15"
-    },
-    {
-      "id": "5",
-      "idProfessional": 2,
-      "idPatient": 2,
-      "idNote": 5,
-      "appointmentDate": "2021-06-20",
-      "sessionTime": 1.5,
-      "createdAt": "2021-06-20",
-      "updatedAt": "2021-06-20"
+      "idPatient": 0,
+      "idNote": 1,
+      "appointmentDate": "0111-01-01T16:19:12.000Z",
+      "sessionTime": 1,
+      "createdAt": "2024-09-24T19:27:56.033Z",
+      "updatedAt": "2024-09-24T19:27:56.033Z",
+      "patient": {
+        "id": 1,
+        "name": "Michael",
+        "lastName": "Smith"
+      }
     }
   ],
   "treatments": [
@@ -221,46 +231,6 @@
       "interval": "Take once daily",
       "quantity": 30,
       "patientId": 1
-    },
-    {
-      "id": "0",
-      "name": "Oeuwba",
-      "description": "1",
-      "startDate": "2024-09-25T05:00:00.000Z",
-      "endDate": "2024-09-27T05:00:00.000Z",
-      "interval": "1",
-      "quantity": 1,
-      "patientId": 2
-    },
-    {
-      "id": "0",
-      "name": "antidepressed",
-      "description": "siempre",
-      "startDate": "2024-09-24T05:00:00.000Z",
-      "endDate": "2024-09-28T05:00:00.000Z",
-      "interval": "siempre",
-      "quantity": 5,
-      "patientId": 1
-    },
-    {
-      "id": "0",
-      "name": "pala",
-      "description": "todos los dias",
-      "startDate": "2024-09-24T05:00:00.000Z",
-      "endDate": "2024-09-28T05:00:00.000Z",
-      "interval": "todos los dias",
-      "quantity": 12,
-      "patientId": 2
-    },
-    {
-      "id": "0",
-      "name": "antidepresivos",
-      "description": "es una potente dorga broer",
-      "startDate": "2024-09-23T05:00:00.000Z",
-      "endDate": "2024-09-28T05:00:00.000Z",
-      "interval": "cada 8 horas o cuando las voces ganen",
-      "quantity": 2,
-      "patientId": 2
     }
   ],
   "prescriptions": [
@@ -427,28 +397,6 @@
       "updatedAt": "2021-08-01"
     }
   ],
-  "moodStates": [
-    {
-      "id": "1",
-      "nameState": "Happy"
-    },
-    {
-      "id": "2",
-      "nameState": "Sad"
-    },
-    {
-      "id": "3",
-      "nameState": "Anxious"
-    },
-    {
-      "id": "4",
-      "nameState": "Angry"
-    },
-    {
-      "id": "5",
-      "nameState": "Calm"
-    }
-  ],
   "patientMoods": [
     {
       "id": "1",
@@ -479,12 +427,6 @@
       "idPatient": 2,
       "mood": 5,
       "createdAt": "2021-07-15"
-    },
-    {
-      "id": "1",
-      "idPatient": 1,
-      "mood": 5,
-      "createdAt": "hoy xd"
     }
   ],
   "biologicalFunctions": [
@@ -517,16 +459,6 @@
       "createdAt": "2021-08-01",
       "updatedAt": "2021-08-01",
       "idPatient": 3
-    },
-    {
-      "id": 10,
-      "hunger": 4,
-      "hydration": 3,
-      "sleep": 3,
-      "energy": 7,
-      "createdAt": "2024-09-24",
-      "updatedAt": "2024-09-24",
-      "idPatient": 1
     }
   ],
   "patientNotifications": [
