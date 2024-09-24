@@ -23,6 +23,10 @@ export class User {
     return `${this.name} ${this.lastName}`;
   }
 
+  public get accessId(): number {
+    return this.id;
+  }
+
   public get accessName() {
     return this.name;
   }
