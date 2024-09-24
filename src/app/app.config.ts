@@ -7,6 +7,8 @@ import {HttpClient, provideHttpClient} from "@angular/common/http";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
+import {provideState, provideStore} from '@ngrx/store';
+import {authReducer} from "./store/auth/auth.reducer";
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -18,11 +20,14 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideHttpClient(),
     importProvidersFrom(TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    })), provideCharts(withDefaultRegisterables()),
+        loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient]
+        }
+    })),
+    provideCharts(withDefaultRegisterables()),
+    provideStore(),
+    provideState('auth', authReducer),
   ]
 };
