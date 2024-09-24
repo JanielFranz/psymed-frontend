@@ -463,5 +463,27 @@
       "idPatient": 1,
       "unseenNotificationCount": 2
     }
+  ],
+  "patient-mood-analytic": [
+    {
+      "month": "02",
+      "year": "2024",
+      "sadMood": "1",
+      "happyMood": "3",
+      "neutralMood": "2",
+      "soSadMood": "3",
+      "soHappyMood": "1",
+      "id": "0119"
+    },
+    {
+      "month": "03",
+      "year": "2024",
+      "sadMood": "3",
+      "happyMood": "1",
+      "neutralMood": "3",
+      "soSadMood": "1",
+      "soHappyMood": "2",
+      "id": "bcdf"
+    }
   ]
 }

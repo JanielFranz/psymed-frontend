@@ -23,6 +23,8 @@ import {RouterLink} from "@angular/router";
 export class ToolbarComponent {
   protected options = [
     { path: '/home', title: 'Home' },
-    { path: '/dashboard-analytics', title: 'Dashboard' }
+    { path: '/dashboard-analytics', title: 'Dashboard' },
+    { path: '/medication-management', title: 'Medication' },
+    { path: '/appointment-list', title: 'Appointments' },
   ]
 }
