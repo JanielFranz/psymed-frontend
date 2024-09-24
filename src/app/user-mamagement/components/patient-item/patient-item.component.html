@@ -1,0 +1,19 @@
+<mat-list-item>
+  <div class="item">
+    <div matListItemLine class="name-row">{{ patient.name }} <span>  </span> {{ patient.lastName }}</div>
+    <span class="mat-spacer"></span>
+    <button (click)="onGoToFeature('edit')" mat-icon-button  aria-label="Edit patient data">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button (click)="onGoToFeature('medication')" mat-icon-button  aria-label="Manage prescription">
+      <mat-icon>medication</mat-icon>
+    </button>
+    <button (click)="onGoToFeature('statistics')" mat-icon-button  aria-label="View Statistics">
+      <mat-icon>bar_chart</mat-icon>
+    </button>
+    <button (click)="onGoToFeature('appointments')" mat-icon-button  aria-label="Manage Appointments">
+      <mat-icon>calendar_month</mat-icon>
+    </button>
+  </div>
+
+</mat-list-item>

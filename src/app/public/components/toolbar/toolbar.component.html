@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+  <h1>Psymed</h1>
+  <div class="mat-spacer"></div>
+    <ng-container *ngFor="let option of options">
+        <a mat-button [routerLink]="option.path">{{ option.title }}</a>
+    </ng-container>
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Notification menu">
+    <mat-icon>notification_important</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <p>Notification1</p>
+    <p>Notification2</p>
+    <p>Notification3</p>
+  </mat-menu>
+
+</mat-toolbar>
