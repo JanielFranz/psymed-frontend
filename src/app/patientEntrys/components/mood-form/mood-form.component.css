@@ -1,0 +1,35 @@
+/* src/app/patientEntrys/components/mood-form/mood-form.component.css */
+
+.mood-form {
+  text-align: center;
+}
+
+.title {
+  background-color: #f0f0f0;
+  padding: 10px;
+}
+
+.container {
+  margin: 20px 0;
+}
+
+.subtitle {
+  margin-bottom: 10px;
+}
+
+.images {
+  display: flex;
+  justify-content: center;
+}
+
+.images img {
+  margin: 0 10px;
+  cursor: pointer;
+  width: 100px; /* Ajusta el tamaño según tus necesidades */
+  height: auto; /* Mantiene la proporción de la imagen */
+}
+
+.date {
+  margin-top: 20px;
+  font-size: 1.2em;
+}
