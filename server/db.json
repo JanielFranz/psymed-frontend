@@ -384,28 +384,6 @@
       "updatedAt": "2021-08-01"
     }
   ],
-  "moodStates": [
-    {
-      "id": "1",
-      "nameState": "Happy"
-    },
-    {
-      "id": "2",
-      "nameState": "Sad"
-    },
-    {
-      "id": "3",
-      "nameState": "Anxious"
-    },
-    {
-      "id": "4",
-      "nameState": "Angry"
-    },
-    {
-      "id": "5",
-      "nameState": "Calm"
-    }
-  ],
   "patientMoods": [
     {
       "id": "1",
