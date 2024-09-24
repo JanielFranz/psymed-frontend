@@ -1,8 +1,8 @@
+<div class="page-container">
 <div class="main-content">
   <div class="header">
     <h2>Appointment Calendar</h2>
   </div>
-<app-session-create-and-edit/>
   <div class="card-container">
     <div *ngFor="let session of dataSource.data" class="session-card">
       <div class="appointment-details">
@@ -22,4 +22,6 @@
       </div>
     </div>
   </div>
+</div>
+  <app-appointment-form/>
 </div>

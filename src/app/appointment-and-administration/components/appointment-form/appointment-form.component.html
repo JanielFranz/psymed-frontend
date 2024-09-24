@@ -1,0 +1,33 @@
+<div class="form-container">
+  <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Patient ID</mat-label>
+      <input matInput formControlName="patientId" type="number" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Professional ID</mat-label>
+      <input matInput formControlName="idProfessional" type="number" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Appointment Date</mat-label>
+      <input matInput [matDatepicker]="appointmentDatePicker" formControlName="appointmentDate" required>
+      <mat-datepicker-toggle matSuffix [for]="appointmentDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #appointmentDatePicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Appointment Time</mat-label>
+      <input matInput type="time" formControlName="appointmentTime" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Session Time (hours)</mat-label>
+      <input matInput formControlName="sessionTime" type="number" required>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" (click)="window.location.reload()" >Save</button>
+  </form>
+</div>

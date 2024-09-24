@@ -9,6 +9,8 @@ import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {MatCard, MatCardContent} from "@angular/material/card";
 import {SessionCreateAndEditComponent} from "../../components/session-create-and-edit.component";
+import {AppointmentFormComponent} from "../../components/appointment-form/appointment-form.component";
+import {MedicationFormComponent} from "../../../medicationManagement/modules/medication-form/medication-form.component";
 
 @Component({
   selector: 'app-patient-appointment-page',
@@ -21,7 +23,9 @@ import {SessionCreateAndEditComponent} from "../../components/session-create-and
     MatButtonModule,
     MatCardContent,
     MatCard,
-    SessionCreateAndEditComponent
+    SessionCreateAndEditComponent,
+    AppointmentFormComponent,
+    MedicationFormComponent
   ],
   templateUrl: './patient-appointment-page.component.html',
   styleUrls: ['./patient-appointment-page.component.css']
@@ -50,7 +54,6 @@ export class PatientAppointmentPageComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
   }
-
   // Fetch sessions filtered by patient ID
   private getPatientSessions(patientId: number): void {
     this.sessionService.getAll().subscribe((sessions: Session[]) => {
