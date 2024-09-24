@@ -1,11 +1,11 @@
 export class User {
 
   //#region Atributes
-  protected id: number;
-  protected name: string;
-  protected lastName: string;
-  protected email: string;
-  protected idAccount: number;
+  id: number;
+  name: string;
+  lastName: string;
+  email: string;
+  idAccount: number;
 
 
   constructor(id: number = 0, name: string= '', lastName: string= '', email: string='', idAccount = 0) {
