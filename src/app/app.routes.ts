@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import {RouterModule} from '@angular/router';
 import {HomeComponent} from "./public/pages/home/home.component";
 import {
   AnalyticsDashboardComponent
