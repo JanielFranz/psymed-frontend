@@ -8,6 +8,7 @@ import {CommonModule, formatDate} from '@angular/common';
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {MatCard, MatCardContent} from "@angular/material/card";
+import {SessionCreateAndEditComponent} from "../../components/session-create-and-edit.component";
 
 @Component({
   selector: 'app-patient-appointment-page',
@@ -19,7 +20,8 @@ import {MatCard, MatCardContent} from "@angular/material/card";
     MatInputModule,
     MatButtonModule,
     MatCardContent,
-    MatCard
+    MatCard,
+    SessionCreateAndEditComponent
   ],
   templateUrl: './patient-appointment-page.component.html',
   styleUrls: ['./patient-appointment-page.component.css']
