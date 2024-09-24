@@ -538,5 +538,34 @@
       "soHappyMood": "2",
       "id": "bcdf"
     }
+  ],
+  "task": [
+    {
+      "id" : 1,
+      "idPatient": 1,
+      "tittle": "Task 1",
+      "description": "This is a task description",
+      "status": 0,
+      "createdAt": "2021-06-01",
+      "updatedAt": "2021-06-01"
+    },
+    {
+      "id" : 2,
+      "idPatient": 2,
+      "tittle": "Task 2",
+      "description": "This is a task description",
+      "status": 1,
+      "createdAt": "2021-06-01",
+      "updatedAt": "2021-06-01"
+    },
+    {
+      "id" : 3,
+      "idPatient": 3,
+      "tittle": "Task 3",
+      "description": "This is a task description",
+      "status": 0,
+      "createdAt": "2021-06-01",
+      "updatedAt": "2021-06-01"
+    }
   ]
 }
