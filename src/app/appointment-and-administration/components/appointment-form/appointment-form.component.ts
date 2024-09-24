@@ -9,6 +9,8 @@ import { SessionService } from "../../services/session.service";
 import { PatientService } from "../../../shared/services/patient.service";
 import { Session } from "../../model/sesion.entity";
 import { Patient } from "../../../shared/model/patient.entity";
+import { ActivatedRoute } from '@angular/router'; // Import ActivatedRoute for URL parameters
+import { NgIf } from "@angular/common";
 
 @Component({
   selector: 'app-appointment-form',
@@ -19,7 +21,8 @@ import { Patient } from "../../../shared/model/patient.entity";
     MatDatepickerModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    MatButtonModule
+    MatButtonModule,
+    NgIf
   ],
   templateUrl: './appointment-form.component.html',
   styleUrls: ['./appointment-form.component.css']
@@ -27,25 +30,43 @@ import { Patient } from "../../../shared/model/patient.entity";
 export class AppointmentFormComponent implements OnInit {
   appointmentForm!: FormGroup;
   patientDetails: Patient | null = null; // To hold patient details
+  patientId!: number; // To hold the patient ID from the URL
+  idProfessional: number = 1; // Professional ID is fixed to 1
+  private lastSessionId: number = 0; // To hold the last used session ID
 
-  constructor(private fb: FormBuilder, private sessionService: SessionService, private patientService: PatientService) {}
+  constructor(
+    private fb: FormBuilder,
+    private sessionService: SessionService,
+    private patientService: PatientService,
+    private route: ActivatedRoute // Inject ActivatedRoute to access the URL parameter
+  ) {}
 
   ngOnInit(): void {
-    this.appointmentForm = this.fb.group({
-      patientId: ['', Validators.required],
-      idProfessional: ['', Validators.required],
-      appointmentDate: ['', Validators.required],
-      appointmentTime: ['', Validators.required],
-      sessionTime: ['', [Validators.required, Validators.min(1)]]
-    });
+    // Load the lastSessionId from localStorage (if available)
+    const storedLastSessionId = localStorage.getItem('lastSessionId');
+    this.lastSessionId = storedLastSessionId ? +storedLastSessionId : 0;
 
-    this.appointmentForm.get('patientId')?.valueChanges.subscribe(patientId => {
-      if (patientId) {
-        this.fetchPatientDetails(patientId);
-      }
-    });
+    // Get the patientId from the URL
+    const patientIdFromUrl = this.route.snapshot.paramMap.get('id');
+
+    if (patientIdFromUrl) {
+      this.patientId = +patientIdFromUrl; // Store the patientId as a number
+      // Initialize the form with validators
+      this.appointmentForm = this.fb.group({
+        idProfessional: [this.idProfessional, Validators.required], // Professional ID is fixed
+        appointmentDate: ['', Validators.required],
+        appointmentTime: ['', Validators.required],
+        sessionTime: ['', [Validators.required, Validators.min(1)]]
+      });
+
+      // Fetch patient details based on the patientId from the URL
+      this.fetchPatientDetails(this.patientId);
+    } else {
+      console.error('Patient ID not found in URL');
+    }
   }
 
+  // Fetch patient details based on patient ID
   fetchPatientDetails(patientId: number): void {
     this.patientService.getById(patientId).subscribe({
       next: (patient: Patient) => {
@@ -58,6 +79,7 @@ export class AppointmentFormComponent implements OnInit {
     });
   }
 
+  // Handle form submission
   onSubmit(): void {
     if (this.appointmentForm.valid && this.patientDetails) {
       const formValues = this.appointmentForm.value;
@@ -65,26 +87,37 @@ export class AppointmentFormComponent implements OnInit {
       const [hours, minutes] = formValues.appointmentTime.split(':');
       appointmentDateTime.setHours(parseInt(hours, 10), parseInt(minutes, 10), 0, 0);
 
+      // Increment the last session ID
+      this.lastSessionId++;
+
+      // Save the last session ID to localStorage for persistence
+      localStorage.setItem('lastSessionId', this.lastSessionId.toString());
+
+      // Create a new session object with the form data, using the patientId from the URL
       const newSession = new Session({
-        id: 0, // Typically handled by the backend
-        idProfessional: formValues.idProfessional,
+        id: this.lastSessionId, // Generate a new unique ID for the session
+        idProfessional: this.idProfessional, // Fixed value 1 for professional
         patient: {
-          id: formValues.patientId, // Ensure this is set to the correct patient ID
-          name: this.patientDetails.name,
-          lastName: this.patientDetails.lastName
+          id: this.patientId, // Use the patientId from the URL
+          name: this.patientDetails?.name || '',
+          lastName: this.patientDetails?.lastName || ''
         },
-        idNote: formValues.patientId, // Adjust as needed
+        idNote: this.patientId, // Use the patientId for idNote (adjust if necessary)
         appointmentDate: appointmentDateTime.toISOString(),
         sessionTime: formValues.sessionTime,
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString()
       });
 
+      // Save the session using the sessionService (you can replace this with saving locally if needed)
       this.sessionService.create(newSession).subscribe({
         next: (response) => {
           console.log('Session saved:', response);
-          this.appointmentForm.reset();
+          this.appointmentForm.reset(); // Reset the form after saving
           this.patientDetails = null; // Reset patient details after submission
+
+          // Reload the page after successful form submission
+          window.location.reload();
         },
         error: (error) => {
           console.error('Error saving session:', error);
@@ -94,8 +127,4 @@ export class AppointmentFormComponent implements OnInit {
       console.error('Form is invalid or patient details are missing');
     }
   }
-
-
-
-  protected readonly window = window;
 }

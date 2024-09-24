@@ -8,7 +8,6 @@ import {CommonModule, formatDate} from '@angular/common';
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {MatCard, MatCardContent} from "@angular/material/card";
-import {SessionCreateAndEditComponent} from "../../components/session-create-and-edit.component";
 import {AppointmentFormComponent} from "../../components/appointment-form/appointment-form.component";
 import {MedicationFormComponent} from "../../../medicationManagement/modules/medication-form/medication-form.component";
 
@@ -23,7 +22,6 @@ import {MedicationFormComponent} from "../../../medicationManagement/modules/med
     MatButtonModule,
     MatCardContent,
     MatCard,
-    SessionCreateAndEditComponent,
     AppointmentFormComponent,
     MedicationFormComponent
   ],
