@@ -19,10 +19,10 @@ import {MatIconButton} from "@angular/material/button";
 })
 export class PatientItemComponent {
   @Input() patient!: Patient;
-  @Output() patientSelected = new EventEmitter<Patient>
+  @Output() patientSelected = new EventEmitter<{patient: Patient, feature: string}>();
 
-  onGoToFeature() {
-    this.patientSelected.emit(this.patient);
+  onGoToFeature(feature: string) {
+    this.patientSelected.emit({patient: this.patient, feature: feature});
   }
 
 }
