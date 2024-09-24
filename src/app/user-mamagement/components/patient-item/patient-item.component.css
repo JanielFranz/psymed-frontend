@@ -1,0 +1,12 @@
+.item {
+  display: flex;
+}
+
+.mat-spacer {
+  flex: 1 1 auto;
+}
+
+.name-row {
+  display: flex;
+  align-items: center;
+}
