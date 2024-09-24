@@ -1,0 +1,12 @@
+.chart-container {
+  display: flex;
+  gap: 4rem;
+  margin-top: 3rem;
+  margin-left: 14rem;
+}
+
+.bar-chart-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
