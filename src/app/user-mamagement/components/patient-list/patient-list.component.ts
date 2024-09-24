@@ -4,7 +4,7 @@ import {PatientService} from "../../../shared/services/patient.service";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {MatTableDataSource} from "@angular/material/table";
-import {MatList} from "@angular/material/list";
+import {MatList, MatListSubheaderCssMatStyler} from "@angular/material/list";
 import {PatientItemComponent} from "../patient-item/patient-item.component";
 
 @Component({
@@ -12,7 +12,8 @@ import {PatientItemComponent} from "../patient-item/patient-item.component";
   standalone: true,
   imports: [
     MatList,
-    PatientItemComponent
+    PatientItemComponent,
+    MatListSubheaderCssMatStyler
   ],
   templateUrl: './patient-list.component.html',
   styleUrl: './patient-list.component.css'
