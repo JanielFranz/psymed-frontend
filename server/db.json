@@ -223,7 +223,7 @@
       "patientId": 1
     },
     {
-      "id": 0,
+      "id": "0",
       "name": "Oeuwba",
       "description": "1",
       "startDate": "2024-09-25T05:00:00.000Z",
@@ -233,7 +233,7 @@
       "patientId": 2
     },
     {
-      "id": 0,
+      "id": "0",
       "name": "antidepressed",
       "description": "siempre",
       "startDate": "2024-09-24T05:00:00.000Z",
@@ -243,7 +243,7 @@
       "patientId": 1
     },
     {
-      "id": 0,
+      "id": "0",
       "name": "pala",
       "description": "todos los dias",
       "startDate": "2024-09-24T05:00:00.000Z",
@@ -253,7 +253,7 @@
       "patientId": 2
     },
     {
-      "id": 0,
+      "id": "0",
       "name": "antidepresivos",
       "description": "es una potente dorga broer",
       "startDate": "2024-09-23T05:00:00.000Z",
@@ -450,32 +450,38 @@
     {
       "id": "1",
       "idPatient": 1,
-      "idMoodState": 1,
+      "mood": 1,
       "createdAt": "2021-06-01"
     },
     {
       "id": "2",
       "idPatient": 2,
-      "idMoodState": 2,
+      "mood": 2,
       "createdAt": "2021-07-01"
     },
     {
       "id": "3",
       "idPatient": 3,
-      "idMoodState": 3,
+      "mood": 3,
       "createdAt": "2021-08-01"
     },
     {
       "id": "4",
       "idPatient": 1,
-      "idMoodState": 4,
+      "mood": 4,
       "createdAt": "2021-06-15"
     },
     {
       "id": "5",
       "idPatient": 2,
-      "idMoodState": 5,
+      "mood": 5,
       "createdAt": "2021-07-15"
+    },
+    {
+      "id": 1,
+      "idPatient": 1,
+      "mood": 5,
+      "createdAt": "hoy xd"
     }
   ],
   "biologicalFunctions": [
@@ -543,7 +549,7 @@
   ],
   "task": [
     {
-      "id" : 1,
+      "id": "1",
       "idPatient": 1,
       "tittle": "Task 1",
       "description": "This is a task description",
@@ -552,7 +558,7 @@
       "updatedAt": "2021-06-01"
     },
     {
-      "id" : 2,
+      "id": "2",
       "idPatient": 2,
       "tittle": "Task 2",
       "description": "This is a task description",
@@ -561,7 +567,7 @@
       "updatedAt": "2021-06-01"
     },
     {
-      "id" : 3,
+      "id": "3",
       "idPatient": 3,
       "tittle": "Task 3",
       "description": "This is a task description",

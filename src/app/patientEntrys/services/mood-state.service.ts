@@ -10,7 +10,7 @@ import {catchError, retry} from "rxjs";
 export class MoodStateService extends BaseService<MoodState> {
   constructor() {
     super();
-    this.resourceEndpoint = '/mood-states';
+    this.resourceEndpoint = '/patientMoods';
   }
 
   public createMoodState(moodState: MoodState, patientId: number) {
@@ -25,6 +25,5 @@ export class MoodStateService extends BaseService<MoodState> {
     return this.http.get<MoodState[]>(url, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
-
 
 }
