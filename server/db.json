@@ -386,40 +386,34 @@
   ],
   "patientMoods": [
     {
-      "id": "1",
+      "id": 1,
       "idPatient": 1,
       "mood": 1,
       "createdAt": "2021-06-01"
     },
     {
-      "id": "2",
+      "id": 2,
       "idPatient": 2,
       "mood": 2,
       "createdAt": "2021-07-01"
     },
     {
-      "id": "3",
+      "id": 3,
       "idPatient": 3,
       "mood": 3,
       "createdAt": "2021-08-01"
     },
     {
-      "id": "4",
+      "id": 4,
       "idPatient": 1,
       "mood": 4,
       "createdAt": "2021-06-15"
     },
     {
-      "id": "5",
+      "id": 5,
       "idPatient": 2,
       "mood": 5,
       "createdAt": "2021-07-15"
-    },
-    {
-      "id": 1,
-      "idPatient": 1,
-      "mood": 5,
-      "createdAt": "hoy xd"
     }
   ],
   "biologicalFunctions": [
