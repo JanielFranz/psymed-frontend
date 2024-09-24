@@ -31,7 +31,7 @@ export class PatientManagementComponent implements OnInit{
   }
 
   onPatientSelected(patient: Patient) {
-    console.log('patientSelected', patient);
+    console.log('patientSelected', patient.id);
   }
 
 }

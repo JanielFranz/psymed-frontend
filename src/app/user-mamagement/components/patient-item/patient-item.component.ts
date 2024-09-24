@@ -21,7 +21,7 @@ export class PatientItemComponent {
   @Input() patient!: Patient;
   @Output() patientSelected = new EventEmitter<Patient>
 
-  onClick() {
+  onGoToFeature() {
     this.patientSelected.emit(this.patient);
   }
 
