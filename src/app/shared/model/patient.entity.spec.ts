@@ -1,7 +1,7 @@
-import { PatientEntity } from './patient.entity';
+import { Patient } from './patient.entity';
 
 describe('PatientEntity', () => {
   it('should create an instance', () => {
-    expect(new PatientEntity()).toBeTruthy();
+    expect(new Patient()).toBeTruthy();
   });
 });
