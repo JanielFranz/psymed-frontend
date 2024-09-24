@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild, inject } from '@angular/core';
 import { FormsModule, NgForm } from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
 import { Session } from "../model/sesion.entity";
+import {NotificationService} from "../services/notification.service";
 
 @Component({
   selector: 'app-session-create-and-edit',
@@ -26,6 +27,9 @@ export class SessionCreateAndEditComponent {
   @Output() protected sessionUpdateRequested = new EventEmitter<Session>();
   @Output() protected cancelRequested = new EventEmitter<void>();
   @ViewChild('sessionForm', { static: false }) protected sessionForm!: NgForm;
+
+  // Inject the AppointmentNotificationService
+  private notificationService = inject(NotificationService);
 
   //#endregion Attributes
 
@@ -63,6 +67,10 @@ export class SessionCreateAndEditComponent {
     if (this.isValid()) {
       let emitter = this.isEditMode() ? this.sessionUpdateRequested : this.sessionAddRequested;
       emitter.emit(this.session);
+
+      // Call incrementCounter after a new session (appointment) is created
+        this.notificationService.incrementCounter(); // Increment notification count for new appointments
+
       this.resetEditState();
     } else {
       console.error('Invalid form data');
