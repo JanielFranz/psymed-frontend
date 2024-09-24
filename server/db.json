@@ -189,7 +189,8 @@
       "startDate": "2021-06-01T00:00:00.000Z",
       "endDate": "2021-06-30T00:00:00.000Z",
       "interval": "Take every 8 hours",
-      "quantity": 30
+      "quantity": 30,
+      "patientId": 1
     },
     {
       "id": "2",
@@ -198,7 +199,8 @@
       "startDate": "2021-07-01T00:00:00.000Z",
       "endDate": "2021-07-31T00:00:00.000Z",
       "interval": "Take every 6 hours",
-      "quantity": 20
+      "quantity": 20,
+      "patientId": 2
     },
     {
       "id": "3",
@@ -207,7 +209,8 @@
       "startDate": "2021-08-01T00:00:00.000Z",
       "endDate": "2021-08-31T00:00:00.000Z",
       "interval": "Take every 8 hours",
-      "quantity": 30
+      "quantity": 30,
+      "patientId": 3
     },
     {
       "id": "4",
@@ -216,7 +219,8 @@
       "startDate": "2021-09-01T00:00:00.000Z",
       "endDate": "2021-09-30T00:00:00.000Z",
       "interval": "Take once daily",
-      "quantity": 30
+      "quantity": 30,
+      "patientId": 1
     },
     {
       "id": 0,
@@ -225,7 +229,38 @@
       "startDate": "2024-09-25T05:00:00.000Z",
       "endDate": "2024-09-27T05:00:00.000Z",
       "interval": "1",
-      "quantity": 1
+      "quantity": 1,
+      "patientId": 2
+    },
+    {
+      "id": 0,
+      "name": "antidepressed",
+      "description": "siempre",
+      "startDate": "2024-09-24T05:00:00.000Z",
+      "endDate": "2024-09-28T05:00:00.000Z",
+      "interval": "siempre",
+      "quantity": 5,
+      "patientId": 1
+    },
+    {
+      "id": 0,
+      "name": "pala",
+      "description": "todos los dias",
+      "startDate": "2024-09-24T05:00:00.000Z",
+      "endDate": "2024-09-28T05:00:00.000Z",
+      "interval": "todos los dias",
+      "quantity": 12,
+      "patientId": 2
+    },
+    {
+      "id": 0,
+      "name": "antidepresivos",
+      "description": "es una potente dorga broer",
+      "startDate": "2024-09-23T05:00:00.000Z",
+      "endDate": "2024-09-28T05:00:00.000Z",
+      "interval": "cada 8 horas o cuando las voces ganen",
+      "quantity": 2,
+      "patientId": 2
     }
   ],
   "prescriptions": [

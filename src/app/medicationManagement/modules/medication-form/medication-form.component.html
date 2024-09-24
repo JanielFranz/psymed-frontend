@@ -7,8 +7,13 @@
     </mat-form-field>
 
     <mat-form-field appearance="fill">
-      <mat-label>Frequency</mat-label>
-      <input matInput formControlName="frequency">
+      <mat-label>Description</mat-label>
+      <input matInput formControlName="description">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Interval</mat-label>
+      <input matInput formControlName="interval">
     </mat-form-field>
 
     <mat-form-field appearance="fill">
@@ -30,6 +35,6 @@
       <mat-datepicker #endDatePicker></mat-datepicker>
     </mat-form-field>
 
-    <button mat-raised-button color="primary" type="submit" (click)="window.location.reload()" >Save</button>
+    <button mat-raised-button color="primary" type="submit" (click)="window.location.reload()">Save</button>
   </form>
 </div>
