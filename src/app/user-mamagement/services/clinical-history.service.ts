@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {BaseService} from "../../shared/services/base.service";
-import {catchError, Observable, retry} from "rxjs";
+import {catchError, map, Observable, of, retry} from "rxjs";
 import {ClinicalHistory} from "../model/clinical-history.entity";
 
 @Injectable({
@@ -12,16 +12,22 @@ export class ClinicalHistoryService extends BaseService<ClinicalHistoryService> 
 
   constructor() {
     super();
-    this.resourceEndpoint='/clinical-history';
+    this.resourceEndpoint='/clinicalHistories';
   }
 
-  public createClinicalHistory(item: any): Observable<ClinicalHistory> {
-    return this.http.post<ClinicalHistory>(this.resourcePath(), JSON.stringify(item), this.httpOptions)
-      .pipe(retry(2), catchError(this.handleError));
-  }
 
   public updateClinicalHistory(id: any, item: any): Observable<ClinicalHistory> {
     return this.http.put<ClinicalHistory>(`${this.resourcePath()}/${id}`, JSON.stringify(item), this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
+
+  existsById(id: number): Observable<boolean> {
+    return this.http.get<ClinicalHistory>(`${this.resourcePath}/${id}`).pipe(
+      map(() => true),
+      catchError(() => of(false))
+    );
+  }
+
+
+
 }

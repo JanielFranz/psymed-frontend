@@ -5,8 +5,11 @@ import {ClinicalHistory} from "../../model/clinical-history.entity";
 import {MatFormField} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {ActivatedRoute} from "@angular/router";
-import {NgIf} from "@angular/common";
+import {NgIf, CommonModule} from "@angular/common";
 import {MatDatepicker, MatDatepickerInput, MatDatepickerToggle} from "@angular/material/datepicker";
+import {MatLabel} from "@angular/material/form-field";
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @Component({
   selector: 'app-clinical-history-form',
@@ -18,22 +21,26 @@ import {MatDatepicker, MatDatepickerInput, MatDatepickerToggle} from "@angular/m
     NgIf,
     MatDatepickerInput,
     MatDatepickerToggle,
-    MatDatepicker
+    MatDatepicker,
+    MatLabel,
+    CommonModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   templateUrl: './clinical-history-form.component.html',
   styleUrl: './clinical-history-form.component.css'
 })
 export class ClinicalHistoryFormComponent implements OnInit {
   clinicalHistoryForm!: FormGroup;
-  patientId!: number; // Define the patient ID as a number
+  historyId!: number;
 
   constructor(private fb: FormBuilder, private clinicalHistoryService: ClinicalHistoryService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     console.log("on init");
 
-    this.patientId = +this.route.snapshot.paramMap.get('patientId')!; // Get the patient ID from the route using the ActivatedRoute service
-    console.log("Patient ID:", this.patientId); // Log the patient ID to the console for security
+    this.historyId = +this.route.snapshot.paramMap.get('historyId')!; // Get the patient ID from the route using the ActivatedRoute service
+    console.log("History ID:", this.historyId); // Log the patient ID to the console for security
 
     this.clinicalHistoryForm = this.fb.group({
       Background: ['', Validators.required],
@@ -42,8 +49,31 @@ export class ClinicalHistoryFormComponent implements OnInit {
       date: ['', [Validators.required]]
     });
   }
+  onSubmit() {
+    console.log("Form submitted");
+    console.log(this.clinicalHistoryForm.value);
 
+    if (this.clinicalHistoryForm.valid) {
+      const formValues = this.clinicalHistoryForm.value;
+      const clinicalHistory = new ClinicalHistory({
+        id: this.historyId,
+        background: formValues.Background,
+        consultationReason: formValues.consultationReason,
+        symptoms: formValues.symptoms,
+        date: formValues.date
+      });
 
-
-
+      if(this.clinicalHistoryService.existsById(this.historyId)) {
+        this.clinicalHistoryService.updateClinicalHistory(this.historyId, clinicalHistory);
+        console.log("Updated clinical history");
+      }
+      else {
+        this.clinicalHistoryService.create(clinicalHistory);
+        console.log("Created clinical history");
+      }
+    }
+    else {
+      console.error('Form is invalid');
+    }
+  }
 }

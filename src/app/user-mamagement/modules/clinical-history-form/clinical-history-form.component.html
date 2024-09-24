@@ -1,38 +1,24 @@
+<!-- clinical-history-form.component.html -->
 <form [formGroup]="clinicalHistoryForm" (ngSubmit)="onSubmit()">
   <mat-form-field appearance="fill">
     <mat-label>Background</mat-label>
-    <input matInput formControlName="background" required>
-    <mat-error *ngIf="clinicalHistoryForm.get('background')?.hasError('required')">
-      Background is required
-    </mat-error>
+    <input matInput formControlName="Background" required>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Consultation Reason</mat-label>
     <input matInput formControlName="consultationReason" required>
-    <mat-error *ngIf="clinicalHistoryForm.get('consultationReason')?.hasError('required')">
-      Consultation Reason is required
-    </mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Symptoms</mat-label>
     <input matInput formControlName="symptoms" required>
-    <mat-error *ngIf="clinicalHistoryForm.get('symptoms')?.hasError('required')">
-      Symptoms are required
-    </mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Date</mat-label>
-    <input matInput [matDatepicker]="picker" formControlName="date" required>
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-    <mat-error *ngIf="clinicalHistoryForm.get('date')?.hasError('required')">
-      Date is required
-    </mat-error>
+    <input matInput formControlName="date" required>
   </mat-form-field>
 
-  <button mat-raised-button color="primary" type="submit" [disabled]="clinicalHistoryForm.invalid">Submit</button>
-  <button mat-raised-button color="accent" (click)="onSubmit()" [disabled]="clinicalHistoryForm.invalid">Save</button>
+  <button mat-raised-button color="primary" type="submit">Save</button>
 </form>

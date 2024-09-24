@@ -1,9 +1,10 @@
+/* clinical-history-form.component.css */
 form {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 400px;
+  margin: auto;
 }
 
 mat-form-field {

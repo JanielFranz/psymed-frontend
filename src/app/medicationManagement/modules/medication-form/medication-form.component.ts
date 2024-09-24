@@ -4,10 +4,11 @@ import { Medication } from '../../models/medication.entity';
 import { MedicationService } from '../../services/medication.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+import {MatDatepickerModule, MatDatepickerToggle} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import {ActivatedRoute} from "@angular/router";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-medication-form',
@@ -17,8 +18,10 @@ import {ActivatedRoute} from "@angular/router";
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatDatepickerToggle,
     ReactiveFormsModule,
-    MatButtonModule
+    MatButtonModule,
+    NgIf
   ],
   templateUrl: './medication-form.component.html',
   styleUrls: ['./medication-form.component.css']
