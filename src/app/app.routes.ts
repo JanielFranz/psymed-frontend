@@ -24,5 +24,5 @@ export const routes: Routes = [
   { path: 'medication-management/:patientId', component: MedicationManagementComponent }, // Use consistent naming
   { path: 'mood-state/:patientId', component: MoodStatementEntryComponent }, // Use patientId here
   { path: 'appointment-list', component: AppointmentPageComponent },
-  { path: 'patient-appointment-list/:patientId', component: PatientAppointmentPageComponent } // Updated :id to :patientId
+  { path: 'patient-appointment-list/:id', component: PatientAppointmentPageComponent } // Updated :id to :patientId
 ];
