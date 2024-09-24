@@ -1,0 +1,25 @@
+<div class="main-content">
+  <div class="header">
+    <h2>Appointment Calendar</h2>
+  </div>
+
+  <div class="card-container">
+    <div *ngFor="let session of dataSource.data" class="session-card">
+      <div class="appointment-details">
+        <!-- Display the appointment date and time -->
+        <p class="date">{{ session.appointmentDate | date: 'fullDate' }}</p>
+        <p class="time">
+          {{ session.appointmentDate | date: 'shortTime' }} -
+          {{ calculateEndTime(session.appointmentDate, session.sessionTime) }}
+        </p>
+      </div>
+      <div class="professional-details">
+        <p><strong>Patient:</strong> {{ session.patient.name }} {{ session.patient.lastName }}</p>
+        <p>Therapy</p>
+      </div>
+      <div class="notes-button">
+        <button mat-raised-button color="primary">Notes</button>
+      </div>
+    </div>
+  </div>
+</div>

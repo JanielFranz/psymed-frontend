@@ -1,16 +1,34 @@
 <mat-toolbar color="primary">
-  <h1>Psymed</h1>
-  <div class="mat-spacer"></div>
-    <ng-container *ngFor="let option of options">
-        <a mat-button [routerLink]="option.path">{{ option.title }}</a>
-    </ng-container>
-  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Notification menu">
-    <mat-icon>notification_important</mat-icon>
-  </button>
-  <mat-menu #menu="matMenu">
-    <p>Notification1</p>
-    <p>Notification2</p>
-    <p>Notification3</p>
-  </mat-menu>
+  <span>Psymed</span>
+  <span class="spacer"></span>
 
+  <!-- Navigation Links -->
+  <ng-container *ngFor="let option of options">
+    <a mat-button [routerLink]="option.path">{{ option.title }}</a>
+  </ng-container>
+
+  <!-- Notification Button -->
+  <button mat-icon-button [matMenuTriggerFor]="menu" (click)="viewNotifications()">
+    <mat-icon>notifications</mat-icon>
+
+    <!-- Badge for showing new appointments count -->
+    <span *ngIf="newAppointmentsCount > 0">
+      <mat-badge [matBadge]="newAppointmentsCount" matBadgeOverlap="false"></mat-badge>
+    </span>
+  </button>
+
+  <!-- Notification Menu -->
+  <mat-menu #menu="matMenu">
+    <ng-container *ngIf="appointments.length > 0; else noAppointments">
+      <!-- Iterate over the fetched appointments -->
+      <button mat-menu-item *ngFor="let appointment of appointments">
+        {{ appointment.patientName }} - {{ appointment.appointmentDate | date:'short' }}
+      </button>
+    </ng-container>
+
+    <!-- Fallback when no appointments are available -->
+    <ng-template #noAppointments>
+      <button mat-menu-item>No new notifications</button>
+    </ng-template>
+  </mat-menu>
 </mat-toolbar>
