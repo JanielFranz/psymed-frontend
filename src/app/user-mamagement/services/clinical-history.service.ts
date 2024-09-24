@@ -7,6 +7,8 @@ import {ClinicalHistory} from "../model/clinical-history.entity";
   providedIn: 'root'
 })
 export class ClinicalHistoryService extends BaseService<ClinicalHistoryService> {
+  protected override resourceEndpoint = '/medical-prescriptions';
+  private clinicalHistoryData: ClinicalHistory | null = null;
 
   constructor() {
     super();

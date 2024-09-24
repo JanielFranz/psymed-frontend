@@ -1,12 +1,18 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ClinicalHistoryService} from "../../services/clinical-history.service";
 import {ClinicalHistory} from "../../model/clinical-history.entity";
+import {MatFormField} from "@angular/material/form-field";
+import {MatInput} from "@angular/material/input";
 
 @Component({
   selector: 'app-clinical-history-form',
   standalone: true,
-  imports: [],
+  imports: [
+    ReactiveFormsModule,
+    MatFormField,
+    MatInput
+  ],
   templateUrl: './clinical-history-form.component.html',
   styleUrl: './clinical-history-form.component.css'
 })
