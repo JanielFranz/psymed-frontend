@@ -1,0 +1,17 @@
+
+<div style="width: 540px; height: 540px;" >
+  <mat-card appearance="outlined">
+    <mat-card-title>
+      Biological Functions Average Statistics
+    </mat-card-title>
+    <mat-card-content class="content">
+      <canvas class="bar-chart"  baseChart
+              [data]="barChartData"
+              [labels]="barChartLabels"
+              [type]="'bar'"
+      >
+      </canvas>
+    </mat-card-content>
+</mat-card>
+</div>
+

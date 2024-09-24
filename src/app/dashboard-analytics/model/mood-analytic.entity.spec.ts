@@ -1,7 +1,7 @@
-import { MoodAnalyticEntity } from './mood-analytic.entity';
+import { MoodAnalytic } from './mood-analytic.entity';
 
 describe('MoodAnalyticEntity', () => {
   it('should create an instance', () => {
-    expect(new MoodAnalyticEntity()).toBeTruthy();
+    expect(new MoodAnalytic({idPatient: '1'})).toBeTruthy();
   });
 });
