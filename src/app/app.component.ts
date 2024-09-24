@@ -20,7 +20,6 @@ export class AppComponent {
   title = 'psymed-frontend';
   protected options = [
     { path: '/home', title: 'Home' },
-    { path: '/appointment', title: 'Appointment' },
     { path: '/learning/courses', title: 'Course' }
   ]
 }

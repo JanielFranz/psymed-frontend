@@ -102,54 +102,64 @@
   ],
   "sessions": [
     {
-      "id": "1",
+      "id": 17,
       "idProfessional": 1,
-      "idPatient": 1,
+      "idPatient": 0,
       "idNote": 1,
-      "appointmentDate": "2021-06-01",
-      "sessionTime": 2,
-      "createdAt": "2021-06-01",
-      "updatedAt": "2021-06-01"
+      "appointmentDate": "2024-09-03T16:11:00.000Z",
+      "sessionTime": 11,
+      "createdAt": "2024-09-24T06:50:13.681Z",
+      "updatedAt": "2024-09-24T06:50:13.681Z",
+      "patient": {
+        "id": 1,
+        "name": "Michael",
+        "lastName": "Smith"
+      }
     },
     {
-      "id": "2",
-      "idProfessional": 2,
-      "idPatient": 2,
-      "idNote": 2,
-      "appointmentDate": "2021-06-05",
-      "sessionTime": 1.5,
-      "createdAt": "2021-06-05",
-      "updatedAt": "2021-06-05"
-    },
-    {
-      "id": "3",
+      "id": 21,
       "idProfessional": 1,
-      "idPatient": 3,
-      "idNote": 3,
-      "appointmentDate": "2021-06-10",
+      "idPatient": 0,
+      "idNote": 1,
+      "appointmentDate": "1110-12-31T16:19:12.000Z",
+      "sessionTime": 11,
+      "createdAt": "2024-09-24T19:15:56.586Z",
+      "updatedAt": "2024-09-24T19:15:56.586Z",
+      "patient": {
+        "id": 1,
+        "name": "Michael",
+        "lastName": "Smith"
+      }
+    },
+    {
+      "id": 22,
+      "idProfessional": 1,
+      "idPatient": 0,
+      "idNote": 1,
+      "appointmentDate": "+111111-01-01T16:01:00.000Z",
       "sessionTime": 1,
-      "createdAt": "2021-06-10",
-      "updatedAt": "2021-06-10"
+      "createdAt": "2024-09-24T19:22:49.873Z",
+      "updatedAt": "2024-09-24T19:22:49.873Z",
+      "patient": {
+        "id": 1,
+        "name": "Michael",
+        "lastName": "Smith"
+      }
     },
     {
-      "id": "4",
+      "id": 23,
       "idProfessional": 1,
-      "idPatient": 1,
-      "idNote": 4,
-      "appointmentDate": "2021-06-15",
-      "sessionTime": 2,
-      "createdAt": "2021-06-15",
-      "updatedAt": "2021-06-15"
-    },
-    {
-      "id": "5",
-      "idProfessional": 2,
-      "idPatient": 2,
-      "idNote": 5,
-      "appointmentDate": "2021-06-20",
-      "sessionTime": 1.5,
-      "createdAt": "2021-06-20",
-      "updatedAt": "2021-06-20"
+      "idPatient": 0,
+      "idNote": 1,
+      "appointmentDate": "0111-01-01T16:19:12.000Z",
+      "sessionTime": 1,
+      "createdAt": "2024-09-24T19:27:56.033Z",
+      "updatedAt": "2024-09-24T19:27:56.033Z",
+      "patient": {
+        "id": 1,
+        "name": "Michael",
+        "lastName": "Smith"
+      }
     }
   ],
   "treatments": [
@@ -386,31 +396,31 @@
   ],
   "patientMoods": [
     {
-      "id": 1,
+      "id": "1",
       "idPatient": 1,
       "mood": 1,
       "createdAt": "2021-06-01"
     },
     {
-      "id": 2,
+      "id": "2",
       "idPatient": 2,
       "mood": 2,
       "createdAt": "2021-07-01"
     },
     {
-      "id": 3,
+      "id": "3",
       "idPatient": 3,
       "mood": 3,
       "createdAt": "2021-08-01"
     },
     {
-      "id": 4,
+      "id": "4",
       "idPatient": 1,
       "mood": 4,
       "createdAt": "2021-06-15"
     },
     {
-      "id": 5,
+      "id": "5",
       "idPatient": 2,
       "mood": 5,
       "createdAt": "2021-07-15"

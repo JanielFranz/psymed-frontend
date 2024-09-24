@@ -9,9 +9,9 @@ import { SessionService } from "../../services/session.service";
 import { PatientService } from "../../../shared/services/patient.service";
 import { Session } from "../../model/sesion.entity";
 import { Patient } from "../../../shared/model/patient.entity";
-import { ActivatedRoute } from '@angular/router'; // Import ActivatedRoute for URL parameters
+import { ActivatedRoute, Router } from '@angular/router'; // Import ActivatedRoute and Router
 import { NgIf } from "@angular/common";
-import {NotificationService} from "../../services/notification.service";
+import { NotificationService } from "../../services/notification.service";
 
 @Component({
   selector: 'app-appointment-form',
@@ -40,6 +40,7 @@ export class AppointmentFormComponent implements OnInit {
     private sessionService: SessionService,
     private patientService: PatientService,
     private route: ActivatedRoute, // Inject ActivatedRoute to access the URL parameter
+    private router: Router, // Inject Router for navigation
     private notificationService: NotificationService // Inject NotificationService
   ) {}
 
@@ -86,7 +87,13 @@ export class AppointmentFormComponent implements OnInit {
     if (this.appointmentForm.valid && this.patientDetails) {
       const formValues = this.appointmentForm.value;
       const appointmentDateTime = new Date(formValues.appointmentDate);
+
+      // Parse the time
       const [hours, minutes] = formValues.appointmentTime.split(':');
+      if (!hours || !minutes) {
+        console.error('Invalid time format');
+        return;
+      }
       appointmentDateTime.setHours(parseInt(hours, 10), parseInt(minutes, 10), 0, 0);
 
       // Increment the last session ID
@@ -121,8 +128,8 @@ export class AppointmentFormComponent implements OnInit {
           // Increment the counter for new appointments
           this.notificationService.incrementCounter();
 
-          // Reload the page after successful form submission
-          window.location.reload();
+          // Optionally, redirect to a success page or show a success message instead of reloading
+          this.router.navigate(['/appointments-success']); // Example success page navigation
         },
         error: (error) => {
           console.error('Error saving session:', error);
