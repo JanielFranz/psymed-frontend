@@ -12,6 +12,9 @@ import {
 } from "./appointment-and-administration/pages/patient-appointment-page/patient-appointment-page.component";
 import {HistoryManagementComponent} from "./user-mamagement/pages/history-management/history-management.component";
 import  {BiologicalFunctionsEntryComponent} from "./patientEntrys/pages/biological-functions-entry/biological-functions-entry.component";
+import {
+  AppointmentPageComponent
+} from "./appointment-and-administration/pages/appointment-page/appointment-page.component";
 
 
 export const routes: Routes = [
@@ -23,6 +26,7 @@ export const routes: Routes = [
   { path: 'mood-state/:patientId'              , component: MoodStatementEntryComponent },
   { path: 'patient-appointment-list/:id', component: PatientAppointmentPageComponent }, // Updated :id to :patientId
   { path: 'clinical-history/:historyId', component: HistoryManagementComponent },
-  { path: 'biological-functions/:patientId', component: BiologicalFunctionsEntryComponent }
+  { path: 'biological-functions/:patientId', component: BiologicalFunctionsEntryComponent },
+  { path: 'appointment-list', component: AppointmentPageComponent}
 
 ];
