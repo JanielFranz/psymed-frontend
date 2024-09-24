@@ -8,11 +8,12 @@ import { MedicationManagementComponent} from "./medicationManagement/pages/medic
 import {PatientManagementComponent} from "./user-mamagement/pages/patient-management/patient-management.component";
 
 export const routes: Routes = [
-  { path: 'home'                    , component: HomeComponent },
-  { path: 'dashboard-analytics'     , component: AnalyticsDashboardComponent },
-  { path: 'medication-management'   , component: MedicationManagementComponent },
-  { path: 'login'                   , component: LoginComponent },
-  { path: 'patient-management'      , component: PatientManagementComponent },
-  { path: 'medication-management/:patientId', component: MedicationManagementComponent } // we use the :patientId to pass the patient ID as a parameter
+  { path: 'home'                               , component: HomeComponent },
+  { path: 'dashboard-analytics/:patientId'     , component: AnalyticsDashboardComponent },
+  { path: 'medication-management'              , component: MedicationManagementComponent },
+  { path: 'login'                              , component: LoginComponent },
+  { path: 'patient-management'                 , component: PatientManagementComponent },
+  { path: 'medication-management/:patientId'   , component: MedicationManagementComponent } // we use the :patientId to pass the patient ID as a parameter
+
 
 ];
