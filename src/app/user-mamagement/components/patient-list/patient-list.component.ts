@@ -1,18 +1,31 @@
-import {AfterViewInit, Component, inject, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, inject, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {Patient} from "../../../shared/model/patient.entity";
 import {PatientService} from "../../../shared/services/patient.service";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {MatTableDataSource} from "@angular/material/table";
+import {MatList} from "@angular/material/list";
+import {PatientItemComponent} from "../patient-item/patient-item.component";
 
 @Component({
   selector: 'app-patient-list',
   standalone: true,
-  imports: [],
+  imports: [
+    MatList,
+    PatientItemComponent
+  ],
   templateUrl: './patient-list.component.html',
   styleUrl: './patient-list.component.css'
 })
-export class PatientListComponent implements OnInit,AfterViewInit{
+export class PatientListComponent {
+
+  @Input() patients!: Array<Patient>
+  @Output() patientSelected = new EventEmitter<Patient>();
+
+  onPatientSelected(patient: Patient) {
+    this.patientSelected.emit(patient)
+  }
+/*
 
   //#region Attributes
   protected patientData!: Patient;
@@ -56,6 +69,7 @@ export class PatientListComponent implements OnInit,AfterViewInit{
   ngOnInit() {
     this.getAllPatients();
   }
+*/
 
 
 

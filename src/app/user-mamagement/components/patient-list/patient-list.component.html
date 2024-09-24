@@ -1,1 +1,5 @@
-<p>patient-list works!</p>
+<mat-list>
+  @for (patient of patients; track patient.accessId){
+    <app-patient-item (patientSelected)="onPatientSelected($event)" [patient]="patient"/>
+  }
+</mat-list>
