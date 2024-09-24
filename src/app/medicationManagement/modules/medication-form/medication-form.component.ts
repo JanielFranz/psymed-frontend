@@ -24,15 +24,15 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class MedicationFormComponent implements OnInit {
   medicationForm!: FormGroup;  // Define the form group
-
+  patientId: number = 2;
   constructor(private fb: FormBuilder, private medicationService: MedicationService) {}
 
   ngOnInit(): void {
     console.log("on init");
-    this.medicationService.getMedicationById(2);
     this.medicationForm = this.fb.group({
       name: ['', Validators.required],
-      frequency: ['', Validators.required],
+      description: ['', Validators.required],
+      interval: ['', Validators.required],
       quantity: ['', [Validators.required, Validators.min(1)]],
       startDate: ['', Validators.required],
       endDate: ['', Validators.required]
@@ -44,15 +44,16 @@ export class MedicationFormComponent implements OnInit {
       const formValues = this.medicationForm.value;
       const newMedication = new Medication({
         name: formValues.name,
-        description: formValues.frequency,
+        description: formValues.description,
         id: 0, // Assuming ID is auto-generated
         startDate: formValues.startDate,
         endDate: formValues.endDate,
-        interval: formValues.frequency,
-        quantity: formValues.quantity
+        interval: formValues.interval,
+        quantity: formValues.quantity,
+        patientId: this.patientId
       });
 
-      this.medicationService.createMedication(newMedication).subscribe({
+      this.medicationService.createMedication(newMedication, this.patientId).subscribe({
         next: (response) => {
           console.log('Medication saved:', response);
         },

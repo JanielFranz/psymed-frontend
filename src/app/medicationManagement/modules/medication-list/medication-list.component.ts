@@ -13,17 +13,14 @@ import {MatCardModule} from '@angular/material/card';
 })
 export class MedicationListComponent implements OnInit {
   medications: Medication[] = [];
-
+  patientId: number = 2;
   constructor(private medicationService: MedicationService) {}
 
   ngOnInit(): void {
-    this.medicationService.getAllMedications().subscribe({
+    this.medicationService.getMedicationsByPatientId(this.patientId).subscribe({
       next: (response: Medication[]) => {
         this.medications = response;
         console.log('Medications retrieved:', this.medications);
-      },
-      error: (error) => {
-        console.error('Failed to fetch medications:', error);
       }
     });
   }
