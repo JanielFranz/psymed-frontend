@@ -21,10 +21,10 @@ import {PatientItemComponent} from "../patient-item/patient-item.component";
 export class PatientListComponent {
 
   @Input() patients!: Array<Patient>
-  @Output() patientSelected = new EventEmitter<Patient>();
+  @Output() patientSelected = new EventEmitter<{patient: Patient, feature: string}>();
 
-  onPatientSelected(patient: Patient) {
-    this.patientSelected.emit(patient)
+  onPatientSelected(feature: {patient: Patient, feature: string}) {
+    this.patientSelected.emit(feature)
   }
 /*
 
