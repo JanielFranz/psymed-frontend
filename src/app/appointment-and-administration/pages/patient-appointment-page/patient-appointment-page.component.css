@@ -55,3 +55,19 @@
   margin: 0;
   text-align: left;
 }
+/* Ensure that the main content uses flexbox to position elements horizontally */
+.content-wrapper {
+  display: flex;
+  justify-content: space-between; /* Optional: Adds space between the left and right sections */
+  gap: 20px; /* Add space between the appointment list and the form */
+}
+
+/* Appointment list takes 70% of the width */
+.appointment-list {
+  flex: 2; /* Makes the appointment list take up more space than the form */
+}
+
+/* Appointment form takes 30% of the width */
+.appointment-form {
+  flex: 1; /* Makes the appointment form smaller than the list */
+}

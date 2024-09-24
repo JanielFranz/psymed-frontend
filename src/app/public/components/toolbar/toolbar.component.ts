@@ -1,48 +1,75 @@
-import { Component } from '@angular/core';
-import { MatAnchor, MatIconButton } from "@angular/material/button";
-import { MatIcon } from "@angular/material/icon";
-import { MatMenu, MatMenuTrigger } from "@angular/material/menu";
-import { MatToolbar } from "@angular/material/toolbar";
-import { RouterLink } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
 import {NotificationService} from "../../../appointment-and-administration/services/notification.service";
-import {NgForOf, NgIf} from "@angular/common";
+import {SessionService} from "../../../appointment-and-administration/services/session.service";
+import {DatePipe, NgForOf, NgIf} from "@angular/common";
+import {MatToolbar} from "@angular/material/toolbar";
+import {RouterLink} from "@angular/router";
+import {MatAnchor, MatIconButton} from "@angular/material/button";
+import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
+import {MatIcon} from "@angular/material/icon";
+import {MatBadge} from "@angular/material/badge";
 
 @Component({
   selector: 'app-toolbar',
+  templateUrl: './toolbar.component.html',
   standalone: true,
   imports: [
-    MatAnchor,
-    MatIcon,
-    MatIconButton,
-    MatMenu,
+    DatePipe,
     MatToolbar,
-    RouterLink,
-    MatMenuTrigger,
     NgForOf,
+    RouterLink,
+    MatAnchor,
+    MatIconButton,
+    MatMenuTrigger,
+    MatIcon,
+    MatBadge,
+    MatMenu,
+    MatMenuItem,
     NgIf
   ],
-  templateUrl: './toolbar.component.html',
-  styleUrls: ['./toolbar.component.css'] // Use `styleUrls` instead of `styleUrl`
+  styleUrls: ['./toolbar.component.css']
 })
-export class ToolbarComponent {
-  protected options = [
-    { path: '/home', title: 'Home' },
-    { path: '/dashboard-analytics', title: 'Dashboard' },
-    { path: '/medication-management', title: 'Medication' },
-    { path: '/appointment-list', title: 'Appointments' },
+export class ToolbarComponent implements OnInit {
+  newAppointmentsCount: number = 0; // Counter for new appointments
+  appointments: any[] = []; // Array to hold appointments list
+
+  // Define the options array for navigation links
+  options = [
+    { title: 'Home', path: '/home' },
+    { title: 'Appointments', path: '/appointments' },
+    { title: 'Patients', path: '/patients' }
   ];
 
-  newAppointmentsCount: number = 0; // Variable to store the count of new appointments
+  constructor(
+    private notificationService: NotificationService,
+    private appointmentService: SessionService // Inject the appointment service
+  ) {}
 
-  constructor(private notificationService: NotificationService) {
-    // Subscribe to the new appointments counter observable
+  ngOnInit(): void {
+    // Subscribe to the observable that tracks the count
     this.notificationService.newAppointmentsCount$.subscribe(count => {
       this.newAppointmentsCount = count;
     });
   }
 
-  // Method to reset the counter when notifications are viewed
+  // Reset the notifications count and fetch the appointments list
   viewNotifications(): void {
+    // Reset the notification counter
     this.notificationService.resetCounter();
+
+    // Fetch the list of appointments
+    this.fetchAppointments();
+  }
+
+  // Fetch appointments from the service
+  fetchAppointments() {
+    this.appointmentService.getAll().subscribe({
+      next: (appointments: any[]) => {
+        this.appointments = appointments; // Store the fetched appointments
+      },
+      error: (error) => {
+        console.error('Error fetching appointments:', error);
+      }
+    });
   }
 }

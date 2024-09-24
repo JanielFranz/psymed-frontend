@@ -11,6 +11,7 @@ import { Session } from "../../model/sesion.entity";
 import { Patient } from "../../../shared/model/patient.entity";
 import { ActivatedRoute } from '@angular/router'; // Import ActivatedRoute for URL parameters
 import { NgIf } from "@angular/common";
+import {NotificationService} from "../../services/notification.service";
 
 @Component({
   selector: 'app-appointment-form',
@@ -38,7 +39,8 @@ export class AppointmentFormComponent implements OnInit {
     private fb: FormBuilder,
     private sessionService: SessionService,
     private patientService: PatientService,
-    private route: ActivatedRoute // Inject ActivatedRoute to access the URL parameter
+    private route: ActivatedRoute, // Inject ActivatedRoute to access the URL parameter
+    private notificationService: NotificationService // Inject NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -109,12 +111,15 @@ export class AppointmentFormComponent implements OnInit {
         updatedAt: new Date().toISOString()
       });
 
-      // Save the session using the sessionService (you can replace this with saving locally if needed)
+      // Save the session using the sessionService
       this.sessionService.create(newSession).subscribe({
         next: (response) => {
           console.log('Session saved:', response);
           this.appointmentForm.reset(); // Reset the form after saving
           this.patientDetails = null; // Reset patient details after submission
+
+          // Increment the counter for new appointments
+          this.notificationService.incrementCounter();
 
           // Reload the page after successful form submission
           window.location.reload();
