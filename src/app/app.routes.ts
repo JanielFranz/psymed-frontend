@@ -13,5 +13,6 @@ export const routes: Routes = [
   { path: 'medication-management'   , component: MedicationManagementComponent },
   { path: 'login'                   , component: LoginComponent },
   { path: 'patient-management'      , component: PatientManagementComponent },
+  { path: 'medication-management/:patientId', component: MedicationManagementComponent } // we use the :patientId to pass the patient ID as a parameter
 
 ];
