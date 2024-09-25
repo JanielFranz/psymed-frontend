@@ -60,12 +60,12 @@ export class ToolbarComponent implements OnInit, OnDestroy {
           this.options = [
             { path: '/home', title: 'Home' },
             { path: '/patient-management', title: 'Patient Management' },
-            { path: '/appointment-list', title: 'Appointments' },
           ];
         } else if (rolid === '2') {
           this.options = [
             { path: '/home',        title: 'Home' },
             { path: '/mood-state',  title: 'Mood State' },
+            { path: '/biological-functions',  title: 'Biological Functions' },
           ];
         } else {
           this.options = [
