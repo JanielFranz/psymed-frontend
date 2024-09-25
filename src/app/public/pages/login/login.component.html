@@ -1,8 +1,19 @@
-<button (click)="sendRolidToStore('1') "mat-icon-button aria-label="Notification menu">
-  <p>pa</p>
-  <mat-icon>alert</mat-icon>
-</button>
-<button (click)="sendRolidToStore('2')" mat-icon-button aria-label="Notification menu">
-  <p>p</p>
-  <mat-icon>alert</mat-icon>
-</button>
+<div class="card-container">
+  <mat-card>
+    <mat-card-title><h1>Professional</h1></mat-card-title>
+    <mat-card-content>
+      <button (click)="sendRolidToStore('1')" >
+        <h3>Select</h3>
+      </button>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-title><h1>Patient</h1></mat-card-title>
+    <mat-card-content>
+      <button (click)="sendRolidToStore('2')" >
+        <h3>Select</h3>
+      </button>
+    </mat-card-content>
+  </mat-card>
+</div>

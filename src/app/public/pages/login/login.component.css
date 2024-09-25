@@ -1,0 +1,23 @@
+.card-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 50px;
+}
+
+mat-card {
+  width: 400px;
+  text-align: center;
+  color: darkblue;
+}
+
+button {
+  transition: background-color 0.3s ease;
+  background-color: darkblue;
+  color: white; /* Makes the button rectangular */
+  padding-bottom: 0px;
+}
+
+button:hover {
+  background-color: skyblue;
+}
