@@ -15,7 +15,6 @@ export class ClinicalHistoryService extends BaseService<ClinicalHistoryService> 
     this.resourceEndpoint='/clinicalHistories';
   }
 
-
   public updateClinicalHistory(id: any, item: any): Observable<ClinicalHistory> {
     return this.http.put<ClinicalHistory>(`${this.resourcePath()}/${id}`, JSON.stringify(item), this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
@@ -32,7 +31,6 @@ export class ClinicalHistoryService extends BaseService<ClinicalHistoryService> 
       })
     );
   }
-
 
 
 }
