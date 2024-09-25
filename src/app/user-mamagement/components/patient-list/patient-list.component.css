@@ -1,13 +1,16 @@
 mat-list {
-  background-color: whitesmoke;
+  background-color: white;
   padding: 20px;
   border-radius: 8px;
 }
 
 .container-tittle{
   color: white;
-  background-color: rgb(26, 115, 232);
+  background-color: #091133;
   padding: 5px;
   text-align: center;
   border-radius: 10px;
+}
+mat-card{
+  background-color: #308C83;
 }

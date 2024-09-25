@@ -1,3 +1,46 @@
+/* Toolbar */
+mat-toolbar {
+  background-color: #028484; /* Custom primary color */
+  color: white; /* Text color */
+  padding: 0 20px; /* Add some padding to the sides */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Spacer to separate elements */
 .mat-spacer {
   flex: 1 1 auto;
+}
+
+/* Styles for navigation links */
+mat-toolbar a {
+  text-decoration: none; /* Remove underline */
+  color: white; /* Link color */
+  margin-right: 20px; /* Space between links */
+  font-weight: bold; /* Make text more prominent */
+  transition: color 0.3s ease-in-out; /* Smooth hover transition */
+}
+
+mat-toolbar a:hover {
+  color: #a0e4e3; /* Color change on hover */
+}
+
+/* Notification button */
+mat-toolbar button {
+  color: white; /* Notification icon color */
+}
+
+/* Badge styling (notification count) */
+mat-badge {
+  background-color: #ff5252; /* Badge background color */
+  color: white; /* Badge text color */
+  font-weight: bold; /* Make the number stand out */
+}
+
+/* Notification menu */
+mat-menu button {
+  color: #333;
+}
+
+mat-menu button:hover {
+  background-color: #f0f0f0; /* Background change on hover */
 }
