@@ -1,6 +1,6 @@
 export interface AuthState {
   rolid: string | null;
-  patientId: string | null;
+  patientId: number | null;
 }
 
 export const initialAuthState: AuthState = {

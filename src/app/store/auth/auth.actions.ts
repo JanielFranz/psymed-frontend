@@ -7,5 +7,5 @@ export const setRole = createAction(
 
 export const setPatientId = createAction(
   '[Auth] Set Patient ID',
-  props<{ patientId: string }>()
+  props<{ patientId: number }>()
 );
