@@ -65,7 +65,8 @@ export class ToolbarComponent implements OnInit, OnDestroy {
           ];
         } else if (rolid === '2') {
           this.options = [
-            { path: '/home', title: 'Home' }
+            { path: '/home',        title: 'Home' },
+            { path: '/mood-state',  title: 'Mood State' },
           ];
         } else {
           this.options = [
