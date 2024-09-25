@@ -9,4 +9,6 @@
 .name-row {
   display: flex;
   align-items: center;
+  color: rgb(26, 115, 232);
+  font-size: 22px;
 }

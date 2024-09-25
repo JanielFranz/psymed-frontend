@@ -1,5 +1,5 @@
 <mat-list>
-  <div mat-subheader>Patients</div>
+  <div mat-subheader class="container-tittle"><h2>Patients</h2></div>
   @for (patient of patients; track patient.id){
     <app-patient-item (patientSelected)="onPatientSelected($event)" [patient]="patient"/>
   }

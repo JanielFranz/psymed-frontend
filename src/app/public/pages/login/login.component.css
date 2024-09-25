@@ -8,14 +8,16 @@
 mat-card {
   width: 400px;
   text-align: center;
-  color: darkblue;
+  color: black;
+  background-color: skyblue;
 }
 
 button {
   transition: background-color 0.3s ease;
-  background-color: darkblue;
+  background-color: rgb(26, 115, 232);
   color: white; /* Makes the button rectangular */
   padding-bottom: 0px;
+  border-radius: 10px;
 }
 
 button:hover {
