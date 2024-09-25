@@ -63,14 +63,19 @@ export class ClinicalHistoryFormComponent implements OnInit {
         date: formValues.date
       });
 
-      if(this.clinicalHistoryService.existsById(this.historyId)) {
-        this.clinicalHistoryService.updateClinicalHistory(this.historyId, clinicalHistory);
-        console.log("Updated clinical history");
-      }
-      else {
-        this.clinicalHistoryService.create(clinicalHistory);
-        console.log("Created clinical history");
-      }
+      this.clinicalHistoryService.existsById(this.historyId).subscribe(exists => {
+        if (exists) {
+          this.clinicalHistoryService.updateClinicalHistory(this.historyId, clinicalHistory).subscribe(() => {
+            console.log('Clinical history updated');
+          });
+        }
+        else {
+          this.clinicalHistoryService.create(clinicalHistory).subscribe(() => {
+            console.log('Clinical history created');
+          });
+        }
+      });
+
     }
     else {
       console.error('Form is invalid');

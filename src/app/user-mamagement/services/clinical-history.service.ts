@@ -22,9 +22,14 @@ export class ClinicalHistoryService extends BaseService<ClinicalHistoryService> 
   }
 
   existsById(id: number): Observable<boolean> {
-    return this.http.get<ClinicalHistory>(`${this.resourcePath}/${id}`).pipe(
+    const url = `${this.resourcePath()}/${id}`;
+    console.log(`Requesting URL: ${url}`);
+    return this.http.get<ClinicalHistory>(url).pipe(
       map(() => true),
-      catchError(() => of(false))
+      catchError((error) => {
+        console.error(`Error fetching clinical history with ID ${id}:`, error);
+        return of(false);
+      })
     );
   }
 
