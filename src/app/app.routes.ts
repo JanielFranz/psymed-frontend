@@ -23,5 +23,5 @@ export const routes: Routes = [
   { path: 'mood-state'              , component: MoodStatementEntryComponent },
   { path: 'patient-management/patient-appointment-list/:id', component: PatientAppointmentPageComponent }, // Updated :id to :patientId
   { path: 'patient-management/clinical-history/:historyId', component: HistoryManagementComponent },
-  { path: 'biological-functions/:patientId', component: BiologicalFunctionsEntryComponent }
+  { path: 'biological-functions', component: BiologicalFunctionsEntryComponent }
 ];
