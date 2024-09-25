@@ -10,7 +10,7 @@ import { MatIcon } from "@angular/material/icon";
 import { MatBadge } from "@angular/material/badge";
 import { Store } from '@ngrx/store';
 import { AuthState } from "../../../store/auth/auth.state";
-import { selectRolId } from "../../../store/auth/auth.selectors";
+import {selectPatientId, selectRolId} from "../../../store/auth/auth.selectors";
 import { Observable, Subject } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
 
@@ -38,6 +38,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   newAppointmentsCount: number = 0; // Counter for new appointments
   appointments: any[] = []; // Array to hold appointments list
   rolid$!: Observable<string | null>; // Observable for role ID
+  patientId$!: Observable<number | null>;
   options: Array<{ path: string, title: string }> = []; // Array to store the navigation options
 
   private destroy$: Subject<boolean> = new Subject<boolean>(); // To handle unsubscription
@@ -51,6 +52,8 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     // Subscribe to role ID from store and update options accordingly
     this.rolid$ = this.store.select(selectRolId);
+    this.patientId$ = this.store.select(selectPatientId);
+    console.log('observable', this.patientId$)
     this.rolid$.pipe(
       map((rolid) => {
         if (rolid === '1') {
