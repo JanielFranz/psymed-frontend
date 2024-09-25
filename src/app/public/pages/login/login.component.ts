@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {MatIconButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
 import {Store} from "@ngrx/store";
-import { setRole } from '../../../store/auth/auth.actions'
+import {setPatientId, setRole} from '../../../store/auth/auth.actions'
 import {MatCard, MatCardContent, MatCardTitle} from "@angular/material/card";
 @Component({
   selector: 'app-login',
@@ -20,9 +20,17 @@ import {MatCard, MatCardContent, MatCardTitle} from "@angular/material/card";
 export class LoginComponent {
   constructor(private store: Store) {}
 
-  sendRolidToStore(rolid: string ): void {
+  sendProfessionalDataToStore(rolid: string ): void {
     // Dispatch the action to send rolid to the store
     console.log(rolid)
     this.store.dispatch(setRole({ rolid }));
+  }
+
+  sendPatientDataToStore(rolid: string, patientId: number): void {
+    console.log(rolid)
+    console.log(patientId)
+
+    this.store.dispatch(setRole({ rolid }));
+    this.store.dispatch(setPatientId({ patientId }));
   }
 }
