@@ -102,7 +102,7 @@
   ],
   "sessions": [
     {
-      "id": 17,
+      "id": "17",
       "idProfessional": 1,
       "idPatient": 0,
       "idNote": 1,
@@ -117,7 +117,7 @@
       }
     },
     {
-      "id": 21,
+      "id": "21",
       "idProfessional": 1,
       "idPatient": 0,
       "idNote": 1,
@@ -132,7 +132,7 @@
       }
     },
     {
-      "id": 22,
+      "id": "22",
       "idProfessional": 1,
       "idPatient": 0,
       "idNote": 1,
@@ -147,7 +147,7 @@
       }
     },
     {
-      "id": 23,
+      "id": "23",
       "idProfessional": 1,
       "idPatient": 0,
       "idNote": 1,
@@ -351,10 +351,10 @@
   "clinicalHistories": [
     {
       "id": "1",
-      "background": "The patient has a history of anxiety.",
-      "consultationReason": "The patient is suffering from anxiety.",
-      "symptoms": "Headache, dizziness, and fatigue.",
-      "date": "2021-06-01"
+      "background": "a",
+      "consultationReason": "a",
+      "symptoms": "a",
+      "date": "a"
     },
     {
       "id": "2",
@@ -369,6 +369,13 @@
       "consultationReason": "The patient is experiencing chronic stress due to work.",
       "symptoms": "Increased irritability and fatigue.",
       "date": "2021-08-01"
+    },
+    {
+      "id": 1,
+      "background": "a",
+      "consultationReason": "a",
+      "symptoms": "s",
+      "date": "s"
     }
   ],
   "diagnostics": [
@@ -427,6 +434,12 @@
       "idPatient": 2,
       "mood": 5,
       "createdAt": "2021-07-15"
+    },
+    {
+      "id": "1",
+      "idPatient": 1,
+      "mood": 5,
+      "createdAt": "hoy xd"
     }
   ],
   "biologicalFunctions": [
@@ -529,7 +542,8 @@
       "hungerAverage": "1",
       "sleepAverage": "2",
       "energyAverage": "2",
-      "hydrationAverage": "5"
+      "hydrationAverage": "5",
+      "id": "02bc"
     },
     {
       "idPatient": "1",
@@ -538,7 +552,8 @@
       "hungerAverage": "3",
       "sleepAverage": "1",
       "energyAverage": "3",
-      "hydrationAverage": "1"
+      "hydrationAverage": "1",
+      "id": "2639"
     }
   ]
 }
