@@ -6,6 +6,7 @@ import {MatSort} from "@angular/material/sort";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatList, MatListSubheaderCssMatStyler} from "@angular/material/list";
 import {PatientItemComponent} from "../patient-item/patient-item.component";
+import {MatCard} from "@angular/material/card";
 
 @Component({
   selector: 'app-patient-list',
@@ -13,7 +14,8 @@ import {PatientItemComponent} from "../patient-item/patient-item.component";
   imports: [
     MatList,
     PatientItemComponent,
-    MatListSubheaderCssMatStyler
+    MatListSubheaderCssMatStyler,
+    MatCard
   ],
   templateUrl: './patient-list.component.html',
   styleUrl: './patient-list.component.css'

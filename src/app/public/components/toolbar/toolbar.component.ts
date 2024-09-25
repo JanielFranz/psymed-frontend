@@ -59,7 +59,6 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         if (rolid === '1') {
           this.options = [
             { path: '/home', title: 'Home' },
-            { path: '/dashboard-analytics', title: 'Dashboard' },
             { path: '/patient-management', title: 'Patient Management' },
             { path: '/appointment-list', title: 'Appointments' },
           ];
