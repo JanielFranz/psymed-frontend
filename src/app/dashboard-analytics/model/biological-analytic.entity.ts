@@ -7,6 +7,10 @@ export class BiologicalAnalytic {
   energyAverage: string;
   hydrationAverage: string;
 
+  /**
+   * Constructor
+   * @param biologicalAnalytic - object biologicalAnalytic
+   */
   constructor(biologicalAnalytic: {idPatient: string, month?: string,
   year?: string, hungerAverage?: string, sleepAverage?: string,
   energyAverage?: string, hydrationAverage?: string}) {

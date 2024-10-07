@@ -8,6 +8,10 @@ export class MoodAnalytic {
   soSadMood: string;
   soHappyMood: string;
 
+  /**
+   * Constructor
+   * @param moodAnalytic  - moodAnalytic object
+   */
   constructor(moodAnalytic: {idPatient: string, year?: string, month?: string,
   sadMood?: string, happyMood?: string, neutralMood?: string,
   soSadMood?: string, soHappyMood?: string}) {

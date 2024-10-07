@@ -15,6 +15,21 @@ interface Year {
   value: string;
 }
 
+/**
+ * PieFilter Component
+ * @class PieFilterComponent
+ * @description
+ * This component is responsible for filtering the data that will be displayed in the pie chart and the bar chart.
+ * It has two dropdowns, one for the year and one for the month. The user can select a year and a month and then click on the filter button to request the data.
+ * @property {Year[]} years - The years that will be displayed in the year dropdown.
+ * @property {Month[]} months - The months that will be displayed in the month dropdown.
+ * @property {string | null} selectedYear - The selected year.
+ * @property {string | null} selectedMonth - The selected month.
+ * @property {EventEmitter<{ month: string | null, year: string | null }>} dataFilterRequested - The event that will be emitted when the user clicks on the filter button.
+ * @method {validateInputText} - Validates the input text. If the user didn't select a year and a month, it will show an alert.
+ * @method {filterRequest} - Filters the data by year and month. It will call the dataFilterRequested event.
+ *
+ */
 @Component({
   selector: 'app-pie-filter',
   standalone: true,
@@ -55,7 +70,13 @@ export class PieFilterComponent {
   @Output() protected dataFilterRequested = new EventEmitter<{ month: string | null, year: string | null }>();
   // #endregion
 
-  // #region Methods
+  // #region Utility Methods
+  /**
+   * Validate input text
+   * @description
+   * Validates the input text. If the user didn't select a year and a month, it will show an alert.
+   * @returns {boolean} - Returns true if the input text is valid, otherwise returns false.
+   */
   private validateInputText() : boolean {
     if(!this.selectedYear && !this.selectedMonth) {
       console.log('ERROR',this.selectedMonth, this.selectedYear);
@@ -66,6 +87,13 @@ export class PieFilterComponent {
     console.log(this.selectedMonth, this.selectedYear);
     return true;
   }
+
+  /**
+   * Filter Request
+   * @description
+   * Filters the data by year and month. It will call the dataFilterRequested event.
+   * @returns {void}
+   */
   filterRequest() {
       if (this.validateInputText()) {
         console.log("Filtering by year: " + this.selectedYear + " and month: " + this.selectedMonth);
