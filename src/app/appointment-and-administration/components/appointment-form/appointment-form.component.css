@@ -1,7 +1,7 @@
 /* Container for the entire form */
 .form-container {
   background-color: #091133;
-  padding: 20px;
+  padding: 1.25rem; /* Use rem for better scalability */
   border-radius: 8px;
   max-width: 400px;
   margin: 0 auto; /* Center the form horizontally */
@@ -12,23 +12,23 @@
 mat-form-field {
   display: block;
   width: 100%;
-  margin-bottom: 16px;
+  margin-bottom: 1rem;
 }
 
 /* Error message styling */
 mat-error {
   color: red;
-  font-size: 12px;
-  margin-top: -8px;
+  font-size: 0.75rem; /* Use rem for consistency */
+  margin-top: -0.5rem;
 }
 
 /* General button styling */
 button {
   width: 100%; /* Full width button */
-  padding: 12px 16px; /* Padding for comfortable clicking */
-  font-size: 14px; /* Adjust font size */
+  padding: 0.75rem 1rem; /* Padding for comfortable clicking */
+  font-size: 0.875rem; /* Adjust font size */
   height: 44px; /* Set a fixed height for consistency */
-  margin: 16px 0; /* Add margin above and below the button */
+  margin: 1rem 0; /* Add margin above and below the button */
   display: block;
   text-align: center;
   border: none;
@@ -50,4 +50,17 @@ button.mat-raised-button:hover {
 .button {
   width: 100px; /* Set a specific width for the button */
   background-color: #ff6f61; /* Set button to a bright coral color */
+}
+
+/* Media query for small screens */
+@media (max-width: 600px) {
+  .form-container {
+    max-width: 100%; /* Allow form to take full width on smaller screens */
+    padding: 1rem;
+  }
+
+  button {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+  }
 }
