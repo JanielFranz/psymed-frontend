@@ -4,7 +4,7 @@ import {
   AnalyticsDashboardComponent
 } from "./dashboard-analytics/pages/analytics-dashboard/analytics-dashboard.component";
 import {LoginComponent} from "./public/pages/login/login.component";
-import { MedicationManagementComponent} from "./medicationManagement/pages/medication-management/medication-management.component";
+import { MedicationManagementComponent} from "./medication-management/pages/medication-management/medication-management.component";
 import {PatientManagementComponent} from "./user-mamagement/pages/patient-management/patient-management.component";
 import {MoodStatementEntryComponent} from "./patientEntrys/pages/mood-statement-entry/mood-statement-entry.component";
 import {

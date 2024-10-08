@@ -9,7 +9,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {MatCard, MatCardContent} from "@angular/material/card";
 import {AppointmentFormComponent} from "../../components/appointment-form/appointment-form.component";
-import {MedicationFormComponent} from "../../../medicationManagement/modules/medication-form/medication-form.component";
+import {MedicationFormComponent} from "../../../medication-management/modules/medication-form/medication-form.component";
 
 @Component({
   selector: 'app-patient-appointment-page',
