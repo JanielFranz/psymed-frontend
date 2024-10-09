@@ -4,6 +4,7 @@ import {MatIcon} from "@angular/material/icon";
 import {Store} from "@ngrx/store";
 import {setPatientId, setRole} from '../../../store/auth/auth.actions'
 import {MatCard, MatCardContent, MatCardTitle} from "@angular/material/card";
+import {selectPatientId} from "../../../store/auth/auth.selectors";
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -19,6 +20,7 @@ import {MatCard, MatCardContent, MatCardTitle} from "@angular/material/card";
 })
 export class LoginComponent {
   constructor(private store: Store) {}
+
 
   sendProfessionalDataToStore(rolid: string ): void {
     // Dispatch the action to send rolid to the store

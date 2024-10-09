@@ -12,7 +12,7 @@ import {
 } from "./appointment-and-administration/pages/patient-appointment-page/patient-appointment-page.component";
 import {HistoryManagementComponent} from "./user-mamagement/pages/history-management/history-management.component";
 import  {BiologicalFunctionsEntryComponent} from "./patientEntrys/pages/biological-functions-entry/biological-functions-entry.component";
-
+import {PatientMedicationComponent} from "./medicationManagement/pages/patient-medication/patient-medication.component";
 
 export const routes: Routes = [
   { path: 'home'                               , component: HomeComponent },
@@ -23,5 +23,6 @@ export const routes: Routes = [
   { path: 'mood-state'              , component: MoodStatementEntryComponent },
   { path: 'patient-management/patient-appointment-list/:id', component: PatientAppointmentPageComponent }, // Updated :id to :patientId
   { path: 'patient-management/clinical-history/:historyId', component: HistoryManagementComponent },
-  { path: 'biological-functions', component: BiologicalFunctionsEntryComponent }
+  { path: 'biological-functions', component: BiologicalFunctionsEntryComponent },
+  { path: 'patient/prescription/:patientId', component: PatientMedicationComponent }
 ];

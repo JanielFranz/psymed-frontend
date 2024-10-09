@@ -50,10 +50,9 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    // Subscribe to role ID from store and update options accordingly
     this.rolid$ = this.store.select(selectRolId);
     this.patientId$ = this.store.select(selectPatientId);
-    console.log('observable', this.patientId$)
+
     this.rolid$.pipe(
       map((rolid) => {
         if (rolid === '1') {
@@ -62,11 +61,19 @@ export class ToolbarComponent implements OnInit, OnDestroy {
             { path: '/patient-management', title: 'Patient Management' },
           ];
         } else if (rolid === '2') {
-          this.options = [
-            { path: '/home',        title: 'Home' },
-            { path: '/mood-state',  title: 'Mood State' },
-            { path: '/biological-functions',  title: 'Biological Functions' },
-          ];
+          this.patientId$.pipe(
+            map((patientId) => {
+              if (patientId !== null) {
+                this.options = [
+                  { path: '/home', title: 'Home' },
+                  { path: '/mood-state', title: 'Mood State' },
+                  { path: '/biological-functions', title: 'Biological Functions' },
+                  { path: `/patient/prescription/${patientId}`, title: 'Prescription' },
+                ];
+              }
+            }),
+            takeUntil(this.destroy$)
+          ).subscribe();
         } else {
           this.options = [
             { path: '/home', title: 'Home' },
@@ -74,10 +81,9 @@ export class ToolbarComponent implements OnInit, OnDestroy {
           ];
         }
       }),
-      takeUntil(this.destroy$) // Ensure unsubscription
+      takeUntil(this.destroy$)
     ).subscribe();
 
-    // Subscribe to the observable that tracks the count of new appointments
     this.notificationService.newAppointmentsCount$
       .pipe(takeUntil(this.destroy$))
       .subscribe(count => {
