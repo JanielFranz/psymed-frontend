@@ -1,24 +1,32 @@
 <div class="main-content">
+  <!-- Header section -->
   <div class="header">
-    <h2>Appointment Calendar</h2>
+    <h2>Appointment Calendar</h2> <!-- Title for the appointment calendar -->
   </div>
 
+  <!-- Container for the session cards -->
   <div class="card-container">
+    <!-- Loop through each session in the dataSource to display the session details -->
     <div *ngFor="let session of dataSource.data" class="session-card">
+
+      <!-- Appointment details (date and time) -->
       <div class="appointment-details">
-        <!-- Display the appointment date and time -->
-        <p class="date">{{ session.appointmentDate | date: 'fullDate' }}</p>
+        <p class="date">{{ session.appointmentDate | date: 'fullDate' }}</p> <!-- Full appointment date -->
         <p class="time">
-          {{ session.appointmentDate | date: 'shortTime' }} -
-          {{ calculateEndTime(session.appointmentDate, session.sessionTime) }}
+          {{ session.appointmentDate | date: 'shortTime' }} - <!-- Start time of the session -->
+          {{ calculateEndTime(session.appointmentDate, session.sessionTime) }} <!-- End time of the session, calculated dynamically -->
         </p>
       </div>
+
+      <!-- Professional (patient) details -->
       <div class="professional-details">
-        <p><strong>Patient:</strong> {{ session.patient.name }} {{ session.patient.lastName }}</p>
-        <p>Therapy</p>
+        <p><strong>Patient:</strong> {{ session.patient.name }} {{ session.patient.lastName }}</p> <!-- Patient's name -->
+        <p>Therapy</p> <!-- Placeholder text (Therapy) -->
       </div>
+
+      <!-- Button to view notes related to the session -->
       <div class="notes-button">
-        <button mat-raised-button color="primary">Notes</button>
+        <button mat-raised-button color="primary">Notes</button> <!-- Material button styled with primary color -->
       </div>
     </div>
   </div>

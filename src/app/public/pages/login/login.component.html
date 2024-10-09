@@ -1,18 +1,22 @@
 <div class="card-container">
+  <!-- Card for mental health professionals -->
   <mat-card>
     <p>If you are a mental health professional and wish to manage your patients and access your tools, select this option.</p>
     <mat-card-content>
-      <button (click)="sendProfessionalDataToStore('1')" >
-        <h3>Select</h3>
+      <!-- Button to select professional role, calls the sendProfessionalDataToStore method -->
+      <button (click)="sendProfessionalDataToStore('1')">
+        <h3>Select</h3> <!-- Button text -->
       </button>
     </mat-card-content>
   </mat-card>
 
+  <!-- Card for patients -->
   <mat-card>
     <p>If you are a patient and want to review your medical history, communicate with your doctor, or schedule an appointment, select this option.</p>
     <mat-card-content>
-      <button (click)="sendPatientDataToStore('2',1)" >
-        <h3>Select</h3>
+      <!-- Button to select patient role, calls the sendPatientDataToStore method -->
+      <button (click)="sendPatientDataToStore('2', 1)">
+        <h3>Select</h3> <!-- Button text -->
       </button>
     </mat-card-content>
   </mat-card>

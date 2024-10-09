@@ -57,8 +57,8 @@ export class LoginComponent {
    * @returns void
    */
   sendPatientDataToStore(rolid: string, patientId: number): void {
-    console.log(rolid)
-    console.log(patientId)
+    console.log(rolid);
+    console.log(patientId);
 
     this.store.dispatch(setRole({ rolid }));
     this.store.dispatch(setPatientId({ patientId }));

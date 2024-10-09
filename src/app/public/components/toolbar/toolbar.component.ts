@@ -1,59 +1,77 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { NotificationService } from "../../../appointment-and-administration/services/notification.service";
 import { SessionService } from "../../../appointment-and-administration/services/session.service";
-import { DatePipe, NgForOf, NgIf } from "@angular/common";
-import { MatToolbar } from "@angular/material/toolbar";
-import { RouterLink } from "@angular/router";
-import { MatAnchor, MatIconButton } from "@angular/material/button";
-import { MatMenu, MatMenuItem, MatMenuTrigger } from "@angular/material/menu";
-import { MatIcon } from "@angular/material/icon";
-import { MatBadge } from "@angular/material/badge";
 import { Store } from '@ngrx/store';
 import { AuthState } from "../../../store/auth/auth.state";
-import {selectPatientId, selectRolId} from "../../../store/auth/auth.selectors";
+import { selectPatientId, selectRolId } from "../../../store/auth/auth.selectors";
 import { Observable, Subject } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
+import { MatAnchor } from "@angular/material/button";
+import { NgForOf } from "@angular/common";
+import { RouterLink } from "@angular/router";
+import { MatToolbar } from "@angular/material/toolbar";
 
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
   standalone: true,
   imports: [
-    DatePipe,
-    MatToolbar,
+    MatAnchor,
     NgForOf,
     RouterLink,
-    MatAnchor,
-    MatIconButton,
-    MatMenuTrigger,
-    MatIcon,
-    MatBadge,
-    MatMenu,
-    MatMenuItem,
-    NgIf
+    MatToolbar
   ],
   styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit, OnDestroy {
-  newAppointmentsCount: number = 0; // Counter for new appointments
-  appointments: any[] = []; // Array to hold appointments list
-  rolid$!: Observable<string | null>; // Observable for role ID
+
+  //#region Attributes
+
+  /**
+   * @property {Observable<string | null>} rolid$ - Observable for the role ID of the user.
+   */
+  rolid$!: Observable<string | null>;
+
+  /**
+   * @property {Observable<number | null>} patientId$ - Observable for the patient ID of the logged-in user.
+   */
   patientId$!: Observable<number | null>;
-  options: Array<{ path: string, title: string }> = []; // Array to store the navigation options
 
-  private destroy$: Subject<boolean> = new Subject<boolean>(); // To handle unsubscription
+  /**
+   * @property {Array<{path: string, title: string}>} options - Stores navigation options based on role ID.
+   */
+  options: Array<{ path: string, title: string }> = [];
 
+  /**
+   * @property {Subject<boolean>} destroy$ - Subject to handle unsubscription and prevent memory leaks.
+   */
+  private destroy$: Subject<boolean> = new Subject<boolean>();
+
+  //#endregion
+
+  //#region Constructor
+
+  /**
+   * Constructor injects the necessary services like SessionService and Store.
+   * @param {SessionService} appointmentService - Service to manage appointment-related operations.
+   * @param {Store<AuthState>} store - Store to manage authentication state.
+   */
   constructor(
-    private notificationService: NotificationService,
-    private appointmentService: SessionService, // Inject the appointment service
-    private store: Store<AuthState> // Inject the store for role ID
+    private appointmentService: SessionService,
+    private store: Store<AuthState>
   ) {}
 
+  //#endregion
+
+  //#region Lifecycle Hooks
+
+  /**
+   * ngOnInit lifecycle hook - Initializes observables and sets up options based on role ID.
+   */
   ngOnInit(): void {
-    // Subscribe to role ID from store and update options accordingly
     this.rolid$ = this.store.select(selectRolId);
     this.patientId$ = this.store.select(selectPatientId);
-    console.log('observable', this.patientId$)
+
+    // Set up navigation options based on role ID
     this.rolid$.pipe(
       map((rolid) => {
         if (rolid === '1') {
@@ -64,9 +82,9 @@ export class ToolbarComponent implements OnInit, OnDestroy {
           ];
         } else if (rolid === '2') {
           this.options = [
-            { path: '/home',        title: 'Home' },
-            { path: '/mood-state',  title: 'Mood State' },
-            { path: '/biological-functions',  title: 'Biological Functions' },
+            { path: '/home', title: 'Home' },
+            { path: '/mood-state', title: 'Mood State' },
+            { path: '/biological-functions', title: 'Biological Functions' },
           ];
         } else {
           this.options = [
@@ -75,24 +93,45 @@ export class ToolbarComponent implements OnInit, OnDestroy {
           ];
         }
       }),
-      takeUntil(this.destroy$) // Ensure unsubscription
+      takeUntil(this.destroy$) // Ensure unsubscription on component destroy
     ).subscribe();
 
-    // Subscribe to the observable that tracks the count of new appointments
+    // Notification handling is commented out
+    /*
     this.notificationService.newAppointmentsCount$
       .pipe(takeUntil(this.destroy$))
       .subscribe(count => {
         this.newAppointmentsCount = count;
       });
+    */
   }
 
-  // Reset the notifications count and fetch the appointments list
+  /**
+   * ngOnDestroy lifecycle hook - Cleans up subscriptions to prevent memory leaks.
+   */
+  ngOnDestroy(): void {
+    this.destroy$.next(true); // Emit destroy signal
+    this.destroy$.unsubscribe(); // Unsubscribe from observables
+  }
+
+  //#endregion
+
+  //#region Commented Out Code
+
+  // Commented out notification variables
+  // newAppointmentsCount: number = 0;
+  // appointments: any[] = [];
+
+  // Commented out method for viewing notifications
+  /*
   viewNotifications(): void {
     this.notificationService.resetCounter();
     this.fetchAppointments();
   }
+  */
 
-  // Fetch appointments from the service
+  // Commented out method to fetch appointments
+  /*
   fetchAppointments() {
     this.appointmentService.getAll().subscribe({
       next: (appointments: any[]) => {
@@ -103,10 +142,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
       }
     });
   }
+  */
 
-  // Unsubscribe from observables to avoid memory leaks
-  ngOnDestroy(): void {
-    this.destroy$.next(true);
-    this.destroy$.unsubscribe();
-  }
+  //#endregion
 }

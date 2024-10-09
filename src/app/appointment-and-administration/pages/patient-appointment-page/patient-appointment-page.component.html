@@ -1,27 +1,37 @@
 <div class="page-container">
   <div class="main-content">
+    <!-- Wrapper for the content: Appointment list on the left and form on the right -->
     <div class="content-wrapper">
+
       <!-- Left: Appointment List -->
       <div class="appointment-list">
+        <!-- Header section for the appointment list -->
         <div class="header">
-          <h2>Appointment Calendar</h2>
+          <h2>Appointment Calendar</h2> <!-- Title for the appointment calendar -->
         </div>
+
+        <!-- Container for appointment cards -->
         <div class="card-container">
+          <!-- Loop through the sessions in the dataSource to display each appointment card -->
           <div *ngFor="let session of dataSource.data" class="session-card">
+            <!-- Appointment details: date and time -->
             <div class="appointment-details">
-              <!-- Display the appointment date and time -->
-              <p class="date">{{ session.appointmentDate | date: 'fullDate' }}</p>
+              <p class="date">{{ session.appointmentDate | date: 'fullDate' }}</p> <!-- Full appointment date -->
               <p class="time">
-                {{ session.appointmentDate | date: 'shortTime' }} -
-                {{ calculateEndTime(session.appointmentDate, session.sessionTime) }}
+                {{ session.appointmentDate | date: 'shortTime' }} - <!-- Start time of the session -->
+                {{ calculateEndTime(session.appointmentDate, session.sessionTime) }} <!-- End time of the session, calculated dynamically -->
               </p>
             </div>
+
+            <!-- Professional details: patient name -->
             <div class="professional-details">
-              <p><strong>Patient:</strong> {{ session.patient.name }} {{ session.patient.lastName }}</p>
-              <p>Therapy</p>
+              <p><strong>Patient:</strong> {{ session.patient.name }} {{ session.patient.lastName }}</p> <!-- Display patient's name -->
+              <p>Therapy</p> <!-- Placeholder text for the type of therapy -->
             </div>
+
+            <!-- Button for viewing session notes -->
             <div class="notes-button">
-              <button mat-raised-button color="primary">Notes</button>
+              <button mat-raised-button color="primary">Notes</button> <!-- Notes button with Material design -->
             </div>
           </div>
         </div>
@@ -29,8 +39,10 @@
 
       <!-- Right: Appointment Form -->
       <div class="appointment-form">
+        <!-- Embeds the appointment form component -->
         <app-appointment-form></app-appointment-form>
       </div>
+
     </div>
   </div>
 </div>
