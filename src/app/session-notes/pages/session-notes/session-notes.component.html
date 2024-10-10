@@ -1,3 +1,8 @@
 <app-note-list [sessionNotes]="sessionNotes"
                (deleteNoteRequested)="deleteSessionNoteById($event)"
 />
+<app-note-form (noteAdded)="onNoteAdded($event)"
+               [sessionId]="sessionId"
+               [patientId]="patientId"
+/>
+
