@@ -15,6 +15,7 @@ import  {BiologicalFunctionsEntryComponent} from "./patientEntrys/pages/biologic
 import {
   AppointmentPageComponent
 } from "./appointment-and-administration/pages/appointment-page/appointment-page.component";
+import  {ProfessionalViewTaskComponent} from "./session-notes/pages/professional-view-task/professional-view-task.component";
 
 
 export const routes: Routes = [
@@ -29,5 +30,7 @@ export const routes: Routes = [
   { path: 'patient-management/clinical-history/:historyId', component: HistoryManagementComponent },
   { path: 'biological-functions', component: BiologicalFunctionsEntryComponent },
   { path: 'appointment-list', component: AppointmentPageComponent },
-  { path: '**', redirectTo: 'home' }  // Wildcard route for invalid paths, redirects to HomeComponent
+  { path: 'session-task', component: ProfessionalViewTaskComponent },
+  { path: '**', redirectTo: 'home' }// Wildcard route for invalid paths, redirects to HomeComponent
+
 ];
