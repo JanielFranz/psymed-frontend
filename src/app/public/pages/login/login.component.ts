@@ -63,4 +63,10 @@ export class LoginComponent {
     this.store.dispatch(setRole({ rolid }));
     this.store.dispatch(setPatientId({ patientId }));
   }
+
+  sendActualPatientToStore(patientId: number): void {
+    console.log(patientId);
+    this.store.dispatch(setPatientId({ patientId }));
+  }
+
 }
