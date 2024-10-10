@@ -22,7 +22,7 @@ import  {ProfessionalViewTaskComponent} from "./session-notes/pages/professional
 export const routes: Routes = [
   { path: ''                                                        , redirectTo: 'home', pathMatch: 'full' },  // Default route that redirects to HomeComponent
   { path: 'home'                                                    , component: HomeComponent },
-  { path: 'patient-management/dashboard-analytics/:patientId'       , component: AnalyticsDashboardComponent },
+  { path: 'patient-management/:id/dashboard-analytics'             , component: AnalyticsDashboardComponent },
   { path: 'login'                                                   , component: LoginComponent },
   { path: 'patient-management'                                      , component: PatientManagementComponent },
   { path: 'patient-management/medication-management/:patientId'     , component: MedicationManagementComponent }, // we use the :patientId to pass the patient ID as a parameter
@@ -32,6 +32,6 @@ export const routes: Routes = [
   { path: 'biological-functions'                                    , component: BiologicalFunctionsEntryComponent },
   { path: 'appointment-list'                                        , component: AppointmentPageComponent },
   { path: 'patient-management/:id/session/:sessionId/notes'         , component: SessionNotesComponent },
-  { path: 'session-task', component: ProfessionalViewTaskComponent },
+  { path: 'session-task'                                            , component: ProfessionalViewTaskComponent },
   { path: '**'                                                      , redirectTo: 'home' }  // Wildcard route for invalid paths, redirects to HomeComponent
 ];

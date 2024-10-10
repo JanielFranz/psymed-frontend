@@ -33,7 +33,7 @@ export class PatientManagementComponent implements OnInit{
 
   onFeatureSelected(feature:{patient: Patient, feature: string}) {
     console.log('patientSelected', feature.patient.id);
-
+    console.log('feature selected', feature.feature);
     switch(feature.feature) {
       case 'edit':
         this.router.navigate(['/edit-patient', feature.patient.id]).then();
@@ -42,7 +42,7 @@ export class PatientManagementComponent implements OnInit{
         this.router.navigate(['/patient-management/medication-management', feature.patient.id]).then();
         break;
       case 'statistics':
-        this.router.navigate([`/patient-management/dashboard-analytics/${feature.patient.id}`]).then();
+        this.router.navigate([`/patient-management/${feature.patient.id}/dashboard-analytics`]).then();
         break;
       case 'appointments':
         this.router.navigate(['/patient-management/patient-appointment-list', feature.patient.id]).then();

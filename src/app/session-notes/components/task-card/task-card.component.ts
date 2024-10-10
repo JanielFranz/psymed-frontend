@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { Task} from "../../models/task.entity";
+import {Task} from "../../model/task.entity";
 import {Store} from "@ngrx/store";
 import {selectRolId} from "../../../store/auth/auth.selectors";
 import {Observable} from "rxjs";
