@@ -123,7 +123,7 @@ export class AnalyticsDashboardComponent implements OnInit{
    * It will call the getMoodAnalyticDataByDate and getBiologicalAnalyticDataByDate methods.
    */
   ngOnInit(): void {
-    this.patientId = this.route.snapshot.paramMap.get('patientId')!;
+    this.patientId = this.route.snapshot.paramMap.get('id')!;
     this.getMoodAnalyticDataByDate('0', '0')
     this.getBiologicalAnalyticDataByDate('0', '0')
     console.log("Start")

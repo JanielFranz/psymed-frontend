@@ -22,16 +22,16 @@ import  {ProfessionalViewTaskComponent} from "./session-notes/pages/professional
 export const routes: Routes = [
   { path: ''                                                        , redirectTo: 'home', pathMatch: 'full' },  // Default route that redirects to HomeComponent
   { path: 'home'                                                    , component: HomeComponent },
-  { path: 'patient-management/dashboard-analytics/:patientId'       , component: AnalyticsDashboardComponent },
+  { path: 'patient-management/:id/dashboard-analytics'             , component: AnalyticsDashboardComponent },
   { path: 'login'                                                   , component: LoginComponent },
   { path: 'patient-management'                                      , component: PatientManagementComponent },
-  { path: 'patient-management/medication-management/:patientId'     , component: MedicationManagementComponent }, // we use the :patientId to pass the patient ID as a parameter
+  { path: 'patient-management/:id/medication-management'     , component: MedicationManagementComponent }, // we use the :patientId to pass the patient ID as a parameter
   { path: 'mood-state'                                              , component: MoodStatementEntryComponent },
-  { path: 'patient-management/patient-appointment-list/:id'         , component: PatientAppointmentPageComponent },
-  { path: 'patient-management/clinical-history/:historyId'          , component: HistoryManagementComponent },
+  { path: 'patient-management/:id/patient-appointment-list'         , component: PatientAppointmentPageComponent },
+  { path: 'patient-management/:id/clinical-history/:historyId'          , component: HistoryManagementComponent },
   { path: 'biological-functions'                                    , component: BiologicalFunctionsEntryComponent },
   { path: 'appointment-list'                                        , component: AppointmentPageComponent },
-  { path: 'patient-management/:id/session/:sessionId/notes'         , component: SessionNotesComponent },
-  { path: 'session-task', component: ProfessionalViewTaskComponent },
+  { path: 'patient-management/:id/patient-appointment-list/:appointmentId/notes'         , component: SessionNotesComponent },
+  { path: 'session-task'                                            , component: ProfessionalViewTaskComponent },
   { path: '**'                                                      , redirectTo: 'home' }  // Wildcard route for invalid paths, redirects to HomeComponent
 ];
