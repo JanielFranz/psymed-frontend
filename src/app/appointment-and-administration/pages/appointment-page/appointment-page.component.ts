@@ -9,7 +9,8 @@ import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCard, MatCardContent } from "@angular/material/card";
 import { formatDate } from '@angular/common';
-import {Session} from "../../model/sesion.entity"; // Utility for date formatting
+import {Session} from "../../model/sesion.entity";
+import {Router} from "@angular/router"; // Utility for date formatting
 
 @Component({
   selector: 'app-appointment-page',
@@ -57,7 +58,7 @@ export class AppointmentPageComponent implements OnInit, AfterViewInit {
   /**
    * Constructor initializes the dataSource with an empty array.
    */
-  constructor() {
+  constructor(private router: Router) {
     this.dataSource = new MatTableDataSource<Session>();
   }
 
@@ -107,5 +108,11 @@ export class AppointmentPageComponent implements OnInit, AfterViewInit {
     return formatDate(endTime, 'shortTime', 'en-US');
   }
 
+  //#endregion
+
+  //#region Event Handlers
+    onNoteSelected() {
+      // this.router.navigate([/])
+    }
   //#endregion
 }
