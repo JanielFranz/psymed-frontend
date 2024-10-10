@@ -30,6 +30,6 @@ export const routes: Routes = [
   { path: 'patient-management/clinical-history/:historyId'          , component: HistoryManagementComponent },
   { path: 'biological-functions'                                    , component: BiologicalFunctionsEntryComponent },
   { path: 'appointment-list'                                        , component: AppointmentPageComponent },
-  { path: 'patient-list/:id/notes'                                  , component: SessionNotesComponent },
+  { path: 'patient-management/:id/session/:sessionId/notes'                                  , component: SessionNotesComponent },
   { path: '**'                                                      , redirectTo: 'home' }  // Wildcard route for invalid paths, redirects to HomeComponent
 ];
