@@ -15,19 +15,21 @@ import  {BiologicalFunctionsEntryComponent} from "./patientEntrys/pages/biologic
 import {
   AppointmentPageComponent
 } from "./appointment-and-administration/pages/appointment-page/appointment-page.component";
+import {SessionNotesComponent} from "./session-notes/pages/session-notes/session-notes.component";
 
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },  // Default route that redirects to HomeComponent
-  { path: 'home'                               , component: HomeComponent },
-  { path: 'patient-management/dashboard-analytics/:patientId'     , component: AnalyticsDashboardComponent },
-  { path: 'login'                              , component: LoginComponent },
-  { path: 'patient-management'                 , component: PatientManagementComponent },
-  { path: 'patient-management/medication-management/:patientId'   , component: MedicationManagementComponent }, // we use the :patientId to pass the patient ID as a parameter
-  { path: 'mood-state'              , component: MoodStatementEntryComponent },
-  { path: 'patient-management/patient-appointment-list/:id', component: PatientAppointmentPageComponent },
-  { path: 'patient-management/clinical-history/:historyId', component: HistoryManagementComponent },
-  { path: 'biological-functions', component: BiologicalFunctionsEntryComponent },
-  { path: 'appointment-list', component: AppointmentPageComponent },
-  { path: '**', redirectTo: 'home' }  // Wildcard route for invalid paths, redirects to HomeComponent
+  { path: ''                                                        , redirectTo: 'home', pathMatch: 'full' },  // Default route that redirects to HomeComponent
+  { path: 'home'                                                    , component: HomeComponent },
+  { path: 'patient-management/dashboard-analytics/:patientId'       , component: AnalyticsDashboardComponent },
+  { path: 'login'                                                   , component: LoginComponent },
+  { path: 'patient-management'                                      , component: PatientManagementComponent },
+  { path: 'patient-management/medication-management/:patientId'     , component: MedicationManagementComponent }, // we use the :patientId to pass the patient ID as a parameter
+  { path: 'mood-state'                                              , component: MoodStatementEntryComponent },
+  { path: 'patient-management/patient-appointment-list/:id'         , component: PatientAppointmentPageComponent },
+  { path: 'patient-management/clinical-history/:historyId'          , component: HistoryManagementComponent },
+  { path: 'biological-functions'                                    , component: BiologicalFunctionsEntryComponent },
+  { path: 'appointment-list'                                        , component: AppointmentPageComponent },
+  { path: 'patient-list/:id/notes'                                  , component: SessionNotesComponent },
+  { path: '**'                                                      , redirectTo: 'home' }  // Wildcard route for invalid paths, redirects to HomeComponent
 ];
