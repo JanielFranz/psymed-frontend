@@ -1,1 +1,3 @@
-<app-note-list/>
+<app-note-list [sessionNotes]="sessionNotes"
+               (deleteNoteRequested)="deleteSessionNoteById($event)"
+/>

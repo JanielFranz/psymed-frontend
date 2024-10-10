@@ -19,5 +19,6 @@ export class NoteListComponent {
 
   onDeleteNoteRequested(sessionNote: SessionNote) {
     this.deleteNoteRequested.emit(sessionNote);
+    console.log('delete event emitted from the list');
   }
 }

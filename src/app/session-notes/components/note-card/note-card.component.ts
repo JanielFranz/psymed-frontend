@@ -42,7 +42,7 @@ export class NoteCardComponent {
 
   protected onDelete() {
     this.deleteNoteRequested.emit(this.sessionNote)
-
+    console.log('event emmitted by the card')
   }
   //#endregion
 }
