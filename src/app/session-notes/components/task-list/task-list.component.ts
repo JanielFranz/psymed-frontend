@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {TaskCardComponent} from "../task-card/task-card.component";
 import {TaskService} from "../../services/task.service";
-import {Task} from "../../models/task.entity";
+import {Task} from "../../model/task.entity";
 import {Store} from "@ngrx/store";
 import {selectPatientId} from "../../../store/auth/auth.selectors";
 import {filter, switchMap} from "rxjs";

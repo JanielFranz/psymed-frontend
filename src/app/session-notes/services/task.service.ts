@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {BaseService} from "../../shared/services/base.service";
-import {Task} from "../models/task.entity";
+import {Task} from "../model/task.entity";
 import {catchError, retry} from "rxjs";
 @Injectable({
   providedIn: 'root'
