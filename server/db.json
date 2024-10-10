@@ -555,5 +555,42 @@
       "hydrationAverage": "1",
       "id": "2639"
     }
+  ],
+  "sessionNotes": [
+    {
+      "id": "1",
+      "idPatient": "1",
+      "title": "Note about how the patient is doing",
+      "description": "The patient is doing well and is responding to the treatment.",
+      "date": "2024-09-03T16:11:00.000Z"
+    },
+    {
+      "id": "2",
+      "idPatient": "1",
+      "title": "Note about the patient's progress",
+      "description": "Patient shows improvement in mood and social interactions.",
+      "date": "2024-09-03T16:11:00.000Z"
+    },
+    {
+      "id": "3",
+      "idPatient": "1",
+      "title": "Note about the patient's progress",
+      "description": "Patient reports feeling more energetic and motivated.",
+      "date": "2024-09-03T16:11:00.000Z"
+    },
+    {
+      "id": "4",
+      "idPatient": "2",
+      "title": "Note about the patient's progress",
+      "description": "Patient is struggling with stress related to work.",
+      "date": "2024-09-03T16:11:00.000Z"
+    },
+    {
+      "id": "5",
+      "patientId": "2",
+      "title": "Note about the patient's progress",
+      "description": "Patient is feeling overwhelmed but is seeking help.",
+      "date": "2024-09-03T16:11:00.000Z"
+    }
   ]
 }
