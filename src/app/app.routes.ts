@@ -25,10 +25,10 @@ export const routes: Routes = [
   { path: 'patient-management/:id/dashboard-analytics'             , component: AnalyticsDashboardComponent },
   { path: 'login'                                                   , component: LoginComponent },
   { path: 'patient-management'                                      , component: PatientManagementComponent },
-  { path: 'patient-management/:patientId/medication-management'     , component: MedicationManagementComponent }, // we use the :patientId to pass the patient ID as a parameter
+  { path: 'patient-management/:id/medication-management'     , component: MedicationManagementComponent }, // we use the :patientId to pass the patient ID as a parameter
   { path: 'mood-state'                                              , component: MoodStatementEntryComponent },
-  { path: 'patient-management/patient-appointment-list/:id'         , component: PatientAppointmentPageComponent },
-  { path: 'patient-management/clinical-history/:historyId'          , component: HistoryManagementComponent },
+  { path: 'patient-management/:id/patient-appointment-list'         , component: PatientAppointmentPageComponent },
+  { path: 'patient-management/:id/clinical-history/:historyId'          , component: HistoryManagementComponent },
   { path: 'biological-functions'                                    , component: BiologicalFunctionsEntryComponent },
   { path: 'appointment-list'                                        , component: AppointmentPageComponent },
   { path: 'patient-management/:id/session/:sessionId/notes'         , component: SessionNotesComponent },

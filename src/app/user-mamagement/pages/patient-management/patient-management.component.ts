@@ -45,7 +45,7 @@ export class PatientManagementComponent implements OnInit{
         this.router.navigate([`/patient-management/${feature.patient.id}/dashboard-analytics`]).then();
         break;
       case 'appointments':
-        this.router.navigate(['/patient-management/patient-appointment-list', feature.patient.id]).then();
+        this.router.navigate([`/patient-management/${feature.patient.id}/patient-appointment-list`]).then();
         break;
       case 'history':
         this.router.navigate(['/patient-management/clinical-History', feature.patient.id]).then();
