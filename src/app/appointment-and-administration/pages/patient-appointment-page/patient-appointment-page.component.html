@@ -31,7 +31,7 @@
 
             <!-- Button for viewing session notes -->
             <div class="notes-button">
-              <button mat-raised-button color="primary">Notes</button> <!-- Notes button with Material design -->
+              <button mat-raised-button color="primary" (click)="onNoteSelected(session.id)">Notes</button> <!-- Notes button with Material design -->
             </div>
           </div>
         </div>

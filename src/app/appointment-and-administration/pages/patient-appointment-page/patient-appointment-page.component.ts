@@ -2,7 +2,7 @@ import { AfterViewInit, Component, inject, OnInit, ViewChild } from '@angular/co
 import { MatSort, MatSortModule } from "@angular/material/sort";
 import { MatTableDataSource, MatTableModule } from "@angular/material/table";
 import { SessionService } from "../../services/session.service";
-import { ActivatedRoute } from "@angular/router"; // To get the route parameter for patient ID
+import {ActivatedRoute, Router} from "@angular/router"; // To get the route parameter for patient ID
 import { CommonModule, formatDate } from '@angular/common';
 import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
@@ -58,6 +58,7 @@ export class PatientAppointmentPageComponent implements OnInit, AfterViewInit {
    */
   private sessionService = inject(SessionService);
   private route = inject(ActivatedRoute);
+  private router = inject(Router)
 
   //#endregion
 
@@ -119,5 +120,11 @@ export class PatientAppointmentPageComponent implements OnInit, AfterViewInit {
     return formatDate(endTime, 'shortTime', 'en-US');
   }
 
+  //#endregion
+
+  //#region Event Handlers
+  onNoteSelected(appointmentId: number) {
+    this.router.navigate([`/patient-management/${this.patientId}/patient-appointment-list/${appointmentId}/notes`]).then();
+  }
   //#endregion
 }
