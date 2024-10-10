@@ -31,7 +31,7 @@ export class PatientManagementComponent implements OnInit{
     })
   }
 
-  onMedicationManagementSelected(feature:{patient: Patient, feature: string}) {
+  onFeatureSelected(feature:{patient: Patient, feature: string}) {
     console.log('patientSelected', feature.patient.id);
 
     switch(feature.feature) {
