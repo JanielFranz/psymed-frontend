@@ -1,1 +1,6 @@
-<p>note-list works!</p>
+<div class="card-list">
+  <app-note-card *ngFor="let sessionNote of sessionNotes"
+                 [sessionNote]="sessionNote"
+                 (deleteNoteRequested)="onDeleteNoteRequested($event)"
+  />
+</div>
