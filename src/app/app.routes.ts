@@ -31,7 +31,7 @@ export const routes: Routes = [
   { path: 'patient-management/:id/clinical-history/:historyId'          , component: HistoryManagementComponent },
   { path: 'biological-functions'                                    , component: BiologicalFunctionsEntryComponent },
   { path: 'appointment-list'                                        , component: AppointmentPageComponent },
-  { path: 'patient-management/:id/patient-appointment-lis/:appointmentId/notes'         , component: SessionNotesComponent },
+  { path: 'patient-management/:id/patient-appointment-list/:appointmentId/notes'         , component: SessionNotesComponent },
   { path: 'session-task'                                            , component: ProfessionalViewTaskComponent },
   { path: '**'                                                      , redirectTo: 'home' }  // Wildcard route for invalid paths, redirects to HomeComponent
 ];
