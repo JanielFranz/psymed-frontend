@@ -2,10 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {TaskCardComponent} from "../task-card/task-card.component";
 import {TaskService} from "../../services/task.service";
 import {Task} from "../../model/task.entity";
-import {Store} from "@ngrx/store";
-import {selectPatientId} from "../../../store/auth/auth.selectors";
-import {filter, switchMap} from "rxjs";
 import {NgForOf} from "@angular/common";
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-task-list',
@@ -22,17 +20,18 @@ export class TaskListComponent implements OnInit{
 @Input() tasks!: Task[];
 
 
-  constructor(private taskService: TaskService, private store: Store) { }
+  constructor(private taskService: TaskService,
+              private route: ActivatedRoute
+              ) { }
 
 
   ngOnInit() {
-    this.store.select(selectPatientId).pipe(
-      filter((patientId: number | null): patientId is number => patientId !== null),
-      switchMap((patientId: number) => this.taskService.getTasksByPatientId(patientId))
-    ).subscribe((tasks: Task[]) => {
+    const sessionId = Number(this.route.snapshot.paramMap.get('appointmentId'));
+    this.taskService.getTaskBySessionId(sessionId).subscribe((tasks: Task[]) => {
+      console.log("La sesion de  tarea es" + sessionId);
       this.tasks = tasks;
+    }, (error) => {
+      console.error('Error fetching tasks:', error);
     });
-
   }
-
 }
