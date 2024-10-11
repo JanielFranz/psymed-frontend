@@ -12,11 +12,11 @@ import {
 } from "./appointment-and-administration/pages/patient-appointment-page/patient-appointment-page.component";
 import {HistoryManagementComponent} from "./user-mamagement/pages/history-management/history-management.component";
 import  {BiologicalFunctionsEntryComponent} from "./patientEntrys/pages/biological-functions-entry/biological-functions-entry.component";
-import {
-  AppointmentPageComponent
-} from "./appointment-and-administration/pages/appointment-page/appointment-page.component";
 import {SessionNotesComponent} from "./session-notes/pages/session-notes/session-notes.component";
 import  {ProfessionalViewTaskComponent} from "./session-notes/pages/professional-view-task/professional-view-task.component";
+import {
+  ProfessionalAppointmentPageComponent
+} from "./appointment-and-administration/pages/professional-appointment-page/professional-appointment-page.component";
 
 
 export const routes: Routes = [
@@ -30,7 +30,7 @@ export const routes: Routes = [
   { path: 'patient-management/:id/patient-appointment-list'         , component: PatientAppointmentPageComponent },
   { path: 'patient-management/:id/clinical-history/:historyId'          , component: HistoryManagementComponent },
   { path: 'biological-functions'                                    , component: BiologicalFunctionsEntryComponent },
-  { path: 'appointment-list'                                        , component: AppointmentPageComponent },
+  { path: 'appointment-list'                                        , component: ProfessionalAppointmentPageComponent },
   { path: 'patient-management/:id/patient-appointment-list/:appointmentId/notes'         , component: SessionNotesComponent },
   { path: 'session-task'                                            , component: ProfessionalViewTaskComponent },
   { path: '**'                                                      , redirectTo: 'home' }  // Wildcard route for invalid paths, redirects to HomeComponent
