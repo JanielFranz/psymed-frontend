@@ -32,6 +32,7 @@ export const routes: Routes = [
   { path: 'biological-functions'                                    , component: BiologicalFunctionsEntryComponent },
   { path: 'appointment-list'                                        , component: AppointmentPageComponent },
   { path: 'patient-management/:id/patient-appointment-list/:appointmentId/notes'         , component: SessionNotesComponent },
-  { path: 'session-task'                                            , component: ProfessionalViewTaskComponent },
+  { path: 'patient-management/:id/patient-appointment-list/:appointmentId/task'         , component: ProfessionalViewTaskComponent },
+  { path: 'appointment-list/:appointmentId/task'  , component: ProfessionalViewTaskComponent },
   { path: '**'                                                      , redirectTo: 'home' }  // Wildcard route for invalid paths, redirects to HomeComponent
 ];
