@@ -7,7 +7,6 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatCard, MatCardContent} from "@angular/material/card";
 import {Session} from "../../model/sesion.entity";
 import {SessionService} from "../../services/session.service";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-professional-appointment-page',
