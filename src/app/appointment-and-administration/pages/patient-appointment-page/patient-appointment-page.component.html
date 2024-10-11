@@ -33,6 +33,9 @@
             <div class="notes-button">
               <button mat-raised-button color="primary">Notes</button> <!-- Notes button with Material design -->
             </div>
+            <div class="notes-button">
+              <button mat-raised-button color="primary" (click)="redirectToTask(session.id, session.idPatient)">Task</button> <!-- Notes button with Material design -->
+            </div>
           </div>
         </div>
       </div>
