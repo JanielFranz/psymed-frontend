@@ -22,5 +22,4 @@ export class TaskService extends BaseService<Task> {
       .pipe(retry(2), catchError(this.handleError));
 
   }
-
 }
