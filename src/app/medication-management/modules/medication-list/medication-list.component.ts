@@ -28,7 +28,7 @@ export class MedicationListComponent implements OnInit {
    * 2. Retrieves the medications for the patient using their ids's.
    */
   ngOnInit(): void {
-    this.patientId = +this.route.snapshot.paramMap.get('id')!; // Get the patient ID from the route
+    this.patientId = +this.route.snapshot.paramMap.get('patientId')!; // Get the patient ID from the route
     console.log('Patient ID para lista:', this.patientId);
 
     this.medicationService.getMedicationsByPatientId(this.patientId).subscribe({
