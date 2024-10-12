@@ -386,7 +386,7 @@
       "date": "2021-08-01"
     },
     {
-      "id": 1,
+      "id": "1",
       "background": "a",
       "consultationReason": "a",
       "symptoms": "s",
@@ -576,7 +576,7 @@
   ],
   "session-notes": [
     {
-      "id": 1,
+      "id": "1",
       "idPatient": "1",
       "idSession": "17",
       "title": "Note about how the patient is doing",
@@ -584,7 +584,7 @@
       "date": "2024-09-03T16:11:00.000Z"
     },
     {
-      "id": 2,
+      "id": "2",
       "idPatient": "1",
       "idSession": "17",
       "title": "Note about the patient's progress",
@@ -592,7 +592,7 @@
       "date": "2024-09-03T16:11:00.000Z"
     },
     {
-      "id": 3,
+      "id": "3",
       "idPatient": "2",
       "idSession": "21",
       "title": "Noteaaaaaaaaaaaa aa ",
@@ -600,7 +600,7 @@
       "date": "2023-09-03T16:11:00.000Z"
     },
     {
-      "id": 4,
+      "id": "4",
       "patientId": "1",
       "sessionId": "17",
       "title": "aaa",

@@ -28,7 +28,7 @@ export class TaskCardComponent implements OnInit {
   }
 
 
-  deleteThisCard(taskId: number): void{
+  deleteThisCard(taskId: string): void{
     this.taskService.delete(taskId).subscribe(
       () => {
         console.log(`Task with id ${taskId} deleted successfully`);
