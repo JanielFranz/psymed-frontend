@@ -3,7 +3,10 @@
   <mat-card *ngIf="role === '1'" class="professional-card">
     <!-- Profile Image Container -->
     <div class="profile-image-container">
-      <img [src]="professional?.image" alt="{{ professional?.name }}'s photo" class="profile-image">
+      <!-- Fallback to placeholder image if professional image is not available -->
+      <img [src]="professional?.image ? professional?.image : '/assets/img/default-placeholder.png'"
+           alt="{{ professional?.name }}'s photo"
+           class="profile-image">
     </div>
 
     <!-- Professional Name -->
@@ -19,7 +22,10 @@
   <mat-card *ngIf="role === '2'" class="patient-card">
     <!-- Profile Image Container -->
     <div class="profile-image-container">
-      <img [src]="patient?.image" alt="{{ patient?.name }}'s photo" class="profile-image">
+      <!-- Fallback to placeholder image if patient image is not available -->
+      <img [src]="patient?.image ? patient?.image : 'assets/img/image.jpg'"
+           alt="{{ patient?.name }}'s photo"
+           class="profile-image">
     </div>
 
     <!-- Patient Name -->

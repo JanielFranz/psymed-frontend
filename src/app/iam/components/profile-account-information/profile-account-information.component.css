@@ -101,7 +101,13 @@
     text-align: center; /* Center the title on mobile for better layout */
     margin-bottom: 10px;
   }
-
+  .info-field p {
+    font-size: 0.7em;
+    margin: 0;
+    text-align: left;
+    word-wrap: break-word; /* Ensure long words wrap to the next line */
+    overflow-wrap: break-word; /* Prevent text overflow */
+  }
   .info-field p + p {
     font-size: 0.95em; /* Reduce font size for smaller screens */
     padding: 8px;
