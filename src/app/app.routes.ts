@@ -18,6 +18,7 @@ import {
   ProfessionalAppointmentPageComponent
 } from "./appointment-and-administration/pages/professional-appointment-page/professional-appointment-page.component";
 import {AccountProfileComponent} from "./iam/pages/account-profile/account-profile.component";
+import {EditProfileComponent} from "./iam/pages/edit-profile/edit-profile.component";
 
 
 export const routes: Routes = [
@@ -35,5 +36,6 @@ export const routes: Routes = [
   { path: 'patient-management/:id/patient-appointment-list/:appointmentId/notes'         , component: SessionNotesComponent },
   { path: 'session-task'                                            , component: ProfessionalViewTaskComponent },
   { path: 'profile'                                            , component: AccountProfileComponent },
+  { path: 'edit-profile'                                            , component: EditProfileComponent },
   { path: '**'                                                      , redirectTo: 'home' }  // Wildcard route for invalid paths, redirects to HomeComponent
 ];
