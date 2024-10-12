@@ -10,8 +10,6 @@ import { MatCard, MatCardContent } from "@angular/material/card";
 import { AppointmentFormComponent } from "../../components/appointment-form/appointment-form.component";
 import { MedicationFormComponent } from "../../../medication-management/modules/medication-form/medication-form.component";
 import {Session} from "../../model/sesion.entity";
-import {Router} from "@angular/router";
-import {relative} from "@angular/compiler-cli"; // Utility for date formatting
 
 @Component({
   selector: 'app-patient-appointment-page',
@@ -69,7 +67,7 @@ export class PatientAppointmentPageComponent implements OnInit, AfterViewInit {
   /**
    * Constructor initializes the dataSource with an empty array.
    */
-  constructor(private router: Router) {
+  constructor() {
     this.dataSource = new MatTableDataSource<Session>();
   }
 
@@ -110,9 +108,7 @@ export class PatientAppointmentPageComponent implements OnInit, AfterViewInit {
 
 
   redirectToTask(sessionId: number, patientId: number): void {
-    console.log(this.route.url)
     this.router.navigate([`/patient-management/${patientId}/patient-appointment-list/${sessionId}/task`]);
-    console.log(this.route)
   }
 
   /**
