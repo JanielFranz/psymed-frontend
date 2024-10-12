@@ -5,6 +5,7 @@ import {selectRolId} from "../../../store/auth/auth.selectors";
 import {Observable} from "rxjs";
 import {AsyncPipe, NgIf} from "@angular/common";
 import {FormsModule} from "@angular/forms";
+import {TaskService} from "../../services/task.service";
 
 @Component({
   selector: 'app-task-card',
@@ -21,7 +22,22 @@ export class TaskCardComponent implements OnInit {
   @Input() task!: Task;
   role$!: Observable<string | null>;
 
-  constructor(private store: Store) {
+  constructor(private store: Store,
+    private taskService: TaskService
+  ) {
+  }
+
+
+  deleteThisCard(taskId: number): void{
+    this.taskService.delete(taskId).subscribe(
+      () => {
+        console.log(`Task with id ${taskId} deleted successfully`);
+      },
+      (error) => {
+        console.error('Error deleting task:', error);
+      }
+    );
+
   }
 
   ngOnInit() {

@@ -45,7 +45,7 @@ export class TaskFormComponent implements OnInit{
     if (this.taskForm.valid) {
       const formValues = this.taskForm.value;
       const newTask = new Task({
-        id: 0,
+        id: "666",
         idPatient: this.id,
         idSession: this.appointmentId,
         title: formValues.title,
