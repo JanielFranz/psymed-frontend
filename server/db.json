@@ -37,14 +37,24 @@
       "name": "John",
       "lastName": "Doe",
       "email": "john.doe@example.com",
-      "idAccount": 1
+      "idAccount": 1,
+      "dni": "12345678",
+      "phone": "+51 987 654 321",
+      "description": "Dr. John Doe is a psychiatrist with over 10 years of experience in the mental health field. A graduate of medicine, he specializes in mood disorders, anxiety, and psychotherapy. Dr. Doe is known for his patient-centered approach, combining evidence-based treatments with a deep understanding of each patient’s unique needs. His focus is on helping patients achieve long-term mental and emotional well-being. In addition to his clinical work, Dr. Doe has been actively involved in research and has contributed to several scientific publications in the field of psychiatry.",
+      "address": "123 Main St, Lima, Peru",
+      "image": "https://example.com/images/professionals/john_doe.jpg"
     },
     {
       "id": "2",
       "name": "Juan",
       "lastName": "Perez",
       "email": "juan.perez@example.com",
-      "idAccount": 2
+      "idAccount": 2,
+      "dni": "87654321",
+      "phone": "+51 912 345 678",
+      "description": "Dr. Juan Perez is a specialist in child and adolescent psychiatry with a focus on developmental disorders and behavioral therapy. He has worked extensively with young patients facing emotional and social challenges, helping them navigate their mental health journeys with compassion and expertise. Dr. Perez is committed to building strong therapeutic relationships with both his young patients and their families, ensuring a comprehensive and supportive approach to care.",
+      "address": "456 Oak Ave, Arequipa, Peru",
+      "image": "https://example.com/images/professionals/juan_perez.jpg"
     }
   ],
   "patients": [
@@ -54,15 +64,25 @@
       "lastName": "Smith",
       "email": "mich.smith@example.com",
       "idAccount": 3,
-      "idClinicalHistory": 1
+      "idClinicalHistory": 1,
+      "dni": "11112222",
+      "phone": "+51 921 123 456",
+      "description": "Michael Smith has been diagnosed with an anxiety disorder. He has been undergoing treatment for managing his symptoms, which include persistent worry and occasional panic attacks. Michael is committed to working with his therapist and psychiatrist to regain control over his daily life, improve his coping strategies, and enhance his emotional resilience.",
+      "address": "789 Pine St, Cusco, Peru",
+      "image": "https://example.com/images/patients/michael_smith.jpg"
     },
     {
       "id": "2",
       "name": "Jane",
       "lastName": "Doe",
-      "email": "jane.Doe@example.com",
+      "email": "jane.doe@example.com",
       "idAccount": 4,
-      "idClinicalHistory": 2
+      "idClinicalHistory": 2,
+      "dni": "22221111",
+      "phone": "+51 934 567 890",
+      "description": "Jane Doe is undergoing treatment for depression. Her journey toward recovery involves both medication and therapy to help manage feelings of sadness and fatigue that have impacted her life. Jane is working closely with her mental health team to explore strategies that can help improve her mood, energy levels, and overall quality of life.",
+      "address": "101 Cedar Rd, Trujillo, Peru",
+      "image": "https://example.com/images/patients/jane_doe.jpg"
     },
     {
       "id": "3",
@@ -70,7 +90,12 @@
       "lastName": "Johnson",
       "email": "sarah.johnson@example.com",
       "idAccount": 5,
-      "idClinicalHistory": 3
+      "idClinicalHistory": 3,
+      "dni": "33334444",
+      "phone": "+51 945 678 901",
+      "description": "Sarah Johnson has a history of bipolar disorder. She has been working with her mental health professionals to maintain mood stability and prevent episodes of depression and mania. Sarah’s treatment plan includes mood stabilizers and regular therapy sessions that focus on emotional regulation and healthy lifestyle habits.",
+      "address": "202 Maple Blvd, Chiclayo, Peru",
+      "image": "https://example.com/images/patients/sarah_johnson.jpg"
     }
   ],
   "notes": [
