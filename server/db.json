@@ -104,7 +104,7 @@
     {
       "id": "17",
       "idProfessional": 1,
-      "idPatient": 1,
+      "idPatient": 0,
       "idNote": 1,
       "appointmentDate": "2024-09-03T16:11:00.000Z",
       "sessionTime": 11,
@@ -119,7 +119,7 @@
     {
       "id": "21",
       "idProfessional": 1,
-      "idPatient": 1,
+      "idPatient": 0,
       "idNote": 1,
       "appointmentDate": "1110-12-31T16:19:12.000Z",
       "sessionTime": 11,
@@ -386,7 +386,7 @@
       "date": "2021-08-01"
     },
     {
-      "id": "1",
+      "id": 1,
       "background": "a",
       "consultationReason": "a",
       "symptoms": "s",
@@ -524,7 +524,6 @@
     {
       "id": "1",
       "idPatient": 1,
-      "idSession": 17,
       "tittle": "Task 1",
       "description": "This is a task description",
       "status": 0,
@@ -532,19 +531,8 @@
       "updatedAt": "2021-06-01"
     },
     {
-      "id": "2",
-      "idPatient": 1,
-      "idSession": 17,
-      "tittle": "Task 2",
-      "description": "This is a task description",
-      "status": 1,
-      "createdAt": "2021-06-01",
-      "updatedAt": "2021-06-01"
-    },
-    {
       "id": "3",
       "idPatient": 3,
-      "idSession": 10,
       "tittle": "Task 3",
       "description": "This is a task description",
       "status": 0,
@@ -576,7 +564,7 @@
   ],
   "session-notes": [
     {
-      "id": "1",
+      "id": 1,
       "idPatient": "1",
       "idSession": "17",
       "title": "Note about how the patient is doing",
@@ -584,7 +572,7 @@
       "date": "2024-09-03T16:11:00.000Z"
     },
     {
-      "id": "2",
+      "id": 2,
       "idPatient": "1",
       "idSession": "17",
       "title": "Note about the patient's progress",
@@ -592,7 +580,7 @@
       "date": "2024-09-03T16:11:00.000Z"
     },
     {
-      "id": "3",
+      "id": 3,
       "idPatient": "2",
       "idSession": "21",
       "title": "Noteaaaaaaaaaaaa aa ",
@@ -600,7 +588,7 @@
       "date": "2023-09-03T16:11:00.000Z"
     },
     {
-      "id": "4",
+      "id": 4,
       "patientId": "1",
       "sessionId": "17",
       "title": "aaa",
