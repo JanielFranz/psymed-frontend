@@ -5,10 +5,13 @@ import { AuthState } from "../../../store/auth/auth.state";
 import {selectPatientId, selectRolId} from "../../../store/auth/auth.selectors";
 import { Observable, Subject } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
-import { MatAnchor } from "@angular/material/button";
-import { NgForOf } from "@angular/common";
+import {MatAnchor, MatIconButton} from "@angular/material/button";
+import {DatePipe, NgForOf, NgIf} from "@angular/common";
 import { RouterLink } from "@angular/router";
 import { MatToolbar } from "@angular/material/toolbar";
+import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
+import {MatIcon} from "@angular/material/icon";
+import {MatBadge} from "@angular/material/badge";
 
 @Component({
   selector: 'app-toolbar',
@@ -81,7 +84,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
     // Set up navigation options based on role ID
     this.rolid$.pipe(
-      map((rolid) => {
+      map((rolid, patientId) => {
         if (rolid === '1') {
           this.options = [
             { path: '/home', title: 'Home' },
