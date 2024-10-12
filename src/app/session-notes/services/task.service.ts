@@ -17,4 +17,9 @@ export class TaskService extends BaseService<Task> {
       .pipe(retry(2), catchError(this.handleError));
   }
 
+  public getTaskBySessionId(idSession: number) {
+    return this.http.get<Task[]>(`${this.resourcePath()}?idSession=${idSession}`, this.httpOptions)
+      .pipe(retry(2), catchError(this.handleError));
+
+  }
 }

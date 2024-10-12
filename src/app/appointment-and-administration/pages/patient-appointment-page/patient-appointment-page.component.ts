@@ -106,6 +106,11 @@ export class PatientAppointmentPageComponent implements OnInit, AfterViewInit {
     });
   }
 
+
+  redirectToTask(sessionId: number, patientId: number): void {
+    this.router.navigate([`/patient-management/${patientId}/patient-appointment-list/${sessionId}/task`]);
+  }
+
   /**
    * Calculate the end time of the session by adding the session time to the appointment start time.
    * @param {string} appointmentDate - The start date and time of the appointment in ISO format.

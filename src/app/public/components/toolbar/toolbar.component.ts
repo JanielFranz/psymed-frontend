@@ -85,7 +85,6 @@ export class ToolbarComponent implements OnInit, OnDestroy {
             { path: '/home', title: 'Home' },
             { path: '/mood-state', title: 'Mood State' },
             { path: '/biological-functions', title: 'Biological Functions' },
-            { path: '/session-task', title: 'Tasks' },
           ];
         } else {
           this.options = [
