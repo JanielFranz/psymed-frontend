@@ -1,0 +1,149 @@
+/* Main Card Styling for Edit Profile */
+.edit-profile-card {
+  width: 60%; /* Keep card width at 60% */
+  max-width: 60%; /* Ensure card doesn't exceed 60% width */
+  margin: 20px auto;
+  background-color: #ccf0f2;
+  border-radius: 25px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: all 0.3s ease;
+}
+
+/* Custom Form Field Styling */
+.mat-form-field {
+  margin-bottom: 15px;
+  background-color: #f0f0f5; /* Light gray background */
+  padding: 8px 15px; /* Smaller padding for a more compact look */
+  border-radius: 25px; /* Slightly reduced radius */
+  border: 1px solid #ccc; /* Subtle border */
+  display: flex;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Reduced shadow */
+}
+
+/* Styling for the input fields */
+input.mat-input-element, textarea.mat-input-element {
+  background: #f0e1d2; /* Change background color */
+  border: none; /* Remove default input border */
+  width: 100%; /* Set to full width */
+  font-size: 0.9em; /* Smaller font size */
+  padding: 8px 16px; /* Smaller padding for a compact look */
+  border-radius: 25px; /* Slightly reduced border radius */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Slight shadow */
+  outline: none; /* Remove default outline */
+  transition: border-color 0.3s ease;
+}
+
+input.mat-input-element:focus, textarea.mat-input-element:focus {
+  border-color: #b56576; /* Border color on focus */
+  outline: none; /* Remove outline on focus */
+}
+
+.mat-form-field {
+  background-color: #f5e9e4; /* Change form field background color */
+  padding: 8px 15px; /* Reduced padding */
+  border-radius: 25px; /* Reduced border radius */
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Reduced shadow */
+}
+
+input.mat-input-element:focus, textarea.mat-input-element:focus {
+  border-color: #0a113f; /* Border color on focus */
+  outline: none; /* Remove outline on focus */
+}
+
+.mat-form-field-label {
+  color: #0a113f; /* Navy Blue label color */
+  font-size: 0.75em; /* Smaller label size */
+  margin-bottom: 8px; /* Reduced margin for a tighter layout */
+}
+
+/* Hide Material's default underline */
+.mat-form-field-underline {
+  display: none;
+}
+
+/* Full-width class for separate fields */
+.full-width {
+  width: 100%;
+}
+
+/* Name, Last Name, DNI, and Birthday Fields Styling */
+.name-fields {
+  display: flex;
+  justify-content: space-between;
+}
+
+.name-fields .half-width {
+  width: 48%; /* Adjust field width for two columns */
+}
+
+/* Submit Button Styling */
+button[type="submit"] {
+  background-color: #0a113f; /* Navy Blue background */
+  color: white;
+  width: 100%;
+  margin-top: 20px;
+  padding: 10px 0; /* Reduce padding for smaller button */
+  font-size: 1.1em; /* Smaller font size */
+  font-weight: bold;
+  border-radius: 25px; /* Reduced rounded corners */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* Adjust button shadow */
+}
+
+button[type="submit"]:hover {
+  background-color: #07102d; /* Darker navy blue on hover */
+}
+
+/* Responsive adjustments */
+
+/* Small devices (mobile, less than 600px wide) */
+@media screen and (max-width: 600px) {
+  .edit-profile-card {
+    max-width: 95%; /* Make the card take up most of the screen width */
+    padding: 15px; /* Reduce padding for smaller screens */
+  }
+
+  .name-fields {
+    flex-direction: column; /* Stack fields vertically */
+  }
+
+  .name-fields .half-width {
+    width: 100%; /* Full width for smaller screens */
+  }
+
+  button[type="submit"] {
+    font-size: 1em; /* Reduce button font size */
+    padding: 8px 0; /* Reduce button padding */
+  }
+}
+
+/* Medium devices (tablets, 600px to 960px) */
+@media screen and (min-width: 600px) and (max-width: 960px) {
+  .edit-profile-card {
+    max-width: 95%; /* Make the card wider for tablets */
+    padding: 20px;
+  }
+
+  button[type="submit"] {
+    font-size: 1em; /* Reduce button font size */
+    padding: 10px 0; /* Reduce button padding */
+  }
+}
+
+/* Large devices (desktops, more than 960px wide) */
+@media screen and (min-width: 960px) {
+  .edit-profile-card {
+    max-width: 100%; /* Set card to full width */
+    padding: 25px;
+  }
+
+  button[type="submit"] {
+    font-size: 1.1em; /* Slightly smaller button font size */
+    padding: 10px 0; /* Reduced button padding */
+  }
+}

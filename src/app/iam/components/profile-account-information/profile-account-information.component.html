@@ -1,0 +1,61 @@
+<div class="page-background">
+  <!-- Professional Information Card -->
+  <mat-card *ngIf="role === '1'" class="professional-card">
+    <!-- Professional Information Fields -->
+    <mat-card-content class="description-content">
+      <div class="personal-info">
+        <p>Personal Information</p>
+      </div>
+      <div class="info-field">
+        <p><strong>DNI:</strong></p>
+        <p>{{ professional?.dni }}</p>
+      </div>
+      <div class="info-field">
+        <p><strong>Phone:</strong></p>
+        <p>{{ professional?.phone }}</p>
+      </div>
+      <div class="info-field">
+        <p><strong>Email:</strong></p>
+        <p>{{ professional?.email }}</p>
+      </div>
+      <div class="info-field">
+        <p><strong>Address:</strong></p>
+        <p>{{ professional?.address }}</p>
+      </div>
+      <div class="info-field">
+        <p><strong>BirthDay:</strong></p>
+        <p>{{ professional?.birthday }}</p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Patient Information Card -->
+  <mat-card *ngIf="role === '2'" class="patient-card">
+    <!-- Patient Information Fields -->
+    <mat-card-content class="description-content">
+      <div class="personal-info">
+        <p>Personal Information</p>
+      </div>
+      <div class="info-field">
+        <p><strong>DNI:</strong></p>
+        <p>{{ patient?.dni }}</p>
+      </div>
+      <div class="info-field">
+        <p><strong>Phone:</strong></p>
+        <p>{{ patient?.phone }}</p>
+      </div>
+      <div class="info-field">
+        <p><strong>Email:</strong></p>
+        <p>{{ patient?.email }}</p>
+      </div>
+      <div class="info-field">
+        <p><strong>Address:</strong></p>
+        <p>{{ patient?.address }}</p>
+      </div>
+      <div class="info-field">
+        <p><strong>BirthDay:</strong></p>
+        <p>{{ patient?.birthday }}</p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
