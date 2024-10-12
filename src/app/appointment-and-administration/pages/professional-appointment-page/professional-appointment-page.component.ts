@@ -7,6 +7,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatCard, MatCardContent} from "@angular/material/card";
 import {Session} from "../../model/sesion.entity";
 import {SessionService} from "../../services/session.service";
+import {Router} from '@angular/router'; // <-- Import Router
 
 @Component({
   selector: 'app-professional-appointment-page',
@@ -23,7 +24,7 @@ import {SessionService} from "../../services/session.service";
   templateUrl: './professional-appointment-page.component.html',
   styleUrl: './professional-appointment-page.component.css'
 })
-export class ProfessionalAppointmentPageComponent implements OnInit, AfterViewInit{
+export class ProfessionalAppointmentPageComponent implements OnInit, AfterViewInit {
 
   //#region Attributes
 
@@ -46,6 +47,11 @@ export class ProfessionalAppointmentPageComponent implements OnInit, AfterViewIn
    * @property {SessionService} sessionService - Injected service to fetch session data.
    */
   private sessionService = inject(SessionService);
+
+  /**
+   * @property {Router} router - Injected Angular Router service for navigation.
+   */
+  private router = inject(Router); // <-- Inject Router
 
   //#endregion
 
@@ -105,21 +111,12 @@ export class ProfessionalAppointmentPageComponent implements OnInit, AfterViewIn
   }
 
   /**
-   * Redirect to the notes page for the given session.
-   * @param {number} sessionId - The ID of the session.
-   */
-
-  /**
    * Redirect to the task page for the given session.
    * @param {number} sessionId - The ID of the session.
+   * @param {number} id - The ID of the appointment.
    */
   redirectToTask(sessionId: number, id: number): void {
-    this.router.navigate([`/${id}/appointment-list/${sessionId}/task`]);
+    this.router.navigate([`/${id}/appointment-list/${sessionId}/task`]); // Use the router for navigation
   }
-
-
-
   //#endregion
-
-
 }
