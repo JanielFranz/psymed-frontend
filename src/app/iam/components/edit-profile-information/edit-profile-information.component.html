@@ -1,0 +1,85 @@
+<mat-card class="edit-profile-card">
+  <mat-card-content>
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+      <!-- Profile Image Upload -->
+      <input id="profile-image" type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none;">
+
+      <!-- Label for the File Input -->
+      <label for="profile-image" style="cursor: pointer;">
+        <div *ngIf="imagePreview">
+          <!-- Display Profile Image Preview (clickable) -->
+          <img [src]="imagePreview" alt="Profile Image Preview" style="max-width: 150px; height: auto; border-radius: 50%;">
+        </div>
+        <!-- Fallback for when no image is available -->
+        <div *ngIf="!imagePreview" style="width: 150px; height: 150px; border-radius: 50%; background-color: #ccc; display: flex; justify-content: center; align-items: center;">
+          <p>Click to Upload</p>
+        </div>
+      </label>
+
+      <!-- Name and Last Name Fields (Readonly) -->
+      <div class="name-fields">
+        <mat-form-field class="half-width" appearance="outline">
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="name" [readonly]="true" required>
+          <mat-error *ngIf="editForm.get('name')?.invalid">First Name is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="half-width" appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastName" [readonly]="true" required>
+          <mat-error *ngIf="editForm.get('lastName')?.invalid">Last Name is required</mat-error>
+        </mat-form-field>
+      </div>
+
+      <!-- Email Field (Readonly, separate row) -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" [readonly]="true" required>
+        <mat-error *ngIf="editForm.get('email')?.invalid">A valid email is required</mat-error>
+      </mat-form-field>
+
+      <!-- Password Field (Editable, separate row) -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" type="password" required>
+        <mat-error *ngIf="editForm.get('password')?.invalid">Password is required</mat-error>
+      </mat-form-field>
+
+      <!-- Phone Field (Editable, separate row) -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Phone</mat-label>
+        <input matInput formControlName="phone">
+      </mat-form-field>
+
+      <!-- Address Field (Editable, separate row) -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Address</mat-label>
+        <input matInput formControlName="address">
+      </mat-form-field>
+
+      <!-- DNI and Birthday in the same row -->
+      <div class="name-fields">
+        <mat-form-field class="half-width" appearance="outline">
+          <mat-label>DNI</mat-label>
+          <input matInput formControlName="dni" [readonly]="true" required>
+          <mat-error *ngIf="editForm.get('dni')?.invalid">DNI is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="half-width" appearance="outline">
+          <mat-label>Birthday</mat-label>
+          <input matInput formControlName="birthday" type="date" required>
+          <mat-error *ngIf="editForm.get('birthday')?.invalid">Birthday is required</mat-error>
+        </mat-form-field>
+      </div>
+
+      <!-- Description Field (Editable) -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+      </mat-form-field>
+
+      <!-- Submit Button -->
+      <button mat-raised-button color="primary" type="submit">Save Changes</button>
+    </form>
+  </mat-card-content>
+</mat-card>
