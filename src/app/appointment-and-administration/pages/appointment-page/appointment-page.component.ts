@@ -125,9 +125,5 @@ export class AppointmentPageComponent implements OnInit, AfterViewInit {
 
   //#endregion
 
-  //#region Event Handlers
-    onNoteSelected() {
-      // this.router.navigate([/])
-    }
-  //#endregion
+
 }

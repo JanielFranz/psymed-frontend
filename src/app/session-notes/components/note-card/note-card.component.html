@@ -6,7 +6,7 @@
       <p>Date: {{ sessionNote.date }}</p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button color="warning">DELETE</button>
+      <button mat-button color="warning" (click)="openDialog() ">DELETE</button>
     </mat-card-actions>
   </mat-card-header>
 </mat-card>

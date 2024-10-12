@@ -31,6 +31,7 @@ export class NoteDialogComponent {
   onDeleteConfirmed() {
     this.deleteNoteRequested.emit();
     this.dialogRef.close();
+    console.log('confirmation of delete sent');
   }
   //#endregion
 

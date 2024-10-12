@@ -1,1 +1,9 @@
-<p>note-form works!</p>
+<h1>New Note</h1>
+<form [formGroup]="noteForm" (ngSubmit)="onSubmit()">
+  <label for="title">Title: </label>
+  <input id="title" type="text" formControlName="title"/>
+  <label for="description">Description: </label>
+  <input id="description" type="text" formControlName="description"/>
+  <button type="submit">Save</button>
+</form>
+

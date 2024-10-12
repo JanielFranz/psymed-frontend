@@ -1,13 +1,16 @@
 export class SessionNote {
-  id: string;
+  id: number;
   patientId: string;
+  sessionId: string;
   title: string;
   description: string;
   date: string;
 
-  constructor(id: string, patientId: string, title: string, description: string, date: string) {
-    this.id = id;
+  constructor(patientId: string, sessionId:string, title:
+    string, description: string, date: string, id?: number) {
+    this.id= id || 0;
     this.patientId = patientId;
+    this.sessionId = sessionId;
     this.title = title;
     this.description = description;
     this.date = date;
