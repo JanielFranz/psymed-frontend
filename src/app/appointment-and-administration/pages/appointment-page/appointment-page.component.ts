@@ -117,8 +117,8 @@ export class AppointmentPageComponent implements OnInit, AfterViewInit {
    * Redirect to the task page for the given session.
    * @param {number} sessionId - The ID of the session.
    */
-  redirectToTask(sessionId: number): void {
-    this.router.navigate([`/appointment-list/${sessionId}/task`]);
+  redirectToTask(sessionId: number, id: number): void {
+    this.router.navigate([`/${id}/appointment-list/${sessionId}/task`]);
   }
 
 
