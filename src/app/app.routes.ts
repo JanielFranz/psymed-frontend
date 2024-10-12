@@ -1,3 +1,4 @@
+
 import { Routes } from '@angular/router';
 import {HomeComponent} from "./public/pages/home/home.component";
 import {
@@ -13,11 +14,13 @@ import {
 import {HistoryManagementComponent} from "./user-mamagement/pages/history-management/history-management.component";
 import  {BiologicalFunctionsEntryComponent} from "./patientEntrys/pages/biological-functions-entry/biological-functions-entry.component";
 import {
-  AppointmentPageComponent
-} from "./appointment-and-administration/pages/appointment-page/appointment-page.component";
+  ProfessionalAppointmentPageComponent
+} from "./appointment-and-administration/pages/professional-appointment-page/professional-appointment-page.component";
 import {SessionNotesComponent} from "./session-notes/pages/session-notes/session-notes.component";
 import  {ProfessionalViewTaskComponent} from "./session-notes/pages/professional-view-task/professional-view-task.component";
 import {PatientMedicationComponent} from "./medication-management/pages/patient-medication/patient-medication.component";
+import {EditProfileComponent} from "./iam/pages/edit-profile/edit-profile.component";
+import {AccountProfileComponent} from "./iam/pages/account-profile/account-profile.component";
 
 export const routes: Routes = [
   { path: ''                                                        , redirectTo: 'home', pathMatch: 'full' },  // Default route that redirects to HomeComponent
@@ -31,9 +34,11 @@ export const routes: Routes = [
   { path: 'patient-management/:id/clinical-history/:historyId'          , component: HistoryManagementComponent },
   { path: 'biological-functions'                                    , component: BiologicalFunctionsEntryComponent },
   { path: 'patient/prescription/:patientId', component: PatientMedicationComponent },
-  { path: 'appointment-list'                                        , component: AppointmentPageComponent },
+  { path: 'appointment-list'                                        , component: ProfessionalAppointmentPageComponent},
   { path: 'patient-management/:id/patient-appointment-list/:appointmentId/notes'         , component: SessionNotesComponent },
   { path: 'patient-management/:id/patient-appointment-list/:appointmentId/task'         , component: ProfessionalViewTaskComponent },
   { path: ':id/appointment-list/:appointmentId/task'  , component: ProfessionalViewTaskComponent },
+  { path: 'profile'                                            , component: AccountProfileComponent },
+  { path: 'edit-profile'                                            , component: EditProfileComponent },
   { path: '**'                                                      , redirectTo: 'home' }  // Wildcard route for invalid paths, redirects to HomeComponent
 ];
