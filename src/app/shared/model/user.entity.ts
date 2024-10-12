@@ -53,6 +53,11 @@ export class User {
   image: string;
 
   /**
+   * The user's birthday.
+   */
+  birthday: string;
+
+  /**
    * Constructor to initialize a new User object.
    *
    * @param id - The unique identifier for the user.
@@ -65,6 +70,7 @@ export class User {
    * @param description - A brief description about the user (optional).
    * @param address - The user's address (optional).
    * @param image - The user's profile image URL (optional).
+   * @param birthday - The user's birthday (optional).
    */
   constructor(
     id: number = 0,
@@ -76,7 +82,8 @@ export class User {
     phone: string = '',
     description: string = '',
     address: string = '',
-    image: string = '' // Added image attribute
+    image: string = '', // Initialize image
+    birthday: string = '' // Initialize birthday
   ) {
     this.id = id;
     this.name = name;
@@ -87,7 +94,8 @@ export class User {
     this.phone = phone;
     this.description = description;
     this.address = address;
-    this.image = image; // Initialize image
+    this.image = image;
+    this.birthday = birthday; // Initialize birthday
   }
 
   //#endregion
