@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SessionService } from "../../../appointment-and-administration/services/session.service";
 import { Store } from '@ngrx/store';
 import { AuthState } from "../../../store/auth/auth.state";
-import { selectPatientId, selectRolId } from "../../../store/auth/auth.selectors";
+import {selectPatientId, selectRolId} from "../../../store/auth/auth.selectors";
 import { Observable, Subject } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
 import { MatAnchor } from "@angular/material/button";
@@ -15,10 +15,18 @@ import { MatToolbar } from "@angular/material/toolbar";
   templateUrl: './toolbar.component.html',
   standalone: true,
   imports: [
-    MatAnchor,
+    DatePipe,
+    MatToolbar,
     NgForOf,
     RouterLink,
-    MatToolbar
+    MatAnchor,
+    MatIconButton,
+    MatMenuTrigger,
+    MatIcon,
+    MatBadge,
+    MatMenu,
+    MatMenuItem,
+    NgIf
   ],
   styleUrls: ['./toolbar.component.css']
 })
@@ -85,6 +93,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
             { path: '/home', title: 'Home' },
             { path: '/mood-state', title: 'Mood State' },
             { path: '/biological-functions', title: 'Biological Functions' },
+            { path: `/patient/prescription/${patientId}`, title: 'Prescription' },
           ];
         } else {
           this.options = [
