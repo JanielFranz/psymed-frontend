@@ -34,5 +34,6 @@ export const routes: Routes = [
   { path: 'patient-management/:id/patient-appointment-list/:appointmentId/notes'         , component: SessionNotesComponent },
   { path: 'patient-management/:id/patient-appointment-list/:appointmentId/task'         , component: ProfessionalViewTaskComponent },
   { path: 'appointment-list/:appointmentId/task'  , component: ProfessionalViewTaskComponent },
+  { path: 'appointment-list/:appointmentId/task'  , component: ProfessionalViewTaskComponent },
   { path: '**'                                                      , redirectTo: 'home' }  // Wildcard route for invalid paths, redirects to HomeComponent
 ];
