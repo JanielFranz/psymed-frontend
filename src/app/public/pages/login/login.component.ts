@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import {MatIconButton} from "@angular/material/button";
-import {MatIcon} from "@angular/material/icon";
-import {Store} from "@ngrx/store";
-import {setPatientId, setRole} from '../../../store/auth/auth.actions'
-import {MatCard, MatCardContent, MatCardTitle} from "@angular/material/card";
+import { MatIconButton } from "@angular/material/button";
+import { MatIcon } from "@angular/material/icon";
+import { Store } from "@ngrx/store";
+import { Router } from '@angular/router';
+import { setPatientId, setRole } from '../../../store/auth/auth.actions';
+import { MatCard, MatCardContent, MatCardTitle } from "@angular/material/card";
 
 /**
  * Login Component
@@ -13,9 +14,11 @@ import {MatCard, MatCardContent, MatCardTitle} from "@angular/material/card";
  * It has two buttons, one for the professional login and one for the patient login.
  * When the user clicks on the professional login button, it will dispatch the setRole action with the role ID.
  * When the user clicks on the patient login button, it will dispatch the setRole action with the role ID and the setPatientId action with the patient ID.
- * @method {sendProfessionalDataToStore} - Dispatches the setRole action with the role ID.
- * @method {sendPatientDataToStore} - Dispatches the setRole action with the role ID and the setPatientId action with the patient ID.
+ * After dispatching the actions, it navigates to the home page.
+ * @method {sendProfessionalDataToStore} - Dispatches the setRole action with the role ID and navigates to the home page.
+ * @method {sendPatientDataToStore} - Dispatches the setRole action with the role ID and the setPatientId action with the patient ID, then navigates to the home page.
  * @property {Store} store - The store service.
+ * @property {Router} router - The router service.
  */
 @Component({
   selector: 'app-login',
@@ -32,28 +35,28 @@ import {MatCard, MatCardContent, MatCardTitle} from "@angular/material/card";
 })
 export class LoginComponent {
   // #region Attributes
-  constructor(private store: Store) {}
+  constructor(private store: Store, private router: Router) {}
   // #endregion
 
   /**
-   * Send  Professional Data To Store
+   * Send Professional Data To Store
    * @description
-   * Dispatches the setRole action with the role ID.
-   * @param rolid - The role ID.{string}
+   * Dispatches the setRole action with the role ID and navigates to the home page.
+   * @param rolid - The role ID. {string}
    * @returns void
    */
-  sendProfessionalDataToStore(rolid: string ): void {
-    // Dispatch the action to send rolid to the store
-    console.log(rolid)
+  sendProfessionalDataToStore(rolid: string): void {
+    console.log(rolid);
     this.store.dispatch(setRole({ rolid }));
+    this.router.navigate(['/home']); // Navigate to home after dispatching the action
   }
 
   /**
    * Send Patient Data To Store
    * @description
-   * Dispatches the setRole action with the role ID and the setPatientId action with the patient ID.
-   * @param rolid - The role ID.{string}
-   * @param patientId - The patient ID.{number}
+   * Dispatches the setRole action with the role ID and the setPatientId action with the patient ID, then navigates to the home page.
+   * @param rolid - The role ID. {string}
+   * @param patientId - The patient ID. {number}
    * @returns void
    */
   sendPatientDataToStore(rolid: string, patientId: number): void {
@@ -62,11 +65,11 @@ export class LoginComponent {
 
     this.store.dispatch(setRole({ rolid }));
     this.store.dispatch(setPatientId({ patientId }));
+    this.router.navigate(['/home']); // Navigate to home after dispatching the actions
   }
 
   sendActualPatientToStore(patientId: number): void {
     console.log(patientId);
     this.store.dispatch(setPatientId({ patientId }));
   }
-
 }
