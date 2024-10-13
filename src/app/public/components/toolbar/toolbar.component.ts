@@ -12,6 +12,7 @@ import { MatToolbar } from "@angular/material/toolbar";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 import {MatIcon} from "@angular/material/icon";
 import {MatBadge} from "@angular/material/badge";
+import {LanguageSwitcherComponent} from "../language-switcher/language-switcher.component";
 
 @Component({
   selector: 'app-toolbar',
@@ -29,7 +30,8 @@ import {MatBadge} from "@angular/material/badge";
     MatBadge,
     MatMenu,
     MatMenuItem,
-    NgIf
+    NgIf,
+    LanguageSwitcherComponent
   ],
   styleUrls: ['./toolbar.component.css']
 })
