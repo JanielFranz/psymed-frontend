@@ -4,7 +4,7 @@ import {
   AnalyticsDashboardComponent
 } from "./dashboard-analytics/pages/analytics-dashboard/analytics-dashboard.component";
 import {LoginComponent} from "./public/pages/login/login.component";
-import { MedicationManagementComponent} from "./medication-management/pages/medication-management/medication-management.component";
+import {MedicationManagementComponent} from "./medication-management/pages/medication-management/medication-management.component";
 import {PatientManagementComponent} from "./user-mamagement/pages/patient-management/patient-management.component";
 import {MoodStatementEntryComponent} from "./patientEntrys/pages/mood-statement-entry/mood-statement-entry.component";
 import {
@@ -17,7 +17,7 @@ import {
 } from "./appointment-and-administration/pages/appointment-page/appointment-page.component";
 import {SessionNotesComponent} from "./session-notes/pages/session-notes/session-notes.component";
 import  {ProfessionalViewTaskComponent} from "./session-notes/pages/professional-view-task/professional-view-task.component";
-
+import {PatientMedicationComponent} from "./medication-management/pages/patient-medication/patient-medication.component";
 
 export const routes: Routes = [
   { path: ''                                                        , redirectTo: 'home', pathMatch: 'full' },  // Default route that redirects to HomeComponent
@@ -30,6 +30,7 @@ export const routes: Routes = [
   { path: 'patient-management/:id/patient-appointment-list'         , component: PatientAppointmentPageComponent },
   { path: 'patient-management/:id/clinical-history/:historyId'          , component: HistoryManagementComponent },
   { path: 'biological-functions'                                    , component: BiologicalFunctionsEntryComponent },
+  { path: 'patient/prescription/:patientId', component: PatientMedicationComponent },
   { path: 'appointment-list'                                        , component: AppointmentPageComponent },
   { path: 'patient-management/:id/patient-appointment-list/:appointmentId/notes'         , component: SessionNotesComponent },
   { path: 'patient-management/:id/patient-appointment-list/:appointmentId/task'         , component: ProfessionalViewTaskComponent },

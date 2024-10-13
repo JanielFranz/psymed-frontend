@@ -2,23 +2,34 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SessionService } from "../../../appointment-and-administration/services/session.service";
 import { Store } from '@ngrx/store';
 import { AuthState } from "../../../store/auth/auth.state";
-import { selectPatientId, selectRolId } from "../../../store/auth/auth.selectors";
+import {selectPatientId, selectRolId} from "../../../store/auth/auth.selectors";
 import { Observable, Subject } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
-import { MatAnchor } from "@angular/material/button";
-import { NgForOf } from "@angular/common";
+import {MatAnchor, MatIconButton} from "@angular/material/button";
+import {DatePipe, NgForOf, NgIf} from "@angular/common";
 import { RouterLink } from "@angular/router";
 import { MatToolbar } from "@angular/material/toolbar";
+import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
+import {MatIcon} from "@angular/material/icon";
+import {MatBadge} from "@angular/material/badge";
 
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
   standalone: true,
   imports: [
-    MatAnchor,
+    DatePipe,
+    MatToolbar,
     NgForOf,
     RouterLink,
-    MatToolbar
+    MatAnchor,
+    MatIconButton,
+    MatMenuTrigger,
+    MatIcon,
+    MatBadge,
+    MatMenu,
+    MatMenuItem,
+    NgIf
   ],
   styleUrls: ['./toolbar.component.css']
 })
@@ -73,7 +84,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
     // Set up navigation options based on role ID
     this.rolid$.pipe(
-      map((rolid) => {
+      map((rolid, patientId) => {
         if (rolid === '1') {
           this.options = [
             { path: '/home', title: 'Home' },
@@ -85,6 +96,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
             { path: '/home', title: 'Home' },
             { path: '/mood-state', title: 'Mood State' },
             { path: '/biological-functions', title: 'Biological Functions' },
+            { path: `/patient/prescription/${patientId}`, title: 'Prescription' },
           ];
         } else {
           this.options = [

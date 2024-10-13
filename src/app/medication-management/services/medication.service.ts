@@ -27,6 +27,4 @@ export class MedicationService extends BaseService<Medication>{
       .pipe(retry(2), catchError(this.handleError));
   }
 
-
-
 }
