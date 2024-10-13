@@ -1,7 +1,7 @@
 {
   "toolbar": {
     "home": "Home",
-    "login": "Log in",
+    "login": "Login",
     "patient-management": "Patient Management",
     "appointments": "Appointments",
     "mood-state": "Mood State",
@@ -15,50 +15,60 @@
     },
     "login": {
       "medic": {
-        "description": "If you are a mental health professional and want to manage your patients and access your tools, select this option."
+        "description": "If you are a mental health professional and wish to manage your patients and access your tools, select this option."
       },
       "patient": {
         "description": "If you are a patient and want to review your medical history, communicate with your doctor, or schedule an appointment, select this option."
       },
-      "button": "Select"
+      "button": "select"
     },
     "patient-management": {
-      "title": "Patient List",
+      "title": "Patients list",
       "actions": {
         "add": {
           "input": {
-            "medication-name": "Medication Name*",
+            "medication-name": "Medication name*",
             "description": "Description*",
             "interval": "Interval*",
             "quantity": "Quantity*",
             "start-date": "Start Date*",
-            "end-date": "End Date*",
-            "save-button": "Save"
+            "end-date": "End date*",
+            "save-button:" :"Save"
           },
           "data": {
             "description": "Description",
             "interval": "Interval",
             "quantity": "Quantity",
-            "start-date": "Start Date",
-            "end-date": "End Date"
+            "start-date": "Start date",
+            "end-date": "End date"
           }
         },
-        "filters": {
-          "input": {
+        "dashboard-analytics": {
+          "filter": {
             "year": "Year",
             "month": "Month"
           },
-          "data": {
-            "total": "Total number of mood states",
-            "stats": "Average biological function statistics"
+          "bar-chart": {
+            "title": "Biological Functions Average Statistics",
+            "month-average": "Month average"
+          },
+          "pie-chart": {
+            "title": "Total number of moods",
+            "type": {
+              "sad": "Sad",
+              "neutral": "Neutral",
+              "happy": "Happy",
+              "so-sad": "So sad",
+              "so-happy": "So happy"
+            }
           }
         },
         "appointment": {
           "input": {
             "appointment-date": "Appointment Date*",
-            "appointment-time": "Appointment Time*",
-            "session-time": "Session Duration (hours)*",
-            "add-button": "Add"
+            "appointment-time": "Appointment time*",
+            "session-time": "Session Time (hours)*",
+            "add-button": "add"
           },
           "data": {
             "patient": "Patient",
@@ -67,7 +77,7 @@
         }
       }
     },
-    "appointments": {
+    "appointments":{
       "title": "Appointment Calendar",
       "data": {
         "patient": "Patient:",
@@ -76,10 +86,11 @@
       }
     },
     "mood-state": {
-      "title": "Mood State Form",
-      "description": "Select your mood state",
+      "title": "Mood form",
+      "description": "Select your mood",
       "error": {
-        "already-mood-recorded": "You have already recorded a mood state for today."
+        "already-mood-recorded": "You already have a mood recorded for today.",
+        "unavailable-patient-id": "Patient ID unavailable"
       }
     },
     "biological-functions": {
@@ -88,15 +99,15 @@
         "hydration": "Hydration:",
         "sleep": "Sleep:",
         "energy": "Energy:",
-        "created-at": "Created on:",
-        "updated-at": "Updated on:"
+        "created-at": "Created at:",
+        "updated-at": "Updated at:"
       },
-      "button": "Submit"
+      "button:": "Submit"
     },
     "tasks": {
-      "created-at": "Created on:",
-      "updated-at": "Updated on:",
-      "toggle-status-button": "Toggle Status"
+      "created-at": "Created at:",
+      "updated-at": "Updated at:",
+      "toggle-status-button": "Toggle status"
     }
   }
 }

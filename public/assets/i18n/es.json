@@ -1,11 +1,11 @@
 {
   "toolbar": {
     "home": "Inicio",
-    "login": "Iniciar sesión",
-    "patient-management": "Gestión de pacientes",
+    "login": "Iniciar Sesión",
+    "patient-management": "Gestión de Pacientes",
     "appointments": "Citas",
-    "mood-state": "Estado de ánimo",
-    "biological-functions": "Funciones biológicas",
+    "mood-state": "Estado de Ánimo",
+    "biological-functions": "Funciones Biológicas",
     "tasks": "Tareas"
   },
   "pages": {
@@ -18,9 +18,9 @@
         "description": "Si eres un profesional de la salud mental y deseas gestionar a tus pacientes y acceder a tus herramientas, selecciona esta opción."
       },
       "patient": {
-        "description": "Si eres un paciente y quieres revisar tu historial médico, comunicarte con tu médico o programar una cita, selecciona esta opción."
+        "description": "Si eres un paciente y deseas revisar tu historial médico, comunicarte con tu médico o programar una cita, selecciona esta opción."
       },
-      "button": "Seleccionar"
+      "button": "seleccionar"
     },
     "patient-management": {
       "title": "Lista de pacientes",
@@ -32,25 +32,35 @@
             "interval": "Intervalo*",
             "quantity": "Cantidad*",
             "start-date": "Fecha de inicio*",
-            "end-date": "Fecha de finalización*",
-            "save-button": "Guardar"
+            "end-date": "Fecha de fin*",
+            "save-button:": "Guardar"
           },
           "data": {
             "description": "Descripción",
             "interval": "Intervalo",
             "quantity": "Cantidad",
             "start-date": "Fecha de inicio",
-            "end-date": "Fecha de finalización"
+            "end-date": "Fecha de fin"
           }
         },
-        "filters": {
-          "input": {
+        "dashboard-analytics": {
+          "filter": {
             "year": "Año",
             "month": "Mes"
           },
-          "data": {
-            "total": "Número total de estados de ánimo",
-            "stats": "Estadísticas promedio de funciones biológicas"
+          "bar-chart": {
+            "title": "Estadísticas Promedio de Funciones Biológicas",
+            "month-average": "Promedio mensual"
+          },
+          "pie-chart": {
+            "title": "Número total de estados de ánimo",
+            "type": {
+              "sad": "Triste",
+              "neutral": "Neutral",
+              "happy": "Feliz",
+              "so-sad": "Muy triste",
+              "so-happy": "Muy feliz"
+            }
           }
         },
         "appointment": {
@@ -58,7 +68,7 @@
             "appointment-date": "Fecha de la cita*",
             "appointment-time": "Hora de la cita*",
             "session-time": "Duración de la sesión (horas)*",
-            "add-button": "Agregar"
+            "add-button": "agregar"
           },
           "data": {
             "patient": "Paciente",
@@ -68,7 +78,7 @@
       }
     },
     "appointments": {
-      "title": "Calendario de citas",
+      "title": "Calendario de Citas",
       "data": {
         "patient": "Paciente:",
         "therapy": "Terapia",
@@ -79,7 +89,8 @@
       "title": "Formulario de estado de ánimo",
       "description": "Selecciona tu estado de ánimo",
       "error": {
-        "already-mood-recorded": "Ya tienes un estado de ánimo registrado para hoy."
+        "already-mood-recorded": "Ya has registrado un estado de ánimo para hoy.",
+        "unavailable-patient-id": "ID de paciente no disponible"
       }
     },
     "biological-functions": {
@@ -88,14 +99,14 @@
         "hydration": "Hidratación:",
         "sleep": "Sueño:",
         "energy": "Energía:",
-        "created-at": "Creado el:",
-        "updated-at": "Actualizado el:"
+        "created-at": "Creado en:",
+        "updated-at": "Actualizado en:"
       },
-      "button": "Enviar"
+      "button:": "Enviar"
     },
     "tasks": {
-      "created-at": "Creado el:",
-      "updated-at": "Actualizado el:",
+      "created-at": "Creado en:",
+      "updated-at": "Actualizado en:",
       "toggle-status-button": "Cambiar estado"
     }
   }
