@@ -1,0 +1,160 @@
+/* Main Card Styling (for both professional and patient) */
+.professional-card, .patient-card {
+  max-width: 400px;
+  margin: 20px auto;
+  background-color: #ccf0f2;
+  border-radius: 25px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* Profile Image Container (common for both) */
+.profile-image-container {
+  background-color: #ccf0f2;
+  width: 250px; /* Increased size */
+  height: 250px; /* Increased size */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 20px;
+  position: relative;
+}
+
+.profile-image {
+  border-radius: 50%;
+  width: 250px; /* Increased size */
+  height: 250px; /* Increased size */
+  object-fit: cover;
+}
+
+/* Name Styling (for both professional and patient) */
+.professional-name, .patient-name {
+  background-color: #0a113f;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Description Content Styling (for both) */
+.description-content {
+  background-color: #0a113f;
+  color: white;
+  padding: 15px;
+  font-size: 0.8em;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+/* Responsive adjustments */
+
+/* Small devices (phones) */
+@media screen and (max-width: 600px) {
+  .professional-card, .patient-card {
+    max-width: 95%;
+    padding: 15px;
+  }
+
+  .profile-image-container {
+    width: 150px; /* Increased size */
+    height: 150px;
+  }
+
+  .profile-image {
+    width: 150px; /* Increased size */
+    height: 150px;
+  }
+
+  .professional-name, .patient-name {
+    font-size: 1em;
+  }
+
+  .description-content {
+    font-size: 0.75em;
+    padding: 10px;
+  }
+}
+
+/* Very Small Devices (under 400px) */
+@media screen and (max-width: 400px) {
+  .professional-card, .patient-card {
+    max-width: 90%;
+    padding: 10px;
+  }
+
+  .profile-image-container {
+    width: 120px; /* Increased size */
+    height: 120px;
+  }
+
+  .profile-image {
+    width: 120px; /* Increased size */
+    height: 120px;
+  }
+
+  .professional-name, .patient-name {
+    font-size: 0.9em;
+    padding: 8px;
+  }
+
+  .description-content {
+    font-size: 0.7em;
+    padding: 8px;
+  }
+}
+
+/* Medium devices (tablets, 600px to 960px) */
+@media screen and (min-width: 600px) and (max-width: 960px) {
+  .professional-card, .patient-card {
+    max-width: 85%;
+    padding: 20px;
+  }
+
+  .profile-image-container {
+    width: 220px; /* Increased size */
+    height: 220px;
+  }
+
+  .profile-image {
+    width: 220px; /* Increased size */
+    height: 220px;
+  }
+
+  .professional-name, .patient-name {
+    font-size: 1.1em;
+  }
+
+  .description-content {
+    font-size: 0.9em;
+    padding: 12px;
+  }
+}
+
+/* Large devices (desktops, more than 960px wide) */
+@media screen and (min-width: 960px) {
+  .professional-card, .patient-card {
+    max-width: 600px;
+  }
+
+  .profile-image-container {
+    width: 300px; /* Increased size for larger screens */
+    height: 300px;
+  }
+
+  .profile-image {
+    width: 300px; /* Increased size for larger screens */
+    height: 300px;
+  }
+
+  .professional-name, .patient-name {
+    font-size: 1.4em;
+  }
+
+  .description-content {
+    font-size: 1em;
+  }
+}

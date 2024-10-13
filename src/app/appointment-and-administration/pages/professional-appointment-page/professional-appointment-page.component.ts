@@ -1,19 +1,16 @@
-import { AfterViewInit, Component, inject, OnInit, ViewChild } from '@angular/core';
-import { MatSort } from "@angular/material/sort";
-import { MatTableDataSource } from "@angular/material/table";
-import { SessionService } from "../../services/session.service";
-import { CommonModule } from '@angular/common';
-import { MatTableModule } from "@angular/material/table";
-import { MatSortModule } from "@angular/material/sort";
-import { MatInputModule } from "@angular/material/input";
-import { MatButtonModule } from "@angular/material/button";
-import { MatCard, MatCardContent } from "@angular/material/card";
-import { formatDate } from '@angular/common';
+import {AfterViewInit, Component, inject, OnInit, ViewChild} from '@angular/core';
+import {CommonModule, formatDate} from "@angular/common";
+import {MatTableDataSource, MatTableModule} from "@angular/material/table";
+import {MatSort, MatSortModule} from "@angular/material/sort";
+import {MatInputModule} from "@angular/material/input";
+import {MatButtonModule} from "@angular/material/button";
+import {MatCard, MatCardContent} from "@angular/material/card";
 import {Session} from "../../model/sesion.entity";
-import {Router} from "@angular/router"; // Utility for date formatting
+import {SessionService} from "../../services/session.service";
+import {Router} from '@angular/router'; // <-- Import Router
 
 @Component({
-  selector: 'app-appointment-page',
+  selector: 'app-professional-appointment-page',
   standalone: true,
   imports: [
     CommonModule,
@@ -24,10 +21,10 @@ import {Router} from "@angular/router"; // Utility for date formatting
     MatCardContent,
     MatCard
   ],
-  templateUrl: './appointment-page.component.html',
-  styleUrls: ['./appointment-page.component.css']
+  templateUrl: './professional-appointment-page.component.html',
+  styleUrl: './professional-appointment-page.component.css'
 })
-export class AppointmentPageComponent implements OnInit, AfterViewInit {
+export class ProfessionalAppointmentPageComponent implements OnInit, AfterViewInit {
 
   //#region Attributes
 
@@ -51,6 +48,11 @@ export class AppointmentPageComponent implements OnInit, AfterViewInit {
    */
   private sessionService = inject(SessionService);
 
+  /**
+   * @property {Router} router - Injected Angular Router service for navigation.
+   */
+  private router = inject(Router); // <-- Inject Router
+
   //#endregion
 
   //#region Constructor
@@ -58,7 +60,7 @@ export class AppointmentPageComponent implements OnInit, AfterViewInit {
   /**
    * Constructor initializes the dataSource with an empty array.
    */
-  constructor(private router: Router) {
+  constructor() {
     this.dataSource = new MatTableDataSource<Session>();
   }
 
@@ -109,21 +111,12 @@ export class AppointmentPageComponent implements OnInit, AfterViewInit {
   }
 
   /**
-   * Redirect to the notes page for the given session.
-   * @param {number} sessionId - The ID of the session.
-   */
-
-  /**
    * Redirect to the task page for the given session.
    * @param {number} sessionId - The ID of the session.
+   * @param {number} id - The ID of the appointment.
    */
   redirectToTask(sessionId: number, id: number): void {
-    this.router.navigate([`/${id}/appointment-list/${sessionId}/task`]);
+    this.router.navigate([`/${id}/appointment-list/${sessionId}/task`]); // Use the router for navigation
   }
-
-
-
   //#endregion
-
-
 }
