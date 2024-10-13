@@ -8,6 +8,7 @@ import {ToolbarComponent} from "./public/components/toolbar/toolbar.component";
 import {
   AppointmentFormComponent
 } from "./appointment-and-administration/components/appointment-form/appointment-form.component";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-root',
@@ -22,4 +23,10 @@ export class AppComponent {
     { path: '/home', title: 'Home' },
     { path: '/learning/courses', title: 'Course' }
   ]
+
+  constructor(translate: TranslateService) {
+    translate.setDefaultLang('en');
+    translate.use('en');
+  }
+
 }
