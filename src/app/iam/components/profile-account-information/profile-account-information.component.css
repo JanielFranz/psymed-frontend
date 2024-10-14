@@ -1,0 +1,191 @@
+/* Main Card Styling */
+.professional-card, .patient-card {
+  max-width: 1000px; /* Larger cards for desktop */
+  margin: 20px auto;
+  background-color: #ccf0f2;
+  border-radius: 25px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Profile Image */
+.profile-image {
+  border-radius: 50%; /* Circular image */
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+/* Professional/Patient Name Styling */
+.professional-name, .patient-name {
+  background-color: #0a113f;
+  color: white;
+  padding: 10px;
+  border-radius: 25px;
+  font-size: 1.5em; /* Default font size */
+  margin-bottom: 20px;
+}
+
+/* Description Content Styling */
+.description-content {
+  background-color: #0a113f;
+  color: white;
+  padding: 25px;
+  border-radius: 15px;
+  font-size: 1em; /* Default font size */
+  line-height: 1.6; /* Adjust line height for readability */
+  margin: 30px;
+}
+
+/* Personal Info Title Styling */
+.personal-info p {
+  text-align: left;
+  font-size: 1.8em; /* Default font size */
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* Field Styling */
+.info-field {
+  margin-bottom: 20px;
+  word-wrap: break-word; /* Ensure long words break and wrap to the next line */
+  overflow-wrap: break-word; /* Handle text overflow by wrapping */
+}
+
+.info-field p {
+  margin: 0;
+  text-align: left;
+  word-wrap: break-word; /* Ensure long words wrap to the next line */
+  overflow-wrap: break-word; /* Prevent text overflow */
+}
+
+.info-field p + p {
+  background-color: white;
+  color: black;
+  padding: 10px;
+  border-radius: 25px; /* Rounded corners */
+  font-size: 1.1em;
+  margin-top: 5px;
+  word-wrap: break-word; /* Ensure long text wraps to the next line */
+  overflow-wrap: break-word; /* Handle long words by breaking them */
+  white-space: normal; /* Ensure text wraps, even without spaces */
+}
+
+/* Responsive adjustments */
+
+/* Small devices (mobile, less than 600px wide) */
+@media screen and (max-width: 600px) {
+  .professional-card, .patient-card {
+    max-width: 95%; /* Make the card take up most of the screen width */
+    padding: 15px; /* Reduce padding for smaller screens */
+  }
+
+  .profile-image {
+    width: 80px; /* Smaller image for mobile */
+    height: 80px;
+  }
+
+  .professional-name, .patient-name {
+    font-size: 1.3em; /* Slightly reduce font size for names */
+  }
+
+  .description-content {
+    font-size: 0.9em; /* Reduce description font size */
+    padding: 15px; /* Reduce padding */
+    margin: 20px;
+  }
+  .personal-info p {
+    font-size: 0.7em; /* Adjust title size for smaller screens */
+    text-align: center; /* Center the title on mobile for better layout */
+    margin-bottom: 10px;
+  }
+  .info-field p {
+    font-size: 0.7em;
+    margin: 0;
+    text-align: left;
+    word-wrap: break-word; /* Ensure long words wrap to the next line */
+    overflow-wrap: break-word; /* Prevent text overflow */
+  }
+  .info-field p + p {
+    font-size: 0.95em; /* Reduce font size for smaller screens */
+    padding: 8px;
+    word-wrap: break-word; /* Ensure text wraps */
+    overflow-wrap: break-word;
+    white-space: normal; /* Ensure proper text wrapping */
+  }
+}
+
+/* Medium devices (tablets, 600px to 960px) */
+@media screen and (min-width: 600px) and (max-width: 960px) {
+  .professional-card, .patient-card {
+    max-width: 90%; /* Scale card size for tablets */
+    padding: 20px; /* Adjust padding */
+  }
+
+  .profile-image {
+    width: 90px; /* Slightly reduce image size */
+    height: 90px;
+  }
+
+  .professional-name, .patient-name {
+    font-size: 1.4em; /* Reduce name font size for tablets */
+  }
+
+  .description-content {
+    font-size: 0.95em; /* Slightly reduce description size */
+    padding: 20px;
+    margin: 25px;
+  }
+  .personal-info p {
+    font-size: 1.7em; /* Adjust title size for tablets */
+    text-align: center; /* Center the title for medium screens */
+    margin-bottom: 12px;
+  }
+
+  .info-field p + p {
+    font-size: 1em; /* Adjust value font size for tablets */
+    padding: 9px;
+    word-wrap: break-word; /* Ensure text wraps */
+    overflow-wrap: break-word;
+    white-space: normal; /* Ensure proper text wrapping */
+  }
+}
+
+/* Large devices (desktops, more than 960px wide) */
+@media screen and (min-width: 960px) {
+  .professional-card, .patient-card {
+    max-width: 1000px; /* Default size for larger screens */
+    padding: 25px;
+  }
+
+  .profile-image {
+    width: 100px;
+    height: 100px;
+  }
+
+  .professional-name, .patient-name {
+    font-size: 1.5em; /* Default font size */
+  }
+
+  .description-content {
+    font-size: 1em;
+    padding: 25px;
+    margin: 30px;
+  }
+
+  .personal-info p {
+    font-size: 1.8em; /* Default size for larger screens */
+    text-align: left; /* Keep the text left-aligned on larger screens */
+    margin-bottom: 15px;
+  }
+
+  .info-field p + p {
+    font-size: 1.1em; /* Default font size */
+    padding: 10px;
+    word-wrap: break-word; /* Ensure text wraps */
+    overflow-wrap: break-word;
+    white-space: normal; /* Ensure proper text wrapping */
+  }
+}
