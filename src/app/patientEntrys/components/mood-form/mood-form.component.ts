@@ -5,6 +5,7 @@ import {Store} from "@ngrx/store";
 import {AuthState} from "../../../store/auth/auth.state";
 import {map, Observable} from "rxjs";
 import {selectPatientId} from "../../../store/auth/auth.selectors";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-mood-form',
@@ -19,7 +20,9 @@ export class MoodFormComponent implements OnInit {
   patientId$!: Observable<number | null>;
 
 
-  constructor(private moodStateService: MoodStateService,
+  constructor(
+    private translateService: TranslateService,
+    private moodStateService: MoodStateService,
               private store: Store<AuthState>) {
   }
   ngOnInit(): void {
@@ -43,8 +46,9 @@ export class MoodFormComponent implements OnInit {
           this.moodStateService.getMoodStatesByPatientId(patientId).subscribe(moodStates => {
             const existingMood = moodStates.find(m => m.createdAt === this.currentDate);
             if (existingMood) {
-              alert('You already have a mood recorded for today.');
-            } else {
+              this.translateService.get("pages.mood-state.error.already-mood-recorded").subscribe((text : string) => {
+                alert(text)
+              })            } else {
               const newMood = new MoodState(1, patientId, mood, this.currentDate);
               this.moodStateService.createMoodState(newMood, patientId).subscribe(() => {
                 window.location.reload();
