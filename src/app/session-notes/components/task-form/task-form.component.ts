@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Task} from "../../model/task.entity";
 import { TaskService } from "../../services/task.service";
 import { MatInputModule } from '@angular/material/input';
@@ -25,6 +25,8 @@ export class TaskFormComponent implements OnInit{
   taskForm!: FormGroup;
   id!: number;
   appointmentId!: number;
+  @Output() taskCreated = new EventEmitter<Task>();
+
   constructor(private fb: FormBuilder,
               private taskService: TaskService,
               private route: ActivatedRoute
@@ -57,7 +59,7 @@ export class TaskFormComponent implements OnInit{
 
       this.taskService.create(newTask).subscribe(response => {
         console.log('Task created successfully', response);
-        window.location.reload();
+        this.taskCreated.emit(newTask);
       });
     }
 
