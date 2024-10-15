@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Task} from "../../model/task.entity";
 import {Store} from "@ngrx/store";
 import {selectRolId} from "../../../store/auth/auth.selectors";
@@ -20,6 +20,7 @@ import {TaskService} from "../../services/task.service";
 })
 export class TaskCardComponent implements OnInit {
   @Input() task!: Task;
+  @Output() taskDeleted = new EventEmitter<string>();
   role$!: Observable<string | null>;
 
   constructor(private store: Store,
@@ -32,6 +33,7 @@ export class TaskCardComponent implements OnInit {
     this.taskService.delete(taskId).subscribe(
       () => {
         console.log(`Task with id ${taskId} deleted successfully`);
+        this.taskDeleted.emit(taskId);
       },
       (error) => {
         console.error('Error deleting task:', error);

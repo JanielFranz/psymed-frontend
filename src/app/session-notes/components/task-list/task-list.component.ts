@@ -39,4 +39,8 @@ export class TaskListComponent implements OnInit{
     this.tasks.push(newTask);
   }
 
+  onTaskDeleted(taskId: string): void {
+    this.tasks = this.tasks.filter(task => task.id !== taskId);
+  }
+
 }
