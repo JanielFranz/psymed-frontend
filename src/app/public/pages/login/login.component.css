@@ -5,6 +5,8 @@ body {
 
 .card-container {
   display: flex;
+  align-items: center;
+  height: 70vh;
   justify-content: center;
   gap: 20px;
   margin-top: 50px;

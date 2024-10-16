@@ -1,5 +1,5 @@
-<form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
-  <mat-form-field appearance="fill">
+<form class = "task-form-card" [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+  <mat-form-field class="task-form-title-card" appearance="fill">
     <mat-label>Title</mat-label>
     <input matInput formControlName="title" required>
     <mat-error *ngIf="taskForm.get('title')?.hasError('required')">
@@ -7,7 +7,7 @@
     </mat-error>
   </mat-form-field>
 
-  <mat-form-field appearance="fill">
+  <mat-form-field class="task-form-description-card" appearance="fill">
     <mat-label>Description</mat-label>
     <textarea matInput formControlName="description" required></textarea>
     <mat-error *ngIf="taskForm.get('description')?.hasError('required')">
@@ -15,5 +15,5 @@
     </mat-error>
   </mat-form-field>
 
-  <button mat-raised-button color="primary" type="submit">Create Task</button>
+  <button class="task-form-create-button" mat-raised-button color="primary" type="submit">Create Task</button>
 </form>

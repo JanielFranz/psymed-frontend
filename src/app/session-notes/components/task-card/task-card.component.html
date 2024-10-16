@@ -1,19 +1,23 @@
 <div class="task-card">
-  <h2>{{ this.task.title }}</h2>
-  <p>{{ this.task.description }}</p>
-  <p>Created At: {{ this.task.createdAt }}</p>
-  <p>Updated At: {{ this.task.updatedAt }}</p>
+  <div class = "data-panel">
+    <p>Title: {{ this.task.title }}</p>
+    <p>Description: {{ this.task.description }}</p>
+    <p>Created At: {{ this.task.createdAt }}</p>
+    <p>Updated At: {{ this.task.updatedAt }}</p>
 
-  <div *ngIf="(role$ | async) === '1'">
-    <img *ngIf="this.task.status === 0" src="path/to/image0.jpg" alt="Status 0 Image">
-    <img *ngIf="this.task.status === 1" src="path/to/image1.jpg" alt="Status 1 Image">
+    <div *ngIf="(role$ | async) === '1'">
+      <img *ngIf="this.task.status === 0" src="path/to/image0.jpg" alt="Status 0 Image">
+      <img *ngIf="this.task.status === 1" src="path/to/image1.jpg" alt="Status 1 Image">
+    </div>
+    <div *ngIf="(role$ | async) === '2'">
+      <label>
+        <input type="checkbox" [(ngModel)]="this.task.status" />
+        Toggle Status
+      </label>
+    </div>
   </div>
-  <div *ngIf="(role$ | async) === '2'">
-    <label>
-      <input type="checkbox" [(ngModel)]="this.task.status" />
-      Toggle Status
-    </label>
-  </div>
+  <div class="option-panel">
+    <button (click)="deleteThisCard(this.task.id)">Delete Task</button>
 
-  <button (click)="deleteThisCard(this.task.id)">Delete Task</button>
+  </div>
 </div>
