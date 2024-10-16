@@ -1,0 +1,38 @@
+.task-form-card{
+
+  margin-top: 1.5em;
+  padding-top: 1em;
+
+  border-radius: 0.5em;
+  background-color: #308c83;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+
+.task-form-description-card{
+  height: 5em;
+  width: 18em;
+}
+
+.task-form-create-button{
+
+  border-color: transparent;
+  background-color: white;
+
+  font-size: 1em;
+  color: #308c83;
+
+  padding: 0 2em;
+  margin-bottom: 1em;
+  border-radius: 0.5em;
+}
+
+.task-form-create-button > hover{
+  background-color: #276e66;
+
+}

@@ -1,13 +1,18 @@
-<mat-toolbar color="primary">
-  <span>Psymed</span>
+<mat-toolbar style="background-color: black" color="primary">
+  <span>PsyMed</span>
   <span class="mat-spacer"></span>
 
-  <!-- Navigation Links -->
-  <ng-container *ngFor="let option of options">
-    <a mat-button [routerLink]="option.path">{{ "toolbar." + option.name | translate }}</a>
-  </ng-container>
 
-  <app-language-switcher></app-language-switcher>
+  <div class = "menu-toolbar">
+    <app-language-switcher></app-language-switcher>
+
+    <!-- Navigation Links -->
+    <ng-container *ngFor="let option of options">
+      <a class = "navigation-button" mat-button [routerLink]="option.path">{{ "toolbar." + option.name | translate }}</a>
+    </ng-container>
+
+  </div>
+
   <!-- Commenting out notifications functionality -->
   <!--
 <button mat-icon-button [matMenuTriggerFor]="menu" (click)="viewNotifications()">

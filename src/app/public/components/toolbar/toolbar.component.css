@@ -15,7 +15,6 @@ mat-toolbar {
 mat-toolbar a {
   text-decoration: none; /* Remove underline */
   color: white; /* Link color */
-  margin-right: 20px; /* Space between links */
   font-weight: bold; /* Make text more prominent */
   transition: color 0.3s ease-in-out; /* Smooth hover transition */
 }
@@ -43,4 +42,15 @@ mat-menu button {
 
 mat-menu button:hover {
   background-color: #f0f0f0; /* Background change on hover */
+}
+
+/* Navigation button */
+.navigation-button{
+  background-color: #aacdda;
+  border-radius: 0.75em;
+}
+
+.menu-toolbar{
+  display: flex;
+  gap: 0.5em;
 }
