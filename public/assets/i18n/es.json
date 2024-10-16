@@ -1,12 +1,13 @@
 {
   "toolbar": {
     "home": "Inicio",
-    "login": "Iniciar Sesión",
-    "patient-management": "Gestión de Pacientes",
+    "login": "Iniciar sesión",
+    "patient-management": "Gestión de pacientes",
     "appointments": "Citas",
-    "mood-state": "Estado de Ánimo",
-    "biological-functions": "Funciones Biológicas",
-    "tasks": "Tareas"
+    "mood-state": "Estado de ánimo",
+    "biological-functions": "Funciones biologicas",
+    "prescription": "Prescripcion",
+    "profile": "Perfil"
   },
   "pages": {
     "home": {

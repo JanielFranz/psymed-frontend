@@ -4,7 +4,7 @@
 
   <!-- Navigation Links -->
   <ng-container *ngFor="let option of options">
-    <a mat-button [routerLink]="option.path">{{ option.title }}</a>
+    <a mat-button [routerLink]="option.path">{{ "toolbar." + option.name | translate }}</a>
   </ng-container>
 
   <app-language-switcher></app-language-switcher>

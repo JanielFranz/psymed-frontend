@@ -6,7 +6,8 @@
     "appointments": "Appointments",
     "mood-state": "Mood State",
     "biological-functions": "Biological Functions",
-    "tasks": "Tasks"
+    "prescription": "Prescription",
+    "profile": "Profile"
   },
   "pages": {
     "home": {
