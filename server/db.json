@@ -3,7 +3,7 @@
     {
       "id": "1",
       "userName": "Jhon",
-      "password": "123455455465645564",
+      "password": "123456",
       "role": 1
     },
     {
@@ -134,7 +134,7 @@
     {
       "id": "17",
       "idProfessional": 1,
-      "idPatient": 0,
+      "idPatient": 1,
       "idNote": 1,
       "appointmentDate": "2024-09-03T16:11:00.000Z",
       "sessionTime": 11,
@@ -149,7 +149,7 @@
     {
       "id": "21",
       "idProfessional": 1,
-      "idPatient": 0,
+      "idPatient": 1,
       "idNote": 1,
       "appointmentDate": "1110-12-31T16:19:12.000Z",
       "sessionTime": 11,
@@ -554,16 +554,28 @@
     {
       "id": "1",
       "idPatient": 1,
-      "tittle": "Task 1",
+      "idSession": 17,
+      "title": "Task 1",
       "description": "This is a task description",
       "status": 0,
       "createdAt": "2021-06-01",
       "updatedAt": "2021-06-01"
     },
     {
+      "id": "2",
+      "idPatient": 1,
+      "idSession": 17,
+      "title": "Task 2",
+      "description": "This is a task description",
+      "status": 1,
+      "createdAt": "2021-06-01",
+      "updatedAt": "2021-06-01"
+    },
+    {
       "id": "3",
       "idPatient": 3,
-      "tittle": "Task 3",
+      "idSession": 10,
+      "title": "Task 3",
       "description": "This is a task description",
       "status": 0,
       "createdAt": "2021-06-01",

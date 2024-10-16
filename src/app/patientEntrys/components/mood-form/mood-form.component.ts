@@ -15,7 +15,7 @@ import {selectPatientId} from "../../../store/auth/auth.selectors";
 })
 export class MoodFormComponent implements OnInit {
   patientId!: number | null; // Define the patient ID as a number
-  currentDate: string = "hoy xd";
+  currentDate: string = new Date().toISOString().split('T')[0];
   patientId$!: Observable<number | null>;
 
 

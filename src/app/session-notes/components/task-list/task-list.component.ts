@@ -34,4 +34,13 @@ export class TaskListComponent implements OnInit{
       console.error('Error fetching tasks:', error);
     });
   }
+
+  onTaskCreated(newTask: Task): void {
+    this.tasks.push(newTask);
+  }
+
+  onTaskDeleted(taskId: string): void {
+    this.tasks = this.tasks.filter(task => task.id !== taskId);
+  }
+
 }
