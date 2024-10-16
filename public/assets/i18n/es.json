@@ -1,3 +1,102 @@
 {
-
+  "toolbar": {
+    "home": "Inicio",
+    "login": "Iniciar sesión",
+    "patient-management": "Gestión de pacientes",
+    "appointments": "Citas",
+    "mood-state": "Estado de ánimo",
+    "biological-functions": "Funciones biológicas",
+    "tasks": "Tareas"
+  },
+  "pages": {
+    "home": {
+      "title": "Bienvenido a PsyMed",
+      "description": "Tu compañero de salud mental"
+    },
+    "login": {
+      "medic": {
+        "description": "Si eres un profesional de la salud mental y deseas gestionar a tus pacientes y acceder a tus herramientas, selecciona esta opción."
+      },
+      "patient": {
+        "description": "Si eres un paciente y quieres revisar tu historial médico, comunicarte con tu médico o programar una cita, selecciona esta opción."
+      },
+      "button": "Seleccionar"
+    },
+    "patient-management": {
+      "title": "Lista de pacientes",
+      "actions": {
+        "add": {
+          "input": {
+            "medication-name": "Nombre del medicamento*",
+            "description": "Descripción*",
+            "interval": "Intervalo*",
+            "quantity": "Cantidad*",
+            "start-date": "Fecha de inicio*",
+            "end-date": "Fecha de finalización*",
+            "save-button": "Guardar"
+          },
+          "data": {
+            "description": "Descripción",
+            "interval": "Intervalo",
+            "quantity": "Cantidad",
+            "start-date": "Fecha de inicio",
+            "end-date": "Fecha de finalización"
+          }
+        },
+        "filters": {
+          "input": {
+            "year": "Año",
+            "month": "Mes"
+          },
+          "data": {
+            "total": "Número total de estados de ánimo",
+            "stats": "Estadísticas promedio de funciones biológicas"
+          }
+        },
+        "appointment": {
+          "input": {
+            "appointment-date": "Fecha de la cita*",
+            "appointment-time": "Hora de la cita*",
+            "session-time": "Duración de la sesión (horas)*",
+            "add-button": "Agregar"
+          },
+          "data": {
+            "patient": "Paciente",
+            "therapy": "Terapia"
+          }
+        }
+      }
+    },
+    "appointments": {
+      "title": "Calendario de citas",
+      "data": {
+        "patient": "Paciente:",
+        "therapy": "Terapia",
+        "notes": "Notas"
+      }
+    },
+    "mood-state": {
+      "title": "Formulario de estado de ánimo",
+      "description": "Selecciona tu estado de ánimo",
+      "error": {
+        "already-mood-recorded": "Ya tienes un estado de ánimo registrado para hoy."
+      }
+    },
+    "biological-functions": {
+      "form-data": {
+        "hunger": "Hambre:",
+        "hydration": "Hidratación:",
+        "sleep": "Sueño:",
+        "energy": "Energía:",
+        "created-at": "Creado el:",
+        "updated-at": "Actualizado el:"
+      },
+      "button": "Enviar"
+    },
+    "tasks": {
+      "created-at": "Creado el:",
+      "updated-at": "Actualizado el:",
+      "toggle-status-button": "Cambiar estado"
+    }
+  }
 }

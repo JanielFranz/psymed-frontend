@@ -1,3 +1,102 @@
 {
-
+  "toolbar": {
+    "home": "Home",
+    "login": "Log in",
+    "patient-management": "Patient Management",
+    "appointments": "Appointments",
+    "mood-state": "Mood State",
+    "biological-functions": "Biological Functions",
+    "tasks": "Tasks"
+  },
+  "pages": {
+    "home": {
+      "title": "Welcome to PsyMed",
+      "description": "Your mental health companion"
+    },
+    "login": {
+      "medic": {
+        "description": "If you are a mental health professional and want to manage your patients and access your tools, select this option."
+      },
+      "patient": {
+        "description": "If you are a patient and want to review your medical history, communicate with your doctor, or schedule an appointment, select this option."
+      },
+      "button": "Select"
+    },
+    "patient-management": {
+      "title": "Patient List",
+      "actions": {
+        "add": {
+          "input": {
+            "medication-name": "Medication Name*",
+            "description": "Description*",
+            "interval": "Interval*",
+            "quantity": "Quantity*",
+            "start-date": "Start Date*",
+            "end-date": "End Date*",
+            "save-button": "Save"
+          },
+          "data": {
+            "description": "Description",
+            "interval": "Interval",
+            "quantity": "Quantity",
+            "start-date": "Start Date",
+            "end-date": "End Date"
+          }
+        },
+        "filters": {
+          "input": {
+            "year": "Year",
+            "month": "Month"
+          },
+          "data": {
+            "total": "Total number of mood states",
+            "stats": "Average biological function statistics"
+          }
+        },
+        "appointment": {
+          "input": {
+            "appointment-date": "Appointment Date*",
+            "appointment-time": "Appointment Time*",
+            "session-time": "Session Duration (hours)*",
+            "add-button": "Add"
+          },
+          "data": {
+            "patient": "Patient",
+            "therapy": "Therapy"
+          }
+        }
+      }
+    },
+    "appointments": {
+      "title": "Appointment Calendar",
+      "data": {
+        "patient": "Patient:",
+        "therapy": "Therapy",
+        "notes": "Notes"
+      }
+    },
+    "mood-state": {
+      "title": "Mood State Form",
+      "description": "Select your mood state",
+      "error": {
+        "already-mood-recorded": "You have already recorded a mood state for today."
+      }
+    },
+    "biological-functions": {
+      "form-data": {
+        "hunger": "Hunger:",
+        "hydration": "Hydration:",
+        "sleep": "Sleep:",
+        "energy": "Energy:",
+        "created-at": "Created on:",
+        "updated-at": "Updated on:"
+      },
+      "button": "Submit"
+    },
+    "tasks": {
+      "created-at": "Created on:",
+      "updated-at": "Updated on:",
+      "toggle-status-button": "Toggle Status"
+    }
+  }
 }
