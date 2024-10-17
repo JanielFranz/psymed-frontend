@@ -21,7 +21,7 @@ export class MoodStateService extends BaseService<MoodState> {
 
   public getMoodStatesByPatientId(patientId: number) {
     console.log(`Fetching mood states for patientId: ${patientId}...`);
-    const url = `${this.resourcePath()}?patientId=${patientId}`;
+    const url = `${this.resourcePath()}?idPatient=${patientId}`;
     return this.http.get<MoodState[]>(url, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }

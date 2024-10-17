@@ -7,6 +7,7 @@ import {ActivatedRoute} from "@angular/router";
 import {BarChartComponent} from "../../components/bar-chart/bar-chart.component";
 import {BiologicalAnalytic} from "../../model/biological-analytic.entity";
 import {BiologicalAnalyticService} from "../../services/biological-analytic.service";
+import {MoodListComponent} from "../../../patientEntrys/components/mood-list/mood-list.component";
 
 /**
  * AnalyticsDashboard Component
@@ -34,7 +35,8 @@ import {BiologicalAnalyticService} from "../../services/biological-analytic.serv
   imports: [
     PieChartComponent,
     PieFilterComponent,
-    BarChartComponent
+    BarChartComponent,
+    MoodListComponent
 
   ],
   templateUrl: './analytics-dashboard.component.html',
