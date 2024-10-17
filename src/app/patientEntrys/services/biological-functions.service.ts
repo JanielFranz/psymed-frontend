@@ -22,7 +22,7 @@ export class BiologicalFunctionsService extends BaseService<BiologicalFunctions>
   }
   public getBiologicalFunctionsByPatientId(patientId: number) {
     console.log(`Fetching biological functions for patientId: ${patientId}...`);
-    const url = `${this.resourcePath()}?patientId=${patientId}`;
+    const url = `${this.resourcePath()}?idPatient=${patientId}`;
     return this.http.get<BiologicalFunctions[]>(url, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }

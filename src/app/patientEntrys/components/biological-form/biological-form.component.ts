@@ -21,7 +21,7 @@ import {selectPatientId} from "../../../store/auth/auth.selectors";
 export class BiologicalFormComponent implements OnInit {
   patientId!: number | null;
   patientId$!: Observable<number | null>;
-  currentDate: string = new Date().toISOString().split('T')[0];
+  currentDate: string = new Date().toLocaleDateString().split('T')[0];
   biologicalFunctions: BiologicalFunctions = new BiologicalFunctions(1, 1, 1, 1, 1, this.currentDate, this.currentDate, 0);
 
   constructor(private biologicalFunctionsService: BiologicalFunctionsService,

@@ -8,6 +8,7 @@ import {BarChartComponent} from "../../components/bar-chart/bar-chart.component"
 import {BiologicalAnalytic} from "../../model/biological-analytic.entity";
 import {BiologicalAnalyticService} from "../../services/biological-analytic.service";
 import {MoodListComponent} from "../../../patientEntrys/components/mood-list/mood-list.component";
+import {BiologicalListComponent} from "../../../patientEntrys/components/biological-list/biological-list.component";
 
 /**
  * AnalyticsDashboard Component
@@ -36,7 +37,8 @@ import {MoodListComponent} from "../../../patientEntrys/components/mood-list/moo
     PieChartComponent,
     PieFilterComponent,
     BarChartComponent,
-    MoodListComponent
+    MoodListComponent,
+    BiologicalListComponent
 
   ],
   templateUrl: './analytics-dashboard.component.html',
