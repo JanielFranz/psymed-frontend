@@ -15,7 +15,7 @@ import {selectPatientId} from "../../../store/auth/auth.selectors";
 })
 export class MoodFormComponent implements OnInit {
   patientId!: number | null; // Define the patient ID as a number
-  currentDate: string = new Date().toISOString().split('T')[0];
+  currentDate: string = new Date().toLocaleDateString().split('T')[0];
   patientId$!: Observable<number | null>;
 
 
@@ -28,7 +28,7 @@ export class MoodFormComponent implements OnInit {
     this.patientId$ = this.store.select(selectPatientId);
     this.patientId$.subscribe(patientId => {
       this.patientId = patientId;
-      console.log('Patient Id:', this.patientId);
+      console.log('Patient Id for mood statement:', this.patientId);
     })
 
     // this.patientId = +this.route.snapshot.paramMap.get('patientId')!; // Get the patient ID from the route using the ActivatedRoute service
@@ -47,7 +47,6 @@ export class MoodFormComponent implements OnInit {
             } else {
               const newMood = new MoodState(1, patientId, mood, this.currentDate);
               this.moodStateService.createMoodState(newMood, patientId).subscribe(() => {
-                window.location.reload();
               });
             }
           });
