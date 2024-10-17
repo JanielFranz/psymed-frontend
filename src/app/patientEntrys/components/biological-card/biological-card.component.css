@@ -1,0 +1,22 @@
+
+.biological-card {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 300px;
+}
+
+.biological-attribute {
+  margin-bottom: 1rem;
+}
+
+.biological-attribute label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.bar {
+  height: 20px;
+  background-color: #4caf50;
+  border-radius: 4px;
+}

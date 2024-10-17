@@ -1,0 +1,21 @@
+
+<div class="biological-card">
+  <h3>Biological Functions</h3>
+  <p>Created At: {{ biologicalFunctions.createdAt }}</p>
+  <div class="biological-attribute">
+    <label>Hunger:</label>
+    <div class="bar" [style.width.%]="biologicalFunctions.hunger * 10"></div>
+  </div>
+  <div class="biological-attribute">
+    <label>Hydration:</label>
+    <div class="bar" [style.width.%]="biologicalFunctions.hydration * 10"></div>
+  </div>
+  <div class="biological-attribute">
+    <label>Sleep:</label>
+    <div class="bar" [style.width.%]="biologicalFunctions.sleep * 10"></div>
+  </div>
+  <div class="biological-attribute">
+    <label>Energy:</label>
+    <div class="bar" [style.width.%]="biologicalFunctions.energy * 10"></div>
+  </div>
+</div>
