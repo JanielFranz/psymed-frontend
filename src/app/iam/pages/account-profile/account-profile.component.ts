@@ -5,6 +5,7 @@ import {
 } from "../../components/profile-account-information/profile-account-information.component";
 import {ProfileDescriptionComponent} from "../../components/profile-description/profile-description.component";
 import {Router} from "@angular/router";
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-account-profile',
@@ -12,7 +13,8 @@ import {Router} from "@angular/router";
   imports: [
     MatButton,
     ProfileAccountInformationComponent,
-    ProfileDescriptionComponent
+    ProfileDescriptionComponent,
+    TranslateModule
   ],
   templateUrl: './account-profile.component.html',
   styleUrl: './account-profile.component.css'

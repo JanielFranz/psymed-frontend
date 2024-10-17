@@ -6,7 +6,7 @@ import {selectPatientId, selectRolId} from "../../../store/auth/auth.selectors";
 import { Observable, Subject } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
 import {MatAnchor, MatIconButton} from "@angular/material/button";
-import {DatePipe, NgForOf, NgIf} from "@angular/common";
+import {DatePipe, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import { RouterLink } from "@angular/router";
 import { MatToolbar } from "@angular/material/toolbar";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
@@ -33,7 +33,8 @@ import {TranslateModule} from "@ngx-translate/core";
     MatMenuItem,
     NgIf,
     LanguageSwitcherComponent,
-    TranslateModule
+    TranslateModule,
+    NgOptimizedImage
   ],
   styleUrls: ['./toolbar.component.css']
 })

@@ -1,7 +1,7 @@
 <div class="main-content">
   <!-- Header section -->
   <div class="header">
-    <h2>Appointment Calendar</h2> <!-- Title for the appointment calendar -->
+    <h2>{{"pages.appointments.title" | translate}}</h2> <!-- Title for the appointment calendar -->
   </div>
 
   <!-- Container for the session cards -->
@@ -20,16 +20,16 @@
 
       <!-- Professional (patient) details -->
       <div class="professional-details">
-        <p><strong>Patient:</strong> {{ session.patient.name }} {{ session.patient.lastName }}</p> <!-- Patient's name -->
-        <p>Therapy</p> <!-- Placeholder text (Therapy) -->
+        <p><strong>{{"pages.appointments.data.patient" | translate}}</strong> {{ session.patient.name }} {{ session.patient.lastName }}</p> <!-- Patient's name -->
+        <p>{{"pages.appointments.data.therapy" | translate}}</p> <!-- Placeholder text (Therapy) -->
       </div>
 
       <!-- Button to view notes related to the session -->
       <div class="notes-button">
-        <button mat-raised-button color="primary">Notes</button> <!-- Material button styled with primary color -->
+        <button mat-raised-button color="primary">{{"pages.appointments.data.notes" | translate}}</button> <!-- Material button styled with primary color -->
       </div>
       <div class="notes-button">
-        <button mat-raised-button color="primary" (click)="redirectToTask(session.id, session.idPatient)">Task</button> <!-- Material button styled with primary color -->
+        <button mat-raised-button color="primary" (click)="redirectToTask(session.id, session.idPatient)">{{"pages.appointments.data.tasks" | translate}}</button> <!-- Material button styled with primary color -->
       </div>
     </div>
   </div>

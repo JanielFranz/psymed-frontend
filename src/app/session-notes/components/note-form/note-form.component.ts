@@ -2,12 +2,14 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {NoteService} from "../../services/note.service";
 import {SessionNote} from "../../model/session-note.entity";
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-note-form',
   standalone: true,
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule
   ],
   templateUrl: './note-form.component.html',
   styleUrl: './note-form.component.css'

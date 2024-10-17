@@ -5,7 +5,7 @@
     <!-- Appointment Date Field -->
     <!-- Material Design form field with 'fill' appearance for the appointment date -->
     <mat-form-field appearance="fill">
-      <mat-label>Appointment Date</mat-label> <!-- Label for the date picker -->
+      <mat-label>{{"pages.patient-management.actions.appointment.input.appointment-date" | translate }}</mat-label> <!-- Label for the date picker -->
       <input matInput [matDatepicker]="appointmentDatePicker" formControlName="appointmentDate" required>
       <!-- Input field linked to Angular Material Datepicker. The formControlName 'appointmentDate' links it to the FormGroup control -->
       <mat-datepicker-toggle matSuffix [for]="appointmentDatePicker"></mat-datepicker-toggle>
@@ -15,38 +15,38 @@
 
       <!-- Error message that shows if the 'appointmentDate' field is invalid -->
       <mat-error *ngIf="appointmentForm.get('appointmentDate')?.invalid">
-        Appointment Date is required
+        {{"pages.patient-management.actions.appointment.error.appointment-date-required" | translate }}
       </mat-error>
     </mat-form-field>
 
     <!-- Appointment Time Field -->
     <!-- Material Design form field with 'fill' appearance for the appointment time -->
     <mat-form-field appearance="fill">
-      <mat-label>Appointment Time</mat-label> <!-- Label for the time input -->
+      <mat-label>{{"pages.patient-management.actions.appointment.input.appointment-time" | translate }}</mat-label> <!-- Label for the time input -->
       <input matInput formControlName="appointmentTime" type="time" required>
       <!-- Input field for time selection with formControlName 'appointmentTime' linked to the FormGroup control -->
 
       <!-- Error message that shows if the 'appointmentTime' field is invalid -->
       <mat-error *ngIf="appointmentForm.get('appointmentTime')?.invalid">
-        Appointment Time is required
+        {{"pages.patient-management.actions.appointment.error.appointment-date-required" | translate }}
       </mat-error>
     </mat-form-field>
 
     <!-- Session Time Field -->
     <!-- Material Design form field with 'fill' appearance for the session duration -->
     <mat-form-field appearance="fill">
-      <mat-label>Session Time (hours)</mat-label> <!-- Label for the session time input -->
+      <mat-label>{{"pages.patient-management.actions.appointment.input.session-time" | translate }}</mat-label> <!-- Label for the session time input -->
       <input matInput formControlName="sessionTime" type="number" required>
       <!-- Input field for the session time (in hours) with formControlName 'sessionTime' linked to the FormGroup control -->
 
       <!-- Error message that shows if the 'sessionTime' field is invalid -->
       <mat-error *ngIf="appointmentForm.get('sessionTime')?.invalid">
-        Session Time is required and must be at least 1 hour
+        {{"pages.patient-management.actions.appointment.error.session-time-required" | translate }}
       </mat-error>
     </mat-form-field>
 
     <!-- Submit Button -->
     <!-- Material Design raised button styled as primary color, triggers form submission -->
-    <button mat-raised-button color="primary" type="submit">Add</button>
+    <button mat-raised-button color="primary" type="submit">{{"pages.patient-management.actions.appointment.input.add-button" | translate }}</button>
   </form>
 </div>

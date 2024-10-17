@@ -5,6 +5,7 @@ import { Store } from "@ngrx/store";
 import { Router } from '@angular/router';
 import { setPatientId, setRole } from '../../../store/auth/auth.actions';
 import { MatCard, MatCardContent, MatCardTitle } from "@angular/material/card";
+import {TranslateModule} from "@ngx-translate/core";
 
 /**
  * Login Component
@@ -28,7 +29,8 @@ import { MatCard, MatCardContent, MatCardTitle } from "@angular/material/card";
     MatIcon,
     MatCardContent,
     MatCard,
-    MatCardTitle
+    MatCardTitle,
+    TranslateModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'

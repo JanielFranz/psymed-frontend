@@ -21,59 +21,53 @@
       "patient": {
         "description": "If you are a patient and want to review your medical history, communicate with your doctor, or schedule an appointment, select this option."
       },
-      "button": "select"
+      "button": "Select"
     },
     "patient-management": {
       "title": "Patients list",
       "actions": {
-        "add": {
-          "input": {
-            "medication-name": "Medication name*",
-            "description": "Description*",
-            "interval": "Interval*",
-            "quantity": "Quantity*",
-            "start-date": "Start Date*",
-            "end-date": "End date*",
-            "save-button:" :"Save"
-          },
-          "data": {
-            "description": "Description",
-            "interval": "Interval",
-            "quantity": "Quantity",
-            "start-date": "Start date",
-            "end-date": "End date"
-          }
+        "add-medication": {
+          "title": "Medication",
+          "medication-name": "Medication name",
+          "description": "Description",
+          "interval": "Interval",
+          "quantity": "Quantity",
+          "start-date": "Start Date",
+          "end-date": "End date",
+          "save-button": "Save"
         },
         "dashboard-analytics": {
           "filter": {
+            "title": "Filters",
             "year": "Year",
-            "month": "Month"
+            "month": "Month",
+            "button": "Filter"
           },
           "bar-chart": {
             "title": "Biological Functions Average Statistics",
             "month-average": "Month average"
           },
           "pie-chart": {
-            "title": "Total number of moods",
-            "type": {
-              "sad": "Sad",
-              "neutral": "Neutral",
-              "happy": "Happy",
-              "so-sad": "So sad",
-              "so-happy": "So happy"
-            }
+            "title": "Total number of moods"
           }
         },
         "appointment": {
+          "title": "Appointment Calendar",
           "input": {
-            "appointment-date": "Appointment Date*",
-            "appointment-time": "Appointment time*",
-            "session-time": "Session Time (hours)*",
-            "add-button": "add"
+            "appointment-date": "Appointment Date",
+            "appointment-time": "Appointment time",
+            "session-time": "Session Time (hours)",
+            "add-button": "Add"
           },
           "data": {
             "patient": "Patient",
-            "therapy": "Therapy"
+            "therapy": "Therapy",
+            "notes": "Notes",
+            "tasks": "Tasks"
+          },
+          "error": {
+            "appointment-date-required": "Appointment date is required",
+            "session-time-required": "Session Time is required and must be at least 1 hour"
           }
         }
       }
@@ -83,7 +77,80 @@
       "data": {
         "patient": "Patient:",
         "therapy": "Therapy",
-        "notes": "Notes"
+        "notes": "Notes",
+        "tasks": "Tasks"
+      },
+      "tasks": {
+        "title": "Tasks",
+        "form": {
+          "title": "Title",
+          "description": "Description",
+          "button": "Create task",
+          "error": {
+            "title-required": "Title is required",
+            "description-required": "Description is required"
+          }
+        },
+        "data": {
+          "title": "Title",
+          "description": "Description",
+          "created-at": "Created at",
+          "updated-at": "Updated at",
+          "toggle-status": "Toggle status",
+          "delete-button": "Delete task"
+        }
+      },
+      "note": {
+        "form": {
+          "title": "Title",
+          "description": "Description",
+          "button": "Create note",
+          "dialog": {
+            "button": "Delete note",
+            "message": "Would you like to delete this note?",
+            "yes": "Yes",
+            "no": "No"
+          }
+        },
+        "data": {
+          "description": "Description",
+          "date": "Date",
+          "button": "DELETE"
+        }
+      }
+    },
+    "profile": {
+      "title": "Personal information",
+      "dni": "DNI",
+      "phone": "Phone",
+      "email": "Email",
+      "address": "Address",
+      "birthday": "Birthday",
+      "edit-button": "Edit",
+      "input": {
+        "image": {
+          "preview": "Profile image preview",
+          "upload-message": "Click to upload"
+        },
+        "first-name": "First name",
+        "last-name": "Last name",
+        "email": "Email",
+        "password": "Password",
+        "phone": "Phone",
+        "address": "Address",
+        "dni": "DNI",
+        "birthday": "Birthday",
+        "description": "Description",
+        "save-button": "Save changes",
+        "error": {
+          "first-name-required": "First name is required",
+          "last-name-required": "Last name is required",
+          "email-required": "A valid email is required",
+          "password-required": "Password is required",
+          "dni-required": "DNI is required",
+          "birthday-required": "Birthday is required"
+
+        }
       }
     },
     "mood-state": {
@@ -96,19 +163,21 @@
     },
     "biological-functions": {
       "form-data": {
-        "hunger": "Hunger:",
-        "hydration": "Hydration:",
-        "sleep": "Sleep:",
-        "energy": "Energy:",
-        "created-at": "Created at:",
-        "updated-at": "Updated at:"
+        "hunger": "Hunger",
+        "hydration": "Hydration",
+        "sleep": "Sleep",
+        "energy": "Energy",
+        "created-at": "Created at",
+        "updated-at": "Updated at"
       },
-      "button:": "Submit"
+      "button": "Submit"
     },
-    "tasks": {
-      "created-at": "Created at:",
-      "updated-at": "Updated at:",
-      "toggle-status-button": "Toggle status"
+    "prescription":{
+      "description": "Description",
+      "quantity": "Quantity",
+      "start-date": "Start date",
+      "end-date": "End date",
+      "interval": "Interval"
     }
   }
 }

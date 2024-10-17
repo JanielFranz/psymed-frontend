@@ -7,7 +7,7 @@
 }
 
 .medication-card {
-  width: 300px; /* Ajusta el tamaño de las tarjetas */
+  width: 40em; /* Ajusta el tamaño de las tarjetas */
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 16px;

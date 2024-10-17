@@ -5,6 +5,7 @@ import {MatButton, MatFabButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
 import {FormsModule} from "@angular/forms";
 import {NgForOf} from "@angular/common";
+import {TranslateModule} from "@ngx-translate/core";
 
 interface Month {
   value: string; //Maybe I will change it to string
@@ -42,7 +43,8 @@ interface Year {
     MatFabButton,
     MatIcon,
     FormsModule,
-    NgForOf
+    NgForOf,
+    TranslateModule
   ],
   templateUrl: './pie-filter.component.html',
   styleUrl: './pie-filter.component.css'

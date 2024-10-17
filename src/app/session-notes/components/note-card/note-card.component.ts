@@ -5,11 +5,12 @@ import {NoteDialogComponent} from "../note-dialog/note-dialog.component";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardTitle} from "@angular/material/card";
 import {MatButton} from "@angular/material/button";
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-note-card',
   standalone: true,
-  imports: [MatDialogModule, MatCard, MatCardHeader, MatCardTitle, MatCardContent, MatCardActions, MatButton],
+  imports: [MatDialogModule, MatCard, MatCardHeader, MatCardTitle, MatCardContent, MatCardActions, MatButton, TranslateModule],
   templateUrl: './note-card.component.html',
   styleUrl: './note-card.component.css'
 })

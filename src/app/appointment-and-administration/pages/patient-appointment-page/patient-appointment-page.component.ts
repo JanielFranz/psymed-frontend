@@ -10,6 +10,7 @@ import { MatCard, MatCardContent } from "@angular/material/card";
 import { AppointmentFormComponent } from "../../components/appointment-form/appointment-form.component";
 import { MedicationFormComponent } from "../../../medication-management/modules/medication-form/medication-form.component";
 import {Session} from "../../model/sesion.entity";
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-patient-appointment-page',
@@ -23,7 +24,8 @@ import {Session} from "../../model/sesion.entity";
     MatCardContent,
     MatCard,
     AppointmentFormComponent,
-    MedicationFormComponent
+    MedicationFormComponent,
+    TranslateModule
   ],
   templateUrl: './patient-appointment-page.component.html',
   styleUrls: ['./patient-appointment-page.component.css']

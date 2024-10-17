@@ -1,3 +1,11 @@
+.biological-form-card{
+  display: flex;
+  justify-content: center;
+
+  height: 80vh;
+  align-items: center;
+}
+
 form {
   display: flex;
   flex-direction: column;
