@@ -1,0 +1,8 @@
+<!-- mood-list.component.html -->
+<div class="carousel">
+  <div class="carousel-inner">
+    <div *ngFor="let moodState of moodStates" class="carousel-item">
+      <app-mood-card [moodState]="moodState"></app-mood-card>
+    </div>
+  </div>
+</div>
