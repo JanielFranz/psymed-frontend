@@ -33,7 +33,7 @@ export const routes: Routes = [
   { path: 'patient-management/:id/patient-appointment-list'         , component: PatientAppointmentPageComponent },
   { path: 'patient-management/:id/clinical-history/:historyId'          , component: HistoryManagementComponent },
   { path: 'biological-functions'                                    , component: BiologicalFunctionsEntryComponent },
-  { path: 'patient/prescription/:patientId', component: PatientMedicationComponent },
+  { path: 'patient/prescription/:id', component: PatientMedicationComponent },
   { path: 'appointment-list'                                        , component: ProfessionalAppointmentPageComponent},
   { path: 'patient-management/:id/patient-appointment-list/:appointmentId/notes'         , component: SessionNotesComponent },
   { path: 'patient-management/:id/patient-appointment-list/:appointmentId/task'         , component: ProfessionalViewTaskComponent },
