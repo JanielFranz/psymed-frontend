@@ -7,6 +7,7 @@ import {MatTableDataSource} from "@angular/material/table";
 import {MatList, MatListSubheaderCssMatStyler} from "@angular/material/list";
 import {PatientItemComponent} from "../patient-item/patient-item.component";
 import {MatCard} from "@angular/material/card";
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-patient-list',
@@ -15,7 +16,8 @@ import {MatCard} from "@angular/material/card";
     MatList,
     PatientItemComponent,
     MatListSubheaderCssMatStyler,
-    MatCard
+    MatCard,
+    TranslateModule
   ],
   templateUrl: './patient-list.component.html',
   styleUrl: './patient-list.component.css'

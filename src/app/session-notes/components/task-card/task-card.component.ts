@@ -6,6 +6,7 @@ import {Observable} from "rxjs";
 import {AsyncPipe, NgIf} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {TaskService} from "../../services/task.service";
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-task-card',
@@ -13,7 +14,8 @@ import {TaskService} from "../../services/task.service";
   imports: [
     NgIf,
     AsyncPipe,
-    FormsModule
+    FormsModule,
+    TranslateModule
   ],
   templateUrl: './task-card.component.html',
   styleUrl: './task-card.component.css'

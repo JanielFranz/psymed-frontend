@@ -7,12 +7,14 @@ import {map, Observable} from "rxjs";
 import {AuthState} from "../../../store/auth/auth.state";
 import {Store} from "@ngrx/store";
 import {selectPatientId} from "../../../store/auth/auth.selectors";
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-biological-form',
   standalone: true,
   imports: [
-    FormsModule
+    FormsModule,
+    TranslateModule
   ],
   templateUrl: './biological-form.component.html',
   styleUrls: ['./biological-form.component.css']

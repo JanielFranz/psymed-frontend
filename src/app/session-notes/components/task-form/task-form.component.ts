@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ActivatedRoute} from "@angular/router";
 import {NgIf} from "@angular/common";
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-task-form',
@@ -16,7 +17,8 @@ import {NgIf} from "@angular/common";
     MatButtonModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    NgIf
+    NgIf,
+    TranslateModule
   ],
   templateUrl: './task-form.component.html',
   styleUrl: './task-form.component.css'

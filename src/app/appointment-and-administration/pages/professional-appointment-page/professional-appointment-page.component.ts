@@ -7,7 +7,8 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatCard, MatCardContent} from "@angular/material/card";
 import {Session} from "../../model/sesion.entity";
 import {SessionService} from "../../services/session.service";
-import {Router} from '@angular/router'; // <-- Import Router
+import {Router} from '@angular/router';
+import {TranslateModule} from "@ngx-translate/core"; // <-- Import Router
 
 @Component({
   selector: 'app-professional-appointment-page',
@@ -19,7 +20,8 @@ import {Router} from '@angular/router'; // <-- Import Router
     MatInputModule,
     MatButtonModule,
     MatCardContent,
-    MatCard
+    MatCard,
+    TranslateModule
   ],
   templateUrl: './professional-appointment-page.component.html',
   styleUrl: './professional-appointment-page.component.css'

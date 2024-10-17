@@ -4,11 +4,11 @@
       <mat-card-title>{{ medication.name }}</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <p>Description: {{ medication.description }}</p>
-      <p>Quantity: {{ medication.quantity }}</p>
-      <p>Start Date: {{ medication.startDate | date }}</p>
-      <p>End Date: {{ medication.endDate | date }}</p>
-      <p>Interval: {{ medication.interval }}</p>
+      <p>{{"pages.prescription.description" | translate}}: {{ medication.description }}</p>
+      <p>{{"pages.prescription.quantity" | translate}}: {{ medication.quantity }}</p>
+      <p>{{"pages.prescription.start-date" | translate}} Date: {{ medication.startDate | date }}</p>
+      <p>{{"pages.prescription.end-date" | translate}}: {{ medication.endDate | date }}</p>
+      <p>{{"pages.prescription.interval" | translate}}: {{ medication.interval }}</p>
     </mat-card-content>
   </mat-card>
 </div>

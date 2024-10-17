@@ -1,9 +1,9 @@
 <div class="task-card">
   <div class = "data-panel">
-    <p>Title: {{ this.task.title }}</p>
-    <p>Description: {{ this.task.description }}</p>
-    <p>Created At: {{ this.task.createdAt }}</p>
-    <p>Updated At: {{ this.task.updatedAt }}</p>
+    <p>{{ "pages.appointments.tasks.data.title" | translate }}: {{ this.task.title }}</p>
+    <p>{{ "pages.appointments.tasks.data.description" | translate }}: {{ this.task.description }}</p>
+    <p>{{ "pages.appointments.tasks.data.created-at" | translate }}: {{ this.task.createdAt }}</p>
+    <p>{{ "pages.appointments.tasks.data.updated-at" | translate }}: {{ this.task.updatedAt }}</p>
 
     <div *ngIf="(role$ | async) === '1'">
       <img *ngIf="this.task.status === 0" src="path/to/image0.jpg" alt="Status 0 Image">
@@ -12,12 +12,12 @@
     <div *ngIf="(role$ | async) === '2'">
       <label>
         <input type="checkbox" [(ngModel)]="this.task.status" />
-        Toggle Status
+        {{ "pages.appointments.tasks.data.toggle-status" | translate }}
       </label>
     </div>
   </div>
   <div class="option-panel">
-    <button (click)="deleteThisCard(this.task.id)">Delete Task</button>
+    <button (click)="deleteThisCard(this.task.id)">{{ "pages.appointments.tasks.data.delete-button" | translate }}</button>
 
   </div>
 </div>

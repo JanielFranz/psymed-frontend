@@ -1,19 +1,19 @@
 <form class = "task-form-card" [formGroup]="taskForm" (ngSubmit)="onSubmit()">
   <mat-form-field class="task-form-title-card" appearance="fill">
-    <mat-label>Title</mat-label>
+    <mat-label>{{"pages.appointments.tasks.form.title" | translate}}</mat-label>
     <input matInput formControlName="title" required>
     <mat-error *ngIf="taskForm.get('title')?.hasError('required')">
-      Title is required
+      {{"pages.appointments.tasks.form.error.title-required" | translate}}
     </mat-error>
   </mat-form-field>
 
   <mat-form-field class="task-form-description-card" appearance="fill">
-    <mat-label>Description</mat-label>
+    <mat-label>{{"pages.appointments.tasks.form.description" | translate}}</mat-label>
     <textarea matInput formControlName="description" required></textarea>
     <mat-error *ngIf="taskForm.get('description')?.hasError('required')">
-      Description is required
+      {{"pages.appointments.tasks.form.error.description-required" | translate}}
     </mat-error>
   </mat-form-field>
 
-  <button class="task-form-create-button" mat-raised-button color="primary" type="submit">Create Task</button>
+  <button class="task-form-create-button" mat-raised-button color="primary" type="submit">{{"pages.appointments.tasks.form.button" | translate}}</button>
 </form>

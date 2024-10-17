@@ -1,7 +1,7 @@
 <div class="card-container">
   <!-- Card for mental health professionals -->
   <mat-card>
-    <p>{{"pages.login.medic.description"}}</p>
+    <p>{{"pages.login.medic.description" | translate}}</p>
     <mat-card-content>
       <!-- Button to select professional role, calls the sendProfessionalDataToStore method -->
       <button (click)="sendProfessionalDataToStore('1')">
@@ -16,7 +16,7 @@
     <mat-card-content>
       <!-- Button to select patient role, calls the sendPatientDataToStore method -->
       <button (click)="sendPatientDataToStore('2', 1)">
-        <h3>{{"pages.login.button"}}</h3> <!-- Button text -->
+        <h3>{{"pages.login.button" | translate }}</h3> <!-- Button text -->
       </button>
     </mat-card-content>
   </mat-card>

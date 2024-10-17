@@ -1,9 +1,14 @@
-<h1>New Note</h1>
-<form [formGroup]="noteForm" (ngSubmit)="onSubmit()">
-  <label for="title">Title: </label>
-  <input id="title" type="text" formControlName="title"/>
-  <label for="description">Description: </label>
-  <input id="description" type="text" formControlName="description"/>
-  <button type="submit">Save</button>
-</form>
+<div class = "note-form-card">
+  <form [formGroup]="noteForm" (ngSubmit)="onSubmit()">
+    <div class = "form-input">
+      <label for="title">{{ "pages.appointments.note.form.title" | translate }}: </label>
+      <input id="title" type="text" formControlName="title"/>
+      <label for="description">{{ "pages.appointments.note.form.description" | translate }}: </label>
+      <input id="description" type="text" formControlName="description"/>
+      <button class= "form-button" type="submit">{{ "pages.appointments.note.form.button" | translate }}</button>
+    </div>
 
+  </form>
+
+
+</div>

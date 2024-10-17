@@ -7,7 +7,7 @@
       <div class="appointment-list">
         <!-- Header section for the appointment list -->
         <div class="header">
-          <h2>Appointment Calendar</h2> <!-- Title for the appointment calendar -->
+          <h2>{{"pages.patient-management.actions.appointment.title" | translate }}</h2> <!-- Title for the appointment calendar -->
         </div>
 
         <!-- Container for appointment cards -->
@@ -25,16 +25,16 @@
 
             <!-- Professional details: patient name -->
             <div class="professional-details">
-              <p><strong>Patient:</strong> {{ session.patient.name }} {{ session.patient.lastName }}</p> <!-- Display patient's name -->
-              <p>Therapy</p> <!-- Placeholder text for the type of therapy -->
+              <p><strong>{{"pages.patient-management.actions.appointment.data.patient" | translate }}:</strong> {{ session.patient.name }} {{ session.patient.lastName }}</p> <!-- Display patient's name -->
+              <p>{{"pages.patient-management.actions.appointment.data.therapy" | translate }}</p> <!-- Placeholder text for the type of therapy -->
             </div>
 
             <!-- Button for viewing session notes -->
             <div class="notes-button">
-              <button mat-raised-button color="primary" (click)="onNoteSelected(session.id)">Notes</button> <!-- Notes button with Material design -->
+              <button mat-raised-button color="primary" (click)="onNoteSelected(session.id)">{{"pages.patient-management.actions.appointment.data.notes" | translate}}</button> <!-- Notes button with Material design -->
             </div>
             <div class="notes-button">
-              <button mat-raised-button color="primary" (click)="redirectToTask(session.id, session.idPatient)">Task</button> <!-- Notes button with Material design -->
+              <button mat-raised-button color="primary" (click)="redirectToTask(session.id, session.idPatient)">{{"pages.patient-management.actions.appointment.data.tasks" | translate}}</button> <!-- Notes button with Material design -->
             </div>
           </div>
         </div>

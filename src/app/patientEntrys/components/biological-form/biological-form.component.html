@@ -1,27 +1,30 @@
-<form (ngSubmit)="onSubmit()" #biologicalForm="ngForm">
-  <div>
-    <label for="hunger">Hunger:</label>
-    <input type="number" id="hunger" name="hunger" min="1" max="10" required [(ngModel)]="biologicalFunctions.hunger">
-  </div>
-  <div>
-    <label for="hydration">Hydration:</label>
-    <input type="number" id="hydration" name="hydration" min="1" max="10" required [(ngModel)]="biologicalFunctions.hydration">
-  </div>
-  <div>
-    <label for="sleep">Sleep:</label>
-    <input type="number" id="sleep" name="sleep" min="1" max="10" required [(ngModel)]="biologicalFunctions.sleep">
-  </div>
-  <div>
-    <label for="energy">Energy:</label>
-    <input type="number" id="energy" name="energy" min="1" max="10" required [(ngModel)]="biologicalFunctions.energy">
-  </div>
-  <div>
-    <label for="createdAt">Created At:</label>
-    <input type="text" id="createdAt" name="createdAt" [value]="currentDate" readonly>
-  </div>
-  <div>
-    <label for="updatedAt">Updated At:</label>
-    <input type="text" id="updatedAt" name="updatedAt" [value]="currentDate" readonly>
-  </div>
-  <button type="submit" [disabled]="!biologicalForm.form.valid">Submit</button>
-</form>
+<div class="biological-form-card">
+  <form (ngSubmit)="onSubmit()" #biologicalForm="ngForm">
+    <div>
+      <label for="hunger">{{"pages.biological-functions.form-data.hunger" | translate}}:</label>
+      <input type="number" id="hunger" name="hunger" min="1" max="10" required [(ngModel)]="biologicalFunctions.hunger">
+    </div>
+    <div>
+      <label for="hydration">{{"pages.biological-functions.form-data.hydration" | translate}}</label>
+      <input type="number" id="hydration" name="hydration" min="1" max="10" required [(ngModel)]="biologicalFunctions.hydration">
+    </div>
+    <div>
+      <label for="sleep">{{"pages.biological-functions.form-data.sleep" | translate}}:</label>
+      <input type="number" id="sleep" name="sleep" min="1" max="10" required [(ngModel)]="biologicalFunctions.sleep">
+    </div>
+    <div>
+      <label for="energy">{{"pages.biological-functions.form-data.energy" | translate}}:</label>
+      <input type="number" id="energy" name="energy" min="1" max="10" required [(ngModel)]="biologicalFunctions.energy">
+    </div>
+    <div>
+      <label for="createdAt">{{"pages.biological-functions.form-data.created-at" | translate}}:</label>
+      <input type="text" id="createdAt" name="createdAt" [value]="currentDate" readonly>
+    </div>
+    <div>
+      <label for="updatedAt">{{"pages.biological-functions.form-data.updated-at" | translate}}:</label>
+      <input type="text" id="updatedAt" name="updatedAt" [value]="currentDate" readonly>
+    </div>
+    <button type="submit" [disabled]="!biologicalForm.form.valid">{{"pages.biological-functions.button" | translate}}</button>
+  </form>
+
+</div>

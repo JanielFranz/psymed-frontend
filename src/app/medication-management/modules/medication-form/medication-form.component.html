@@ -1,40 +1,40 @@
 <div class="form-container">
-  <h2>Medication</h2>
+  <h2>{{"pages.patient-management.actions.add-medication.title" | translate}}</h2>
   <form [formGroup]="medicationForm" (ngSubmit)="onSubmit()">
     <mat-form-field appearance="fill">
-      <mat-label>Medication Name</mat-label>
+      <mat-label>{{"pages.patient-management.actions.add-medication.medication-name" | translate}}</mat-label>
       <input matInput formControlName="name">
     </mat-form-field>
 
     <mat-form-field appearance="fill">
-      <mat-label>Description</mat-label>
+      <mat-label>{{"pages.patient-management.actions.add-medication.description" | translate}}</mat-label>
       <input matInput formControlName="description">
     </mat-form-field>
 
     <mat-form-field appearance="fill">
-      <mat-label>Interval</mat-label>
+      <mat-label>{{"pages.patient-management.actions.add-medication.interval" | translate}}</mat-label>
       <input matInput formControlName="interval">
     </mat-form-field>
 
     <mat-form-field appearance="fill">
-      <mat-label>Quantity</mat-label>
+      <mat-label>{{"pages.patient-management.actions.add-medication.quantity" | translate}}</mat-label>
       <input matInput formControlName="quantity" type="number">
     </mat-form-field>
 
     <mat-form-field appearance="fill">
-      <mat-label>Start Date</mat-label>
+      <mat-label>{{"pages.patient-management.actions.add-medication.start-date" | translate}}</mat-label>
       <input matInput [matDatepicker]="startDatePicker" formControlName="startDate">
       <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
       <mat-datepicker #startDatePicker></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
-      <mat-label>End Date</mat-label>
+      <mat-label>{{"pages.patient-management.actions.add-medication.end-date" | translate}}</mat-label>
       <input matInput [matDatepicker]="endDatePicker" formControlName="endDate">
       <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
       <mat-datepicker #endDatePicker></mat-datepicker>
     </mat-form-field>
 
-    <button mat-raised-button color="primary" type="submit" (click)="window.location.reload()">Save</button>
+    <button mat-raised-button color="primary" type="submit" (click)="window.location.reload()">{{"pages.patient-management.actions.add-medication.save-button" | translate}}</button>
   </form>
 </div>

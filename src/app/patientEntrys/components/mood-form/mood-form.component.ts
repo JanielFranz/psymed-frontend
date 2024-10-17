@@ -5,12 +5,14 @@ import {Store} from "@ngrx/store";
 import {AuthState} from "../../../store/auth/auth.state";
 import {map, Observable} from "rxjs";
 import {selectPatientId} from "../../../store/auth/auth.selectors";
-import {TranslateService} from "@ngx-translate/core";
+import {TranslateModule, TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-mood-form',
   standalone: true,
-  imports: [],
+  imports: [
+    TranslateModule
+  ],
   templateUrl: './mood-form.component.html',
   styleUrl: './mood-form.component.css'
 })
@@ -48,7 +50,8 @@ export class MoodFormComponent implements OnInit {
             if (existingMood) {
               this.translateService.get("pages.mood-state.error.already-mood-recorded").subscribe((text : string) => {
                 alert(text)
-              })            } else {
+              })
+            } else {
               const newMood = new MoodState(1, patientId, mood, this.currentDate);
               this.moodStateService.createMoodState(newMood, patientId).subscribe(() => {
                 window.location.reload();
@@ -56,7 +59,9 @@ export class MoodFormComponent implements OnInit {
             }
           });
         } else {
-          alert('Patient ID unavailable');
+          this.translateService.get("pages.mood-state.error.unavailable-patient-id").subscribe((text : string) => {
+            alert(text)
+          })
         }
       })
     ).subscribe();

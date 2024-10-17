@@ -4,11 +4,12 @@ import { Medication } from '../../models/medication.entity';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { ActivatedRoute } from '@angular/router';
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-medication-list',
   standalone: true,
-  imports: [CommonModule, MatCardModule],
+  imports: [CommonModule, MatCardModule, TranslateModule],
   templateUrl: './medication-list.component.html',
   styleUrls: ['./medication-list.component.css']
 })
