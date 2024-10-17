@@ -1,3 +1,6 @@
-<div *ngFor="let task of tasks">
-  <app-task-card [task]="task" (taskDeleted)="onTaskDeleted($event)"></app-task-card>
+<div class="task-list-component">
+  <div *ngFor="let task of tasks">
+    <app-task-card [task]="task"></app-task-card>
+  </div>
+
 </div>

@@ -1,5 +1,17 @@
-<app-task-list>
 
-</app-task-list>
+<div class = "task-page">
+  <div class = "task-panel">
+    <div class = "task-secondary-panel">
+      <div class = "task-title-block">
+        <h4 style="color: white">{{"pages.appointments.tasks.title" | translate}}</h4>
+      </div>
+      <app-task-list>
+      </app-task-list>
 
-<app-task-form (taskCreated)="onTaskCreated($event)"></app-task-form>
+      <app-task-form></app-task-form>
+    </div>
+
+  </div>
+
+
+</div>
