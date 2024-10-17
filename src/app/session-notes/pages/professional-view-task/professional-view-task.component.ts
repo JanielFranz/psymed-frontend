@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {TaskListComponent} from "../../components/task-list/task-list.component";
 import {TaskFormComponent} from "../../components/task-form/task-form.component";
 import {TranslateModule} from "@ngx-translate/core";
@@ -16,4 +16,9 @@ import {TranslateModule} from "@ngx-translate/core";
 })
 export class ProfessionalViewTaskComponent {
 
+  @ViewChild(TaskListComponent) taskListComponent!: TaskListComponent;
+
+  onTaskCreated(newTask: any): void {
+    this.taskListComponent.tasks.push(newTask);
+  }
 }
