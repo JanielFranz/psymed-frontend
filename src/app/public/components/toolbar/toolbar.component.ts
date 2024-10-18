@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { AuthState } from "../../../store/auth/auth.state";
 import {selectPatientId, selectProfessionalId, selectRolId} from "../../../store/auth/auth.selectors";
 import {combineLatest, Observable, Subject} from 'rxjs';
-import { takeUntil, map } from 'rxjs/operators';
+import { takeUntil} from 'rxjs/operators';
 import {MatAnchor, MatIconButton} from "@angular/material/button";
 import {DatePipe, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import { RouterLink } from "@angular/router";

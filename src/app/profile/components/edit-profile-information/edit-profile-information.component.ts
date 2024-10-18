@@ -5,14 +5,13 @@ import { ProfessionalService } from '../../../shared/services/professional.servi
 import { PatientService } from '../../../shared/services/patient.service';
 import { ProfessionalEntity } from '../../../shared/model/professional.entity';
 import { Patient } from '../../../shared/model/patient.entity';
-import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { selectRolId, selectProfessionalId, selectPatientId } from "../../../store/auth/auth.selectors";
-import { AuthState } from '../../../store/auth/auth.state';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Account } from "../../models/account.entity";
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store'; // Import the store
+import { selectRolId } from "../../../store/auth/auth.selectors"; // Import your role selector
 import { MatError, MatFormField, MatLabel } from "@angular/material/form-field";
 import { NgIf } from "@angular/common";
 import { MatInput } from "@angular/material/input";
@@ -32,7 +31,7 @@ export class EditProfileInformationComponent implements OnInit, OnDestroy {
   account: Account | undefined;
   professional: ProfessionalEntity | undefined;
   patient: Patient | undefined;
-  role: string | null = null;
+  role: string | null = null; // Role retrieved from the store
   private destroy$ = new Subject<boolean>();
   imagePreview: string | ArrayBuffer | null = null;
 
@@ -41,9 +40,9 @@ export class EditProfileInformationComponent implements OnInit, OnDestroy {
     private accountService: AccountService,
     private professionalService: ProfessionalService,
     private patientService: PatientService,
-    private store: Store<AuthState>,
     private snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private store: Store // Inject the store
   ) {
     // Initialize the form with empty controls
     this.editForm = this.fb.group({
@@ -63,35 +62,54 @@ export class EditProfileInformationComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // Fetch role from the store and load data based on role
-    this.store.select(selectRolId).pipe(
-      takeUntil(this.destroy$)
-    ).subscribe({
-      next: (roleId) => {
-        this.role = roleId;
-        if (roleId === '1') {
-          this.store.select(selectProfessionalId).pipe(
-            takeUntil(this.destroy$)
-          ).subscribe(professionalId => {
-            this.loadProfessionalData(professionalId);
-          });
-        } else if (roleId === '2') {
-          this.store.select(selectPatientId).pipe(
-            takeUntil(this.destroy$)
-          ).subscribe(patientId => {
-            this.loadPatientData(patientId);
-          });
+    // Subscribe to the store to get the roleId and set it in the role variable
+    this.store.select(selectRolId).pipe(takeUntil(this.destroy$)).subscribe({
+      next: (roleId: string | null) => {
+        if (roleId !== null) {
+          this.role = roleId; // Store the roleId in the component
         } else {
-          console.error('Invalid role');
+          console.error('Role ID is null');
         }
       },
       error: (error) => {
         console.error('Error fetching role ID:', error);
       }
     });
+
+    const currentUrl = this.router.url; // Get the current URL
+
+    if (currentUrl.includes('professional/edit-profile')) {
+      // Professional editing their profile
+      const professionalId = this.extractIdFromUrl(currentUrl);
+      if (professionalId) {
+        this.loadProfessionalData(Number(professionalId));
+      } else {
+        console.error('Professional ID is missing in the URL.');
+      }
+    } else if (currentUrl.includes('patient/edit-profile')) {
+      // Patient editing their profile
+      const patientId = this.extractIdFromUrl(currentUrl);
+      if (patientId) {
+        this.loadPatientData(Number(patientId));
+      } else {
+        console.error('Patient ID is missing in the URL.');
+      }
+    } else {
+      console.error('Invalid URL - Unable to determine profile type.');
+    }
   }
 
-  // Load professional data based on professionalId from the store
+  /**
+   * Utility method to extract the ID from the current URL.
+   * @param url - The current URL to extract the ID from.
+   * @returns The extracted ID or null if not found.
+   */
+  extractIdFromUrl(url: string): string | null {
+    const segments = url.split('/');
+    return segments.length > 2 ? segments[segments.length - 1] : null; // Assumes ID is the last segment in the path
+  }
+
+  // Load professional data based on professionalId from the URL
   loadProfessionalData(professionalId: number | null): void {
     if (professionalId) {
       this.professionalService.getById(professionalId).subscribe({
@@ -123,7 +141,7 @@ export class EditProfileInformationComponent implements OnInit, OnDestroy {
     }
   }
 
-  // Load patient data based on patientId from the store
+  // Load patient data based on patientId from the URL
   loadPatientData(patientId: number | null): void {
     if (patientId) {
       this.patientService.getById(patientId).subscribe({
@@ -174,15 +192,12 @@ export class EditProfileInformationComponent implements OnInit, OnDestroy {
   }
 
   // Handle the form submission
-  // Handle the form submission
   onSubmit(): void {
     if (this.editForm.valid) {
-      // Create a shallow copy of the form data, excluding the password
       const updatedData = { ...this.editForm.value };
       delete updatedData.password; // Exclude password from the profile update
 
-      // Handle the professional or patient entity update
-      if (this.role === '1' && this.professional) {
+      if (this.professional) {
         const id = this.professional.id;
         this.professionalService.update(id, updatedData).subscribe({
           next: () => {
@@ -195,7 +210,7 @@ export class EditProfileInformationComponent implements OnInit, OnDestroy {
             this.snackBar.open('Error updating profile', 'Close', { duration: 3000 });
           }
         });
-      } else if (this.role === '2' && this.patient) {
+      } else if (this.patient) {
         const id = this.patient.id;
         this.patientService.update(id, updatedData).subscribe({
           next: () => {
@@ -253,15 +268,11 @@ export class EditProfileInformationComponent implements OnInit, OnDestroy {
     const file = (event.target as HTMLInputElement).files?.[0];
     if (file) {
       const reader = new FileReader();
-
-      // Load the selected file and set the image preview
       reader.onload = () => {
         this.imagePreview = reader.result; // Update the image preview with the selected file's data URL
       };
+      reader.readAsDataURL(file);
 
-      reader.readAsDataURL(file); // Read the file as a data URL to show the preview
-
-      // Simulate saving to 'assets/img' by storing the file name in the form control
       this.editForm.patchValue({
         image: `assets/img/${file.name}` // Set the file path as if saved to assets/img
       });

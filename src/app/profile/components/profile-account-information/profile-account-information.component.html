@@ -1,6 +1,6 @@
-<div class="page-background">
+<div class="page-background" *ngIf="role === '1' || role === '2'">
   <!-- Professional Information Card -->
-  <mat-card *ngIf="role === '1'" class="professional-card">
+  <mat-card *ngIf="isProfessional" class="professional-card">
     <!-- Professional Information Fields -->
     <mat-card-content class="description-content">
       <div class="personal-info">
@@ -30,7 +30,7 @@
   </mat-card>
 
   <!-- Patient Information Card -->
-  <mat-card *ngIf="role === '2'" class="patient-card">
+  <mat-card *ngIf="isPatient" class="patient-card">
     <!-- Patient Information Fields -->
     <mat-card-content class="description-content">
       <div class="personal-info">
