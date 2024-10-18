@@ -6,13 +6,14 @@ import {selectPatientId, selectRolId} from "../../../store/auth/auth.selectors";
 import { Observable, Subject } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
 import {MatAnchor, MatIconButton} from "@angular/material/button";
-import {DatePipe, NgForOf, NgIf} from "@angular/common";
+import {DatePipe, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import { RouterLink } from "@angular/router";
 import { MatToolbar } from "@angular/material/toolbar";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 import {MatIcon} from "@angular/material/icon";
 import {MatBadge} from "@angular/material/badge";
 import {LanguageSwitcherComponent} from "../language-switcher/language-switcher.component";
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-toolbar',
@@ -31,7 +32,9 @@ import {LanguageSwitcherComponent} from "../language-switcher/language-switcher.
     MatMenu,
     MatMenuItem,
     NgIf,
-    LanguageSwitcherComponent
+    LanguageSwitcherComponent,
+    TranslateModule,
+    NgOptimizedImage
   ],
   styleUrls: ['./toolbar.component.css']
 })
@@ -50,9 +53,9 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   patientId$!: Observable<number | null>;
 
   /**
-   * @property {Array<{path: string, title: string}>} options - Stores navigation options based on role ID.
+   * @property {Array<{path: string, name: string}>} options - Stores navigation options based on role ID.
    */
-  options: Array<{ path: string, title: string }> = [];
+  options: Array<{ path: string, name: string }> = [];
 
   /**
    * @property {Subject<boolean>} destroy$ - Subject to handle unsubscription and prevent memory leaks.
@@ -89,23 +92,23 @@ export class ToolbarComponent implements OnInit, OnDestroy {
       map((rolid, patientId) => {
         if (rolid === '1') {
           this.options = [
-            { path: '/home', title: 'Home' },
-            { path: '/patient-management', title: 'Patient Management' },
-            { path: '/appointment-list', title: 'Appointments' },
-            { path: '/profile', title: 'Profile' },
+            { path: '/home', name: 'home' },
+            { path: '/patient-management', name: 'patient-management' },
+            { path: '/appointment-list', name: 'appointments' },
+            { path: '/profile', name: 'profile' },
           ];
         } else if (rolid === '2') {
           this.options = [
-            { path: '/home', title: 'Home' },
-            { path: '/mood-state', title: 'Mood State' },
-            { path: '/biological-functions', title: 'Biological Functions' },
-            { path: `/patient/prescription/${patientId}`, title: 'Prescription' },
-            { path: '/profile', title: 'Profile' },
+            { path: '/home', name: 'home' },
+            { path: '/mood-state', name: 'mood-state' },
+            { path: '/biological-functions', name: 'biological-functions' },
+            { path: `/patient/prescription/${patientId}`, name: 'prescription' },
+            { path: '/profile', name: 'profile' },
           ];
         } else {
           this.options = [
-            { path: '/home', title: 'Home' },
-            { path: '/login', title: 'Login' }
+            { path: '/home', name: 'home' },
+            { path: '/login', name: 'login' }
           ];
         }
       }),

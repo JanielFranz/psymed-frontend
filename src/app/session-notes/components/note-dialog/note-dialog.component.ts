@@ -7,6 +7,7 @@ import {
   MatDialogTitle
 } from "@angular/material/dialog";
 import {MatButton} from "@angular/material/button";
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-note-dialog',
@@ -16,7 +17,8 @@ import {MatButton} from "@angular/material/button";
     MatDialogContent,
     MatDialogActions,
     MatButton,
-    MatDialogClose
+    MatDialogClose,
+    TranslateModule
   ],
   templateUrl: './note-dialog.component.html',
   styleUrl: './note-dialog.component.css'

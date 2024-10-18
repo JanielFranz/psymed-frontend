@@ -18,13 +18,14 @@ import {NgIf} from "@angular/common";
 import {MatInput} from "@angular/material/input";
 import {MatCard, MatCardContent} from "@angular/material/card";
 import {MatButton} from "@angular/material/button";
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   standalone: true,
   selector: 'app-edit-profile-information',
   templateUrl: './edit-profile-information.component.html',
   styleUrls: ['./edit-profile-information.component.css'],
-  imports: [ReactiveFormsModule, MatLabel, MatError, NgIf, MatFormField, MatInput, MatCardContent, MatCard, MatButton]
+  imports: [ReactiveFormsModule, MatLabel, MatError, NgIf, MatFormField, MatInput, MatCardContent, MatCard, MatButton, TranslateModule]
 })
 export class EditProfileInformationComponent implements OnInit, OnDestroy {
   editForm: FormGroup;

@@ -9,6 +9,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import {ActivatedRoute} from "@angular/router";
 import {NgIf} from "@angular/common";
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-medication-form',
@@ -21,7 +22,8 @@ import {NgIf} from "@angular/common";
     MatDatepickerToggle,
     ReactiveFormsModule,
     MatButtonModule,
-    NgIf
+    NgIf,
+    TranslateModule
   ],
   templateUrl: './medication-form.component.html',
   styleUrls: ['./medication-form.component.css']

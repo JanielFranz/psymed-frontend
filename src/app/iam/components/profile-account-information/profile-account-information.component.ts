@@ -15,6 +15,7 @@ import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/m
 import { MatFormField } from "@angular/material/form-field";
 import { MatInput } from "@angular/material/input";
 import { Account } from "../../models/account.entity";
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   standalone: true,
@@ -28,7 +29,8 @@ import { Account } from "../../models/account.entity";
     MatCardHeader,
     MatCard,
     MatFormField,
-    MatInput
+    MatInput,
+    TranslateModule
   ],
   styleUrls: ['./profile-account-information.component.css']
 })

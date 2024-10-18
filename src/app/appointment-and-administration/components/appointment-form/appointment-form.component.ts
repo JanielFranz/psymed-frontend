@@ -12,6 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgIf } from "@angular/common";
 import { NotificationService } from "../../services/notification.service";
 import {Session} from "../../model/sesion.entity";
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-appointment-form',
@@ -23,7 +24,8 @@ import {Session} from "../../model/sesion.entity";
     MatNativeDateModule,
     ReactiveFormsModule,
     MatButtonModule,
-    NgIf
+    NgIf,
+    TranslateModule
   ],
   templateUrl: './appointment-form.component.html',
   styleUrls: ['./appointment-form.component.css']

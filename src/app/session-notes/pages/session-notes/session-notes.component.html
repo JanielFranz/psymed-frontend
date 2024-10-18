@@ -1,9 +1,16 @@
-<app-note-list [sessionNotes]="sessionNotes"
-               (deleteNoteRequested)="deleteSessionNoteById($event)"
-/>
-<app-note-form (noteAdded)="onNoteAdded($event)"
-               [sessionId]="sessionId"
-               [patientId]="patientId"
-/>
 
-w
+
+<div class = "note-page">
+  <div class = "note-panel">
+    <app-note-form (noteAdded)="onNoteAdded($event)"
+                   [sessionId]="sessionId"
+                   [patientId]="patientId"
+    />
+    <app-note-list [sessionNotes]="sessionNotes"
+                   (deleteNoteRequested)="deleteSessionNoteById($event)"
+    />
+
+  </div>
+
+</div>
+

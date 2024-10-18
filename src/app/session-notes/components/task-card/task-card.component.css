@@ -1,0 +1,45 @@
+.task-card{
+  display: flex;
+  justify-content: center;
+}
+
+.data-panel{
+
+  border-radius: 0.5em;
+  border-color: transparent;
+
+  background-color: #f5f6f8;
+
+  color: black;
+
+  padding: 1.5em;
+  width: 45em;
+}
+
+.option-panel{
+
+  display: flex;
+
+  flex-direction: column;
+
+  margin: 2.15em;
+  justify-content: center;
+
+}
+.option-panel > button{
+
+
+  border-color: transparent;
+  background-color: #308c83;
+
+  font-size: 1em;
+  color: white;
+
+  padding: 0 2em;
+  border-radius: 0.5em;
+}
+
+.option-panel > button:hover{
+  background-color: #276e66;
+
+}

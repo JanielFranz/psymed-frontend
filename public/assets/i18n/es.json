@@ -5,8 +5,9 @@
     "patient-management": "Gestión de pacientes",
     "appointments": "Citas",
     "mood-state": "Estado de ánimo",
-    "biological-functions": "Funciones biológicas",
-    "tasks": "Tareas"
+    "biological-functions": "Funciones biologicas",
+    "prescription": "Prescripcion",
+    "profile": "Perfil"
   },
   "pages": {
     "home": {
@@ -18,85 +19,165 @@
         "description": "Si eres un profesional de la salud mental y deseas gestionar a tus pacientes y acceder a tus herramientas, selecciona esta opción."
       },
       "patient": {
-        "description": "Si eres un paciente y quieres revisar tu historial médico, comunicarte con tu médico o programar una cita, selecciona esta opción."
+        "description": "Si eres un paciente y deseas revisar tu historial médico, comunicarte con tu médico o programar una cita, selecciona esta opción."
       },
       "button": "Seleccionar"
     },
     "patient-management": {
       "title": "Lista de pacientes",
       "actions": {
-        "add": {
-          "input": {
-            "medication-name": "Nombre del medicamento*",
-            "description": "Descripción*",
-            "interval": "Intervalo*",
-            "quantity": "Cantidad*",
-            "start-date": "Fecha de inicio*",
-            "end-date": "Fecha de finalización*",
-            "save-button": "Guardar"
-          },
-          "data": {
-            "description": "Descripción",
-            "interval": "Intervalo",
-            "quantity": "Cantidad",
-            "start-date": "Fecha de inicio",
-            "end-date": "Fecha de finalización"
-          }
+        "add-medication": {
+          "title": "Medicación",
+          "medication-name": "Nombre del medicamento",
+          "description": "Descripción",
+          "interval": "Intervalo",
+          "quantity": "Cantidad",
+          "start-date": "Fecha de inicio",
+          "end-date": "Fecha de finalización",
+          "save-button": "Guardar"
         },
-        "filters": {
-          "input": {
+        "dashboard-analytics": {
+          "filter": {
+            "title": "Filtros",
             "year": "Año",
-            "month": "Mes"
+            "month": "Mes",
+            "button": "Filtrar"
           },
-          "data": {
-            "total": "Número total de estados de ánimo",
-            "stats": "Estadísticas promedio de funciones biológicas"
+          "bar-chart": {
+            "title": "Estadísticas Promedio de Funciones Biológicas",
+            "month-average": "Promedio mensual"
+          },
+          "pie-chart": {
+            "title": "Número total de estados de ánimo"
           }
         },
         "appointment": {
+          "title": "Calendario de citas",
           "input": {
-            "appointment-date": "Fecha de la cita*",
-            "appointment-time": "Hora de la cita*",
-            "session-time": "Duración de la sesión (horas)*",
+            "appointment-date": "Fecha de la cita",
+            "appointment-time": "Hora de la cita",
+            "session-time": "Duración de la sesión (horas)",
             "add-button": "Agregar"
           },
           "data": {
             "patient": "Paciente",
-            "therapy": "Terapia"
+            "therapy": "Terapia",
+            "notes": "Notas",
+            "tasks": "Tareas"
+          },
+          "error": {
+            "appointment-date-required": "La fecha de la cita es obligatoria",
+            "session-time-required": "El tiempo de la sesión es obligatorio y debe ser de al menos 1 hora"
           }
         }
       }
     },
     "appointments": {
-      "title": "Calendario de citas",
+      "title": "Calendario de Citas",
       "data": {
         "patient": "Paciente:",
         "therapy": "Terapia",
-        "notes": "Notas"
+        "notes": "Notas",
+        "tasks": "Tareas"
+      },
+      "tasks": {
+        "title": "Tareas",
+        "form": {
+          "form-title": "Nueva tarea",
+          "title": "Título",
+          "description": "Descripción",
+          "button": "Crear tarea",
+          "error": {
+            "title-required": "El título es obligatorio",
+            "description-required": "La descripción es obligatoria"
+          }
+        },
+        "data": {
+          "description": "Descripción",
+          "created-at": "Creado el",
+          "updated-at": "Actualizado el",
+          "toggle-status": "Cambiar estado",
+          "delete-button": "Eliminar tarea"
+        }
+      },
+      "note": {
+        "form": {
+          "form-title": "Nueva nota",
+          "title": "Titulo",
+          "description": "Descripción",
+          "button": "Crear nota",
+          "dialog": {
+            "button": "Eliminar nota",
+            "message": "¿Te gustaría eliminar esta nota?",
+            "yes": "Sí",
+            "no": "No"
+          }
+        },
+        "data": {
+          "description": "Descripción",
+          "date": "Fecha",
+          "button": "ELIMINAR"
+        }
+      }
+    },
+    "profile": {
+      "title": "Información personal",
+      "dni": "DNI",
+      "phone": "Teléfono",
+      "email": "Correo electrónico",
+      "address": "Dirección",
+      "birthday": "Cumpleaños",
+      "edit-button": "Editar",
+      "input": {
+        "image": {
+          "preview": "Vista previa de la imagen de perfil",
+          "upload-message": "Clic para subir"
+        },
+        "first-name": "Nombre",
+        "last-name": "Apellido",
+        "email": "Correo electrónico",
+        "password": "Contraseña",
+        "phone": "Teléfono",
+        "address": "Dirección",
+        "dni": "DNI",
+        "birthday": "Fecha de nacimiento",
+        "description": "Descripción",
+        "save-button": "Guardar cambios",
+        "error": {
+          "first-name-required": "El nombre es obligatorio",
+          "last-name-required": "El apellido es obligatorio",
+          "email-required": "Se requiere un correo electrónico válido",
+          "password-required": "La contraseña es obligatoria",
+          "dni-required": "El DNI es obligatorio",
+          "birthday-required": "La fecha de nacimiento es obligatoria"
+        }
       }
     },
     "mood-state": {
       "title": "Formulario de estado de ánimo",
       "description": "Selecciona tu estado de ánimo",
       "error": {
-        "already-mood-recorded": "Ya tienes un estado de ánimo registrado para hoy."
+        "already-mood-recorded": "Ya has registrado un estado de ánimo para hoy.",
+        "unavailable-patient-id": "ID de paciente no disponible"
       }
     },
     "biological-functions": {
       "form-data": {
-        "hunger": "Hambre:",
-        "hydration": "Hidratación:",
-        "sleep": "Sueño:",
-        "energy": "Energía:",
-        "created-at": "Creado el:",
-        "updated-at": "Actualizado el:"
+        "hunger": "Hambre",
+        "hydration": "Hidratación",
+        "sleep": "Sueño",
+        "energy": "Energía",
+        "created-at": "Creado en",
+        "updated-at": "Actualizado en"
       },
       "button": "Enviar"
     },
-    "tasks": {
-      "created-at": "Creado el:",
-      "updated-at": "Actualizado el:",
-      "toggle-status-button": "Cambiar estado"
+    "prescription": {
+      "description": "Descripción",
+      "quantity": "Cantidad",
+      "start-date": "Fecha de inicio",
+      "end-date": "Fecha de finalización",
+      "interval": "Intervalo"
     }
   }
 }

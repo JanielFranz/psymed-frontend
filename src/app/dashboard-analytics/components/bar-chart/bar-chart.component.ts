@@ -3,6 +3,7 @@ import {BaseChartDirective} from "ng2-charts";
 import {BiologicalAnalytic} from "../../model/biological-analytic.entity";
 import {ChartData, ChartType} from "chart.js";
 import {MatCard, MatCardContent, MatCardTitle} from "@angular/material/card";
+import {TranslateModule, TranslateService} from "@ngx-translate/core";
 //SHOULD I USE VIEWCHILD??????
 /**
  * BarChart Component
@@ -25,7 +26,8 @@ import {MatCard, MatCardContent, MatCardTitle} from "@angular/material/card";
     BaseChartDirective,
     MatCard,
     MatCardTitle,
-    MatCardContent
+    MatCardContent,
+    TranslateModule
   ],
   templateUrl: './bar-chart.component.html',
   styleUrl: './bar-chart.component.css'
@@ -38,6 +40,11 @@ export class BarChartComponent implements OnChanges, OnInit{
 
   //#endregion
 
+
+
+  constructor (private translateService :  TranslateService){
+
+  }
   // #region Utility Methods
 
   /**
@@ -57,6 +64,12 @@ export class BarChartComponent implements OnChanges, OnInit{
    * @returns {void}
    */
   private updateChart() {
+
+    let monthAverageLabel;
+    this.translateService.get("pages.patient-management.actions.dashboard-analytics-month-average").subscribe((text : string) => {
+      monthAverageLabel = text;
+    });
+
     this.barChartData = {
       labels: this.barChartLabels,
       datasets: [
@@ -67,7 +80,10 @@ export class BarChartComponent implements OnChanges, OnInit{
             this.biologicalAnalytic.energyAverage,
             this.biologicalAnalytic.hydrationAverage
           ],
-          label: 'Month average'
+
+
+
+          label: monthAverageLabel
           // backgroundColor: ['purple', '#36A2EB', 'grey', 'blue']
         }
       ],

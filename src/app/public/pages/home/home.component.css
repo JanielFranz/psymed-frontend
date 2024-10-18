@@ -29,19 +29,21 @@ body {
 /* Header styles */
 .header h1 {
   font-size: 48px;
-  color: #028484;
+  font-weight: bold;
+  color: #87ceeb;
   margin-bottom: 20px;
 }
 
 /* Message container */
 .message-container p {
   font-size: 24px;
-  color: #1973b8;
+  color: black;
 }
 
 /* Welcome section */
 .welcome-section {
   display: flex;
+  height: 80vh;
   flex-direction: column;
   justify-content: center;
   align-items: center;

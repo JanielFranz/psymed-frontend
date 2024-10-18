@@ -3,6 +3,7 @@ import {MoodAnalytic} from "../../model/mood-analytic.entity";
 import {ChartType, ChartOptions, ChartData} from "chart.js";
 import {BaseChartDirective} from "ng2-charts";
 import {MatCard, MatCardContent, MatCardTitle} from "@angular/material/card";
+import {TranslateModule} from "@ngx-translate/core";
 
 /**
  * PieChart Component
@@ -25,7 +26,8 @@ import {MatCard, MatCardContent, MatCardTitle} from "@angular/material/card";
     BaseChartDirective,
     MatCard,
     MatCardTitle,
-    MatCardContent
+    MatCardContent,
+    TranslateModule
   ],
   templateUrl: './pie-chart.component.html',
   styleUrl: './pie-chart.component.css'

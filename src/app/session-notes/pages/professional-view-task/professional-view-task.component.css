@@ -1,0 +1,16 @@
+.task-page{
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  height: 85vh;
+}
+
+.task-panel{
+  display: flex;
+
+  justify-content: center;
+
+  gap: 0.75em;
+}

@@ -1,0 +1,42 @@
+.note-form-card{
+  padding: 2em;
+
+  border-radius: 0.5em;
+  background-color: #f5f6f8;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+
+  gap: 1em;
+}
+
+.form-input{
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+}
+
+
+.form-button{
+  border-color: transparent;
+  background-color: #e6e8ed;
+
+  font-size: 1em;
+  color: #091133;
+
+  padding: 0 4em;
+  border-radius: 0.5em;
+}
+
+.form-button:hover{
+  background-color: #cbcdd3;
+
+}

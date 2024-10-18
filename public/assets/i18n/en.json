@@ -1,12 +1,13 @@
 {
   "toolbar": {
     "home": "Home",
-    "login": "Log in",
+    "login": "Login",
     "patient-management": "Patient Management",
     "appointments": "Appointments",
     "mood-state": "Mood State",
     "biological-functions": "Biological Functions",
-    "tasks": "Tasks"
+    "prescription": "Prescription",
+    "profile": "Profile"
   },
   "pages": {
     "home": {
@@ -15,7 +16,7 @@
     },
     "login": {
       "medic": {
-        "description": "If you are a mental health professional and want to manage your patients and access your tools, select this option."
+        "description": "If you are a mental health professional and wish to manage your patients and access your tools, select this option."
       },
       "patient": {
         "description": "If you are a patient and want to review your medical history, communicate with your doctor, or schedule an appointment, select this option."
@@ -23,80 +24,160 @@
       "button": "Select"
     },
     "patient-management": {
-      "title": "Patient List",
+      "title": "Patients list",
       "actions": {
-        "add": {
-          "input": {
-            "medication-name": "Medication Name*",
-            "description": "Description*",
-            "interval": "Interval*",
-            "quantity": "Quantity*",
-            "start-date": "Start Date*",
-            "end-date": "End Date*",
-            "save-button": "Save"
-          },
-          "data": {
-            "description": "Description",
-            "interval": "Interval",
-            "quantity": "Quantity",
-            "start-date": "Start Date",
-            "end-date": "End Date"
-          }
+        "add-medication": {
+          "title": "Medication",
+          "medication-name": "Medication name",
+          "description": "Description",
+          "interval": "Interval",
+          "quantity": "Quantity",
+          "start-date": "Start Date",
+          "end-date": "End date",
+          "save-button": "Save"
         },
-        "filters": {
-          "input": {
+        "dashboard-analytics": {
+          "filter": {
+            "title": "Filters",
             "year": "Year",
-            "month": "Month"
+            "month": "Month",
+            "button": "Filter"
           },
-          "data": {
-            "total": "Total number of mood states",
-            "stats": "Average biological function statistics"
+          "bar-chart": {
+            "title": "Biological Functions Average Statistics",
+            "month-average": "Month average"
+          },
+          "pie-chart": {
+            "title": "Total number of moods"
           }
         },
         "appointment": {
+          "title": "Appointment Calendar",
           "input": {
-            "appointment-date": "Appointment Date*",
-            "appointment-time": "Appointment Time*",
-            "session-time": "Session Duration (hours)*",
+            "appointment-date": "Appointment Date",
+            "appointment-time": "Appointment time",
+            "session-time": "Session Time (hours)",
             "add-button": "Add"
           },
           "data": {
             "patient": "Patient",
-            "therapy": "Therapy"
+            "therapy": "Therapy",
+            "notes": "Notes",
+            "tasks": "Tasks"
+          },
+          "error": {
+            "appointment-date-required": "Appointment date is required",
+            "session-time-required": "Session Time is required and must be at least 1 hour"
           }
         }
       }
     },
-    "appointments": {
+    "appointments":{
       "title": "Appointment Calendar",
       "data": {
         "patient": "Patient:",
         "therapy": "Therapy",
-        "notes": "Notes"
+        "notes": "Notes",
+        "tasks": "Tasks"
+      },
+      "tasks": {
+        "title": "Tasks",
+        "form": {
+          "form-title": "New task",
+          "title": "Title",
+          "description": "Description",
+          "button": "Create task",
+          "error": {
+            "title-required": "Title is required",
+            "description-required": "Description is required"
+          }
+        },
+        "data": {
+          "description": "Description",
+          "created-at": "Created at",
+          "updated-at": "Updated at",
+          "toggle-status": "Toggle status",
+          "delete-button": "Delete task"
+        }
+      },
+      "note": {
+        "form": {
+          "form-title": "New note",
+          "title": "Title",
+          "description": "Description",
+          "button": "Save",
+          "dialog": {
+            "button": "Delete note",
+            "message": "Would you like to delete this note?",
+            "yes": "Yes",
+            "no": "No"
+          }
+        },
+        "data": {
+          "description": "Description",
+          "date": "Date",
+          "button": "DELETE"
+        }
+      }
+    },
+    "profile": {
+      "title": "Personal information",
+      "dni": "DNI",
+      "phone": "Phone",
+      "email": "Email",
+      "address": "Address",
+      "birthday": "Birthday",
+      "edit-button": "Edit",
+      "input": {
+        "image": {
+          "preview": "Profile image preview",
+          "upload-message": "Click to upload"
+        },
+        "first-name": "First name",
+        "last-name": "Last name",
+        "email": "Email",
+        "password": "Password",
+        "phone": "Phone",
+        "address": "Address",
+        "dni": "DNI",
+        "birthday": "Birthday",
+        "description": "Description",
+        "save-button": "Save changes",
+        "error": {
+          "first-name-required": "First name is required",
+          "last-name-required": "Last name is required",
+          "email-required": "A valid email is required",
+          "password-required": "Password is required",
+          "dni-required": "DNI is required",
+          "birthday-required": "Birthday is required"
+        }
       }
     },
     "mood-state": {
-      "title": "Mood State Form",
-      "description": "Select your mood state",
+      "title": "Mood form",
+      "description": "Select your mood",
       "error": {
-        "already-mood-recorded": "You have already recorded a mood state for today."
+        "already-mood-recorded": "You already have a mood recorded for today.",
+        "unavailable-patient-id": "Patient ID unavailable"
       }
     },
     "biological-functions": {
       "form-data": {
-        "hunger": "Hunger:",
-        "hydration": "Hydration:",
-        "sleep": "Sleep:",
-        "energy": "Energy:",
-        "created-at": "Created on:",
-        "updated-at": "Updated on:"
+        "hunger": "Hunger",
+        "hydration": "Hydration",
+        "sleep": "Sleep",
+        "energy": "Energy",
+        "created-at": "Created at",
+        "updated-at": "Updated at"
       },
       "button": "Submit"
     },
-    "tasks": {
-      "created-at": "Created on:",
-      "updated-at": "Updated on:",
-      "toggle-status-button": "Toggle Status"
+    "prescription":{
+      "description": "Description",
+      "quantity": "Quantity",
+      "start-date": "Start date",
+      "end-date": "End date",
+      "interval": "Interval"
     }
   }
 }
