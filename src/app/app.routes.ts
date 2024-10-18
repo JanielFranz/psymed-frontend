@@ -11,7 +11,7 @@ import {MoodStatementEntryComponent} from "./patientEntrys/pages/mood-statement-
 import {
   PatientAppointmentPageComponent
 } from "./appointment-and-administration/pages/patient-appointment-page/patient-appointment-page.component";
-import {HistoryManagementComponent} from "./user-mamagement/pages/history-management/history-management.component";
+import {ClinicalViewComponent} from "./clinical-history/pages/clinical-view/clinical-view.component";
 import  {BiologicalFunctionsEntryComponent} from "./patientEntrys/pages/biological-functions-entry/biological-functions-entry.component";
 import {
   ProfessionalAppointmentPageComponent
@@ -31,7 +31,7 @@ export const routes: Routes = [
   { path: 'patient-management/:id/medication-management'     , component: MedicationManagementComponent }, // we use the :patientId to pass the patient ID as a parameter
   { path: 'mood-state'                                              , component: MoodStatementEntryComponent },
   { path: 'patient-management/:id/patient-appointment-list'         , component: PatientAppointmentPageComponent },
-  { path: 'patient-management/:id/clinical-history/:historyId'          , component: HistoryManagementComponent },
+  { path: 'patient-management/:id/clinical-history/:clinicalHistoryId'          , component: ClinicalViewComponent },
   { path: 'biological-functions'                                    , component: BiologicalFunctionsEntryComponent },
   { path: 'patient/prescription/:id', component: PatientMedicationComponent },
   { path: 'appointment-list'                                        , component: ProfessionalAppointmentPageComponent},

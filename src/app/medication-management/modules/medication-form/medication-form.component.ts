@@ -42,7 +42,7 @@ export class MedicationFormComponent implements OnInit {
   ngOnInit(): void {
     console.log("on init");
 
-    this.patientId = +this.route.snapshot.paramMap.get('patientId')!; // Get the patient ID from the route using the ActivatedRoute service
+    this.patientId = +this.route.snapshot.paramMap.get('id')!; // Get the patient ID from the route using the ActivatedRoute service
     console.log("Patient ID:", this.patientId); // Log the patient ID to the console for security
 
     this.medicationForm = this.fb.group({

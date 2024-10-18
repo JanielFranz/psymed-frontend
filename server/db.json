@@ -72,7 +72,8 @@
       "birthday": "1991-07-12",
       "description": "Michael Smith has been diagnosed with an depression. He has been undergoing treatment for managing his symptoms, which include persistent worry and occasional panic attacks. Michael is committed to working with his therapist and psychiatrist to regain control over his daily life, improve his coping strategies, and enhance his emotional resilience.",
       "image": "assets/img/images (1).jpg",
-      "id": "1"
+      "id": "1",
+      "idClinicalHistory": 1
     },
     {
       "id": "2",
@@ -276,6 +277,16 @@
       "interval": "Take once daily",
       "quantity": 30,
       "patientId": 1
+    },
+    {
+      "id": 0,
+      "name": "nueva medicaion",
+      "description": "es",
+      "startDate": "2024-10-18T05:00:00.000Z",
+      "endDate": "2024-10-26T05:00:00.000Z",
+      "interval": "15",
+      "quantity": 3,
+      "patientId": 0
     }
   ],
   "prescriptions": [
