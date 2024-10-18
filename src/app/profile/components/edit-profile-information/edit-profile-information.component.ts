@@ -8,17 +8,17 @@ import { Patient } from '../../../shared/model/patient.entity';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { selectRolId } from "../../../store/auth/auth.selectors";
+import { selectRolId, selectProfessionalId, selectPatientId } from "../../../store/auth/auth.selectors";
 import { AuthState } from '../../../store/auth/auth.state';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Account } from "../../models/account.entity";
 import { Router } from '@angular/router';
-import {MatError, MatFormField, MatLabel} from "@angular/material/form-field";
-import {NgIf} from "@angular/common";
-import {MatInput} from "@angular/material/input";
-import {MatCard, MatCardContent} from "@angular/material/card";
-import {MatButton} from "@angular/material/button";
-import {TranslateModule} from "@ngx-translate/core";
+import { MatError, MatFormField, MatLabel } from "@angular/material/form-field";
+import { NgIf } from "@angular/common";
+import { MatInput } from "@angular/material/input";
+import { MatCard, MatCardContent } from "@angular/material/card";
+import { MatButton } from "@angular/material/button";
+import { TranslateModule } from "@ngx-translate/core";
 
 @Component({
   standalone: true,
@@ -70,9 +70,17 @@ export class EditProfileInformationComponent implements OnInit, OnDestroy {
       next: (roleId) => {
         this.role = roleId;
         if (roleId === '1') {
-          this.loadProfessionalData();
+          this.store.select(selectProfessionalId).pipe(
+            takeUntil(this.destroy$)
+          ).subscribe(professionalId => {
+            this.loadProfessionalData(professionalId);
+          });
         } else if (roleId === '2') {
-          this.loadPatientData();
+          this.store.select(selectPatientId).pipe(
+            takeUntil(this.destroy$)
+          ).subscribe(patientId => {
+            this.loadPatientData(patientId);
+          });
         } else {
           console.error('Invalid role');
         }
@@ -82,71 +90,72 @@ export class EditProfileInformationComponent implements OnInit, OnDestroy {
       }
     });
   }
-  // Load professional data and set the imagePreview to show the existing image
-  loadProfessionalData(): void {
-    this.professionalService.getAll().subscribe({
-      next: (professionals: ProfessionalEntity[]) => {
-        if (professionals.length > 0) {
-          this.professional = professionals[0];
-          this.loadAccount(this.professional.idAccount); // Load Account details separately
+
+  // Load professional data based on professionalId from the store
+  loadProfessionalData(professionalId: number | null): void {
+    if (professionalId) {
+      this.professionalService.getById(professionalId).subscribe({
+        next: (professional: ProfessionalEntity) => {
+          this.professional = professional;
+          this.loadAccount(professional.idAccount); // Load Account details separately
           this.editForm.patchValue({
-            idAccount: this.professional.idAccount,
-            dni: this.professional.dni,
-            name: this.professional.name,
-            lastName: this.professional.lastName,
-            email: this.professional.email,  // Patch the email here
-            phone: this.professional.phone,
-            address: this.professional.address,
-            birthday: this.professional.birthday,
-            description: this.professional.description,
-            image: this.professional.image
+            idAccount: professional.idAccount,
+            dni: professional.dni,
+            name: professional.name,
+            lastName: professional.lastName,
+            email: professional.email,  // Patch the email here
+            phone: professional.phone,
+            address: professional.address,
+            birthday: professional.birthday,
+            description: professional.description,
+            image: professional.image
           });
 
           // Set the imagePreview to the image from the database
-          this.imagePreview = this.professional.image;
-        } else {
-          console.error('No professionals found.');
+          this.imagePreview = professional.image;
+        },
+        error: (error) => {
+          console.error('Error fetching professional data.', error);
         }
-      },
-      error: (error) => {
-        console.error('Error fetching professional data.', error);
-      }
-    });
+      });
+    } else {
+      console.error('No professional ID found.');
+    }
   }
 
-// Load patient data and set the imagePreview to show the existing image
-  loadPatientData(): void {
-    this.patientService.getAll().subscribe({
-      next: (patients: Patient[]) => {
-        if (patients.length > 0) {
-          this.patient = patients[0];
-          this.loadAccount(this.patient.idAccount); // Load Account details separately
+  // Load patient data based on patientId from the store
+  loadPatientData(patientId: number | null): void {
+    if (patientId) {
+      this.patientService.getById(patientId).subscribe({
+        next: (patient: Patient) => {
+          this.patient = patient;
+          this.loadAccount(patient.idAccount); // Load Account details separately
           this.editForm.patchValue({
-            idAccount: this.patient.idAccount,
-            dni: this.patient.dni,
-            name: this.patient.name,
-            lastName: this.patient.lastName,
-            email: this.patient.email,  // Patch the email here
-            phone: this.patient.phone,
-            address: this.patient.address,
-            birthday: this.patient.birthday,
-            description: this.patient.description,
-            image: this.patient.image
+            idAccount: patient.idAccount,
+            dni: patient.dni,
+            name: patient.name,
+            lastName: patient.lastName,
+            email: patient.email,  // Patch the email here
+            phone: patient.phone,
+            address: patient.address,
+            birthday: patient.birthday,
+            description: patient.description,
+            image: patient.image
           });
 
           // Set the imagePreview to the image from the database
-          this.imagePreview = this.patient.image;
-        } else {
-          console.error('No patients found.');
+          this.imagePreview = patient.image;
+        },
+        error: (error) => {
+          console.error('Error fetching patient data.', error);
         }
-      },
-      error: (error) => {
-        console.error('Error fetching patient data.', error);
-      }
-    });
+      });
+    } else {
+      console.error('No patient ID found.');
+    }
   }
 
-// Load account information and set userName and password
+  // Load account information and set userName and password
   loadAccount(accountId: number): void {
     this.accountService.getAccountById(accountId).subscribe({
       next: (account: Account) => {
@@ -163,6 +172,9 @@ export class EditProfileInformationComponent implements OnInit, OnDestroy {
       }
     });
   }
+
+  // Handle the form submission
+  // Handle the form submission
   onSubmit(): void {
     if (this.editForm.valid) {
       // Create a shallow copy of the form data, excluding the password
@@ -176,7 +188,7 @@ export class EditProfileInformationComponent implements OnInit, OnDestroy {
           next: () => {
             this.snackBar.open('Profile updated successfully!', 'Close', { duration: 3000 });
             this.updateAccountPassword(); // Update the account password separately
-            this.router.navigate(['/profile']);
+            this.router.navigate([`/professional/profile/${id}`]); // Navigate to the professional profile with their ID
           },
           error: (error) => {
             console.error('Error updating profile:', error);
@@ -189,7 +201,7 @@ export class EditProfileInformationComponent implements OnInit, OnDestroy {
           next: () => {
             this.snackBar.open('Profile updated successfully!', 'Close', { duration: 3000 });
             this.updateAccountPassword(); // Update the account password separately
-            this.router.navigate(['/profile']);
+            this.router.navigate([`/patient/profile/${id}`]); // Navigate to the patient profile with their ID
           },
           error: (error) => {
             console.error('Error updating profile:', error);
@@ -200,10 +212,9 @@ export class EditProfileInformationComponent implements OnInit, OnDestroy {
     }
   }
 
-// Update the password in the Account entity
+  // Update the password in the Account entity
   updateAccountPassword(): void {
     if (this.account) {
-      // Clone the existing account and update only the necessary fields (e.g., password)
       const updatedAccount: Account = {
         ...this.account, // Spread the existing account fields
         password: this.editForm.get('password')?.value // Set the new password from the form
@@ -236,6 +247,8 @@ export class EditProfileInformationComponent implements OnInit, OnDestroy {
       });
     }
   }
+
+  // Handle file selection for image upload
   onFileSelected(event: Event): void {
     const file = (event.target as HTMLInputElement).files?.[0];
     if (file) {
@@ -254,8 +267,6 @@ export class EditProfileInformationComponent implements OnInit, OnDestroy {
       });
     }
   }
-
-
 
   ngOnDestroy(): void {
     this.destroy$.next(true);
