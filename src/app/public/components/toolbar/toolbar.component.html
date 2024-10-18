@@ -14,7 +14,13 @@
 
     <!-- Navigation Links -->
     <ng-container *ngFor="let option of options">
-      <a class = "navigation-button" mat-button [routerLink]="option.path">{{ "toolbar." + option.name | translate }}</a>
+      <a class = "navigation-button"
+         mat-button
+         [routerLink]="option.path"
+         (click)="option.name === 'logout' ? onLogout() : null"
+      >
+        {{ "toolbar." + option.name | translate }}
+      </a>
     </ng-container>
 
   </div>

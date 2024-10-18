@@ -14,6 +14,7 @@ import {MatIcon} from "@angular/material/icon";
 import {MatBadge} from "@angular/material/badge";
 import {LanguageSwitcherComponent} from "../language-switcher/language-switcher.component";
 import {TranslateModule} from "@ngx-translate/core";
+import {reset} from "../../../store/auth/auth.actions";
 
 @Component({
   selector: 'app-toolbar',
@@ -100,18 +101,18 @@ export class ToolbarComponent implements OnInit, OnDestroy {
       .subscribe(([rolId, professionalId, patientId]) => {
         if (rolId === '1' && professionalId) {
           this.options = [
-            { path: '/home', name: 'home' },
             { path: '/patient-management', name: 'patient-management' },
             { path: '/appointment-list', name: 'appointments' },
-            { path: `/professional/profile/${professionalId}`, name: 'profile' }  // Professional profile link
+            { path: `/professional/profile/${professionalId}`, name: 'profile' },  // Professional profile link
+            { path: '/home', name:'logout' }
           ];
         } else if (rolId === '2' && patientId) {
           this.options = [
-            { path: '/home', name: 'home' },
             { path: '/mood-state', name: 'mood-state' },
             { path: '/biological-functions', name: 'biological-functions' },
             { path: `/patient/prescription/${patientId}`, name: 'prescription' },
-            { path: `/patient/profile/${patientId}`, name: 'profile' }
+            { path: `/patient/profile/${patientId}`, name: 'profile' },
+            { path: '/home', name:'logout' }
           ];
         } else {
           this.options = [
@@ -120,6 +121,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
           ];
         }
       });
+
 
     // Notification handling is commented out
     /*
@@ -130,7 +132,10 @@ export class ToolbarComponent implements OnInit, OnDestroy {
       });
     */
   }
-
+  //#region Event Handlers
+  protected onLogout(): void  {
+    this.store.dispatch(reset());
+  }
   /**
    * ngOnDestroy lifecycle hook - Cleans up subscriptions to prevent memory leaks.
    */
