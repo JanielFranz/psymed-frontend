@@ -7,7 +7,8 @@
     "mood-state": "Estado de ánimo",
     "biological-functions": "Funciones biologicas",
     "prescription": "Prescripcion",
-    "profile": "Perfil"
+    "profile": "Perfil",
+    "logout": "Salir"
   },
   "pages": {
     "home": {
