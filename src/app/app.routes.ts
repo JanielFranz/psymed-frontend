@@ -19,8 +19,8 @@ import {
 import {SessionNotesComponent} from "./session-notes/pages/session-notes/session-notes.component";
 import  {ProfessionalViewTaskComponent} from "./session-notes/pages/professional-view-task/professional-view-task.component";
 import {PatientMedicationComponent} from "./medication-management/pages/patient-medication/patient-medication.component";
-import {EditProfileComponent} from "./iam/pages/edit-profile/edit-profile.component";
-import {AccountProfileComponent} from "./iam/pages/account-profile/account-profile.component";
+import {EditProfileComponent} from "./profile/pages/edit-profile/edit-profile.component";
+import {AccountProfileComponent} from "./profile/pages/account-profile/account-profile.component";
 
 export const routes: Routes = [
   { path: ''                                                        , redirectTo: 'home', pathMatch: 'full' },  // Default route that redirects to HomeComponent
