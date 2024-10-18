@@ -19,8 +19,8 @@ import {
 import {SessionNotesComponent} from "./session-notes/pages/session-notes/session-notes.component";
 import  {ProfessionalViewTaskComponent} from "./session-notes/pages/professional-view-task/professional-view-task.component";
 import {PatientMedicationComponent} from "./medication-management/pages/patient-medication/patient-medication.component";
-import {EditProfileComponent} from "./iam/pages/edit-profile/edit-profile.component";
-import {AccountProfileComponent} from "./iam/pages/account-profile/account-profile.component";
+import {EditProfileComponent} from "./profile/pages/edit-profile/edit-profile.component";
+import {AccountProfileComponent} from "./profile/pages/account-profile/account-profile.component";
 
 export const routes: Routes = [
   { path: ''                                                        , redirectTo: 'home', pathMatch: 'full' },  // Default route that redirects to HomeComponent
@@ -38,7 +38,9 @@ export const routes: Routes = [
   { path: 'patient-management/:id/patient-appointment-list/:appointmentId/notes'         , component: SessionNotesComponent },
   { path: 'patient-management/:id/patient-appointment-list/:appointmentId/task'         , component: ProfessionalViewTaskComponent },
   { path: ':id/appointment-list/:appointmentId/task'  , component: ProfessionalViewTaskComponent },
-  { path: 'profile'                                            , component: AccountProfileComponent },
-  { path: 'edit-profile'                                            , component: EditProfileComponent },
+  { path: 'patient/profile/:id'                                            , component: AccountProfileComponent },
+  { path: 'professional/profile/:id'                                            , component: AccountProfileComponent },
+  { path: 'patient/edit-profile/:id'                                            , component: EditProfileComponent },
+  { path: 'professional/edit-profile/:id'                                            , component: EditProfileComponent },
   { path: '**'                                                      , redirectTo: 'home' }  // Wildcard route for invalid paths, redirects to HomeComponent
 ];

@@ -1,6 +1,6 @@
-<div class="page-background">
+<div class="page-background" *ngIf="role === '1' || role === '2'">
   <!-- Professional Information Card -->
-  <mat-card *ngIf="role === '1'" class="professional-card">
+  <mat-card *ngIf="isProfessional" class="professional-card">
     <!-- Profile Image Container -->
     <div class="profile-image-container">
       <!-- Fallback to placeholder image if professional image is not available -->
@@ -19,7 +19,7 @@
   </mat-card>
 
   <!-- Patient Information Card -->
-  <mat-card *ngIf="role === '2'" class="patient-card">
+  <mat-card *ngIf="isPatient" class="patient-card">
     <!-- Profile Image Container -->
     <div class="profile-image-container">
       <!-- Fallback to placeholder image if patient image is not available -->

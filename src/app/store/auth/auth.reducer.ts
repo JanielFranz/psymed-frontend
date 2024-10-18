@@ -1,15 +1,19 @@
 import { createReducer, on } from '@ngrx/store';
-import { setRole,setPatientId} from './auth.actions';
-import { AuthState, initialAuthState } from "./auth.state";
+import { setRole, setPatientId, setProfessionalId } from './auth.actions'; // Import the new action
+import {initialAuthState } from './auth.state';
 
 export const authReducer = createReducer(
   initialAuthState,
-  on(setRole, (state, { rolid }) => ({
+  on(setRole, (state, { rolId }) => ({
     ...state,
-    rolid
+    rolId
   })),
   on(setPatientId, (state, { patientId }) => ({
     ...state,
     patientId
+  })),
+  on(setProfessionalId, (state, { professionalId }) => ({
+    ...state,
+    professionalId
   }))
-)
+);

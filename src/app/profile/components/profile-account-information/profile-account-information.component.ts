@@ -4,10 +4,11 @@ import { ProfessionalService } from '../../../shared/services/professional.servi
 import { PatientService } from '../../../shared/services/patient.service';
 import { ProfessionalEntity } from '../../../shared/model/professional.entity';
 import { Patient } from '../../../shared/model/patient.entity';
-import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { selectRolId } from "../../../store/auth/auth.selectors";
+import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { selectRolId } from "../../../store/auth/auth.selectors"; // Select roleId from store
 import { AuthState } from '../../../store/auth/auth.state';
 import { NgIf } from '@angular/common';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
@@ -15,7 +16,7 @@ import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/m
 import { MatFormField } from "@angular/material/form-field";
 import { MatInput } from "@angular/material/input";
 import { Account } from "../../models/account.entity";
-import {TranslateModule} from "@ngx-translate/core";
+import { TranslateModule } from "@ngx-translate/core";
 
 @Component({
   standalone: true,
@@ -38,63 +39,53 @@ export class ProfileAccountInformationComponent implements OnInit, OnDestroy {
   account: Account | undefined;
   professional: ProfessionalEntity | undefined;
   patient: Patient | undefined;
-  role: string | null = null; // Local role variable to store the resolved role
+  role: string | null = null; // Role will store the roleId from the store
+  isProfessional: boolean = false; // Flag to check if the user is a professional
+  isPatient: boolean = false; // Flag to check if the user is a patient
   private destroy$ = new Subject<boolean>(); // To handle unsubscription
 
-  /**
-   * Constructor for ProfileAccountInformationComponent.
-   * @param accountService - Service used to retrieve account information.
-   * @param professionalService - Service used to retrieve professional information.
-   * @param patientService - Service used to retrieve patient information.
-   * @param store - Store to select role ID from state.
-   */
   constructor(
     private accountService: AccountService,
     private professionalService: ProfessionalService,
     private patientService: PatientService,
-    private store: Store<AuthState>
+    private store: Store<AuthState>,
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
-  /**
-   * OnInit lifecycle hook to initialize the component.
-   * Fetches role ID and loads the respective account and information.
-   *
-   * #region ngOnInit
-   */
   ngOnInit(): void {
-    // Fetch role from the store and load data based on role
-    this.store.select(selectRolId).pipe(
-      takeUntil(this.destroy$)
-    ).subscribe({
-      next: (roleId) => {
-        this.role = roleId;
-        if (roleId === '1') {
-          this.loadProfessionalData();
-        } else if (roleId === '2') {
-          this.loadPatientData();
+    // Fetch role from the store
+    this.store.select(selectRolId).pipe(takeUntil(this.destroy$)).subscribe({
+      next: (roleId: string | null) => { // Handle both string and null
+        if (roleId) {
+          this.role = roleId; // Store the roleId from the store
         } else {
-          console.error('Invalid role');
+          console.error('Role ID is null');
         }
       },
       error: (error) => {
         console.error('Error fetching role ID:', error);
       }
     });
-  }
-  // #endregion ngOnInit
 
-  /**
-   * Load professional account and data.
-   *
-   * #region loadProfessionalData
-   */
+    // Check the URL to determine if it's a professional or patient profile
+    const currentUrl = this.router.url;
+    if (currentUrl.includes('professional/profile')) {
+      this.isProfessional = true;
+      this.loadProfessionalData(); // Load professional data
+    } else if (currentUrl.includes('patient/profile')) {
+      this.isPatient = true;
+      this.loadPatientData(); // Load patient data
+    } else {
+      console.error('Invalid URL - Unable to determine if professional or patient');
+    }
+  }
+
   loadProfessionalData(): void {
-    // Fetch the first professional's account by role (1: Professional)
     this.accountService.getAccountsByRole(1).subscribe({
       next: (accounts: Account[]) => {
         if (accounts.length > 0) {
-          const firstProfessionalAccount = accounts[0];
-          this.loadAccount(firstProfessionalAccount.id); // Load the first professional account
+          this.loadAccount(accounts[0].id); // Load the first professional account
         }
       },
       error: (error) => {
@@ -102,7 +93,6 @@ export class ProfileAccountInformationComponent implements OnInit, OnDestroy {
       }
     });
 
-    // Fetch the first professional from the professionals array
     this.professionalService.getAll().subscribe({
       next: (professionals: ProfessionalEntity[]) => {
         if (professionals.length > 0) {
@@ -116,20 +106,12 @@ export class ProfileAccountInformationComponent implements OnInit, OnDestroy {
       }
     });
   }
-  // #endregion loadProfessionalData
 
-  /**
-   * Load patient account and data.
-   *
-   * #region loadPatientData
-   */
   loadPatientData(): void {
-    // Fetch the first patient's account by role (2: Patient)
     this.accountService.getAccountsByRole(2).subscribe({
       next: (accounts: Account[]) => {
         if (accounts.length > 0) {
-          const firstPatientAccount = accounts[0];
-          this.loadAccount(firstPatientAccount.id); // Load the first patient account
+          this.loadAccount(accounts[0].id); // Load the first patient account
         }
       },
       error: (error) => {
@@ -137,7 +119,6 @@ export class ProfileAccountInformationComponent implements OnInit, OnDestroy {
       }
     });
 
-    // Fetch the first patient from the patients array
     this.patientService.getAll().subscribe({
       next: (patients: Patient[]) => {
         if (patients.length > 0) {
@@ -151,14 +132,7 @@ export class ProfileAccountInformationComponent implements OnInit, OnDestroy {
       }
     });
   }
-  // #endregion loadPatientData
 
-  /**
-   * Load the account details by account ID.
-   *
-   * #region loadAccount
-   * @param accountId - The ID of the account to load.
-   */
   loadAccount(accountId: number): void {
     this.accountService.getAccountById(accountId).subscribe({
       next: (account: Account) => {
@@ -169,13 +143,9 @@ export class ProfileAccountInformationComponent implements OnInit, OnDestroy {
       }
     });
   }
-  // #endregion loadAccount
 
-  /**
-   * ngOnDestroy lifecycle hook - Cleans up subscriptions to prevent memory leaks.
-   */
   ngOnDestroy(): void {
-    this.destroy$.next(true); // Emit destroy signal
-    this.destroy$.unsubscribe(); // Unsubscribe from observables
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }

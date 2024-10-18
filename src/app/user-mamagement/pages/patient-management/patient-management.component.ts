@@ -36,7 +36,7 @@ export class PatientManagementComponent implements OnInit{
     console.log('feature selected', feature.feature);
     switch(feature.feature) {
       case 'edit':
-        this.router.navigate(['/edit-patient', feature.patient.id]).then();
+        this.router.navigate([`/patient/profile/${feature.patient.id}`]).then();
         break;
       case 'medication':
         this.router.navigate([`/patient-management/${ feature.patient.id}/medication-management`]).then();
