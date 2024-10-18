@@ -83,6 +83,7 @@
       "tasks": {
         "title": "Tareas",
         "form": {
+          "form-title": "Nueva tarea",
           "title": "Título",
           "description": "Descripción",
           "button": "Crear tarea",
@@ -92,7 +93,6 @@
           }
         },
         "data": {
-          "title": "Título",
           "description": "Descripción",
           "created-at": "Creado el",
           "updated-at": "Actualizado el",
@@ -102,7 +102,8 @@
       },
       "note": {
         "form": {
-          "title": "Título",
+          "form-title": "Nueva nota",
+          "title": "Titulo",
           "description": "Descripción",
           "button": "Crear nota",
           "dialog": {

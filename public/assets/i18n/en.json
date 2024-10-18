@@ -83,6 +83,7 @@
       "tasks": {
         "title": "Tasks",
         "form": {
+          "form-title": "New task",
           "title": "Title",
           "description": "Description",
           "button": "Create task",
@@ -92,7 +93,6 @@
           }
         },
         "data": {
-          "title": "Title",
           "description": "Description",
           "created-at": "Created at",
           "updated-at": "Updated at",
@@ -102,9 +102,10 @@
       },
       "note": {
         "form": {
+          "form-title": "New note",
           "title": "Title",
           "description": "Description",
-          "button": "Create note",
+          "button": "Save",
           "dialog": {
             "button": "Delete note",
             "message": "Would you like to delete this note?",
@@ -149,7 +150,6 @@
           "password-required": "Password is required",
           "dni-required": "DNI is required",
           "birthday-required": "Birthday is required"
-
         }
       }
     },
