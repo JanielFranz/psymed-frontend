@@ -1,12 +1,8 @@
 .note-form-card{
-
-  margin-top: 1.5em;
-
-  padding-top: 1em;
-  padding-bottom: 1em;
+  padding: 2em;
 
   border-radius: 0.5em;
-  background-color: #308c83;
+  background-color: #f5f6f8;
 
   display: flex;
 
@@ -21,6 +17,7 @@
 .form-input{
 
   display: flex;
+  flex-direction: column;
 
   justify-content: center;
   align-items: center;
@@ -30,11 +27,16 @@
 
 .form-button{
   border-color: transparent;
-  background-color: #c2f2ed;
+  background-color: #e6e8ed;
 
   font-size: 1em;
   color: #091133;
 
-  padding: 0 2em;
+  padding: 0 4em;
   border-radius: 0.5em;
+}
+
+.form-button:hover{
+  background-color: #cbcdd3;
+
 }

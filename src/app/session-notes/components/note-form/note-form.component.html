@@ -1,11 +1,17 @@
 <div class = "note-form-card">
   <form [formGroup]="noteForm" (ngSubmit)="onSubmit()">
     <div class = "form-input">
-      <label for="title">{{ "pages.appointments.note.form.title" | translate }}: </label>
-      <input id="title" type="text" formControlName="title"/>
-      <label for="description">{{ "pages.appointments.note.form.description" | translate }}: </label>
-      <input id="description" type="text" formControlName="description"/>
+      <h4 style="color:black">{{"pages.appointments.note.form.form-title" | translate }}</h4>
+      <mat-form-field class="task-form-title-card" appearance="fill">
+        <mat-label>{{"pages.appointments.note.form.title" | translate}}</mat-label>
+        <input matInput formControlName="title" required>
+      </mat-form-field>
+      <mat-form-field class="task-form-description-card" appearance="fill">
+        <mat-label>{{"pages.appointments.note.form.description" | translate}}</mat-label>
+        <textarea style="height: 2em" matInput formControlName="description" required></textarea>
+      </mat-form-field>
       <button class= "form-button" type="submit">{{ "pages.appointments.note.form.button" | translate }}</button>
+
     </div>
 
   </form>

@@ -3,13 +3,21 @@ import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {NoteService} from "../../services/note.service";
 import {SessionNote} from "../../model/session-note.entity";
 import {TranslateModule} from "@ngx-translate/core";
+import {MatError, MatFormField, MatLabel} from "@angular/material/form-field";
+import {MatInput} from "@angular/material/input";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-note-form',
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    TranslateModule
+    TranslateModule,
+    MatError,
+    MatFormField,
+    MatInput,
+    MatLabel,
+    NgIf
   ],
   templateUrl: './note-form.component.html',
   styleUrl: './note-form.component.css'

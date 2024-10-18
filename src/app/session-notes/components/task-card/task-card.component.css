@@ -6,12 +6,14 @@
 .data-panel{
 
   border-radius: 0.5em;
-  background-color: #091133;
+  border-color: transparent;
 
-  color: white;
+  background-color: #f5f6f8;
 
-  width: 32em;
-  padding: 1em;
+  color: black;
+
+  padding: 1.5em;
+  width: 45em;
 }
 
 .option-panel{

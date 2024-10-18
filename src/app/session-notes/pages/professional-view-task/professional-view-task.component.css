@@ -1,32 +1,16 @@
 .task-page{
   display: flex;
-  flex-direction: column;
 
   align-items: center;
   justify-content: center;
 
-  height: 80vh;
+  height: 85vh;
 }
 
 .task-panel{
+  display: flex;
 
-  background-color: #c2f2ed;
+  justify-content: center;
 
-  border-radius: 0.5em;
-  padding: 1.5em;
-}
-
-.task-secondary-panel{
-  border-radius: 0.5em;
-
-  background-color: #69bfb7;
-  padding: 1.5em;
-}
-
-.task-title-block{
-  border-radius: 0.5em;
-  background-color: #308c83;
-
-  text-align: center;
-
+  gap: 0.75em;
 }

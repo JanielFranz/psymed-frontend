@@ -7,6 +7,9 @@ import {AsyncPipe, NgIf} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {TaskService} from "../../services/task.service";
 import {TranslateModule} from "@ngx-translate/core";
+import {MatCardActions} from "@angular/material/card";
+import {MatButton} from "@angular/material/button";
+import {MatIcon} from "@angular/material/icon";
 
 @Component({
   selector: 'app-task-card',
@@ -15,7 +18,10 @@ import {TranslateModule} from "@ngx-translate/core";
     NgIf,
     AsyncPipe,
     FormsModule,
-    TranslateModule
+    TranslateModule,
+    MatCardActions,
+    MatButton,
+    MatIcon
   ],
   templateUrl: './task-card.component.html',
   styleUrl: './task-card.component.css'
