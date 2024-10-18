@@ -6,7 +6,7 @@ import { Patient } from '../../../shared/model/patient.entity';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { selectRolId } from "../../../store/auth/auth.selectors";
+import { selectRolId, selectProfessionalId, selectPatientId } from "../../../store/auth/auth.selectors"; // Import selectors
 import { AuthState } from '../../../store/auth/auth.state';
 import { NgIf } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -40,27 +40,33 @@ export class ProfileDescriptionComponent implements OnInit, OnDestroy {
    * @param store - Store to select role ID from state.
    */
   constructor(
-      private professionalService: ProfessionalService,
-      private patientService: PatientService,
-      private store: Store<AuthState>
+    private professionalService: ProfessionalService,
+    private patientService: PatientService,
+    private store: Store<AuthState>
   ) {}
 
   /**
    * OnInit lifecycle hook to initialize the component.
    * Fetches the role ID from the store and loads either professional or patient data based on the role.
-   *
-   * #region ngOnInit
    */
   ngOnInit(): void {
     this.store.select(selectRolId).pipe(
-        takeUntil(this.destroy$)
+      takeUntil(this.destroy$)
     ).subscribe({
       next: (roleId) => {
         this.role = roleId;
         if (roleId === '1') {
-          this.fetchProfessionalData();
+          this.store.select(selectProfessionalId).pipe(
+            takeUntil(this.destroy$)
+          ).subscribe(professionalId => {
+            this.fetchProfessionalData(professionalId);  // Fetch professional by ID
+          });
         } else if (roleId === '2') {
-          this.fetchPatientData();
+          this.store.select(selectPatientId).pipe(
+            takeUntil(this.destroy$)
+          ).subscribe(patientId => {
+            this.fetchPatientData(patientId);  // Fetch patient by ID
+          });
         } else {
           console.error('Invalid role');
           this.isLoading = false;
@@ -72,46 +78,49 @@ export class ProfileDescriptionComponent implements OnInit, OnDestroy {
       }
     });
   }
-  // #endregion ngOnInit
 
   /**
-   * Fetch professional data based on the role.
+   * Fetch professional data based on the professionalId from the store.
+   * @param professionalId - The ID of the professional to fetch.
    */
-  fetchProfessionalData(): void {
-    this.professionalService.getAll().subscribe({
-      next: (professionals: ProfessionalEntity[]) => {
-        if (professionals.length > 0) {
-          this.professional = professionals[0]; // Assign the first professional
-        } else {
-          console.error('No professionals found.');
+  fetchProfessionalData(professionalId: number | null): void {
+    if (professionalId) {
+      this.professionalService.getById(professionalId).subscribe({  // Assuming getById method exists in service
+        next: (professional: ProfessionalEntity) => {
+          this.professional = professional;
+          this.isLoading = false;
+        },
+        error: (error) => {
+          console.error('Error fetching professional data:', error);
+          this.isLoading = false;
         }
-        this.isLoading = false;
-      },
-      error: (error) => {
-        console.error('Error fetching professional data:', error);
-        this.isLoading = false;
-      }
-    });
+      });
+    } else {
+      console.error('No professional ID found');
+      this.isLoading = false;
+    }
   }
 
   /**
-   * Fetch patient data based on the role.
+   * Fetch patient data based on the patientId from the store.
+   * @param patientId - The ID of the patient to fetch.
    */
-  fetchPatientData(): void {
-    this.patientService.getAll().subscribe({
-      next: (patients: Patient[]) => {
-        if (patients.length > 0) {
-          this.patient = patients[0]; // Assign the first patient
-        } else {
-          console.error('No patients found.');
+  fetchPatientData(patientId: number | null): void {
+    if (patientId) {
+      this.patientService.getById(patientId).subscribe({  // Assuming getById method exists in service
+        next: (patient: Patient) => {
+          this.patient = patient;
+          this.isLoading = false;
+        },
+        error: (error) => {
+          console.error('Error fetching patient data:', error);
+          this.isLoading = false;
         }
-        this.isLoading = false;
-      },
-      error: (error) => {
-        console.error('Error fetching patient data:', error);
-        this.isLoading = false;
-      }
-    });
+      });
+    } else {
+      console.error('No patient ID found');
+      this.isLoading = false;
+    }
   }
 
   /**

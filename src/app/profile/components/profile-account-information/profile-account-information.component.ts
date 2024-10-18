@@ -7,7 +7,7 @@ import { Patient } from '../../../shared/model/patient.entity';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { selectRolId } from "../../../store/auth/auth.selectors";
+import { selectRolId, selectProfessionalId, selectPatientId } from "../../../store/auth/auth.selectors";
 import { AuthState } from '../../../store/auth/auth.state';
 import { NgIf } from '@angular/common';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
@@ -15,7 +15,7 @@ import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/m
 import { MatFormField } from "@angular/material/form-field";
 import { MatInput } from "@angular/material/input";
 import { Account } from "../../models/account.entity";
-import {TranslateModule} from "@ngx-translate/core";
+import { TranslateModule } from "@ngx-translate/core";
 
 @Component({
   standalone: true,
@@ -57,9 +57,7 @@ export class ProfileAccountInformationComponent implements OnInit, OnDestroy {
 
   /**
    * OnInit lifecycle hook to initialize the component.
-   * Fetches role ID and loads the respective account and information.
-   *
-   * #region ngOnInit
+   * Fetches role ID and loads the respective account and information based on store values.
    */
   ngOnInit(): void {
     // Fetch role from the store and load data based on role
@@ -69,9 +67,17 @@ export class ProfileAccountInformationComponent implements OnInit, OnDestroy {
       next: (roleId) => {
         this.role = roleId;
         if (roleId === '1') {
-          this.loadProfessionalData();
+          this.store.select(selectProfessionalId).pipe(
+            takeUntil(this.destroy$)
+          ).subscribe(professionalId => {
+            this.loadProfessionalData(professionalId);  // Fetch professional by ID
+          });
         } else if (roleId === '2') {
-          this.loadPatientData();
+          this.store.select(selectPatientId).pipe(
+            takeUntil(this.destroy$)
+          ).subscribe(patientId => {
+            this.loadPatientData(patientId);  // Fetch patient by ID
+          });
         } else {
           console.error('Invalid role');
         }
@@ -81,95 +87,66 @@ export class ProfileAccountInformationComponent implements OnInit, OnDestroy {
       }
     });
   }
-  // #endregion ngOnInit
 
   /**
-   * Load professional account and data.
-   *
-   * #region loadProfessionalData
+   * Load professional account and data using professionalId from store.
+   * @param professionalId - The ID of the professional to load.
    */
-  loadProfessionalData(): void {
-    // Fetch the first professional's account by role (1: Professional)
-    this.accountService.getAccountsByRole(1).subscribe({
-      next: (accounts: Account[]) => {
-        if (accounts.length > 0) {
-          const firstProfessionalAccount = accounts[0];
-          this.loadAccount(firstProfessionalAccount.id); // Load the first professional account
+  loadProfessionalData(professionalId: number | null): void {
+    if (professionalId) {
+      // Fetch account by professionalId
+      this.accountService.getAccountByProfessionalId(professionalId).subscribe({
+        next: (account: Account) => {
+          this.account = account; // Load the professional account
+        },
+        error: (error) => {
+          console.error('Error fetching professional account:', error);
         }
-      },
-      error: (error) => {
-        console.error('Error fetching professional accounts:', error);
-      }
-    });
+      });
 
-    // Fetch the first professional from the professionals array
-    this.professionalService.getAll().subscribe({
-      next: (professionals: ProfessionalEntity[]) => {
-        if (professionals.length > 0) {
-          this.professional = professionals[0]; // Select the first professional
-        } else {
-          console.error('No professionals found.');
+      // Fetch professional data by professionalId
+      this.professionalService.getById(professionalId).subscribe({
+        next: (professional: ProfessionalEntity) => {
+          this.professional = professional; // Load the professional details
+        },
+        error: (error) => {
+          console.error('Error fetching professional data:', error);
         }
-      },
-      error: (error) => {
-        console.error('Error fetching professional data:', error);
-      }
-    });
+      });
+    } else {
+      console.error('No professional ID found.');
+    }
   }
-  // #endregion loadProfessionalData
 
   /**
-   * Load patient account and data.
-   *
-   * #region loadPatientData
+   * Load patient account and data using patientId from store.
+   * @param patientId - The ID of the patient to load.
    */
-  loadPatientData(): void {
-    // Fetch the first patient's account by role (2: Patient)
-    this.accountService.getAccountsByRole(2).subscribe({
-      next: (accounts: Account[]) => {
-        if (accounts.length > 0) {
-          const firstPatientAccount = accounts[0];
-          this.loadAccount(firstPatientAccount.id); // Load the first patient account
+  loadPatientData(patientId: number | null): void {
+    if (patientId) {
+      // Fetch account by patientId
+      this.accountService.getAccountByPatientId(patientId).subscribe({
+        next: (account: Account) => {
+          this.account = account; // Load the patient account
+        },
+        error: (error) => {
+          console.error('Error fetching patient account:', error);
         }
-      },
-      error: (error) => {
-        console.error('Error fetching patient accounts:', error);
-      }
-    });
+      });
 
-    // Fetch the first patient from the patients array
-    this.patientService.getAll().subscribe({
-      next: (patients: Patient[]) => {
-        if (patients.length > 0) {
-          this.patient = patients[0]; // Select the first patient
-        } else {
-          console.error('No patients found.');
+      // Fetch patient data by patientId
+      this.patientService.getById(patientId).subscribe({
+        next: (patient: Patient) => {
+          this.patient = patient; // Load the patient details
+        },
+        error: (error) => {
+          console.error('Error fetching patient data:', error);
         }
-      },
-      error: (error) => {
-        console.error('Error fetching patient data:', error);
-      }
-    });
+      });
+    } else {
+      console.error('No patient ID found.');
+    }
   }
-  // #endregion loadPatientData
-
-  /**
-   * Load the account details by account ID.
-   *
-   * #region loadAccount
-   * @param accountId - The ID of the account to load.
-   */
-  loadAccount(accountId: number): void {
-    this.accountService.getAccountById(accountId).subscribe({
-      next: (account: Account) => {
-        this.account = account;
-      },
-      error: (error) => {
-        console.error('Error fetching account details:', error);
-      }
-    });
-  }
-  // #endregion loadAccount
 
   /**
    * ngOnDestroy lifecycle hook - Cleans up subscriptions to prevent memory leaks.
