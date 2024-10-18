@@ -25,7 +25,8 @@ import {TranslateModule} from "@ngx-translate/core";
     MatCard,
     AppointmentFormComponent,
     MedicationFormComponent,
-    TranslateModule
+    TranslateModule,
+    AppointmentFormComponent
   ],
   templateUrl: './patient-appointment-page.component.html',
   styleUrls: ['./patient-appointment-page.component.css']

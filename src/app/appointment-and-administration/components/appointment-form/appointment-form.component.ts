@@ -160,25 +160,24 @@ export class AppointmentFormComponent implements OnInit {
           name: this.patientDetails?.name || '',
           lastName: this.patientDetails?.lastName || ''
         },
+        idPatient: this.patientId, // Assign the patient ID
         idNote: this.patientId, // Use patientId as idNote (adjust if necessary)
         appointmentDate: appointmentDateTime.toISOString(),
         sessionTime: formValues.sessionTime,
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString()
+        createdAt: new Date().toISOString(), // Set the created time
+        updatedAt: new Date().toISOString()  // Set the updated time
       });
 
       // Save the session through the sessionService
       this.sessionService.create(newSession).subscribe({
         next: (response) => {
           console.log('Session saved:', response);
-          this.appointmentForm.reset(); // Reset form after saving
-          this.patientDetails = null; // Clear patient details after submission
 
           // Increment the notification counter for new appointments
           this.notificationService.incrementCounter();
 
-          // Redirect to a success page or show success message
-          this.router.navigate(['/appointments-success']);
+          // Manually reload the page by redirecting to the desired URL
+          window.location.href = `http://localhost:4200/patient-management/${this.patientId}/patient-appointment-list`;
         },
         error: (error) => {
           console.error('Error saving session:', error);
@@ -188,6 +187,5 @@ export class AppointmentFormComponent implements OnInit {
       console.error('Form is invalid or patient details are missing');
     }
   }
-
   //#endregion
 }
