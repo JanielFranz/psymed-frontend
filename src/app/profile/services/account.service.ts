@@ -76,4 +76,12 @@ export class AccountService extends BaseService<Account> {
   public isLoggedIn(): boolean {
     return !!localStorage.getItem('token');
   }
+  // Example for AccountService
+  getAccountByProfessionalId(professionalId: number): Observable<Account> {
+    return this.http.get<Account>(`/api/professional/${professionalId}`);
+  }
+
+  getAccountByPatientId(patientId: number): Observable<Account> {
+    return this.http.get<Account>(`/api/patient/${patientId}`);
+  }
 }
