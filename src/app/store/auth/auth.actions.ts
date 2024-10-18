@@ -13,4 +13,7 @@ export const setPatientId = createAction(
 export const setProfessionalId = createAction(  // New action for professionalId
   '[Auth] Set Professional ID',
   props<{ professionalId: number }>()
+)
+export const reset = createAction(
+  '[Auth] Reset'
 );
