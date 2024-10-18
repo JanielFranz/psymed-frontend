@@ -2,8 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SessionService } from "../../../appointment-and-administration/services/session.service";
 import { Store } from '@ngrx/store';
 import { AuthState } from "../../../store/auth/auth.state";
-import {selectPatientId, selectRolId} from "../../../store/auth/auth.selectors";
-import { Observable, Subject } from 'rxjs';
+import {selectPatientId, selectProfessionalId, selectRolId} from "../../../store/auth/auth.selectors";
+import {combineLatest, Observable, Subject} from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators';
 import {MatAnchor, MatIconButton} from "@angular/material/button";
 import {DatePipe, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
@@ -39,18 +39,22 @@ import {TranslateModule} from "@ngx-translate/core";
   styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit, OnDestroy {
-
   //#region Attributes
 
   /**
-   * @property {Observable<string | null>} rolid$ - Observable for the role ID of the user.
+   * @property {Observable<string | null>} rolId$ - Observable for the role ID of the user.
    */
-  rolid$!: Observable<string | null>;
+  rolId$!: Observable<string | null>;
 
   /**
    * @property {Observable<number | null>} patientId$ - Observable for the patient ID of the logged-in user.
    */
   patientId$!: Observable<number | null>;
+
+  /**
+   * @property {Observable<string | null>} professionalId$ - Observable for the professional ID of the logged-in user (for role 1).
+   */
+  professionalId$!: Observable<number | null>;
 
   /**
    * @property {Array<{path: string, name: string}>} options - Stores navigation options based on role ID.
@@ -84,26 +88,30 @@ export class ToolbarComponent implements OnInit, OnDestroy {
    * ngOnInit lifecycle hook - Initializes observables and sets up options based on role ID.
    */
   ngOnInit(): void {
-    this.rolid$ = this.store.select(selectRolId);
+    this.rolId$ = this.store.select(selectRolId);
     this.patientId$ = this.store.select(selectPatientId);
+    this.professionalId$ = this.store.select(selectProfessionalId);
 
-    // Set up navigation options based on role ID
-    this.rolid$.pipe(
-      map((rolid, patientId) => {
-        if (rolid === '1') {
+    // Combine rolId and professionalId observables and set options accordingly
+    combineLatest([this.rolId$, this.professionalId$, this.patientId$])
+      .pipe(
+        takeUntil(this.destroy$)
+      )
+      .subscribe(([rolId, professionalId, patientId]) => {
+        if (rolId === '1' && professionalId) {
           this.options = [
             { path: '/home', name: 'home' },
             { path: '/patient-management', name: 'patient-management' },
             { path: '/appointment-list', name: 'appointments' },
-            { path: '/profile', name: 'profile' },
+            { path: `/professional/profile/${professionalId}`, name: 'profile' }  // Professional profile link
           ];
-        } else if (rolid === '2') {
+        } else if (rolId === '2' && patientId) {
           this.options = [
             { path: '/home', name: 'home' },
             { path: '/mood-state', name: 'mood-state' },
             { path: '/biological-functions', name: 'biological-functions' },
             { path: `/patient/prescription/${patientId}`, name: 'prescription' },
-            { path: '/profile', name: 'profile' },
+            { path: `/patient/profile/${patientId}`, name: 'profile' }
           ];
         } else {
           this.options = [
@@ -111,9 +119,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
             { path: '/login', name: 'login' }
           ];
         }
-      }),
-      takeUntil(this.destroy$) // Ensure unsubscription on component destroy
-    ).subscribe();
+      });
 
     // Notification handling is commented out
     /*
