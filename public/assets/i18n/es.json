@@ -13,7 +13,8 @@
   "pages": {
     "home": {
       "title": "Bienvenido a PsyMed",
-      "description": "Tu compañero de salud mental"
+      "subtitle": "Tu compañero de salud mental",
+      "description": "La aplicación es una herramienta diseñada para profesionales de la salud mental que facilita la gestión de citas, el registro de datos y el seguimiento de la historia clínica de sus pacientes. Con un sistema intuitivo, te permite organizar toda la información relevante en un solo lugar, mejorando la eficiencia y asegurando una atención personalizada y segura."
     },
     "login": {
       "medic": {
