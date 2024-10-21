@@ -1,6 +1,13 @@
 <div class="task-list-component">
-  <div *ngFor="let task of tasks">
+  <div *ngFor="let task of tasks" >
     <app-task-card [task]="task" (taskDeleted)="onTaskDeleted($event)"></app-task-card>
   </div>
+  <mat-paginator
+    (page) = "onPage($event)"
+    [pageIndex] = "index"
+    [pageSize] = "pageSize"
+    [length] = "length"
+  >
+  </mat-paginator>
 
 </div>

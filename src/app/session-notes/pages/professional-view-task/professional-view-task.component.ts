@@ -19,6 +19,6 @@ export class ProfessionalViewTaskComponent {
   @ViewChild(TaskListComponent) taskListComponent!: TaskListComponent;
 
   onTaskCreated(newTask: any): void {
-    this.taskListComponent.tasks.push(newTask);
+    this.taskListComponent.onTaskCreated(newTask);
   }
 }
