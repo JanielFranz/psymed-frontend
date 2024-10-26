@@ -1,1 +1,22 @@
-<p>clinical-edit-information works!</p>
+<div class="clinical-card">
+  <h3>Clinical History</h3>
+  <form>
+    <div class="form-group">
+      <label>Background:</label>
+      <input type="text" [(ngModel)]="clinicalHistory.background" name="background">
+    </div>
+    <div class="form-group">
+      <label>Consultation Reason:</label>
+      <input type="text" [(ngModel)]="clinicalHistory.consultationReason" name="consultationReason">
+    </div>
+    <div class="form-group">
+      <label>Symptoms:</label>
+      <textarea [(ngModel)]="clinicalHistory.symptoms" name="symptoms"></textarea>
+    </div>
+    <div class="form-group">
+      <label>Date:</label>
+      <input type="text" [(ngModel)]="clinicalHistory.date" name="date" readonly>
+    </div>
+    <button type="submit" (click)="save()">Save</button>
+  </form>
+</div>
