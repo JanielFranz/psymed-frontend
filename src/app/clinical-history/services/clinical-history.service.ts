@@ -14,13 +14,13 @@ export class ClinicalHistoryService extends BaseService<ClinicalHistory>{
 
 
   public updateClinicalHistory(clinicalHistory: ClinicalHistory) {
-    this.update(clinicalHistory.id, clinicalHistory);
+    this.update(clinicalHistory.id, clinicalHistory).subscribe(
+      response => {
+        console.log('Update successful', response);
+      },
+      error => {
+        console.error('Update failed', error);
+      }
+    );
   }
-
-  public createClinicalHistory(clinicalHistory: ClinicalHistory) {
-    this.create(clinicalHistory);
-  }
-
-
-
 }
