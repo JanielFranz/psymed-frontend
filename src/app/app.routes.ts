@@ -12,6 +12,7 @@ import {
   PatientAppointmentPageComponent
 } from "./appointment-and-administration/pages/patient-appointment-page/patient-appointment-page.component";
 import {ClinicalViewComponent} from "./clinical-history/pages/clinical-view/clinical-view.component";
+import {ClinicalEditComponent} from "./clinical-history/pages/clinical-edit/clinical-edit.component";
 import  {BiologicalFunctionsEntryComponent} from "./patientEntrys/pages/biological-functions-entry/biological-functions-entry.component";
 import {
   ProfessionalAppointmentPageComponent
@@ -32,6 +33,7 @@ export const routes: Routes = [
   { path: 'mood-state'                                              , component: MoodStatementEntryComponent },
   { path: 'patient-management/:id/patient-appointment-list'         , component: PatientAppointmentPageComponent },
   { path: 'patient-management/:id/clinical-history/:clinicalHistoryId'          , component: ClinicalViewComponent },
+  { path: 'patient-management/:id/clinical-history/:clinicalHistoryId/admin-edit'          , component: ClinicalEditComponent },
   { path: 'biological-functions'                                    , component: BiologicalFunctionsEntryComponent },
   { path: 'patient/prescription/:id', component: PatientMedicationComponent },
   { path: 'appointment-list'                                        , component: ProfessionalAppointmentPageComponent},
