@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { ClinicalHistoryService } from '../../services/clinical-history.service';
 import {ClinicalHistory} from "../../models/clinical-history.entity";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Patient} from "../../../shared/model/patient.entity";
 import {PatientService} from "../../../shared/services/patient.service";
 
@@ -20,7 +20,8 @@ export class ClinicalInformationComponent implements OnInit{
   constructor(
     private clinicalHistoryService: ClinicalHistoryService,
     private route: ActivatedRoute,
-    private patientService: PatientService
+    private patientService: PatientService,
+    private router: Router
   ) {}
 
   loadClinicalHistory() {
@@ -35,6 +36,10 @@ export class ClinicalInformationComponent implements OnInit{
     });
 
   }
+  redirectToAdminEdit() {
+    this.router.navigate([`./admin-edit`], { relativeTo: this.route });
+  }
+
   ngOnInit() {
     this.loadClinicalHistory();
   }
