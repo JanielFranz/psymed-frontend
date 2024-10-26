@@ -279,7 +279,7 @@
       "patientId": 1
     },
     {
-      "id": 0,
+      "id": "0",
       "name": "nueva medicaion",
       "description": "es",
       "startDate": "2024-10-18T05:00:00.000Z",
@@ -407,17 +407,17 @@
   "clinicalHistories": [
     {
       "id": "1",
-      "background": "a",
-      "consultationReason": "a",
-      "symptoms": "a",
-      "date": "a"
+      "background": "allll",
+      "consultationReason": "all",
+      "symptoms": "all",
+      "date": "26/10/2024"
     },
     {
       "id": "2",
       "background": "The patient has a history of depression.",
       "consultationReason": "The patient has a history of depression.",
-      "symptoms": "Occasional anxiety and trouble sleeping.",
-      "date": "2021-07-01"
+      "symptoms": "Occasional anxiety and trouble with sleeping.",
+      "date": "26/10/2024"
     },
     {
       "id": "3",
@@ -425,13 +425,6 @@
       "consultationReason": "The patient is experiencing chronic stress due to work.",
       "symptoms": "Increased irritability and fatigue.",
       "date": "2021-08-01"
-    },
-    {
-      "id": "1",
-      "background": "a",
-      "consultationReason": "a",
-      "symptoms": "s",
-      "date": "s"
     }
   ],
   "diagnostics": [
@@ -641,7 +634,7 @@
       "date": "2023-09-03T16:11:00.000Z"
     },
     {
-      "id": 4,
+      "id": "4",
       "patientId": "1",
       "sessionId": "17",
       "title": "aaa",
