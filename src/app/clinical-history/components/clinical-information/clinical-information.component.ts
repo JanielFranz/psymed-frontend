@@ -39,6 +39,9 @@ export class ClinicalInformationComponent implements OnInit{
   redirectToAdminEdit() {
     this.router.navigate([`./admin-edit`], { relativeTo: this.route });
   }
+  redirectToDiagnostic() {
+    this.router.navigate([`./diagnostic`], { relativeTo: this.route });
+  }
 
   ngOnInit() {
     this.loadClinicalHistory();

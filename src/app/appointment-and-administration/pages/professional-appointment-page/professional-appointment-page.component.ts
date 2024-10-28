@@ -120,5 +120,9 @@ export class ProfessionalAppointmentPageComponent implements OnInit, AfterViewIn
   redirectToTask(sessionId: number, id: number): void {
     this.router.navigate([`/${id}/appointment-list/${sessionId}/task`]); // Use the router for navigation
   }
+
+  redirectToNotes(sessionId: number, id: number): void {
+    this.router.navigate([`/${id}/appointment-list/${sessionId}/note`]); // Use the router for navigation
+  }
   //#endregion
 }
