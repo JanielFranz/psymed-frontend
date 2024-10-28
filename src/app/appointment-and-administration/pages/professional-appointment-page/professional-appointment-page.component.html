@@ -26,7 +26,7 @@
 
       <!-- Button to view notes related to the session -->
       <div class="notes-button">
-        <button mat-raised-button color="primary">{{"pages.appointments.data.notes" | translate}}</button> <!-- Material button styled with primary color -->
+        <button mat-raised-button color="primary" (click)="redirectToNotes(session.id, session.idPatient)" >{{"pages.appointments.data.notes" | translate}}</button> <!-- Material button styled with primary color -->
       </div>
       <div class="notes-button">
         <button mat-raised-button color="primary" (click)="redirectToTask(session.id, session.idPatient)">{{"pages.appointments.data.tasks" | translate}}</button> <!-- Material button styled with primary color -->
