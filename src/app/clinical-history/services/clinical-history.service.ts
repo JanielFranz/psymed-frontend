@@ -23,4 +23,7 @@ export class ClinicalHistoryService extends BaseService<ClinicalHistory>{
       }
     );
   }
+
+
+
 }
