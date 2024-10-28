@@ -13,6 +13,7 @@ import {
 } from "./appointment-and-administration/pages/patient-appointment-page/patient-appointment-page.component";
 import {ClinicalViewComponent} from "./clinical-history/pages/clinical-view/clinical-view.component";
 import {ClinicalEditComponent} from "./clinical-history/pages/clinical-edit/clinical-edit.component";
+import {ClinicalInformationPatientComponent} from "./clinical-history/components/clinical-information-patient/clinical-information-patient.component";
 import {ProfessionalDiagnosticViewComponent} from "./diagnostic/pages/professional-diagnostic-view/professional-diagnostic-view.component";
 import {DiagnosticEditViewComponent} from "./diagnostic/pages/diagnostic-edit-view/diagnostic-edit-view.component";
 import  {BiologicalFunctionsEntryComponent} from "./patientEntrys/pages/biological-functions-entry/biological-functions-entry.component";
@@ -36,6 +37,7 @@ export const routes: Routes = [
   { path: 'patient-management/:id/patient-appointment-list'         , component: PatientAppointmentPageComponent },
   { path: 'patient-management/:id/clinical-history/:clinicalHistoryId'          , component: ClinicalViewComponent },
   { path: 'patient-management/:id/clinical-history/:clinicalHistoryId/admin-edit'          , component: ClinicalEditComponent },
+  { path: 'patient/clinical-history'          , component: ClinicalInformationPatientComponent },
   { path: 'patient-management/:id/clinical-history/:clinicalHistoryId/diagnostic'          , component: ProfessionalDiagnosticViewComponent },
   { path: 'patient-management/:id/clinical-history/:clinicalHistoryId/diagnostic/admin-edit'          , component: DiagnosticEditViewComponent },
   { path: 'biological-functions'                                    , component: BiologicalFunctionsEntryComponent },

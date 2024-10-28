@@ -111,6 +111,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
             { path: '/mood-state', name: 'mood-state' },
             { path: '/biological-functions', name: 'biological-functions' },
             { path: `/patient/prescription/${patientId}`, name: 'prescription' },
+            { path: `/patient/clinical-history`, name: 'clinical-history' },
             { path: `/patient/profile/${patientId}`, name: 'profile' },
             { path: '/home', name:'logout' }
           ];
