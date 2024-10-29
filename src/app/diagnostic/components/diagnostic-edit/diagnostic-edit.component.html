@@ -1,21 +1,23 @@
 <div class="panel">
   <div class="diagnostic-edit-form">
     <div class="form-title-container">
-      <h3 class="form-title">Edit Diagnostic</h3>
+      <h3 class="form-title">{{ "pages.patient-management.actions.clinical-history.edit.title" | translate }}</h3>
     </div>
     <form>
       <div class="panel-card">
         <div class="sub-panel-card">
-          <label for="name">Name:</label>
+          <label for="name">{{ "pages.patient-management.actions.clinical-history.diagnostic.form.name" | translate }}:</label>
           <input class="plain-editable-text" type="text" id="name" [(ngModel)]="diagnostic.name" name="name">
         </div>
         <div class="sub-panel-card">
-          <label for="description">Description:</label>
+          <label for="description">{{ "pages.patient-management.actions.clinical-history.diagnostic.form.description" | translate }}:</label>
           <textarea class="plain-editable-text" id="description" [(ngModel)]="diagnostic.description" name="description" style="height: 6em; max-width: 32em;"></textarea>
         </div>
       </div>
       <div class="button-container">
-        <button class="update-button" type="submit" (click)="save()">Update</button>
+        <button class="update-button" type="submit" (click)="save()">
+          {{ "pages.patient-management.actions.clinical-history.diagnostic.form.update-button" | translate }}
+        </button>
       </div>
     </form>
   </div>
