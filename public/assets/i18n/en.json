@@ -7,13 +7,15 @@
     "mood-state": "Mood State",
     "biological-functions": "Biological Functions",
     "prescription": "Prescription",
+    "clinical-history": "Clinical history",
     "profile": "Profile",
     "logout": "Logout"
   },
   "pages": {
     "home": {
       "title": "Welcome to PsyMed",
-      "description": "Your mental health companion"
+      "subtitle": "Your mental health companion",
+      "description": "The app is a tool designed for mental health professionals that facilitates appointment management, data recording and tracking of their patients clinical history. With an intuitive system, it allows you to organize all relevant information in one place, improving efficiency and ensuring personalized and safe care."
     },
     "login": {
       "medic": {
@@ -70,6 +72,44 @@
             "appointment-date-required": "Appointment date is required",
             "session-time-required": "Session Time is required and must be at least 1 hour"
           }
+        },
+        "clinical-history":{
+          "main": {
+            "title": "Clinical history",
+            "form": {
+              "patient-name": "Patient Name",
+              "background": "Background",
+              "consultation-reason": "Consultation reason",
+              "symptoms": "Symptoms",
+              "created-at": "Created at",
+              "buttons": {
+                "edit": "Edit",
+                "diagnostic": "Diagnostic"
+              }
+            }
+          },
+          "diagnostic": {
+            "title": "Diagnostic information",
+            "description": "Description",
+            "form": {
+              "name": "Name",
+              "description": "Description",
+              "created-at": "Created at",
+              "updated-at": "Updated at",
+              "update-button": "Update"
+            }
+          },
+          "edit": {
+            "title": "Clinical history",
+            "description": "Description",
+            "form": {
+              "background": "Background",
+              "consultation-reason": "Consultation reason",
+              "symptoms": "Symptoms",
+              "date": "Date",
+              "save-button": "Save"
+            }
+          }
         }
       }
     },
@@ -119,6 +159,16 @@
           "date": "Date",
           "button": "DELETE"
         }
+      }
+    },
+    "clinical-history": {
+      "title": "Clinical history",
+      "description": "Description",
+      "form": {
+        "background": "Background",
+        "consultation-reason": "Consultation reason",
+        "symptoms": "Symptoms",
+        "date": "Date"
       }
     },
     "profile": {

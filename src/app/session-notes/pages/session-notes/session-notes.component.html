@@ -6,9 +6,19 @@
                    [sessionId]="sessionId"
                    [patientId]="patientId"
     />
-    <app-note-list [sessionNotes]="sessionNotes"
-                   (deleteNoteRequested)="deleteSessionNoteById($event)"
-    />
+    <div>
+
+      <app-note-list [sessionNotes]="sessionNotes"
+                     (deleteNoteRequested)="deleteSessionNoteById($event)"
+      />
+
+      <mat-paginator
+        (page) = "onPage($event)"
+        [pageIndex] = "index"
+        [pageSize] = "pageSize"
+        [length] = "length"
+      ></mat-paginator>
+    </div>
 
   </div>
 

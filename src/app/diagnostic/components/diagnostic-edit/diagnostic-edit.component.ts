@@ -4,13 +4,15 @@ import {Diagnostic} from "../../model/diagnostic.entity";
 import {DiagnosticService} from "../../services/diagnostic.service";
 import {Location} from "@angular/common";
 import {FormsModule} from "@angular/forms";
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-diagnostic-edit',
   standalone: true,
-  imports: [
-    FormsModule
-  ],
+    imports: [
+        FormsModule,
+        TranslateModule
+    ],
   templateUrl: './diagnostic-edit.component.html',
   styleUrl: './diagnostic-edit.component.css'
 })

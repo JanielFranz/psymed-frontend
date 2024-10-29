@@ -1,27 +1,27 @@
 <div class="clinical-card">
-  <h3>Clinical History</h3>
+  <h3>{{"pages.patient-management.actions.clinical-history.main.title" | translate }}</h3>
   <form>
     <div class="form-group">
-      <label>Patient Name:</label>
+      <label>{{"pages.patient-management.actions.clinical-history.main.form.patient-name" | translate }}:</label>
       <input type="text" [value]="patient.name" readonly>
     </div>
     <div class="form-group">
-      <label>Background:</label>
+      <label>{{"pages.patient-management.actions.clinical-history.main.form.background" | translate }}:</label>
       <input type="text" [value]="clinicalHistory.background" readonly>
     </div>
     <div class="form-group">
-      <label>consultation Reason:</label>
+      <label>{{"pages.patient-management.actions.clinical-history.main.form.consultation-reason" | translate }}:</label>
       <input type="text" [value]="clinicalHistory.consultationReason" readonly>
     </div>
     <div class="form-group">
-      <label>Symptoms:</label>
-      <textarea [value]="clinicalHistory.symptoms" readonly></textarea>
+      <label>{{"pages.patient-management.actions.clinical-history.main.form.symptoms" | translate }}:</label>
+      <textarea style="max-height: 5em; max-width: 30em;" [value]="clinicalHistory.symptoms" readonly></textarea>
     </div>
     <div class="form-group">
-      <label>Created at:</label>
+      <label>{{"pages.patient-management.actions.clinical-history.main.form.created-at" | translate }}:</label>
       <input type="text" [value]="clinicalHistory.date" readonly>
     </div>
-    <button type="button" (click)="redirectToAdminEdit()">Edit</button>
-    <button type="button" (click)="redirectToDiagnostic()">Diagnostic</button>
+    <button type="button" (click)="redirectToAdminEdit()">{{"pages.patient-management.actions.clinical-history.main.form.buttons.edit" | translate }}</button>
+    <button type="button" (click)="redirectToDiagnostic()">{{"pages.patient-management.actions.clinical-history.main.form.buttons.diagnostic" | translate }}</button>
   </form>
 </div>

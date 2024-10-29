@@ -48,3 +48,11 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.description-container{
+
+  margin-top: 2em;
+  width: 37.5em;
+  text-align: justify;
+
+}

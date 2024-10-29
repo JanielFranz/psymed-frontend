@@ -7,11 +7,17 @@ import { ClinicalHistoryService } from '../../services/clinical-history.service'
 import { selectPatientId } from '../../../store/auth/auth.selectors';
 import { AuthState } from '../../../store/auth/auth.state';
 import { take } from 'rxjs/operators';
+import {TranslateModule} from "@ngx-translate/core";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-clinical-information-patient',
   standalone: true,
-  imports: [],
+  imports: [
+    TranslateModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
   templateUrl: './clinical-information-patient.component.html',
   styleUrls: ['./clinical-information-patient.component.css']
 })

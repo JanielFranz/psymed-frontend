@@ -4,11 +4,14 @@ import {ClinicalHistory} from "../../models/clinical-history.entity";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Patient} from "../../../shared/model/patient.entity";
 import {PatientService} from "../../../shared/services/patient.service";
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-clinical-information',
   standalone: true,
-  imports: [],
+  imports: [
+    TranslateModule
+  ],
   templateUrl: './clinical-information.component.html',
   styleUrl: './clinical-information.component.css'
 })
