@@ -1,0 +1,84 @@
+.panel {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.diagnostic-edit-form {
+  background-color: #c2f2ed;
+  border-radius: 0.25em;
+  padding: 1.25em;
+  width: 80%;
+  max-width: 40em;
+}
+
+.form-title-container {
+  background-color: #26c4b6;
+  border-radius: 0.25em;
+  padding: 0.6em;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+.form-title {
+  color: white; /* Cambia el color del título a blanco */
+  font-size: 20px;
+  margin: 0;
+}
+
+.panel-card {
+  background-color: #26c4b6;
+  border-radius: 0.25em;
+  padding: 1em;
+  font-size: 16px;
+  color: #091133;
+}
+
+.sub-panel-card {
+  background-color: #1d9e91;
+  border-radius: 0.25em;
+  padding: 0.6em;
+  margin-bottom: 0.5em;
+  color: white;
+}
+
+.sub-panel-card label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.2em;
+}
+
+.plain-editable-text {
+  background-color: #1d9e91;
+  color: white;
+  border: none;
+  border-radius: 0.25em;
+  padding: 0.5em;
+  font-size: 16px;
+  width: 100%;
+  max-width: 32em; /* Aumenta el ancho máximo */
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1em;
+}
+
+.update-button {
+  background-color: #091133;
+  color: white;
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 0.5em;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.update-button:hover {
+  background-color: #1d9e91;
+}
