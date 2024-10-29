@@ -72,7 +72,46 @@
             "appointment-date-required": "La fecha de la cita es obligatoria",
             "session-time-required": "El tiempo de la sesión es obligatorio y debe ser de al menos 1 hora"
           }
+        },
+        "clinical-history": {
+          "main": {
+            "title": "Historia clínica",
+            "form": {
+              "patient-name": "Nombre del paciente",
+              "background": "Antecedentes",
+              "consultation-reason": "Motivo de consulta",
+              "symptoms": "Síntomas",
+              "created-at": "Creado el",
+              "buttons": {
+                "edit": "Editar",
+                "diagnostic": "Diagnóstico"
+              }
+            }
+          },
+          "diagnostic": {
+            "title": "Información diagnóstica",
+            "description": "Descripción",
+            "form": {
+              "name": "Nombre",
+              "description": "Descripción",
+              "created-at": "Creado el",
+              "updated-at": "Actualizado el",
+              "update-button": "Actualizar"
+            }
+          },
+          "edit": {
+            "title": "Historia clinica",
+            "description": "Descripción",
+            "form": {
+              "background": "Antecedentes",
+              "consultation-reason": "Motivo de consulta",
+              "symptoms": "Síntomas",
+              "date": "Fecha",
+              "save-button": "Guardar"
+            }
+          }
         }
+
       }
     },
     "appointments": {

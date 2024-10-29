@@ -1,22 +1,22 @@
 <div class="clinical-card">
-  <h3>Clinical History</h3>
+  <h3>{{"pages.patient-management.actions.clinical-history.edit.title" | translate }}</h3>
   <form>
     <div class="form-group">
-      <label>Background:</label>
+      <label>{{"pages.patient-management.actions.clinical-history.edit.form.background" | translate }}:</label>
       <input type="text" [(ngModel)]="clinicalHistory.background" name="background">
     </div>
     <div class="form-group">
-      <label>Consultation Reason:</label>
+      <label>{{"pages.patient-management.actions.clinical-history.edit.form.consultation-reason" | translate }}:</label>
       <input type="text" [(ngModel)]="clinicalHistory.consultationReason" name="consultationReason">
     </div>
     <div class="form-group">
-      <label>Symptoms:</label>
+      <label>{{"pages.patient-management.actions.clinical-history.edit.form.symptoms" | translate }}:</label>
       <textarea [(ngModel)]="clinicalHistory.symptoms" name="symptoms"></textarea>
     </div>
     <div class="form-group">
-      <label>Date:</label>
+      <label>{{"pages.patient-management.actions.clinical-history.edit.form.date" | translate }}:</label>
       <input type="text" [(ngModel)]="clinicalHistory.date" name="date" readonly>
     </div>
-    <button type="submit" (click)="save()">Save</button>
+    <button type="submit" (click)="save()">{{"pages.patient-management.actions.clinical-history.edit.form.save-button" | translate }}</button>
   </form>
 </div>
