@@ -3,13 +3,16 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Diagnostic} from "../../model/diagnostic.entity";
 import {DiagnosticService} from "../../services/diagnostic.service";
 import {TranslateModule} from "@ngx-translate/core";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 @Component({
   selector: 'app-diagnostic-form',
   standalone: true,
   imports: [
-    TranslateModule
+    TranslateModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   templateUrl: './diagnostic-form.component.html',
   styleUrl: './diagnostic-form.component.css'

@@ -1,22 +1,42 @@
-<div class="clinical-card">
-  <h3>{{"pages.patient-management.actions.clinical-history.edit.title" | translate }}</h3>
-  <form>
-    <div class="form-group">
-      <label>{{"pages.patient-management.actions.clinical-history.edit.form.background" | translate }}:</label>
-      <input type="text" [(ngModel)]="clinicalHistory.background" name="background">
-    </div>
-    <div class="form-group">
-      <label>{{"pages.patient-management.actions.clinical-history.edit.form.consultation-reason" | translate }}:</label>
-      <input type="text" [(ngModel)]="clinicalHistory.consultationReason" name="consultationReason">
-    </div>
-    <div class="form-group">
-      <label>{{"pages.patient-management.actions.clinical-history.edit.form.symptoms" | translate }}:</label>
-      <textarea [(ngModel)]="clinicalHistory.symptoms" name="symptoms"></textarea>
-    </div>
-    <div class="form-group">
-      <label>{{"pages.patient-management.actions.clinical-history.edit.form.date" | translate }}:</label>
-      <input type="text" [(ngModel)]="clinicalHistory.date" name="date" readonly>
-    </div>
-    <button type="submit" (click)="save()">{{"pages.patient-management.actions.clinical-history.edit.form.save-button" | translate }}</button>
-  </form>
+<div class="panel">
+  <div class="clinical-card">
+    <form>
+      <div style="display: flex; gap: 1em; justify-content: center; align-items: center; font-size: 16px;">
+        <h3 class="panel-card">{{"pages.patient-management.actions.clinical-history.edit.title" | translate }}</h3>
+        <div class="panel-card" style="padding: 0.6em 0.5em">
+          <label > {{"pages.patient-management.actions.clinical-history.edit.form.date" | translate }}:</label>
+          <input class="plain-editable-text" type="text" [(ngModel)]="clinicalHistory.date" name="date">
+        </div>
+      </div>
+
+      <div class="panel-card" style=" font-size: 16px;">
+        <div style="display: flex; justify-content: center; align-items: center">
+          <div class="sub-panel-card" style="display: flex; justify-content: center; margin-bottom: 0; padding: 0 2em; height: 1.8em">
+            <p>{{"pages.patient-management.actions.clinical-history.edit.description" | translate }}</p>
+          </div>
+        </div>
+
+        <div class="sub-panel-card">
+          <label >{{"pages.patient-management.actions.clinical-history.edit.form.background" | translate }}:</label>
+          <input class="plain-editable-text"  type="text" [(ngModel)]="clinicalHistory.background" name="background">
+        </div>
+        <div class="sub-panel-card">
+          <label  >{{"pages.patient-management.actions.clinical-history.edit.form.consultation-reason" | translate }}:</label>
+          <input class="plain-editable-text" type="text" [(ngModel)]="clinicalHistory.consultationReason" name="consultationReason">
+        </div>
+        <div class="sub-panel-card" >
+          <label>{{"pages.patient-management.actions.clinical-history.edit.form.symptoms" | translate }}:</label>
+          <textarea class="plain-editable-text" style="height: 1em" [(ngModel)]="clinicalHistory.symptoms" name="symptoms"></textarea>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: center; align-items: center">
+        <div style="background-color: #091133; padding: 0.3em 1em; border-radius: 0.5em; cursor: pointer">
+          <button class="plain-editable-text" type="submit" (click)="save()">{{"pages.patient-management.actions.clinical-history.edit.form.save-button" | translate }}</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
 </div>

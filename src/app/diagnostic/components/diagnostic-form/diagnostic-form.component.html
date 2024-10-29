@@ -1,22 +1,39 @@
-<div class="diagnostic-card">
-  <h3>{{"pages.patient-management.actions.clinical-history.diagnostic.title" | translate }}</h3>
-  <form>
-    <div class="form-group">
-      <label>{{"pages.patient-management.actions.clinical-history.diagnostic.form.name" | translate }}:</label>
-      <input type="text" [value]="diagnostic.name" readonly>
-    </div>
-    <div class="form-group">
-      <label>{{"pages.patient-management.actions.clinical-history.diagnostic.form.description" | translate }}:</label>
-      <textarea [value]="diagnostic.description" readonly></textarea>
-    </div>
-    <div class="form-group">
-      <label>{{"pages.patient-management.actions.clinical-history.diagnostic.form.created-at" | translate }}:</label>
-      <input type="text" [value]="diagnostic.createdAt" readonly>
-    </div>
-    <div class="form-group">
-      <label>{{"pages.patient-management.actions.clinical-history.diagnostic.form.updated-at" | translate }}:</label>
-      <input type="text" [value]="diagnostic.updatedAt" readonly>
-    </div>
-    <button type="button" (click)="redirectToAdminEdit()">{{"pages.patient-management.actions.clinical-history.diagnostic.form.update-button" | translate }}</button>
-  </form>
+<div class="panel">
+  <div class="diagnostic-card">
+    <form>
+      <div style="display: flex; gap: 1em; justify-content: center; align-items: center; font-size: 16px;">
+        <h3 class="panel-card">{{"pages.patient-management.actions.clinical-history.diagnostic.title" | translate }}</h3>
+        <div class="panel-card" style="padding: 0.6em 0.5em">
+          <label> {{"pages.patient-management.actions.clinical-history.diagnostic.form.created-at" | translate }}:</label>
+          <input class="plain-editable-text" type="text" [(ngModel)]="diagnostic.createdAt" name="createdat" readonly>
+        </div>
+      </div>
+      <div class="panel-card" style=" font-size: 16px;">
+        <div style="display: flex; justify-content: center; align-items: center">
+          <div class="sub-panel-card" style="display: flex; justify-content: center; margin-bottom: 0; padding: 0 2em; height: 1.8em">
+            <p>{{"pages.patient-management.actions.clinical-history.diagnostic.description" | translate }}</p>
+          </div>
+        </div>
+        <div class="sub-panel-card">
+          <label >{{"pages.patient-management.actions.clinical-history.diagnostic.form.name" | translate }}:</label>
+          <input class="plain-editable-text"  type="text" [(ngModel)]="diagnostic.name" name="name" readonly>
+        </div>
+        <div class="sub-panel-card">
+          <label  >{{"pages.patient-management.actions.clinical-history.diagnostic.form.description" | translate }}:</label>
+          <input class="plain-editable-text" type="text" [(ngModel)]="diagnostic.description" name="description" readonly>
+        </div>
+        <div class="sub-panel-card" >
+          <label>{{"pages.patient-management.actions.clinical-history.diagnostic.form.updated-at" | translate }}:</label>
+          <textarea class="plain-editable-text" style="height: 1em" [(ngModel)]="diagnostic.updatedAt" name="updatedat" readonly></textarea>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: center; align-items: center">
+        <div style="background-color: #091133; padding: 0.3em 1em; border-radius: 0.5em; cursor: pointer">
+          <button class="plain-editable-text" type="submit" (click)="redirectToAdminEdit()">{{"pages.patient-management.actions.clinical-history.diagnostic.form.update-button" | translate }}</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
 </div>
