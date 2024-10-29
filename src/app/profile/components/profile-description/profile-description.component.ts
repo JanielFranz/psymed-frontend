@@ -109,21 +109,24 @@ export class ProfileDescriptionComponent implements OnInit, OnDestroy {
    * Fetch patient data based on the URL.
    */
   fetchPatientData(): void {
-    this.patientService.getAll().pipe(takeUntil(this.destroy$)).subscribe({
-      next: (patients: Patient[]) => {
-        if (patients.length > 0) {
-          this.patient = patients[0]; // Assign the first patient
-        } else {
-          console.error('No patients found.');
+    const patientId = this.route.snapshot.paramMap.get('id');
+    if (patientId) {
+      this.patientService.getById(Number(patientId)).pipe(takeUntil(this.destroy$)).subscribe({
+        next: (patient: Patient) => {
+          this.patient = patient
+          this.isLoading = false;
+        },
+        error: (error) => {
+          console.error('Error fetching patient data:', error);
+          this.isLoading = false;
         }
-        this.isLoading = false; // Stop loader
-      },
-      error: (error) => {
-        console.error('Error fetching patient data:', error);
-        this.isLoading = false; // Stop loader on error
-      }
-    });
+      });
+    } else {
+      console.error('Patient ID not found in URL.');
+      this.isLoading = false;
+    }
   }
+
 
   /**
    * ngOnDestroy lifecycle hook to clean up subscriptions.
