@@ -1,21 +1,34 @@
-<div class="clinical-card">
-  <h3>Clinical History</h3>
-  <form>
-    <div class="form-group">
-      <label>Background:</label>
-      <input type="text" [value]="clinicalHistory.background" readonly>
-    </div>
-    <div class="form-group">
-      <label>Consultation Reason:</label>
-      <input type="text" [value]="clinicalHistory.consultationReason" readonly>
-    </div>
-    <div class="form-group">
-      <label>Symptoms:</label>
-      <textarea style="max-height: 5em; max-width: 30em;" [value]="clinicalHistory.symptoms" readonly></textarea>
-    </div>
-    <div class="form-group">
-      <label>Date:</label>
-      <input type="text" [value]="clinicalHistory.date" readonly>
-    </div>
-  </form>
+<div class="panel">
+  <div class="clinical-information-card">
+    <form>
+      <div style="display: flex; gap: 1em; justify-content: center; align-items: center; font-size: 16px;">
+        <h3 class="panel-card">{{"pages.clinical-history.title" | translate }}</h3>
+        <div class="panel-card" style="padding: 0.6em 0.5em">
+          <label> {{"pages.clinical-history.form.date" | translate }}:</label>
+          <input class="plain-editable-text" type="text" [(ngModel)]="clinicalHistory.date" name="date" readonly>
+        </div>
+      </div>
+      <div class="panel-card" style=" font-size: 16px;">
+        <div style="display: flex; justify-content: center; align-items: center">
+          <div class="sub-panel-card" style="display: flex; justify-content: center; margin-bottom: 0; padding: 0 2em; height: 1.8em">
+            <p>{{"pages.clinical-history.description" | translate }}</p>
+          </div>
+        </div>
+
+        <div class="sub-panel-card">
+          <label >{{"pages.clinical-history.form.background" | translate }}:</label>
+          <input class="plain-editable-text"  type="text" [(ngModel)]="clinicalHistory.background" name="background" readonly>
+        </div>
+        <div class="sub-panel-card">
+          <label  >{{"pages.clinical-history.form.consultation-reason" | translate }}:</label>
+          <input class="plain-editable-text" type="text" [(ngModel)]="clinicalHistory.consultationReason" name="consultationReason" readonly>
+        </div>
+        <div class="sub-panel-card" >
+          <label>{{"pages.clinical-history.form.symptoms" | translate }}:</label>
+          <textarea class="plain-editable-text" style="height: 1em; max-height: 5em; max-width: 30em;" [(ngModel)]="clinicalHistory.symptoms" name="symptoms" readonly></textarea>
+        </div>
+      </div>
+
+    </form>
+  </div>
 </div>

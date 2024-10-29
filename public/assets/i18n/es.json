@@ -162,6 +162,17 @@
         }
       }
     },
+    "clinical-history": {
+      "title": "Historia clínica",
+      "description": "Descripción",
+      "form": {
+        "background": "Antecedentes",
+        "consultation-reason": "Motivo de consulta",
+        "symptoms": "Síntomas",
+        "date": "Fecha"
+      }
+    },
+
     "profile": {
       "title": "Información personal",
       "dni": "DNI",

@@ -161,6 +161,16 @@
         }
       }
     },
+    "clinical-history": {
+      "title": "Clinical history",
+      "description": "Description",
+      "form": {
+        "background": "Background",
+        "consultation-reason": "Consultation reason",
+        "symptoms": "Symptoms",
+        "date": "Date"
+      }
+    },
     "profile": {
       "title": "Personal information",
       "dni": "DNI",

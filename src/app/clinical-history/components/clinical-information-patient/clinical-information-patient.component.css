@@ -1,0 +1,43 @@
+.panel{
+
+  height: 80vh;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+
+}
+
+.clinical-information-card{
+  background-color: #c2f2ed;
+  border-radius: 0.25em;
+  padding: 1.25em;
+}
+
+.panel-card{
+
+  background-color: #26c4b6;
+  border-radius: 0.25em;
+  padding: 0.25em;
+  margin-bottom: 1em;
+  font-size: 24px;
+
+}
+
+.sub-panel-card {
+
+  background-color: #1d9e91;
+  border-radius: 0.25em;
+  padding: 0.4em;
+  margin: 0.5em;
+}
+.plain-editable-text{
+
+  background-color: transparent;
+  border-color: transparent;
+  color: white;
+}
+
