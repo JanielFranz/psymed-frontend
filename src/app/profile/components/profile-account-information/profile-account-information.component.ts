@@ -52,7 +52,6 @@ export class ProfileAccountInformationComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router
   ) {}
-
   ngOnInit(): void {
     // Fetch role from the store
     this.store.select(selectRolId).pipe(takeUntil(this.destroy$)).subscribe({
@@ -68,38 +67,29 @@ export class ProfileAccountInformationComponent implements OnInit, OnDestroy {
       }
     });
 
-    // Check the URL to determine if it's a professional or patient profile
-    const currentUrl = this.router.url;
-    if (currentUrl.includes('professional/profile')) {
-      this.isProfessional = true;
-      this.loadProfessionalData(); // Load professional data
-    } else if (currentUrl.includes('patient/profile')) {
-      this.isPatient = true;
-      this.loadPatientData(); // Load patient data
-    } else {
-      console.error('Invalid URL - Unable to determine if professional or patient');
-    }
-  }
-
-  loadProfessionalData(): void {
-    this.accountService.getAccountsByRole(1).subscribe({
-      next: (accounts: Account[]) => {
-        if (accounts.length > 0) {
-          this.loadAccount(accounts[0].id); // Load the first professional account
+    // Get the id parameter from the route
+    this.route.paramMap.pipe(takeUntil(this.destroy$)).subscribe(params => {
+      const id = params.get('id');
+      if (id) {
+        if (this.router.url.includes('professional/profile')) {
+          this.isProfessional = true;
+          this.loadProfessionalData(Number(id)); // Load specific professional data
+        } else if (this.router.url.includes('patient/profile')) {
+          this.isPatient = true;
+          this.loadPatientData(Number(id)); // Load specific patient data
+        } else {
+          console.error('Invalid URL - Unable to determine if professional or patient');
         }
-      },
-      error: (error) => {
-        console.error('Error fetching professional accounts:', error);
+      } else {
+        console.error('No id parameter found in URL');
       }
     });
+  }
 
-    this.professionalService.getAll().subscribe({
-      next: (professionals: ProfessionalEntity[]) => {
-        if (professionals.length > 0) {
-          this.professional = professionals[0]; // Select the first professional
-        } else {
-          console.error('No professionals found.');
-        }
+  loadProfessionalData(professionalId: number): void {
+    this.professionalService.getById(professionalId).subscribe({
+      next: (professional: ProfessionalEntity) => {
+        this.professional = professional;
       },
       error: (error) => {
         console.error('Error fetching professional data:', error);
@@ -107,31 +97,17 @@ export class ProfileAccountInformationComponent implements OnInit, OnDestroy {
     });
   }
 
-  loadPatientData(): void {
-    this.accountService.getAccountsByRole(2).subscribe({
-      next: (accounts: Account[]) => {
-        if (accounts.length > 0) {
-          this.loadAccount(accounts[0].id); // Load the first patient account
-        }
-      },
-      error: (error) => {
-        console.error('Error fetching patient accounts:', error);
-      }
-    });
-
-    this.patientService.getAll().subscribe({
-      next: (patients: Patient[]) => {
-        if (patients.length > 0) {
-          this.patient = patients[0]; // Select the first patient
-        } else {
-          console.error('No patients found.');
-        }
+  loadPatientData(patientId: number): void {
+    this.patientService.getById(patientId).subscribe({
+      next: (patient: Patient) => {
+        this.patient = patient;
       },
       error: (error) => {
         console.error('Error fetching patient data:', error);
       }
     });
   }
+
 
   loadAccount(accountId: number): void {
     this.accountService.getAccountById(accountId).subscribe({
