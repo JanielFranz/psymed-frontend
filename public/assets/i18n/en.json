@@ -7,13 +7,15 @@
     "mood-state": "Mood State",
     "biological-functions": "Biological Functions",
     "prescription": "Prescription",
+    "clinical-history": "Clinical history",
     "profile": "Profile",
     "logout": "Logout"
   },
   "pages": {
     "home": {
       "title": "Welcome to PsyMed",
-      "description": "Your mental health companion"
+      "subtitle": "Your mental health companion",
+      "description": "The app is a tool designed for mental health professionals that facilitates appointment management, data recording and tracking of their patients clinical history. With an intuitive system, it allows you to organize all relevant information in one place, improving efficiency and ensuring personalized and safe care."
     },
     "login": {
       "medic": {
