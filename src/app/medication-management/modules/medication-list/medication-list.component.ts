@@ -10,6 +10,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { Store } from "@ngrx/store";
 import { selectPatientId, selectRolId } from "../../../store/auth/auth.selectors";
 import {FormsModule} from "@angular/forms";
+import {MedicationEditModalComponent} from "../medication-edit-modal/medication-edit-modal.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-medication-list',
@@ -26,7 +28,8 @@ export class MedicationListComponent implements OnInit {
   constructor(
     private medicationService: MedicationService,
     private route: ActivatedRoute,
-    private store: Store
+    private store: Store,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -51,4 +54,22 @@ export class MedicationListComponent implements OnInit {
   toggleStatus(medication: Medication): void {
     this.medicationService.changeStatusByMedicationId(medication.id);
   }
+
+  openEditModal(medication: Medication): void {
+    const dialogRef = this.dialog.open(MedicationEditModalComponent, {
+      width: '400px',
+      data: medication
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Update the medication list if needed
+        const index = this.medications.findIndex(m => m.id === result.id);
+        if (index !== -1) {
+          this.medications[index] = result;
+        }
+      }
+    });
+  }
+
 }
