@@ -1,11 +1,19 @@
 import {Component, Inject} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {MedicationService} from "../../services/medication.service";
-import {MAT_DIALOG_DATA, MatDialogContent, MatDialogRef} from "@angular/material/dialog";
+import {
+  MAT_DIALOG_DATA,
+  MatDialogActions,
+  MatDialogContent,
+  MatDialogRef,
+  MatDialogTitle
+} from "@angular/material/dialog";
 import {Medication} from "../../models/medication.entity";
 import {MatError, MatFormField, MatLabel} from "@angular/material/form-field";
 import {NgIf} from "@angular/common";
 import {TranslateModule} from "@ngx-translate/core";
+import {MatInput} from "@angular/material/input";
+import {MatButton} from "@angular/material/button";
 
 @Component({
   selector: 'app-medication-edit-modal',
@@ -17,7 +25,11 @@ import {TranslateModule} from "@ngx-translate/core";
     NgIf,
     TranslateModule,
     MatLabel,
-    MatError
+    MatError,
+    MatInput,
+    MatDialogActions,
+    MatButton,
+    MatDialogTitle
   ],
   templateUrl: './medication-edit-modal.component.html',
   styleUrl: './medication-edit-modal.component.css'

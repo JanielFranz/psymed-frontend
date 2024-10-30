@@ -12,11 +12,12 @@ import { selectPatientId, selectRolId } from "../../../store/auth/auth.selectors
 import {FormsModule} from "@angular/forms";
 import {MedicationEditModalComponent} from "../medication-edit-modal/medication-edit-modal.component";
 import {MatDialog} from "@angular/material/dialog";
+import {MatButton} from "@angular/material/button";
 
 @Component({
   selector: 'app-medication-list',
   standalone: true,
-  imports: [CommonModule, MatCardModule, TranslateModule, MatIcon, MatSlideToggleModule, FormsModule],
+  imports: [CommonModule, MatCardModule, TranslateModule, MatIcon, MatSlideToggleModule, FormsModule, MatButton],
   templateUrl: './medication-list.component.html',
   styleUrls: ['./medication-list.component.css']
 })
