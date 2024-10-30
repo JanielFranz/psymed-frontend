@@ -12,6 +12,7 @@
       <p *ngIf="role === '1'">
         <mat-icon *ngIf="medication.status === 0">close</mat-icon>
         <mat-icon *ngIf="medication.status === 1">check</mat-icon>
+        <button mat-button (click)="openEditModal(medication)">{{ 'Update' | translate }}</button>
       </p>
       <p *ngIf="role === '2'">
         <mat-slide-toggle [(ngModel)]="medication.status" (change)="toggleStatus(medication)">

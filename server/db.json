@@ -240,7 +240,7 @@
   "medications": [
     {
       "id": "1",
-      "name": "Paracetamol",
+      "name": "Paracetamoll",
       "description": "Paracetamol, also known as acetaminophen, is a medication used to treat pain and fever. It is typically used for mild to moderate pain relief.",
       "startDate": "2021-06-01T00:00:00.000Z",
       "endDate": "2021-06-30T00:00:00.000Z",
