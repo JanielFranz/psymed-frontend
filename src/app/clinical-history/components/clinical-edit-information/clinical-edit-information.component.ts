@@ -4,12 +4,14 @@ import {ClinicalHistory} from "../../models/clinical-history.entity";
 import {ActivatedRoute} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {Location} from "@angular/common";
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-clinical-edit-information',
   standalone: true,
   imports: [
-    FormsModule
+    FormsModule,
+    TranslateModule
   ],
   templateUrl: './clinical-edit-information.component.html',
   styleUrl: './clinical-edit-information.component.css'
