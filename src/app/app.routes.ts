@@ -8,9 +8,7 @@ import {LoginComponent} from "./public/pages/login/login.component";
 import {MedicationManagementComponent} from "./medication-management/pages/medication-management/medication-management.component";
 import {PatientManagementComponent} from "./user-mamagement/pages/patient-management/patient-management.component";
 import {MoodStatementEntryComponent} from "./patientEntrys/pages/mood-statement-entry/mood-statement-entry.component";
-import {
-  PatientAppointmentPageComponent
-} from "./appointment-and-administration/pages/patient-appointment-page/patient-appointment-page.component";
+import {PatientAppointmentPageComponent} from "./appointment-and-administration/pages/patient-appointment-page/patient-appointment-page.component";
 import {ClinicalViewComponent} from "./clinical-history/pages/clinical-view/clinical-view.component";
 import {ClinicalEditComponent} from "./clinical-history/pages/clinical-edit/clinical-edit.component";
 import {ClinicalInformationPatientComponent} from "./clinical-history/components/clinical-information-patient/clinical-information-patient.component";
@@ -26,6 +24,7 @@ import {PatientMedicationComponent} from "./medication-management/pages/patient-
 import {EditProfileComponent} from "./profile/pages/edit-profile/edit-profile.component";
 import {AccountProfileComponent} from "./profile/pages/account-profile/account-profile.component";
 
+
 export const routes: Routes = [
   { path: ''                                                        , redirectTo: 'home', pathMatch: 'full' },  // Default route that redirects to HomeComponent
   { path: 'home'                                                    , component: HomeComponent },
@@ -35,6 +34,7 @@ export const routes: Routes = [
   { path: 'patient-management/:id/medication-management'     , component: MedicationManagementComponent }, // we use the :patientId to pass the patient ID as a parameter
   { path: 'mood-state'                                              , component: MoodStatementEntryComponent },
   { path: 'patient-management/:id/patient-appointment-list'         , component: PatientAppointmentPageComponent },
+  { path: 'patient/patient-appointment-list'         , component: PatientAppointmentPageComponent },
   { path: 'patient-management/:id/clinical-history/:clinicalHistoryId'          , component: ClinicalViewComponent },
   { path: 'patient-management/:id/clinical-history/:clinicalHistoryId/admin-edit'          , component: ClinicalEditComponent },
   { path: 'patient/clinical-history'          , component: ClinicalInformationPatientComponent },
