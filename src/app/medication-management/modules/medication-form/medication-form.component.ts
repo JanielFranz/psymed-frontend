@@ -69,7 +69,8 @@ export class MedicationFormComponent implements OnInit {
         endDate: formValues.endDate,
         interval: formValues.interval,
         quantity: formValues.quantity,
-        patientId: this.patientId
+        patientId: this.patientId,
+        status : 0
       });
 
       this.medicationService.createMedication(newMedication, this.patientId).subscribe({
