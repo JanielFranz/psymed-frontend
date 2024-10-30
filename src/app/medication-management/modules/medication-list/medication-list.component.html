@@ -9,7 +9,15 @@
       <p>{{"pages.prescription.start-date" | translate}} Date: {{ medication.startDate | date }}</p>
       <p>{{"pages.prescription.end-date" | translate}}: {{ medication.endDate | date }}</p>
       <p>{{"pages.prescription.interval" | translate}}: {{ medication.interval }}</p>
+      <p *ngIf="role === '1'">
+        <mat-icon *ngIf="medication.status === 0">close</mat-icon>
+        <mat-icon *ngIf="medication.status === 1">check</mat-icon>
+      </p>
+      <p *ngIf="role === '2'">
+        <mat-slide-toggle [(ngModel)]="medication.status" (change)="toggleStatus(medication)">
+          {{ "pages.appointments.tasks.data.toggle-status" | translate }}
+        </mat-slide-toggle>
+      </p>
     </mat-card-content>
   </mat-card>
 </div>
-
