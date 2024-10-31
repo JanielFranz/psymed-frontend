@@ -23,6 +23,8 @@ import  {ProfessionalViewTaskComponent} from "./session-notes/pages/professional
 import {PatientMedicationComponent} from "./medication-management/pages/patient-medication/patient-medication.component";
 import {EditProfileComponent} from "./profile/pages/edit-profile/edit-profile.component";
 import {AccountProfileComponent} from "./profile/pages/account-profile/account-profile.component";
+import {PatientsAppointmentPageComponent} from "./appointment-and-administration/pages/patients-appointment-page/patients-appointment-page.component";
+import {PatientViewTaskComponent} from "./session-notes/pages/patient-view-task/patient-view-task.component";
 
 
 export const routes: Routes = [
@@ -45,6 +47,8 @@ export const routes: Routes = [
   { path: 'appointment-list'                                        , component: ProfessionalAppointmentPageComponent},
   { path: 'patient-management/:id/patient-appointment-list/:appointmentId/notes'         , component: SessionNotesComponent },
   { path: 'patient-management/:id/patient-appointment-list/:appointmentId/task'         , component: ProfessionalViewTaskComponent },
+  { path: 'patient/appointment-list'         , component: PatientsAppointmentPageComponent },
+  { path: 'patient/appointment-list/tasks/:appointmentId'         , component: PatientViewTaskComponent },
   { path: ':id/appointment-list/:appointmentId/task'  , component: ProfessionalViewTaskComponent },
   { path: ':id/appointment-list/:appointmentId/note'  , component: SessionNotesComponent },
   { path: 'patient/profile/:id'                                            , component: AccountProfileComponent },
