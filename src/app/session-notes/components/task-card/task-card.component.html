@@ -8,16 +8,17 @@
     <div *ngIf="(role$ | async) === '1'">
       <mat-icon *ngIf="this.task.status === 0" alt="Status 0 Image">check_circle_outlined</mat-icon>
       <mat-icon *ngIf="this.task.status === 1" alt="Status 1 Image">check_circle</mat-icon>
+      <mat-card-actions>
+        <button mat-button (click)="deleteThisCard(this.task.id)">{{ "pages.appointments.tasks.data.delete-button" | translate }}</button>
+        <button mat-button (click)="openEditModal(this.task)">{{ "Edit Task" | translate }}</button>
+      </mat-card-actions>
     </div>
     <div *ngIf="(role$ | async) === '2'">
-      <label>
-        <input type="checkbox" [(ngModel)]="this.task.status" />
+      <mat-slide-toggle [(ngModel)]="task.status" (change)="toggleStatus()">
         {{ "pages.appointments.tasks.data.toggle-status" | translate }}
-      </label>
+      </mat-slide-toggle>
     </div>
-    <mat-card-actions>
-      <button mat-button (click)="deleteThisCard(this.task.id)">{{ "pages.appointments.tasks.data.delete-button" | translate }}</button>
-    </mat-card-actions>
+
   </div>
 
 </div>
