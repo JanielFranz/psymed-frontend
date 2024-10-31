@@ -10,6 +10,9 @@ import {TranslateModule} from "@ngx-translate/core";
 import {MatCardActions} from "@angular/material/card";
 import {MatButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
+import {MatSlideToggle, MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {MatDialog} from "@angular/material/dialog";
+import {TaskEditModalComponent} from "../task-edit-modal/task-edit-modal.component";
 
 @Component({
   selector: 'app-task-card',
@@ -21,7 +24,9 @@ import {MatIcon} from "@angular/material/icon";
     TranslateModule,
     MatCardActions,
     MatButton,
-    MatIcon
+    MatIcon,
+    MatSlideToggle,
+    MatSlideToggleModule
   ],
   templateUrl: './task-card.component.html',
   styleUrl: './task-card.component.css'
@@ -32,7 +37,8 @@ export class TaskCardComponent implements OnInit {
   role$!: Observable<string | null>;
 
   constructor(private store: Store,
-    private taskService: TaskService
+    private taskService: TaskService, private dialog: MatDialog
+
   ) {
   }
 
@@ -50,10 +56,29 @@ export class TaskCardComponent implements OnInit {
 
   }
 
+  toggleStatus(): void {
+    this.taskService.changeTaskStatusById(this.task.id)
+  }
+
   ngOnInit() {
     this.role$ = this.store.select(selectRolId);
     this.role$.subscribe(role => {
       console.log("el rol de task card es " + role);
     });
   }
+
+  openEditModal(task: Task): void {
+    const dialogRef = this.dialog.open(TaskEditModalComponent, {
+      width: '400px',
+      data: task
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Update the task if needed
+        Object.assign(this.task, result);
+      }
+    });
+  }
+
 }

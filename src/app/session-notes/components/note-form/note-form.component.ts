@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
+import {FormControl, FormGroup, Validators, ReactiveFormsModule} from "@angular/forms";
 import {NoteService} from "../../services/note.service";
 import {SessionNote} from "../../model/session-note.entity";
 import {TranslateModule} from "@ngx-translate/core";
@@ -29,8 +29,8 @@ export class NoteFormComponent {
   @Output() noteAdded = new EventEmitter<SessionNote>();
 
   noteForm = new FormGroup({
-    title: new FormControl(''),
-    description: new FormControl(''),
+    title: new FormControl('', Validators.required),
+    description: new FormControl('', Validators.required),
   })
 
   constructor(private noteService: NoteService) {}
@@ -62,9 +62,12 @@ export class NoteFormComponent {
   //#region Event Handler
 
   onSubmit() {
-    this.createNote();
+    if (this.noteForm.valid) {
+      this.createNote();
+    } else {
+      console.error('Form is invalid');
+    }
   }
-
 
   //#endregion
 }

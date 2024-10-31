@@ -27,4 +27,27 @@ export class MedicationService extends BaseService<Medication>{
       .pipe(retry(2), catchError(this.handleError));
   }
 
+  public changeStatusByMedicationId(medicationId: number): void {
+    this.getById(medicationId).subscribe({
+      next: (medication: Medication) => {
+        if (!medication) {
+          console.error(`Medication with ID ${medicationId} not found.`);
+          return;
+        }
+        medication.status = medication.status === 0 ? 1 : 0;
+        this.update(medication.id, medication).subscribe({
+          next: (updatedMedication: Medication) => {
+            console.log(`Medication status updated successfully:`, updatedMedication);
+          },
+          error: (error) => {
+            console.error(`Error updating medication status:`, error);
+          }
+        });
+      },
+      error: (error) => {
+        console.error(`Error fetching medication:`, error);
+      }
+    });
+  }
+
 }

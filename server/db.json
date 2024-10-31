@@ -165,7 +165,7 @@
     {
       "id": "22",
       "idProfessional": 1,
-      "idPatient": 0,
+      "idPatient": 2,
       "idNote": 1,
       "appointmentDate": "+111111-01-01T16:01:00.000Z",
       "sessionTime": 1,
@@ -180,7 +180,7 @@
     {
       "id": "23",
       "idProfessional": 1,
-      "idPatient": 0,
+      "idPatient": 2,
       "idNote": 1,
       "appointmentDate": "0111-01-01T16:19:12.000Z",
       "sessionTime": 1,
@@ -195,7 +195,7 @@
     {
       "id": "24",
       "idProfessional": 1,
-      "idPatient": 0,
+      "idPatient": 2,
       "idNote": 1,
       "appointmentDate": "0111-01-01T16:19:12.000Z",
       "sessionTime": 1,
@@ -240,12 +240,13 @@
   "medications": [
     {
       "id": "1",
-      "name": "Paracetamol",
+      "name": "Paracetamoll",
       "description": "Paracetamol, also known as acetaminophen, is a medication used to treat pain and fever. It is typically used for mild to moderate pain relief.",
       "startDate": "2021-06-01T00:00:00.000Z",
       "endDate": "2021-06-30T00:00:00.000Z",
       "interval": "Take every 8 hours",
       "quantity": 30,
+      "status": 1,
       "patientId": 1
     },
     {
@@ -256,6 +257,7 @@
       "endDate": "2021-07-31T00:00:00.000Z",
       "interval": "Take every 6 hours",
       "quantity": 20,
+      "status": 0,
       "patientId": 2
     },
     {
@@ -266,6 +268,7 @@
       "endDate": "2021-08-31T00:00:00.000Z",
       "interval": "Take every 8 hours",
       "quantity": 30,
+      "status": 0,
       "patientId": 3
     },
     {
@@ -276,17 +279,8 @@
       "endDate": "2021-09-30T00:00:00.000Z",
       "interval": "Take once daily",
       "quantity": 30,
+      "status": 0,
       "patientId": 1
-    },
-    {
-      "id": "0",
-      "name": "nueva medicaion",
-      "description": "es",
-      "startDate": "2024-10-18T05:00:00.000Z",
-      "endDate": "2024-10-26T05:00:00.000Z",
-      "interval": "15",
-      "quantity": 3,
-      "patientId": 0
     }
   ],
   "prescriptions": [
@@ -434,7 +428,7 @@
       "description": "Anxiety is your body's natural response to stress. It's a feeling of fear or apprehension about what's to come. The first day of school, going to a job interview, or giving a speech may cause most people to feel fearful and nervous.",
       "idClinicalHistory": 1,
       "createdAt": "2021-06-01",
-      "updatedAt": "2021-06-01"
+      "updatedAt": "30/10/2024"
     },
     {
       "id": "2",
@@ -559,7 +553,7 @@
       "id": "1",
       "idPatient": 1,
       "idSession": 17,
-      "title": "Task 1",
+      "title": "Task tes",
       "description": "This is a task description",
       "status": 0,
       "createdAt": "2021-06-01",
@@ -571,7 +565,7 @@
       "idSession": 17,
       "title": "Task 2",
       "description": "This is a task description",
-      "status": 1,
+      "status": 0,
       "createdAt": "2021-06-01",
       "updatedAt": "2021-06-01"
     },

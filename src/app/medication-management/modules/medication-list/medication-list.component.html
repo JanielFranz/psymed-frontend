@@ -9,6 +9,18 @@
       <p>{{"pages.prescription.start-date" | translate}} Date: {{ medication.startDate | date }}</p>
       <p>{{"pages.prescription.end-date" | translate}}: {{ medication.endDate | date }}</p>
       <p>{{"pages.prescription.interval" | translate}}: {{ medication.interval }}</p>
+      <div *ngIf="role === '1'" style="display: flex; gap: 1em;">
+        <mat-icon *ngIf="medication.status === 0">close</mat-icon>
+        <mat-icon *ngIf="medication.status === 1">check</mat-icon>
+        <button mat-button (click)="openEditModal(medication)">{{ 'Update' | translate }}</button>
+      </div>
+
+      <div *ngIf="role === '2'">
+        <mat-slide-toggle [(ngModel)]="medication.status" (change)="toggleStatus(medication)">
+          {{ "pages.appointments.tasks.data.toggle-status" | translate }}
+        </mat-slide-toggle>
+
+      </div>
     </mat-card-content>
   </mat-card>
 </div>
