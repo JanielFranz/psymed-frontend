@@ -165,7 +165,7 @@
     {
       "id": "22",
       "idProfessional": 1,
-      "idPatient": 0,
+      "idPatient": 2,
       "idNote": 1,
       "appointmentDate": "+111111-01-01T16:01:00.000Z",
       "sessionTime": 1,
@@ -180,7 +180,7 @@
     {
       "id": "23",
       "idProfessional": 1,
-      "idPatient": 0,
+      "idPatient": 2,
       "idNote": 1,
       "appointmentDate": "0111-01-01T16:19:12.000Z",
       "sessionTime": 1,
@@ -195,7 +195,7 @@
     {
       "id": "24",
       "idProfessional": 1,
-      "idPatient": 0,
+      "idPatient": 2,
       "idNote": 1,
       "appointmentDate": "0111-01-01T16:19:12.000Z",
       "sessionTime": 1,
@@ -428,7 +428,7 @@
       "description": "Anxiety is your body's natural response to stress. It's a feeling of fear or apprehension about what's to come. The first day of school, going to a job interview, or giving a speech may cause most people to feel fearful and nervous.",
       "idClinicalHistory": 1,
       "createdAt": "2021-06-01",
-      "updatedAt": "2021-06-01"
+      "updatedAt": "30/10/2024"
     },
     {
       "id": "2",
@@ -553,7 +553,7 @@
       "id": "1",
       "idPatient": 1,
       "idSession": 17,
-      "title": "Task 1",
+      "title": "Task tes",
       "description": "This is a task description",
       "status": 0,
       "createdAt": "2021-06-01",
@@ -565,7 +565,7 @@
       "idSession": 17,
       "title": "Task 2",
       "description": "This is a task description",
-      "status": 1,
+      "status": 0,
       "createdAt": "2021-06-01",
       "updatedAt": "2021-06-01"
     },

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from "../../shared/services/base.service";
 import {Session} from "../model/sesion.entity";
+import {catchError, Observable, retry} from "rxjs";
 
 /**
  * SessionService to manage API calls related to session entities.
@@ -22,6 +23,13 @@ export class SessionService extends BaseService<Session> {
     super();
     // Set the endpoint for session-related API requests
     this.resourceEndpoint = '/sessions';
+  }
+
+
+  public getSessionsByPatientID(patientID: number): Observable<Session[]>{
+    const url = `${this.resourcePath()}?idPatient=${patientID}`;
+    return this.http.get<Session[]>(url, this.httpOptions)
+      .pipe(retry(2), catchError(this.handleError));
   }
 
   //#endregion
