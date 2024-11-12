@@ -1,29 +1,31 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Task} from "../../model/task.entity";
+import { Task } from "../../model/task.entity";
 import { TaskService } from "../../services/task.service";
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {ActivatedRoute} from "@angular/router";
-import {NgIf} from "@angular/common";
+import { ActivatedRoute } from "@angular/router";
 import {TranslateModule} from "@ngx-translate/core";
+import {MatButton} from "@angular/material/button";
+import {MatError, MatFormField, MatLabel} from "@angular/material/form-field";
+import {NgIf} from "@angular/common";
+import {MatInput} from "@angular/material/input";
 
 @Component({
   selector: 'app-task-form',
+  templateUrl: './task-form.component.html',
   standalone: true,
   imports: [
-    MatInputModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    ReactiveFormsModule,
+    TranslateModule,
+    MatButton,
+    MatError,
     NgIf,
-    TranslateModule
+    MatLabel,
+    MatFormField,
+    MatInput,
+    ReactiveFormsModule
   ],
-  templateUrl: './task-form.component.html',
-  styleUrl: './task-form.component.css'
+  styleUrls: ['./task-form.component.css']
 })
-export class TaskFormComponent implements OnInit{
+export class TaskFormComponent implements OnInit {
   taskForm!: FormGroup;
   id!: number;
   appointmentId!: number;
@@ -32,7 +34,7 @@ export class TaskFormComponent implements OnInit{
   constructor(private fb: FormBuilder,
               private taskService: TaskService,
               private route: ActivatedRoute
-              ) {}
+  ) {}
 
   ngOnInit(): void {
     this.id = +this.route.snapshot.paramMap.get('id')!;
@@ -42,29 +44,30 @@ export class TaskFormComponent implements OnInit{
       title: ['', Validators.required],
       description: ['', Validators.required]
     });
-    console.log("id de paciente al crear task", this.id);
+    console.log("Patient ID for task creation:", this.id);
   }
 
   onSubmit(): void {
     if (this.taskForm.valid) {
-      const formValues = this.taskForm.value;
-      const newTask = new Task({
-        id: "666",
-        idPatient: this.id,
-        idSession: this.appointmentId,
-        title: formValues.title,
-        description: formValues.description,
-        status: 0,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      });
+      // Get the next available task ID before creating the task
+      this.taskService.getNextTaskId().subscribe(nextId => {
+        const formValues = this.taskForm.value;
+        const newTask = new Task({
+          id: nextId,
+          idPatient: this.id,
+          idSession: this.appointmentId,
+          title: formValues.title,
+          description: formValues.description,
+          status: 0,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        });
 
-      this.taskService.create(newTask).subscribe(response => {
-        console.log('Task created successfully', response);
-        this.taskCreated.emit(newTask);
+        this.taskService.create(newTask).subscribe(response => {
+          console.log('Task created successfully', response);
+          this.taskCreated.emit(newTask);
+        });
       });
     }
-
-
   }
 }

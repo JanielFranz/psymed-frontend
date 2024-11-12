@@ -1,8 +1,16 @@
-<!-- mood-list.component.html -->
-<div class="carousel">
-  <div class="carousel-inner">
-    <div *ngFor="let moodState of moodStates" class="carousel-item">
-      <app-mood-card [moodState]="moodState"></app-mood-card>
+<div class="mood-list">
+  <div class="container">
+    <h2 class="subtitle">{{ "pages.mood-state.description" | translate }}</h2>
+    <div class="images">
+      <div *ngFor="let moodState of moodStates" class="mood-image-item">
+        <img
+          [src]="getImageUrl(moodState.mood)"
+          [alt]="'Mood ' + moodState.mood"
+        />
+        <div class="mood-info">
+          <small class="text-muted">{{ moodState.createdAt }}</small>
+        </div>
+      </div>
     </div>
   </div>
 </div>

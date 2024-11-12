@@ -11,9 +11,4 @@ import {BiologicalFunctions} from "../../models/biological-functions.entity";
 export class BiologicalCardComponent {
 
   @Input() biologicalFunctions!: BiologicalFunctions;
-
-
-  etest(){
-    let string : string
-  }
 }

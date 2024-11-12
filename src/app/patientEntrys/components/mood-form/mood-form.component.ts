@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import {MoodState} from "../../models/mood-state.entity";
-import {MoodStateService} from "../../services/mood-state.service";
-import {Store} from "@ngrx/store";
-import {AuthState} from "../../../store/auth/auth.state";
-import {map, Observable} from "rxjs";
-import {selectPatientId} from "../../../store/auth/auth.selectors";
-import {TranslateModule, TranslateService} from "@ngx-translate/core";
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { MoodState } from '../../models/mood-state.entity';
+import { MoodStateService } from '../../services/mood-state.service';
+import { Store } from '@ngrx/store';
+import { AuthState } from '../../../store/auth/auth.state';
+import { Observable, Subject } from 'rxjs';
+import { selectPatientId } from '../../../store/auth/auth.selectors';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-mood-form',
@@ -14,55 +15,79 @@ import {TranslateModule, TranslateService} from "@ngx-translate/core";
     TranslateModule
   ],
   templateUrl: './mood-form.component.html',
-  styleUrl: './mood-form.component.css'
+  styleUrls: ['./mood-form.component.css']
 })
-export class MoodFormComponent implements OnInit {
-  patientId!: number | null; // Define the patient ID as a number
-  currentDate: string = new Date().toLocaleDateString().split('T')[0];
+export class MoodFormComponent implements OnInit, OnDestroy {
+  patientId!: number | null;
+  currentDate: string = this.formatDate(new Date());
   patientId$!: Observable<number | null>;
 
+  /**
+   * Flag to check if today's mood has already been recorded
+   */
+  private isMoodRecordedToday = false;
+
+  /**
+   * Subject to handle unsubscription
+   */
+  private destroy$ = new Subject<void>();
 
   constructor(
     private translateService: TranslateService,
     private moodStateService: MoodStateService,
-              private store: Store<AuthState>) {
-  }
+    private store: Store<AuthState>
+  ) {}
+
   ngOnInit(): void {
-
-    console.log("on init");
     this.patientId$ = this.store.select(selectPatientId);
-    this.patientId$.subscribe(patientId => {
-      this.patientId = patientId;
-      console.log('Patient Id for mood statement:', this.patientId);
-    })
-
-    // this.patientId = +this.route.snapshot.paramMap.get('patientId')!; // Get the patient ID from the route using the ActivatedRoute service
-    // console.log("Patient ID:", this.patientId); // Log the patient ID to the console for security
+    this.patientId$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(patientId => {
+        this.patientId = patientId;
+        console.log('Patient Id for mood statement:', this.patientId);
+      });
   }
 
+  // Function to format date as "yyyy-MM-dd"
+  private formatDate(date: Date): string {
+    return date.toISOString().split('T')[0];
+  }
 
   selectMood(mood: number) {
-    this.patientId$.pipe(
-      map((patientId) => {
-        if(patientId !== null) {
-          this.moodStateService.getMoodStatesByPatientId(patientId).subscribe(moodStates => {
-            const existingMood = moodStates.find(m => m.createdAt === this.currentDate);
-            if (existingMood) {
-              this.translateService.get("pages.mood-state.error.already-mood-recorded").subscribe((text : string) => {
-                alert(text)
-              })
-            } else {
-              const newMood = new MoodState(1, patientId, mood, this.currentDate);
-              this.moodStateService.createMoodState(newMood, patientId).subscribe(() => {
-              });
-            }
-          });
-        } else {
-          this.translateService.get("pages.mood-state.error.unavailable-patient-id").subscribe((text : string) => {
-            alert(text)
-          })
+    if (this.isMoodRecordedToday) {
+      console.log("Mood already recorded for today.");
+      return; // Prevent further action if today's mood is already recorded
+    }
+
+    this.patientId$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(patientId => {
+        if (patientId !== null) {
+          this.moodStateService.getMoodStatesByPatientId(patientId)
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(moodStates => {
+              const existingMood = moodStates.find(m => this.formatDate(new Date(m.createdAt)) === this.currentDate);
+              if (existingMood) {
+                this.isMoodRecordedToday = true; // Set flag to prevent further attempts
+                this.translateService.get("pages.mood-state.error.already-mood-recorded").subscribe((text: string) => {
+                  alert(text);
+                });
+              } else {
+                const newMood = new MoodState(1, patientId, mood, this.currentDate);
+                this.moodStateService.createMoodState(newMood, patientId).subscribe(() => {
+                  this.isMoodRecordedToday = true; // Set flag after successful creation
+                  this.translateService.get("pages.mood-state.success.mood-recorded").subscribe((text: string) => {
+                    alert(text); // Display success message
+                  });
+                });
+              }
+            });
         }
-      })
-    ).subscribe();
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(); // Trigger unsubscribe for all subscriptions
+    this.destroy$.complete(); // Complete the destroy$ subject
   }
 }

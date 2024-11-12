@@ -12,20 +12,29 @@ export class MoodCardComponent {
   @Input() moodState!: MoodState;
 
   getMoodImage(mood: number): string {
+    let imagePath = '';
     switch (mood) {
       case 1:
-        return 'assets/images/mood-1.png';
+        imagePath = 'assets/images/mood-1.png';
+        break;
       case 2:
-        return 'assets/images/mood-2.png';
+        imagePath = 'assets/images/mood-2.png';
+        break;
       case 3:
-        return 'assets/images/mood-3.png';
+        imagePath = 'assets/images/mood-3.png';
+        break;
       case 4:
-        return 'assets/images/mood-4.png';
+        imagePath = 'assets/images/mood-4.png';
+        break;
       case 5:
-        return 'assets/images/mood-5.png';
+        imagePath = 'assets/images/mood-5.png';
+        break;
       default:
-        return 'assets/images/default-mood.png';
+        imagePath = 'assets/images/default-mood.png';
     }
+    console.log(`Mood: ${mood}, Image Path: ${imagePath}`);
+    return imagePath;
   }
+
 
 }

@@ -210,6 +210,9 @@
       "error": {
         "already-mood-recorded": "You already have a mood recorded for today.",
         "unavailable-patient-id": "Patient ID unavailable"
+      },
+      "success": {
+        "mood-recorded": "Your mood has been successfully recorded."
       }
     },
     "biological-functions": {
@@ -221,7 +224,14 @@
         "created-at": "Created at",
         "updated-at": "Updated at"
       },
-      "button": "Submit"
+      "button": "Submit",
+      "success": {
+        "creation-success": "Biological functions added successfully!"
+      },
+      "error": {
+        "unavailable-patient-id": "Patient ID unavailable",
+        "creation-failed": "You have already added a biological functions entry for today."
+      }
     },
     "prescription":{
       "description": "Description",

@@ -1,11 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {TaskCardComponent} from "../task-card/task-card.component";
-import {TaskService} from "../../services/task.service";
-import {Task} from "../../model/task.entity";
-import {NgForOf} from "@angular/common";
+import { Component, Input, OnInit } from '@angular/core';
+import { TaskCardComponent } from "../task-card/task-card.component";
+import { TaskService } from "../../services/task.service";
+import { Task } from "../../model/task.entity";
+import { NgForOf } from "@angular/common";
 import { ActivatedRoute } from '@angular/router';
-import {MatPaginator, PageEvent} from "@angular/material/paginator";
-import {max} from "rxjs";
+import { MatPaginator, PageEvent } from "@angular/material/paginator";
 
 @Component({
   selector: 'app-task-list',
@@ -16,103 +15,73 @@ import {max} from "rxjs";
     MatPaginator
   ],
   templateUrl: './task-list.component.html',
-  styleUrl: './task-list.component.css'
+  styleUrls: ['./task-list.component.css']
 })
-export class TaskListComponent implements OnInit{
+export class TaskListComponent implements OnInit {
 
-  @Input() tasks: Task[] = new Array<Task>();
-  sessionId : number = 0;
+  @Input() tasks: Task[] = []; // List of tasks displayed on the current page
+  sessionId: number = 0;
 
-  index : number = 0;
-  pageSize : number = 2;
-  length: number = 0;
+  index: number = 0; // Current page index
+  pageSize: number = 2; // Maximum tasks per page
+  length: number = 0; // Total number of tasks
+  oldIndex: number = 0;
 
-  oldIndex = 0;
-
-
-  constructor(private taskService: TaskService,
-              private route: ActivatedRoute
-              ) {
-  }
-
+  constructor(
+    private taskService: TaskService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
+    // Fetch session ID from route and load initial tasks
     const sessionId = Number(this.route.snapshot.paramMap.get('appointmentId'));
     this.sessionId = sessionId;
 
     this.taskService.getTaskBySessionId(sessionId).subscribe((tasks: Task[]) => {
-      console.log("La sesion de tarea es" + sessionId);
-      console.log(tasks.length)
-
       this.length = tasks.length;
-
-      for (let id = 0; id < this.pageSize; id++) {
-
-        if (tasks[id] == null){
-          break;
-        }
-        this.tasks.push(tasks[id]);
-      }
-
+      this.tasks = tasks.slice(0, this.pageSize); // Load only the first page initially
     }, (error) => {
       console.error('Error fetching tasks:', error);
     });
   }
 
   onTaskCreated(newTask: Task): void {
+    // Add the new task to the beginning of the task list
+    this.length++; // Update the total task count
+    this.tasks.unshift(newTask); // Add to the start of the page
+    this.tasks = this.tasks.slice(0, this.pageSize); // Respect the page size limit
 
-    this.length++;
-
-    if (this.length > this.pageSize * (this.oldIndex + 1)){
-      return;
+    // If the current page is full, reset to the first page
+    if (this.length > this.pageSize * (this.index + 1)) {
+      this.index = 0;
     }
-
-    this.tasks.push(newTask);
+    this.paginate(this.index); // Refresh the current page
   }
 
-  onPage(event : PageEvent) : void{
-    this.tasks = [];
-    this.oldIndex = event.pageIndex - 1;
-
-    this.paginate((event.pageIndex))
+  onPage(event: PageEvent): void {
+    // Update the current page index and load the respective tasks
+    this.index = event.pageIndex;
+    this.paginate(this.index);
   }
 
   onTaskDeleted(taskId: string): void {
+    // Remove the deleted task and update the displayed page if necessary
     this.tasks = this.tasks.filter(task => task.id !== taskId);
-
-    if (this.oldIndex < 0){
-      return;
+    this.length--; // Decrease the total count
+    if (this.tasks.length === 0 && this.index > 0) {
+      this.index--; // Go back a page if the current page is empty
     }
-
-    if (this.tasks.length == 0){
-      this.paginate(this.oldIndex);
-    }
+    this.paginate(this.index);
   }
 
-  private paginate(index : number) {
+  private paginate(pageIndex: number) {
+    const startIndex = pageIndex * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
 
-    let actualIndex = (index * this.pageSize);
-    let maxValuePage = (index + 1) * this.pageSize;
-
-    console.log("actualindex " + actualIndex + " maxvaluepage" +  maxValuePage)
-
-    console.log("index: " + this.index)
     this.taskService.getTaskBySessionId(this.sessionId).subscribe((tasks: Task[]) => {
-      console.log("La sesion de tarea es" + this.sessionId);
-
-
-      for (let id = actualIndex; id < maxValuePage; id++) {
-
-        if (tasks[id] == null){
-          break;
-        }
-
-        this.tasks.push(tasks[id]);
-      }
-
+      this.tasks = tasks.slice(startIndex, endIndex); // Only fetch tasks for the current page
     }, (error) => {
       console.error('Error fetching tasks:', error);
     });
   }
-
 }

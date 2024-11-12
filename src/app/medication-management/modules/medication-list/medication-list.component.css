@@ -1,13 +1,13 @@
 .medication-list {
   display: flex;
   flex-direction: column;
-  align-items: flex-end; /* Alinea las tarjetas a la derecha */
+  align-items: flex-end;
   gap: 16px;
   padding: 16px;
 }
 
 .medication-card {
-  width: 40em; /* Ajusta el tamaño de las tarjetas */
+  width: 40em;
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 16px;

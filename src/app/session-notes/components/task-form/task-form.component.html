@@ -1,5 +1,6 @@
-<form class = "task-form-card" [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+<form class="task-form-card" [formGroup]="taskForm" (ngSubmit)="onSubmit()">
   <h4>{{"pages.appointments.tasks.form.form-title" | translate}}</h4>
+
   <mat-form-field class="task-form-title-card" appearance="fill">
     <mat-label>{{"pages.appointments.tasks.form.title" | translate}}</mat-label>
     <input matInput formControlName="title" required>
@@ -16,5 +17,7 @@
     </mat-error>
   </mat-form-field>
 
-  <button class="task-form-create-button" mat-raised-button color="primary" type="submit">{{"pages.appointments.tasks.form.button" | translate}}</button>
+  <button class="task-form-create-button" mat-raised-button color="primary" type="submit">
+    {{"pages.appointments.tasks.form.button" | translate}}
+  </button>
 </form>

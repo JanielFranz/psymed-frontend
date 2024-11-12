@@ -212,6 +212,9 @@
       "error": {
         "already-mood-recorded": "Ya has registrado un estado de ánimo para hoy.",
         "unavailable-patient-id": "ID de paciente no disponible"
+      },
+      "success": {
+        "mood-recorded": "Tu estado de ánimo ha sido registrado exitosamente."
       }
     },
     "biological-functions": {
@@ -223,7 +226,15 @@
         "created-at": "Creado en",
         "updated-at": "Actualizado en"
       },
-      "button": "Enviar"
+      "button": "Enviar",
+      "success": {
+        "creation-success": "¡Funciones biológicas añadidas exitosamente!"
+      },
+      "error": {
+        "unavailable-patient-id": "ID de paciente no disponible",
+        "creation-failed": "Ya has registrado una entrada de funciones biológicas para hoy."
+      }
+
     },
     "prescription": {
       "description": "Descripción",

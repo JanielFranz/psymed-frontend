@@ -1,16 +1,22 @@
-
-.carousel {
+.images {
   display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
-.carousel-inner {
+.mood-image-item {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  width: 120px;
+  text-align: center;
 }
 
-.carousel-item {
-  flex: 0 0 auto;
-  scroll-snap-align: start;
-  margin-right: 1rem;
+.mood-image-item img {
+  max-width: 80px;
+  max-height: 80px;
+  object-fit: cover;
+  margin-bottom: 0.5rem;
 }

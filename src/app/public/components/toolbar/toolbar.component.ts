@@ -2,40 +2,29 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SessionService } from "../../../appointment-and-administration/services/session.service";
 import { Store } from '@ngrx/store';
 import { AuthState } from "../../../store/auth/auth.state";
-import {selectPatientId, selectProfessionalId, selectRolId} from "../../../store/auth/auth.selectors";
-import {combineLatest, Observable, Subject} from 'rxjs';
-import { takeUntil} from 'rxjs/operators';
-import {MatAnchor, MatIconButton} from "@angular/material/button";
-import {DatePipe, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
-import { RouterLink } from "@angular/router";
+import { selectPatientId, selectProfessionalId, selectRolId } from "../../../store/auth/auth.selectors";
+import { combineLatest, Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { Router, RouterLink } from "@angular/router";
+import { reset } from "../../../store/auth/auth.actions";
 import { MatToolbar } from "@angular/material/toolbar";
-import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
-import {MatIcon} from "@angular/material/icon";
-import {MatBadge} from "@angular/material/badge";
-import {LanguageSwitcherComponent} from "../language-switcher/language-switcher.component";
-import {TranslateModule} from "@ngx-translate/core";
-import {reset} from "../../../store/auth/auth.actions";
+import { NgForOf, NgOptimizedImage } from "@angular/common";
+import { LanguageSwitcherComponent } from "../language-switcher/language-switcher.component";
+import { MatAnchor } from "@angular/material/button";
+import { TranslateModule } from "@ngx-translate/core";
 
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
   standalone: true,
   imports: [
-    DatePipe,
     MatToolbar,
-    NgForOf,
-    RouterLink,
-    MatAnchor,
-    MatIconButton,
-    MatMenuTrigger,
-    MatIcon,
-    MatBadge,
-    MatMenu,
-    MatMenuItem,
-    NgIf,
+    NgOptimizedImage,
     LanguageSwitcherComponent,
-    TranslateModule,
-    NgOptimizedImage
+    NgForOf,
+    MatAnchor,
+    RouterLink,
+    TranslateModule
   ],
   styleUrls: ['./toolbar.component.css']
 })
@@ -64,21 +53,18 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
   /**
    * @property {Subject<boolean>} destroy$ - Subject to handle unsubscription and prevent memory leaks.
+   * Emits a value on logout or destroy, allowing for automatic unsubscription from observables.
    */
   private destroy$: Subject<boolean> = new Subject<boolean>();
 
-  //#endregion
-
-  //#region Constructor
-
   /**
-   * Constructor injects the necessary services like SessionService and Store.
-   * @param {SessionService} appointmentService - Service to manage appointment-related operations.
-   * @param {Store<AuthState>} store - Store to manage authentication state.
+   * @property {Router} router - Angular Router service for navigation control.
+   * Used to navigate to the login page before logging out and resetting the application state.
    */
   constructor(
     private appointmentService: SessionService,
-    private store: Store<AuthState>
+    private store: Store<AuthState>,
+    private router: Router // Inject Router service here
   ) {}
 
   //#endregion
@@ -87,24 +73,26 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
   /**
    * ngOnInit lifecycle hook - Initializes observables and sets up options based on role ID.
+   * Combines rolId, professionalId, and patientId observables to set navigation options dynamically.
    */
   ngOnInit(): void {
+    console.log("Initializing ToolbarComponent");
+
     this.rolId$ = this.store.select(selectRolId);
     this.patientId$ = this.store.select(selectPatientId);
     this.professionalId$ = this.store.select(selectProfessionalId);
 
-    // Combine rolId and professionalId observables and set options accordingly
     combineLatest([this.rolId$, this.professionalId$, this.patientId$])
-      .pipe(
-        takeUntil(this.destroy$)
-      )
+      .pipe(takeUntil(this.destroy$))
       .subscribe(([rolId, professionalId, patientId]) => {
+        console.log("Role ID:", rolId, "Professional ID:", professionalId, "Patient ID:", patientId);
+
         if (rolId === '1' && professionalId) {
           this.options = [
             { path: '/patient-management', name: 'patient-management' },
             { path: '/appointment-list', name: 'appointments' },
-            { path: `/professional/profile/${professionalId}`, name: 'profile' },  // Professional profile link
-            { path: '/home', name:'logout' }
+            { path: `/professional/profile/${professionalId}`, name: 'profile' },
+            { path: '/login', name: 'logout' }
           ];
         } else if (rolId === '2' && patientId) {
           this.options = [
@@ -114,7 +102,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
             { path: `/patient/clinical-history`, name: 'clinical-history' },
             { path: `/patient/appointment-list`, name: 'appointments' },
             { path: `/patient/profile/${patientId}`, name: 'profile' },
-            { path: '/home', name:'logout' }
+            { path: '/login', name: 'logout' }
           ];
         } else {
           this.options = [
@@ -123,23 +111,29 @@ export class ToolbarComponent implements OnInit, OnDestroy {
           ];
         }
       });
-
-
-    // Notification handling is commented out
-    /*
-    this.notificationService.newAppointmentsCount$
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(count => {
-        this.newAppointmentsCount = count;
-      });
-    */
   }
+
+  //#endregion
+
   //#region Event Handlers
-  protected onLogout(): void  {
+
+  /**
+   * onLogout - Handles the logout event by navigating to the login page and resetting the store.
+   * Ensures all active subscriptions are unsubscribed to prevent multiple alerts.
+   */
+  protected onLogout(): void {
+    // Dispatch the reset action to clear the store state immediately
+    this.store.select(state => state).subscribe(state => console.log("State after reset:", state));
+
+    // Navigate to the login page and handle any navigation errors
+    this.router.navigate(['/login']).catch(error => {
+      console.error("Navigation to login failed:", error);
+    });
     this.store.dispatch(reset());
   }
   /**
    * ngOnDestroy lifecycle hook - Cleans up subscriptions to prevent memory leaks.
+   * Ensures destroy$ is unsubscribed and completes any active subscriptions.
    */
   ngOnDestroy(): void {
     this.destroy$.next(true); // Emit destroy signal
