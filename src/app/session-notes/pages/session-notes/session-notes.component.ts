@@ -5,8 +5,6 @@ import {ActivatedRoute} from "@angular/router";
 import {NoteService} from "../../services/note.service";
 import {NoteFormComponent} from "../../components/note-form/note-form.component";
 import {MatPaginator, PageEvent} from "@angular/material/paginator";
-import {Task} from "../../model/task.entity";
-import {Session} from "../../../appointment-and-administration/model/sesion.entity";
 
 @Component({
   selector: 'app-session-notes',
@@ -67,17 +65,22 @@ export class SessionNotesComponent implements OnInit {
   protected deleteSessionNoteById(sessionNote: SessionNote): void {
     const noteId = sessionNote.id;
     this.noteService.delete(noteId).subscribe(() => {
+      // Filter out the deleted note from the sessionNotes array
+      this.sessionNotes = this.sessionNotes.filter(note => note.id !== noteId);
+      this.length--; // Update the total length of notes
 
-      console.log(this.oldIndex)
-      if (this.oldIndex < 0){
-        return;
-      }
+      console.log('Note deleted and list updated');
 
-      if (this.sessionNotes.length == 0){
-        this.paginate(this.oldIndex);
+      // If the current page is now empty and not the first page, go to the previous page
+      if (this.sessionNotes.length === 0 && this.index > 0) {
+        this.index--; // Move to the previous page
+        this.paginate(this.index); // Fetch notes for the previous page
       }
-    })
+    }, error => {
+      console.error('Error deleting note:', error);
+    });
   }
+
   //#endregion
 
   //#region Lifecycle Hooks
@@ -89,26 +92,29 @@ export class SessionNotesComponent implements OnInit {
 
   //#region Event Handlers
 
-  protected onNoteAdded(note: SessionNote): void{
-    console.log('ids to sent', this.sessionId, this.patientId);
+  protected onNoteAdded(note: SessionNote): void {
+    this.length++; // Increase the total length of notes
 
-    this.length++;
+    // Add the new note to the temporary list of all session notes
+    this.tempSessionNotes.push(note);
 
-    if (this.length > this.pageSize * (this.oldIndex + 1)){
-      return;
+    // If the current page has space for an additional note
+    if (this.sessionNotes.length < this.pageSize) {
+      this.sessionNotes.push(note); // Add the note to the visible session notes on the current page
+    } else {
+      // If the current page is full, do nothing; the new note will appear on the next page
+      console.log('Note added; it will appear on the next page due to pagination limits.');
     }
-
-    this.sessionNotes.push(note);
   }
 
   //#endregion
 
-  onPage(event : PageEvent) : void{
-    this.sessionNotes = [];
-    this.oldIndex = event.pageIndex - 1;
-
-    this.paginate((event.pageIndex))
+  onPage(event: PageEvent): void {
+    this.index = event.pageIndex; // Update the current page index
+    this.sessionNotes = []; // Clear the current page notes
+    this.paginate(this.index); // Load notes for the selected page
   }
+
 
   private paginate(index : number) {
 
