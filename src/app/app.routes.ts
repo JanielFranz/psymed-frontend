@@ -25,6 +25,7 @@ import {EditProfileComponent} from "./profile/pages/edit-profile/edit-profile.co
 import {AccountProfileComponent} from "./profile/pages/account-profile/account-profile.component";
 import {PatientsAppointmentPageComponent} from "./appointment-and-administration/pages/patients-appointment-page/patients-appointment-page.component";
 import {PatientViewTaskComponent} from "./session-notes/pages/patient-view-task/patient-view-task.component";
+import {RegisterComponent} from "./public/pages/register/register.component";
 
 
 export const routes: Routes = [
@@ -32,6 +33,8 @@ export const routes: Routes = [
   { path: 'home'                                                    , component: HomeComponent },
   { path: 'patient-management/:id/dashboard-analytics'             , component: AnalyticsDashboardComponent },
   { path: 'login'                                                   , component: LoginComponent },
+  { path: 'register'                                                   , component: RegisterComponent },
+
   { path: 'patient-management'                                      , component: PatientManagementComponent },
   { path: 'patient-management/:id/medication-management'     , component: MedicationManagementComponent }, // we use the :patientId to pass the patient ID as a parameter
   { path: 'mood-state'                                              , component: MoodStatementEntryComponent },
