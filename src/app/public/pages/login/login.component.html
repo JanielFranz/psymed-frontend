@@ -1,0 +1,28 @@
+<div class="login-card">
+  <div class = "login-panel">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <h4 style="padding: 0.5em 3em">Welcome back!</h4>
+      <div style="display: flex; flex-direction: column">
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Password</mat-label>
+          <input matInput formControlName="password">
+        </mat-form-field>
+
+      </div>
+      <div style="display: flex; justify-content: center">
+        <button class="login-button" mat-raised-button color="primary" type="submit">Login</button>
+      </div>
+
+    </form>
+    <div class="actions">
+      <button (click)="registerPage()">Don't have an account yet?</button>
+      <button>Forgot your password? </button>
+    </div>
+  </div>
+
+</div>
