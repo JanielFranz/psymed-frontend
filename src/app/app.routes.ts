@@ -27,8 +27,6 @@ import {PatientsAppointmentPageComponent} from "./appointment-and-administration
 import {PatientViewTaskComponent} from "./session-notes/pages/patient-view-task/patient-view-task.component";
 import {SingUpComponent} from "./iam/pages/sing-up/sing-up.component";
 import {SingInComponent} from "./iam/pages/sing-in/sing-in.component";
-import {authenticationGuard} from "./iam/services/authentication.guard";
-
 
 export const routes: Routes = [
   { path: ''                                                        , redirectTo: 'home', pathMatch: 'full' },  // Default route that redirects to HomeComponent
