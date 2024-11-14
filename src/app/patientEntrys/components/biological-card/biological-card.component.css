@@ -1,22 +1,67 @@
-
 .biological-card {
   border: 1px solid #ccc;
   padding: 1rem;
   border-radius: 8px;
-  width: 300px;
+  width: 300px; /* Default width for larger screens */
+  box-sizing: border-box;
 }
 
+/* Biological attribute container */
 .biological-attribute {
   margin-bottom: 1rem;
 }
 
+/* Label for each attribute */
 .biological-attribute label {
   display: block;
   margin-bottom: 0.5rem;
+  font-size: 1rem; /* Default font size */
 }
 
+/* Bar style */
 .bar {
   height: 20px;
   background-color: #4caf50;
   border-radius: 4px;
+  transition: width 0.3s ease; /* Smooth width adjustment */
+}
+
+/* Responsive styling for smaller screens */
+@media (max-width: 768px) {
+  .biological-card {
+    width: 100%; /* Full width on smaller screens */
+    max-width: 100%; /* Ensure it doesn’t exceed container width */
+    padding: 0.75rem; /* Reduce padding */
+  }
+
+  .biological-attribute {
+    margin-bottom: 0.75rem; /* Reduce spacing */
+  }
+
+  .biological-attribute label {
+    font-size: 0.9rem; /* Slightly smaller font for labels */
+  }
+
+  .bar {
+    height: 18px; /* Slightly smaller bar height */
+  }
+}
+
+/* Even more responsive for very small screens */
+@media (max-width: 480px) {
+  .biological-card {
+    padding: 0.5rem; /* Further reduce padding */
+  }
+
+  .biological-attribute {
+    margin-bottom: 0.5rem;
+  }
+
+  .biological-attribute label {
+    font-size: 0.8rem; /* Smaller font for extra small screens */
+  }
+
+  .bar {
+    height: 16px; /* Smaller height for the bar on very small screens */
+  }
 }

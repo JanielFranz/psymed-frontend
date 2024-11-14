@@ -1,6 +1,6 @@
-
 .biological-carousel {
   display: flex;
+  flex-wrap: nowrap; /* Default: no wrapping on larger screens */
   overflow-x: auto;
   gap: 1rem;
   padding: 1rem;
@@ -10,4 +10,27 @@
 .biological-item {
   flex: 0 0 auto;
   scroll-snap-align: start;
+  min-width: 250px; /* Minimum width for items */
+  max-width: 100%; /* Allow items to expand fully within the container */
+}
+
+/* Responsive styling for smaller screens */
+@media (max-width: 768px) {
+  .biological-carousel {
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    justify-content: center; /* Center items when they wrap */
+    overflow-x: visible; /* Remove horizontal scrolling */
+  }
+
+  .biological-item {
+    flex: 1 1 45%; /* Allow items to take 45% of the container width */
+    max-width: 100%; /* Full width within the container */
+  }
+}
+
+/* Even more responsive for very small screens */
+@media (max-width: 480px) {
+  .biological-item {
+    flex: 1 1 100%; /* Full width on the smallest screens */
+  }
 }
