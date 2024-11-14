@@ -10,8 +10,8 @@ import { takeUntil } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Account } from "../../models/account.entity";
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store'; // Import the store
-import { selectRolId } from "../../../store/auth/auth.selectors"; // Import your role selector
+import { Store } from '@ngrx/store';
+import { selectRolId } from "../../../store/auth/auth.selectors";
 import { MatError, MatFormField, MatLabel } from "@angular/material/form-field";
 import { NgIf } from "@angular/common";
 import { MatInput } from "@angular/material/input";
@@ -31,7 +31,7 @@ export class EditProfileInformationComponent implements OnInit, OnDestroy {
   account: Account | undefined;
   professional: ProfessionalEntity | undefined;
   patient: Patient | undefined;
-  role: string | null = null; // Role retrieved from the store
+  role: string | null = null;
   private destroy$ = new Subject<boolean>();
   imagePreview: string | ArrayBuffer | null = null;
 
@@ -42,9 +42,8 @@ export class EditProfileInformationComponent implements OnInit, OnDestroy {
     private patientService: PatientService,
     private snackBar: MatSnackBar,
     private router: Router,
-    private store: Store // Inject the store
+    private store: Store
   ) {
-    // Initialize the form with empty controls
     this.editForm = this.fb.group({
       idAccount: ['', Validators.required],
       dni: ['', Validators.required],
@@ -57,16 +56,16 @@ export class EditProfileInformationComponent implements OnInit, OnDestroy {
       birthday: ['', Validators.required],
       description: [''],
       password: ['', Validators.required],
-      image: ['']
+      image: [''],
+      idClinicalHistory: [''] // Add idClinicalHistory
     });
   }
 
   ngOnInit(): void {
-    // Subscribe to the store to get the roleId and set it in the role variable
     this.store.select(selectRolId).pipe(takeUntil(this.destroy$)).subscribe({
       next: (roleId: string | null) => {
         if (roleId !== null) {
-          this.role = roleId; // Store the roleId in the component
+          this.role = roleId;
         } else {
           console.error('Role ID is null');
         }
@@ -76,10 +75,8 @@ export class EditProfileInformationComponent implements OnInit, OnDestroy {
       }
     });
 
-    const currentUrl = this.router.url; // Get the current URL
-
+    const currentUrl = this.router.url;
     if (currentUrl.includes('professional/edit-profile')) {
-      // Professional editing their profile
       const professionalId = this.extractIdFromUrl(currentUrl);
       if (professionalId) {
         this.loadProfessionalData(Number(professionalId));
@@ -87,7 +84,6 @@ export class EditProfileInformationComponent implements OnInit, OnDestroy {
         console.error('Professional ID is missing in the URL.');
       }
     } else if (currentUrl.includes('patient/edit-profile')) {
-      // Patient editing their profile
       const patientId = this.extractIdFromUrl(currentUrl);
       if (patientId) {
         this.loadPatientData(Number(patientId));
@@ -99,37 +95,29 @@ export class EditProfileInformationComponent implements OnInit, OnDestroy {
     }
   }
 
-  /**
-   * Utility method to extract the ID from the current URL.
-   * @param url - The current URL to extract the ID from.
-   * @returns The extracted ID or null if not found.
-   */
   extractIdFromUrl(url: string): string | null {
     const segments = url.split('/');
-    return segments.length > 2 ? segments[segments.length - 1] : null; // Assumes ID is the last segment in the path
+    return segments.length > 2 ? segments[segments.length - 1] : null;
   }
 
-  // Load professional data based on professionalId from the URL
   loadProfessionalData(professionalId: number | null): void {
     if (professionalId) {
       this.professionalService.getById(professionalId).subscribe({
         next: (professional: ProfessionalEntity) => {
           this.professional = professional;
-          this.loadAccount(professional.idAccount); // Load Account details separately
+          this.loadAccount(professional.idAccount);
           this.editForm.patchValue({
             idAccount: professional.idAccount,
             dni: professional.dni,
             name: professional.name,
             lastName: professional.lastName,
-            email: professional.email,  // Patch the email here
+            email: professional.email,
             phone: professional.phone,
             address: professional.address,
             birthday: professional.birthday,
             description: professional.description,
             image: professional.image
           });
-
-          // Set the imagePreview to the image from the database
           this.imagePreview = professional.image;
         },
         error: (error) => {
@@ -141,27 +129,25 @@ export class EditProfileInformationComponent implements OnInit, OnDestroy {
     }
   }
 
-  // Load patient data based on patientId from the URL
   loadPatientData(patientId: number | null): void {
     if (patientId) {
       this.patientService.getById(patientId).subscribe({
         next: (patient: Patient) => {
           this.patient = patient;
-          this.loadAccount(patient.idAccount); // Load Account details separately
+          this.loadAccount(patient.idAccount);
           this.editForm.patchValue({
             idAccount: patient.idAccount,
             dni: patient.dni,
             name: patient.name,
             lastName: patient.lastName,
-            email: patient.email,  // Patch the email here
+            email: patient.email,
             phone: patient.phone,
             address: patient.address,
             birthday: patient.birthday,
             description: patient.description,
-            image: patient.image
+            image: patient.image,
+            idClinicalHistory: patient.idClinicalHistory // Only for patients
           });
-
-          // Set the imagePreview to the image from the database
           this.imagePreview = patient.image;
         },
         error: (error) => {
@@ -173,16 +159,14 @@ export class EditProfileInformationComponent implements OnInit, OnDestroy {
     }
   }
 
-  // Load account information and set userName and password
   loadAccount(accountId: number): void {
     this.accountService.getAccountById(accountId).subscribe({
       next: (account: Account) => {
         this.account = account;
-        // Set account data (userName and password)
         this.editForm.patchValue({
           idAccount: account.id,
-          userName: account.userName,  // Set the userName
-          password: account.password,  // Set the password
+          userName: account.userName,
+          password: account.password
         });
       },
       error: (error) => {
@@ -191,19 +175,18 @@ export class EditProfileInformationComponent implements OnInit, OnDestroy {
     });
   }
 
-  // Handle the form submission
   onSubmit(): void {
     if (this.editForm.valid) {
       const updatedData = { ...this.editForm.value };
-      delete updatedData.password; // Exclude password from the profile update
+      delete updatedData.password;
 
       if (this.professional) {
         const id = this.professional.id;
         this.professionalService.update(id, updatedData).subscribe({
           next: () => {
             this.snackBar.open('Profile updated successfully!', 'Close', { duration: 3000 });
-            this.updateAccountPassword(); // Update the account password separately
-            this.router.navigate([`/professional/profile/${id}`]); // Navigate to the professional profile with their ID
+            this.updateAccountPassword();
+            this.router.navigate([`/professional/profile/${id}`]);
           },
           error: (error) => {
             console.error('Error updating profile:', error);
@@ -215,8 +198,8 @@ export class EditProfileInformationComponent implements OnInit, OnDestroy {
         this.patientService.update(id, updatedData).subscribe({
           next: () => {
             this.snackBar.open('Profile updated successfully!', 'Close', { duration: 3000 });
-            this.updateAccountPassword(); // Update the account password separately
-            this.router.navigate([`/patient/profile/${id}`]); // Navigate to the patient profile with their ID
+            this.updateAccountPassword();
+            this.router.navigate([`/patient/profile/${id}`]);
           },
           error: (error) => {
             console.error('Error updating profile:', error);
@@ -227,13 +210,11 @@ export class EditProfileInformationComponent implements OnInit, OnDestroy {
     }
   }
 
-  // Update the password in the Account entity
   updateAccountPassword(): void {
     if (this.account) {
       const updatedAccount: Account = {
-        ...this.account, // Spread the existing account fields
-        password: this.editForm.get('password')?.value // Set the new password from the form
-        ,
+        ...this.account,
+        password: this.editForm.get('password')?.value,
         isProfessional: function (): boolean {
           throw new Error('Function not implemented.');
         },
@@ -263,18 +244,17 @@ export class EditProfileInformationComponent implements OnInit, OnDestroy {
     }
   }
 
-  // Handle file selection for image upload
   onFileSelected(event: Event): void {
     const file = (event.target as HTMLInputElement).files?.[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        this.imagePreview = reader.result; // Update the image preview with the selected file's data URL
+        this.imagePreview = reader.result;
       };
       reader.readAsDataURL(file);
 
       this.editForm.patchValue({
-        image: `assets/img/${file.name}` // Set the file path as if saved to assets/img
+        image: `assets/img/${file.name}`
       });
     }
   }
