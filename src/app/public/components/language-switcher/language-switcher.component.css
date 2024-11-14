@@ -1,3 +1,33 @@
-.language-switcher-button{
+/* Language switcher styles */
+.language-switcher-button {
   background-color: white;
+  display: flex;
+}
+
+/* Default size for larger screens */
+.language-switcher-button mat-button-toggle {
+  font-size: 14px;
+  padding: 4px 8px; /* Default padding */
+}
+
+/* Media query for medium screens (768px and below) */
+@media (max-width: 768px) {
+  .language-switcher-button {
+    transform: scale(0.8); /* Slightly reduce the size */
+  }
+  .language-switcher-button mat-button-toggle {
+    font-size: 12px;
+    padding: 2px 4px;
+  }
+}
+
+/* Media query for small screens (480px and below) */
+@media (max-width: 480px) {
+  .language-switcher-button {
+    transform: scale(0.7); /* Further reduce the size */
+  }
+  .language-switcher-button mat-button-toggle {
+    font-size: 10px;
+    padding: 1px 1px;
+  }
 }
