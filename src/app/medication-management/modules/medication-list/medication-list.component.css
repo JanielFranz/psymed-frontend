@@ -1,15 +1,28 @@
 .medication-list {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-end; /* Align cards to the right on larger screens */
   gap: 16px;
   padding: 16px;
 }
 
 .medication-card {
-  width: 40em;
+  width: 40em; /* Fixed width for larger screens */
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 16px;
   box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive styling for smaller screens */
+@media (max-width: 768px) {
+  .medication-list {
+    align-items: center; /* Center cards on smaller screens */
+    padding: 8px;
+  }
+
+  .medication-card {
+    width: 100%; /* Full width for each card on smaller screens */
+    max-width: 100%; /* Ensure it does not exceed container width */
+  }
 }

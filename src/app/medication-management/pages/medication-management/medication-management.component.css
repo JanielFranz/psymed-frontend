@@ -1,6 +1,15 @@
+/* Default layout for larger screens */
 .page-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: row; /* Row layout for larger screens */
   gap: 16px;
   padding: 16px;
+}
+
+/* Responsive layout for smaller screens */
+@media (max-width: 768px) {
+  .page-container {
+    flex-direction: column; /* Stack components in a single column */
+    align-items: center; /* Center align components in the column layout */
+  }
 }
