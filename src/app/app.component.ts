@@ -9,21 +9,17 @@ import {
   AppointmentFormComponent
 } from "./appointment-and-administration/components/appointment-form/appointment-form.component";
 import {TranslateService} from "@ngx-translate/core";
+import {AuthenticationSectionComponent} from "./iam/components/authentication-section/authentication-section.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, MatToolbar, MatAnchor, MatIconButton, MatMenuTrigger, MatIcon, MatMenu, ToolbarComponent, AppointmentFormComponent],
+  imports: [RouterOutlet, RouterLink, MatToolbar, MatAnchor, MatIconButton, MatMenuTrigger, MatIcon, MatMenu, ToolbarComponent, AppointmentFormComponent, AuthenticationSectionComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'psymed-frontend';
-  protected options = [
-    { path: '/home', title: 'Home' },
-    { path: '/learning/courses', title: 'Course' }
-  ]
-
   constructor(translate: TranslateService) {
     translate.setDefaultLang('en');
     translate.use('en');

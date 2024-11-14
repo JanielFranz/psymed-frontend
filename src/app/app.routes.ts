@@ -25,6 +25,9 @@ import {EditProfileComponent} from "./profile/pages/edit-profile/edit-profile.co
 import {AccountProfileComponent} from "./profile/pages/account-profile/account-profile.component";
 import {PatientsAppointmentPageComponent} from "./appointment-and-administration/pages/patients-appointment-page/patients-appointment-page.component";
 import {PatientViewTaskComponent} from "./session-notes/pages/patient-view-task/patient-view-task.component";
+import {SingUpComponent} from "./iam/pages/sing-up/sing-up.component";
+import {SingInComponent} from "./iam/pages/sing-in/sing-in.component";
+import {authenticationGuard} from "./iam/services/authentication.guard";
 
 
 export const routes: Routes = [
@@ -44,7 +47,7 @@ export const routes: Routes = [
   { path: 'patient-management/:id/clinical-history/:clinicalHistoryId/diagnostic/admin-edit'          , component: DiagnosticEditViewComponent },
   { path: 'biological-functions'                                    , component: BiologicalFunctionsEntryComponent },
   { path: 'patient/prescription/:id', component: PatientMedicationComponent },
-  { path: 'appointment-list'                                        , component: ProfessionalAppointmentPageComponent},
+  { path: 'appointment-list'                                        , component: ProfessionalAppointmentPageComponent,/*canActivate: [authenticationGuard]*/},
   { path: 'patient-management/:id/patient-appointment-list/:appointmentId/notes'         , component: SessionNotesComponent },
   { path: 'patient-management/:id/patient-appointment-list/:appointmentId/task'         , component: ProfessionalViewTaskComponent },
   { path: 'patient/appointment-list'         , component: PatientsAppointmentPageComponent },
@@ -55,5 +58,7 @@ export const routes: Routes = [
   { path: 'professional/profile/:id'                                            , component: AccountProfileComponent },
   { path: 'patient/edit-profile/:id'                                            , component: EditProfileComponent },
   { path: 'professional/edit-profile/:id'                                            , component: EditProfileComponent },
-  { path: '**'                                                      , redirectTo: 'home' }  // Wildcard route for invalid paths, redirects to HomeComponent
+  { path: 'sing-up', component: SingUpComponent },
+  { path: 'sing-in', component: SingInComponent },
+  { path: '**'                                                      , redirectTo: 'home' },  // Wildcard route for invalid paths, redirects to HomeComponent
 ];
