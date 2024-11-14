@@ -1,83 +1,92 @@
 /* Main content container styling */
 .main-content {
-  padding: 20px;  /* Adds padding around the main content for spacing */
+  padding: 20px;
 }
 
 /* Header styling */
 .header {
-  background-color: #10294c; /* Navy blue background for the header */
-  color: white;              /* White text in the header */
-  text-align: center;         /* Center-aligns text in the header */
-  padding: 15px;              /* Adds padding inside the header */
-  border-radius: 5px;         /* Slightly rounded corners for the header */
+  background-color: #10294c;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  border-radius: 5px;
 }
 
 /* Container for session cards */
 .card-container {
-  padding: 20px;              /* Adds padding around the cards */
-  display: flex;              /* Uses flexbox for layout */
-  flex-direction: column;     /* Stacks the session cards vertically */
-  gap: 15px;                  /* Adds space between each session card */
-  background-color: #C2F2ED;  /* Light blue-green background for the container */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background-color: #C2F2ED;
 }
 
 /* Styling for individual session cards */
 .session-card {
-  display: flex;              /* Flexbox layout for content inside the session card */
-  justify-content: space-between;  /* Space between left and right content */
-  align-items: center;        /* Vertically centers content inside the card */
-  background-color: #308C83;  /* Teal background color for the session card */
-  padding: 15px;              /* Adds padding inside the session card */
-  border-radius: 10px;        /* Rounds the corners of the session card */
-  color: white;               /* White text inside the session card */
+  display: flex;
+  flex-direction: row;         /* Side-by-side layout by default */
+  justify-content: space-between;
+  align-items: center;
+  background-color: #308C83;
+  padding: 15px;
+  border-radius: 10px;
+  color: white;
+  font-size: 1rem;             /* Default font size for larger screens */
 }
 
-/* Common styling for the appointment, patient, and professional details inside a session card */
-.appointment-details, .patient-details, .professional-details {
-  flex: 1;                    /* Each section takes up equal space in the card */
-  text-align: left;            /* Left-aligns text in each section */
-}
-
-/* Styling for the notes button container */
-.notes-button {
-  flex: 0;                    /* Prevents the button container from growing */
-  text-align: right;           /* Aligns the button to the right */
-}
-
-/* Button styling for the notes button */
-.notes-button button {
-  background-color: #10BEAE;   /* Teal background color for the button */
-  color: white;                /* White text on the button */
-  border-radius: 5px;          /* Rounds the corners of the button */
-  padding: 5px 10px;           /* Adds padding inside the button */
-  border: none;                /* Removes the button border */
-  cursor: pointer;             /* Changes the cursor to a pointer on hover */
-}
-
-/* Hover effect for the notes button */
-.notes-button button:hover {
-  background-color: #0ea299;   /* Darker teal color when hovered */
+/* Common styling for appointment and professional details */
+.appointment-details, .professional-details {
+  flex: 1;
+  text-align: left;
 }
 
 /* Styling for date and time elements */
 .date, .time {
-  margin: 0;                   /* Removes default margin */
-  text-align: left;             /* Left-aligns the text */
+  margin: 0;
+  text-align: left;
 }
 
-/* Wrapper for the content to ensure flexbox layout */
-.content-wrapper {
-  display: flex;               /* Uses flexbox for horizontal layout */
-  justify-content: space-between; /* Adds space between the left and right sections */
-  gap: 20px;                   /* Adds space between the appointment list and the form */
+/* Responsive styling for medium screens */
+@media (max-width: 768px) {
+  .session-card {
+    flex-direction: column;        /* Stack elements vertically on medium screens */
+    align-items: flex-start;
+    font-size: 0.9rem;             /* Slightly smaller font size for medium screens */
+  }
+
+  .header h2 {
+    font-size: 1.25rem;            /* Adjust header font size */
+  }
+
+  .date, .time, .professional-details p {
+    font-size: 0.85rem;            /* Smaller font size for appointment details */
+  }
+
+  .session-card button {
+    font-size: 0.85rem;            /* Smaller button text */
+  }
 }
 
-/* Appointment list takes up 70% of the width */
-.appointment-list {
-  flex: 2;                     /* Appointment list takes more space than the form */
-}
+/* Additional adjustments for small screens */
+@media (max-width: 480px) {
+  .card-container {
+    padding: 10px;                 /* Reduce padding around the cards */
+  }
 
-/* Appointment form takes up 30% of the width */
-.appointment-form {
-  flex: 1;                     /* Appointment form takes up less space than the list */
+  .session-card {
+    padding: 10px;                 /* Reduce padding within each session card */
+    font-size: 0.8rem;             /* Even smaller font size on small screens */
+  }
+
+  .header h2 {
+    font-size: 0.5rem;               /* Further reduce header font size */
+  }
+
+  .date, .time, .professional-details p {
+    font-size: 1rem;            /* Smaller font size for details */
+  }
+
+  .session-card button {
+    font-size: 0.5rem;            /* Smaller button text */
+  }
 }
