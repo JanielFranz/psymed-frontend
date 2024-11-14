@@ -1,14 +1,23 @@
 /* Toolbar */
 mat-toolbar {
+  width: 100%;
   background-color: #028484; /* Custom primary color */
   color: white; /* Text color */
-  padding: 0 20px; /* Add some padding to the sides */
+  padding: 0 20px; /* Default padding for larger screens */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  display: flex; /* Ensure elements align in a row */
+  align-items: center; /* Center align vertically */
+  box-sizing: border-box;
+  margin: 0;
+  flex-wrap: wrap; /* Allow toolbar items to wrap to a new line */
+  min-height: 70px; /* Slightly larger height */
+  height: auto; /* Allow toolbar to adjust height as buttons wrap */
 }
+
 
 /* Spacer to separate elements */
 .mat-spacer {
-  flex: 1 1 auto;
+  flex: 1 1 auto; /* Pushes items to the right */
 }
 
 /* Styles for navigation links */
@@ -45,14 +54,90 @@ mat-menu button:hover {
 }
 
 /* Navigation button */
-.navigation-button{
+.navigation-button {
   background-color: #aacdda;
   border-radius: 0.75em;
+  margin-left: 0.5em; /* Add some space between buttons */
 }
 
-.menu-toolbar{
+/* Toolbar container for menu and navigation items */
+.menu-toolbar {
   display: flex;
-
   align-items: center;
   gap: 0.5em;
+  flex-wrap: wrap; /* Allow buttons to wrap to a new line when necessary */
+}
+
+/* Logo text */
+.logo-text {
+  font-size: 1.5em; /* Default size for larger screens */
+  padding: 0 10px; /* Default padding for logo text */
+}
+
+/* Responsive Styles */
+/* Medium screens (up to 768px) */
+@media (max-width: 768px) {
+  mat-toolbar {
+    padding: 0 15px; /* Reduced padding for medium screens */
+    height: auto; /* Allow toolbar to adjust height as buttons wrap */
+  }
+
+  .logo-text {
+    font-size: 1.2em; /* Slightly smaller text */
+    padding: 0 8px; /* Reduced padding for logo text */
+  }
+
+  .menu-toolbar img {
+    height: 40px;
+    width: 40px; /* Smaller logo */
+  }
+
+  /* Enable wrapping only for navigation buttons */
+  .navigation-buttons {
+    display: flex;
+    flex-wrap: wrap; /* Allows buttons to wrap to new lines */
+    gap: 0.5em;
+  }
+
+  .navigation-button {
+    padding: 2px 5px;
+    font-size: 0.8em;
+    min-height: 10px;
+    margin-left: 0.2em;
+    border-radius: 0.75em;
+  }
+}
+
+/* Small screens (up to 480px) */
+@media (max-width: 480px) {
+  mat-toolbar {
+    padding: 5px; /* Reduced padding for small screens */
+    height: auto; /* Allow toolbar to adjust height as buttons wrap */
+  }
+
+  .logo-text {
+    font-size: 0.5em; /* Smaller text for small screens */
+    padding: 0 1px; /* Reduced padding for logo text */
+  }
+
+  .menu-toolbar img {
+    height: 30px;
+    width: 30px; /* Minimum logo size */
+  }
+
+  /* Enable wrapping only for navigation buttons */
+  .navigation-buttons {
+    display: flex;
+    flex-wrap: wrap; /* Allows buttons to wrap to new lines */
+    gap: 0.2em;
+  }
+
+  .navigation-button {
+    padding: 1px 3px;
+    font-size: 0.5em;
+    margin-left: 0.2em;
+    border-radius: 0.75em;
+    min-width: auto;
+    min-height: auto;
+  }
 }

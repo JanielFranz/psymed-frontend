@@ -1,31 +1,25 @@
 <mat-toolbar style="background-color: black" color="primary">
   <div class="menu-toolbar">
-    <span>PsyMed</span>
-    <img ngSrc="assets/img/logo.png" height="50" width="50" alt="PysMed logo">
-
+    <span class="logo-text">PsyMed</span>
+    <img ngSrc="assets/img/logo.png" height="50" width="50" alt="PsyMed logo">
   </div>
+
   <span class="mat-spacer"></span>
 
+  <app-language-switcher></app-language-switcher>
 
-  <div class = "menu-toolbar">
-
-
-    <app-language-switcher></app-language-switcher>
-
-    <!-- Navigation Links -->
+  <div class="navigation-buttons">
     <ng-container *ngFor="let option of options">
-      <a class = "navigation-button"
+      <a class="navigation-button"
          mat-button
          [routerLink]="option.path"
-         (click)="option.name === 'logout' ? onLogout() : null"
-      >
+         (click)="option.name === 'logout' ? onLogout() : null">
         {{ "toolbar." + option.name | translate }}
       </a>
     </ng-container>
-
   </div>
 
-  <!-- Commenting out notifications functionality -->
+<!-- Commenting out notifications functionality -->
   <!--
 <button mat-icon-button [matMenuTriggerFor]="menu" (click)="viewNotifications()">
   <mat-icon>notifications</mat-icon>
@@ -33,17 +27,17 @@
     <span *ngIf="newAppointmentsCount > 0">
       <mat-badge [matBadge]="newAppointmentsCount" matBadgeOverlap="false"></mat-badge>
     </span>
+</button>
+<mat-menu #menu="matMenu">
+  <ng-container *ngIf="appointments.length > 0; else noAppointments">
+    <button mat-menu-item *ngFor="let appointment of appointments">
+      {{ appointment.patientName }} - {{ appointment.appointmentDate | date:'short' }}
     </button>
-  <mat-menu #menu="matMenu">
-    <ng-container *ngIf="appointments.length > 0; else noAppointments">
-      <button mat-menu-item *ngFor="let appointment of appointments">
-        {{ appointment.patientName }} - {{ appointment.appointmentDate | date:'short' }}
-      </button>
-    </ng-container>
+  </ng-container>
 
-    <ng-template #noAppointments>
-      <button mat-menu-item>No new notifications</button>
-    </ng-template>
-  </mat-menu>
-  -->
+  <ng-template #noAppointments>
+    <button mat-menu-item>No new notifications</button>
+  </ng-template>
+</mat-menu>
+-->
 </mat-toolbar>
