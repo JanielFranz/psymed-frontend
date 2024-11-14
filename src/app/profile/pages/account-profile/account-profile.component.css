@@ -2,8 +2,8 @@
 .account-profile-page {
   display: flex;
   align-items: center; /* Vertically center the components */
-
   gap: 20px; /* Adds space between components */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }
 
 /* Ensure the child components don't take up full width */
@@ -30,18 +30,37 @@ app-profile-account-information {
 .custom-edit-button {
   background-color: #0c1545; /* Navy blue background */
   color: white; /* White text */
-  font-size: 16px; /* Font size similar to the image */
-  font-weight: bold; /* Bold text */
-  padding: 10px 80px; /* Increase padding for wider button */
-  text-transform: uppercase; /* Uppercase text for 'Edit' */
-  border-radius: 0; /* Remove rounded corners */
-  width: auto; /* Let the button adjust based on padding */
-  min-width: 200px; /* Minimum width to ensure the button is sufficiently wide */
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 80px;
+  text-transform: uppercase;
+  border-radius: 0;
+  width: auto;
+  min-width: 200px;
   text-align: center;
 }
 
 /* Hover Effect for Material Button */
 .custom-edit-button:hover {
-  background-color: #0b133f; /* Slightly darker navy on hover */
+  background-color: #0b133f;
   transition: background-color 0.3s ease;
+}
+
+/* Responsive styling for smaller screens */
+@media (max-width: 768px) {
+  .account-profile-page {
+    flex-direction: column; /* Stack components in a single column */
+    align-items: center; /* Center components horizontally */
+  }
+
+  app-profile-description,
+  app-profile-account-information {
+    max-width: 100%; /* Full width for each component in a single column layout */
+  }
+
+  .custom-edit-button {
+    width: 100%; /* Full width button on smaller screens */
+    padding: 10px; /* Adjust padding for smaller screens */
+    max-width: 300px; /* Optional: Limit the max width */
+  }
 }
