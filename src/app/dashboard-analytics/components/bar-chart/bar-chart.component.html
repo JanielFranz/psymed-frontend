@@ -1,17 +1,14 @@
-
-<div style="width: 540px; height: 540px;" >
+<div class="bar-chart-container">
   <mat-card appearance="outlined">
     <mat-card-title>
       {{"pages.patient-management.actions.dashboard-analytics.bar-chart.title" | translate }}
     </mat-card-title>
     <mat-card-content class="content">
-      <canvas class="bar-chart"  baseChart
+      <canvas class="bar-chart" baseChart
               [data]="barChartData"
               [labels]="barChartLabels"
-              [type]="'bar'"
-      >
+              [type]="'bar'">
       </canvas>
     </mat-card-content>
-</mat-card>
+  </mat-card>
 </div>
-

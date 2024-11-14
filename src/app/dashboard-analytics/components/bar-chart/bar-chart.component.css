@@ -1,3 +1,29 @@
-.content{
-  margin-top: 1rem;
+.bar-chart-container {
+  width: 100%;
+  max-width: 540px; /* Maximum width on larger screens */
+  height: auto;
+  margin: 0 auto;
+  padding: 1rem; /* Optional padding */
+}
+
+/* Adjust width and max width for medium screens */
+@media (max-width: 768px) {
+  .bar-chart-container {
+    width: 90%; /* Reduce width for medium screens */
+    max-width: 400px; /* Smaller max width on medium screens */
+  }
+}
+
+/* Further adjustments for small screens */
+@media (max-width: 480px) {
+  .bar-chart-container {
+    width: 100%; /* Full width on small screens */
+    max-width: 300px; /* Smaller max width on small screens */
+    padding: 0.5rem; /* Optional padding for smaller screens */
+  }
+}
+
+.bar-chart {
+  width: 100% !important; /* Ensures the canvas takes the full width of the container */
+  height: auto !important; /* Allows height to scale with width */
 }
