@@ -17,19 +17,41 @@
   margin-bottom: 10px;
 }
 
+/* Image Container Styling */
 .images {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap; /* Allows images to wrap on smaller screens */
+  gap: 10px; /* Space between images */
 }
 
+/* Individual Image Styling */
 .images img {
   margin: 0 10px;
   cursor: pointer;
-  width: 100px; /* Ajusta el tamaño según tus necesidades */
-  height: auto; /* Mantiene la proporción de la imagen */
+  width: 100px; /* Default width for desktop */
+  height: auto; /* Maintain image aspect ratio */
+  transition: transform 0.3s ease; /* Smooth transition on hover */
+  border-radius: 8px; /* Optional rounded corners */
 }
 
-.date {
-  margin-top: 20px;
-  font-size: 1.2em;
+/* Hover effect for images */
+.images img:hover {
+  transform: scale(1.1); /* Slightly enlarge image on hover */
+}
+
+/* Responsive adjustments */
+
+/* Medium screens (tablets, 768px and below) */
+@media (max-width: 768px) {
+  .images img {
+    width: 80px; /* Reduce image size on tablets */
+  }
+}
+
+/* Small screens (mobile, 480px and below) */
+@media (max-width: 480px) {
+  .images img {
+    width: 60px; /* Further reduce image size on mobile */
+  }
 }
