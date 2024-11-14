@@ -1,66 +1,126 @@
 /* Main content container styling */
 .main-content {
-  padding: 20px;  /* Adds padding inside the container */
+  padding: 20px;
 }
 
 /* Header styling */
 .header {
-  background-color: #10294c; /* Navy blue background */
-  color: white;              /* White text */
-  text-align: center;         /* Centers text in the header */
-  padding: 15px;              /* Padding inside the header */
-  border-radius: 5px;         /* Rounded corners for the header */
+  background-color: #10294c;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  border-radius: 5px;
 }
 
-/* Card container that holds the session cards */
+/* Container for session cards */
 .card-container {
-  padding: 20px;              /* Padding around the cards */
-  display: flex;              /* Flexbox layout */
-  flex-direction: column;     /* Stack cards vertically */
-  gap: 15px;                  /* Space between the cards */
-  background-color: #C2F2ED;  /* Light blue-green background */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background-color: #C2F2ED;
 }
 
 /* Styling for individual session cards */
 .session-card {
-  display: flex;              /* Flexbox layout for session content */
-  justify-content: space-between;  /* Space between left and right content */
-  align-items: center;        /* Vertically centers content */
-  background-color: #308C83;  /* Teal background color */
-  padding: 15px;              /* Padding inside the card */
-  border-radius: 10px;        /* Rounded corners for the card */
-  color: white;               /* White text color */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #308C83;
+  padding: 15px;
+  border-radius: 10px;
+  color: white;
 }
 
-/* Common styles for details inside a session card */
-.appointment-details, .patient-details, .professional-details {
-  flex: 1;                    /* Each section takes equal space */
-  text-align: left;            /* Left-aligns text */
+/* Common styling for appointment, patient, and professional details */
+.appointment-details, .professional-details {
+  flex: 1;
+  text-align: left;
 }
 
-/* Styles for the notes button container */
-.notes-button {
-  flex: 0;                    /* Do not allow flex-grow for the button container */
-  text-align: right;           /* Right-aligns the button */
+/* Wrapper for the content: default side-by-side, stacks vertically on smaller screens */
+.content-wrapper {
+  display: flex;
+  flex-direction: row; /* Default to row layout */
+  justify-content: space-between;
+  gap: 20px;
 }
 
-/* Button styling inside the notes-button container */
+/* Appointment list takes up 70% of the width */
+.appointment-list {
+  flex: 2;
+}
+
+/* Appointment form takes up 30% of the width */
+.appointment-form {
+  flex: 1;
+}
+
+/* Responsive styling for medium screens */
+@media (max-width: 768px) {
+  .content-wrapper {
+    flex-direction: column; /* Stack list and form vertically on medium screens */
+    gap: 20px;
+  }
+
+  .appointment-list,
+  .appointment-form {
+    width: 100%; /* Each component takes full width */
+    max-width: none; /* Remove any max-width constraints */
+  }
+}
+
+/* Styling for buttons and other elements */
 .notes-button button {
-  background-color: #10BEAE;   /* Teal color for the button */
-  color: white;                /* White text */
-  border-radius: 5px;          /* Rounded corners for the button */
-  padding: 5px 10px;           /* Padding inside the button */
-  border: none;                /* No border */
-  cursor: pointer;             /* Cursor changes to pointer when hovering */
+  background-color: #10BEAE;
+  color: white;
+  border-radius: 5px;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
 }
 
-/* Hover effect for the notes button */
 .notes-button button:hover {
-  background-color: #0ea299;   /* Darker teal color on hover */
+  background-color: #0ea299;
 }
 
-/* Date and time styling */
 .date, .time {
-  margin: 0;                   /* Remove default margins */
-  text-align: left;             /* Left-aligns the text */
+  margin: 0;
+}
+/* Main button styling */
+.notes-button button {
+  background-color: #10BEAE;
+  color: white;
+  border-radius: 5px;
+  padding: 8px 12px;          /* Base padding for default size */
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;            /* Default font size */
+  margin: 5px;                /* Add spacing between buttons */
+}
+
+.notes-button button:hover {
+  background-color: #0ea299;  /* Darker color on hover */
+}
+
+/* Responsive adjustments for buttons on medium screens */
+@media (max-width: 768px) {
+  .notes-button button {
+    padding: 6px 10px;        /* Reduce padding for smaller screens */
+    font-size: 0.875rem;      /* Reduce font size for better fit */
+    width: 100%;              /* Full-width buttons for easier access */
+    max-width: 200px;         /* Limit max width */
+    margin: 5px 0;            /* Stack buttons with vertical spacing */
+  }
+}
+
+/* Responsive adjustments for very small screens */
+@media (max-width: 480px) {
+  .notes-button button {
+    padding: 1px 1px;         /* Further reduce padding */
+    font-size: 0.75rem;       /* Smaller font size for mobile devices */
+    width: 100%;              /* Full width to make buttons easier to tap */
+    margin: 5px 0;            /* Vertical spacing */
+    min-width: auto;
+  }
 }

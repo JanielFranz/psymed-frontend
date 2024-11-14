@@ -1,13 +1,51 @@
-.filter-section{
+.filter-section {
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 1rem; /* Space between elements */
 }
 
-.input-list{
+/* Form fields */
+.input-list {
   margin-right: 1.3rem;
 }
 
 h2 {
   display: flex;
   justify-content: center;
+}
+
+/* Responsive styling for smaller screens */
+@media (max-width: 768px) {
+  .filter-section {
+    flex-direction: column; /* Stack elements vertically on smaller screens */
+    align-items: stretch; /* Full width of container */
+    gap: 0.5rem;
+  }
+
+  .input-list {
+    width: 100%; /* Full width for form fields */
+    margin-right: 0; /* Remove right margin in stacked layout */
+  }
+
+  button[mat-fab] {
+    align-self: center; /* Center-align the button */
+    margin-top: 0.5rem;
+  }
+}
+
+/* Additional adjustments for very small screens */
+@media (max-width: 480px) {
+  h2 {
+    font-size: 1.2rem; /* Smaller font for header on very small screens */
+  }
+
+  .filter-section {
+    padding: 0.5rem;
+  }
+
+  button[mat-fab] {
+    width: 100%; /* Full width button */
+    max-width: 250px; /* Limit button width */
+  }
 }
