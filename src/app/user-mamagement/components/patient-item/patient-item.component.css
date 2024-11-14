@@ -1,17 +1,64 @@
+/* Container for list item */
 .item {
   display: flex;
+  align-items: center;
 }
 
+/* Spacer to separate elements */
 .mat-spacer {
   flex: 1 1 auto;
 }
 
+/* Styling for the name row */
 .name-row {
   display: flex;
   align-items: center;
   color: white;
-  font-size: 22px;
+  font-size: 22px !important; /* Default font size for larger screens */
+  white-space: nowrap; /* Prevents text from wrapping */
 }
+
+/* Default button and icon styles */
+button {
+  padding: 8px; /* Default padding for larger screens */
+  border-radius: 50%; /* Keep circular icon buttons */
+}
+
 mat-icon {
-  color:white;
+  color: white;
+  font-size: 24px !important; /* Default icon size */
+}
+
+/* Responsive adjustments */
+
+/* Medium screens (up to 768px) */
+@media (max-width: 768px) {
+  .name-row {
+    font-size: 18px !important; /* Reduce font size for medium screens */
+  }
+
+  button {
+    padding: 6px; /* Reduce padding to make button area smaller */
+  }
+
+  mat-icon {
+    font-size: 20px !important; /* Smaller icon size */
+  }
+}
+
+/* Small screens (up to 480px) */
+@media (max-width: 480px) {
+  .name-row {
+    font-size: 14px !important; /* Further reduce font size for small screens */
+  }
+
+  button {
+    padding: 4px; /* Further reduce padding for very small screens */
+    width: 32px; /* Define a smaller width */
+    height: 32px; /* Define a smaller height */
+  }
+
+  mat-icon {
+    font-size: 16px !important; /* Further reduce icon size */
+  }
 }
