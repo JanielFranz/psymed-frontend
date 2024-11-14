@@ -1,43 +1,93 @@
-.panel{
-
+/* Panel container for centering */
+.panel {
   height: 80vh;
-
   display: flex;
-
   justify-content: center;
   align-items: center;
-
   color: white;
-
+  padding: 1rem;               /* Add padding to prevent overflow on small screens */
+  box-sizing: border-box;
 }
 
-.clinical-card{
+/* Main clinical card styling */
+.clinical-card {
   background-color: #c2f2ed;
   border-radius: 0.25em;
   padding: 1.25em;
+  width: 100%;
+  max-width: 600px;            /* Set max width to prevent stretching on large screens */
+  box-sizing: border-box;
 }
 
-.panel-card{
-
+/* Panel card styling */
+.panel-card {
   background-color: #26c4b6;
   border-radius: 0.25em;
   padding: 0.25em;
   margin-bottom: 1em;
-  font-size: 24px;
-
+  font-size: 1.5rem;           /* Adjusted to be scalable */
+  text-align: center;
 }
 
+/* Sub-panel card styling */
 .sub-panel-card {
-
   background-color: #1d9e91;
   border-radius: 0.25em;
   padding: 0.4em;
   margin: 0.5em;
+  font-size: 1rem;             /* Base font size */
 }
-.plain-editable-text{
 
+/* Plain editable text fields */
+.plain-editable-text {
   background-color: transparent;
   border-color: transparent;
   color: white;
+  width: 100%;                 /* Full width on small screens */
+  font-size: 1rem;             /* Base font size */
 }
 
+/* Responsive styling for medium screens */
+@media (max-width: 768px) {
+  .clinical-card {
+    padding: 1rem;
+    max-width: 90%;            /* Reduce max width to fit on medium screens */
+  }
+
+  .panel-card {
+    font-size: 1.25rem;        /* Smaller font size for panel header */
+  }
+
+  .sub-panel-card {
+    padding: 0.3em;
+    font-size: 0.9rem;         /* Smaller font size for form fields */
+  }
+
+  .plain-editable-text {
+    font-size: 0.9rem;         /* Adjust font size for readability */
+  }
+}
+
+/* Responsive styling for small screens */
+@media (max-width: 480px) {
+  .clinical-card {
+    padding: 0.75rem;
+    max-width: 100%;           /* Full width on small screens */
+  }
+
+  .panel-card {
+    font-size: 1.1rem;         /* Further reduce font size for small screens */
+    padding: 0.5em;
+  }
+
+  .sub-panel-card {
+    padding: 0.25em;
+    margin: 0.25em;
+    font-size: 0.85rem;        /* Smaller font size for small screens */
+  }
+
+  .plain-editable-text {
+    font-size: 0.85rem;        /* Smaller font size in input fields */
+    padding: 0.4em;            /* Reduced padding for inputs */
+  }
+}
