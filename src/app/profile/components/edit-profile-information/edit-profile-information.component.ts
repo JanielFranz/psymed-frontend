@@ -8,7 +8,7 @@ import { Patient } from '../../../shared/model/patient.entity';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Account } from "../../models/account.entity";
+import { Profile } from "../../models/profile.entity";
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { selectRolId } from "../../../store/auth/auth.selectors";
@@ -28,7 +28,7 @@ import { TranslateModule } from "@ngx-translate/core";
 })
 export class EditProfileInformationComponent implements OnInit, OnDestroy {
   editForm: FormGroup;
-  account: Account | undefined;
+  account: Profile | undefined;
   professional: ProfessionalEntity | undefined;
   patient: Patient | undefined;
   role: string | null = null;
@@ -161,7 +161,7 @@ export class EditProfileInformationComponent implements OnInit, OnDestroy {
 
   loadAccount(accountId: number): void {
     this.accountService.getAccountById(accountId).subscribe({
-      next: (account: Account) => {
+      next: (account: Profile) => {
         this.account = account;
         this.editForm.patchValue({
           idAccount: account.id,
@@ -212,7 +212,7 @@ export class EditProfileInformationComponent implements OnInit, OnDestroy {
 
   updateAccountPassword(): void {
     if (this.account) {
-      const updatedAccount: Account = {
+      const updatedAccount: Profile = {
         ...this.account,
         password: this.editForm.get('password')?.value,
         isProfessional: function (): boolean {

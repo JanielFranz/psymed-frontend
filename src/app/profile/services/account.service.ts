@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Account } from "../models/account.entity";
+import { Profile } from "../models/profile.entity";
 import { BaseService } from '../../shared/services/base.service';
 import { Observable } from "rxjs";
 import { catchError, retry } from "rxjs/operators";
@@ -7,7 +7,7 @@ import { catchError, retry } from "rxjs/operators";
 @Injectable({
   providedIn: 'root'
 })
-export class AccountService extends BaseService<Account> {
+export class AccountService extends BaseService<Profile> {
 
   constructor() {
     super();
@@ -16,10 +16,10 @@ export class AccountService extends BaseService<Account> {
 
   /**
    * @description Creates a new account
-   * @param {Account} account - The account data to be created
-   * @returns {Observable<Account>} An observable with the created account
+   * @param {Profile} account - The account data to be created
+   * @returns {Observable<Profile>} An observable with the created account
    */
-  public createAccount(account: Account): Observable<Account> {
+  public createAccount(account: Profile): Observable<Profile> {
     console.log("Creating account...");
     return this.create(account);
   }
@@ -27,12 +27,12 @@ export class AccountService extends BaseService<Account> {
   /**
    * @description Fetches an account by its ID
    * @param {number} accountId - The ID of the account
-   * @returns {Observable<Account>} An observable with the account details
+   * @returns {Observable<Profile>} An observable with the account details
    */
-  public getAccountById(accountId: number): Observable<Account> {
+  public getAccountById(accountId: number): Observable<Profile> {
     console.log(`Fetching account for accountId: ${accountId}...`);
     const url = `${this.resourcePath()}/${accountId}`;
-    return this.http.get<Account>(url, this.httpOptions)
+    return this.http.get<Profile>(url, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
@@ -40,24 +40,24 @@ export class AccountService extends BaseService<Account> {
    * @description Logs in a user with their username and password
    * @param {string} userName - The username of the account
    * @param {string} password - The password of the account
-   * @returns {Observable<Account>} An observable with the logged-in account
+   * @returns {Observable<Profile>} An observable with the logged-in account
    */
-  public logIn(userName: string, password: string): Observable<Account> {
+  public logIn(userName: string, password: string): Observable<Profile> {
     console.log("Logging in...");
     const url = `${this.resourcePath()}/login`;
-    return this.http.post<Account>(url, { userName, password }, this.httpOptions)
+    return this.http.post<Profile>(url, { userName, password }, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
   /**
    * @description Fetches accounts by role (e.g., mental health professional or patient)
    * @param {number} role - The role of the accounts to fetch (1: professional, 2: patient)
-   * @returns {Observable<Account[]>} An observable with the list of accounts
+   * @returns {Observable<Profile[]>} An observable with the list of accounts
    */
-  public getAccountsByRole(role: number): Observable<Account[]> {
+  public getAccountsByRole(role: number): Observable<Profile[]> {
     console.log(`Fetching accounts with role: ${role}...`);
     const url = `${this.resourcePath()}?role=${role}`;
-    return this.http.get<Account[]>(url, this.httpOptions)
+    return this.http.get<Profile[]>(url, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
@@ -77,11 +77,11 @@ export class AccountService extends BaseService<Account> {
     return !!localStorage.getItem('token');
   }
   // Example for AccountService
-  getAccountByProfessionalId(professionalId: number): Observable<Account> {
-    return this.http.get<Account>(`/api/professional/${professionalId}`);
+  getAccountByProfessionalId(professionalId: number): Observable<Profile> {
+    return this.http.get<Profile>(`/api/professional/${professionalId}`);
   }
 
-  getAccountByPatientId(patientId: number): Observable<Account> {
-    return this.http.get<Account>(`/api/patient/${patientId}`);
+  getAccountByPatientId(patientId: number): Observable<Profile> {
+    return this.http.get<Profile>(`/api/patient/${patientId}`);
   }
 }

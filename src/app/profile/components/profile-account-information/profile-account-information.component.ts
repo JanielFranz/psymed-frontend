@@ -15,7 +15,7 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
 import { MatFormField } from "@angular/material/form-field";
 import { MatInput } from "@angular/material/input";
-import { Account } from "../../models/account.entity";
+import { Profile } from "../../models/profile.entity";
 import { TranslateModule } from "@ngx-translate/core";
 
 @Component({
@@ -36,7 +36,7 @@ import { TranslateModule } from "@ngx-translate/core";
   styleUrls: ['./profile-account-information.component.css']
 })
 export class ProfileAccountInformationComponent implements OnInit, OnDestroy {
-  account: Account | undefined;
+  account: Profile | undefined;
   professional: ProfessionalEntity | undefined;
   patient: Patient | undefined;
   role: string | null = null; // Role will store the roleId from the store
@@ -111,7 +111,7 @@ export class ProfileAccountInformationComponent implements OnInit, OnDestroy {
 
   loadAccount(accountId: number): void {
     this.accountService.getAccountById(accountId).subscribe({
-      next: (account: Account) => {
+      next: (account: Profile) => {
         this.account = account;
       },
       error: (error) => {

@@ -1,4 +1,4 @@
-export class Account {
+export class Profile {
 
   //#region Attributes
 

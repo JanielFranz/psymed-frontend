@@ -7,7 +7,7 @@ import { Store } from '@ngrx/store';
 import { TranslateModule } from "@ngx-translate/core";
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { selectRolId, selectProfessionalId, selectPatientId } from "../../../store/auth/auth.selectors"; // Import selectors
+import { selectRolId, selectProfileId } from "../../../store/auth/auth.selectors"; // Import selectors
 import { AuthState } from '../../../store/auth/auth.state';
 import { NgIf } from "@angular/common";
 import { PatientService } from '../../../shared/services/patient.service';
@@ -55,7 +55,7 @@ export class AccountProfileComponent implements OnInit, OnDestroy {
         this.roleId = roleId; // Store the roleId for conditional logic
         const currentUrl = this.router.url; // Get the current URL
 
-        if (roleId === '1') {
+        if (roleId === 'ROLE_PROFESSIONA') {
           // Professional role: Check if viewing patient or professional profile
           if (currentUrl.includes('patient/profile')) {
             // Professional viewing a patient profile, fetch patient data
@@ -67,7 +67,7 @@ export class AccountProfileComponent implements OnInit, OnDestroy {
             }
           } else if (currentUrl.includes('professional/profile')) {
             // Professional viewing their own profile, fetch professional data
-            this.store.select(selectProfessionalId).pipe(takeUntil(this.destroy$)).subscribe({
+            this.store.select(selectProfileId).pipe(takeUntil(this.destroy$)).subscribe({
               next: (professionalId) => {
                 this.professionalId = professionalId; // Store professionalId
               },
@@ -76,7 +76,7 @@ export class AccountProfileComponent implements OnInit, OnDestroy {
               }
             });
           }
-        } else if (roleId === '2') {
+        } else if (roleId === 'ROLE_PATIENT') {
           // Patient role, always fetch patient data
           const patientId = this.route.snapshot.paramMap.get('id');
           if (currentUrl.includes('patient/profile') && patientId) {
