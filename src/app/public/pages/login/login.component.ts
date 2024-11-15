@@ -3,9 +3,12 @@ import { MatIconButton } from "@angular/material/button";
 import { MatIcon } from "@angular/material/icon";
 import { Store } from "@ngrx/store";
 import { Router } from '@angular/router';
-import {setPatientId, setProfessionalId, setRole} from '../../../store/auth/auth.actions';
+import {setJwtToken, setProfileId, setRole} from '../../../store/auth/auth.actions';
 import { MatCard, MatCardContent, MatCardTitle } from "@angular/material/card";
 import { TranslateModule } from "@ngx-translate/core";
+import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
+import {AuthenticationService} from "../../services/authentication.service";
+import {SignInRequest} from "../../models/sign-in.request";
 
 /**
  * Login Component
@@ -20,24 +23,31 @@ import { TranslateModule } from "@ngx-translate/core";
     MatCardContent,
     MatCard,
     MatCardTitle,
-    TranslateModule
+    TranslateModule,
+    ReactiveFormsModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+  loginForm = new FormGroup({
+    username: new FormControl(''),
+    password: new FormControl('')
+  });
 
   // Constructor injecting the store and router services
-  constructor(private store: Store, private router: Router) {}
+  constructor(private store: Store, private router: Router, private authenticationService: AuthenticationService) {}
 
   /**
    * Sends professional data to the store and navigates to the home page.
    * @param rolId - The role ID (Professional).
-   * @param professionalId
+   * @param profileId
+   * @param jwtToken
    */
-  sendProfessionalDataToStore(rolId: string, professionalId: number): void {
+  sendProfileDataToStore(rolId: string, profileId: number, jwtToken: string): void {
     this.store.dispatch(setRole({ rolId }));
-    this.store.dispatch(setProfessionalId({professionalId}));
+    this.store.dispatch(setProfileId({profileId}));
+    this.store.dispatch(setJwtToken({ jwtToken }))
     this.router.navigate(['/home']);
   }
 
@@ -46,17 +56,25 @@ export class LoginComponent {
    * @param rolId - The role ID (Patient).
    * @param patientId - The patient ID.
    */
-  sendPatientDataToStore(rolId: string, patientId: number): void {
-    this.store.dispatch(setRole({ rolId }));
-    this.store.dispatch(setPatientId({ patientId }));
-    this.router.navigate(['/home']);
-  }
+  // sendPatientDataToStore(rolId: string, patientId: number): void {
+  //   this.store.dispatch(setRole({ rolId }));
+  //   this.store.dispatch(setPatientId({ patientId }));
+  //   this.router.navigate(['/home']);
+  // }
 
   /**
    * Updates the current patient in the store.
    * @param patientId - The patient ID.
    */
-  sendActualPatientToStore(patientId: number): void {
-    this.store.dispatch(setPatientId({ patientId }));
+  // sendActualPatientToStore(patientId: number): void {
+  //   this.store.dispatch(setPatientId({ patientId }));
+  // }
+  onSubmit() {
+
+    let username = this.loginForm.value.username!.toString();
+    let password = this.loginForm.value.password!.toString();
+    const signInRequest = new SignInRequest(username, password);
+    this.authenticationService.signIn(signInRequest);
+    this.router.navigate(['/home']);
   }
 }

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SessionService } from "../../../appointment-and-administration/services/session.service";
 import { Store } from '@ngrx/store';
 import { AuthState } from "../../../store/auth/auth.state";
-import { selectPatientId, selectProfessionalId, selectRolId } from "../../../store/auth/auth.selectors";
+import {selectJwtToken, selectProfileId, selectRolId} from "../../../store/auth/auth.selectors";
 import { combineLatest, Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Router, RouterLink } from "@angular/router";
@@ -34,17 +34,17 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   /**
    * @property {Observable<string | null>} rolId$ - Observable for the role ID of the user.
    */
-  rolId$!: Observable<string | null>;
+  role$!: Observable<string | null>;
 
   /**
    * @property {Observable<number | null>} patientId$ - Observable for the patient ID of the logged-in user.
    */
-  patientId$!: Observable<number | null>;
+  accountId$!: Observable<number | null>;
 
   /**
    * @property {Observable<string | null>} professionalId$ - Observable for the professional ID of the logged-in user (for role 1).
    */
-  professionalId$!: Observable<number | null>;
+  jwtToken$!: Observable<string | null>;
 
   /**
    * @property {Array<{path: string, name: string}>} options - Stores navigation options based on role ID.
@@ -78,30 +78,30 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     console.log("Initializing ToolbarComponent");
 
-    this.rolId$ = this.store.select(selectRolId);
-    this.patientId$ = this.store.select(selectPatientId);
-    this.professionalId$ = this.store.select(selectProfessionalId);
+    this.role$ = this.store.select(selectRolId);
+    this.accountId$ = this.store.select(selectProfileId);
+    this.jwtToken$ = this.store.select(selectJwtToken);
 
-    combineLatest([this.rolId$, this.professionalId$, this.patientId$])
+    combineLatest([this.role$, this.accountId$, this.jwtToken$])
       .pipe(takeUntil(this.destroy$))
-      .subscribe(([rolId, professionalId, patientId]) => {
-        console.log("Role ID:", rolId, "Professional ID:", professionalId, "Patient ID:", patientId);
+      .subscribe(([role, accountId, jwtToken]) => {
+        console.log("Role:", role, "Professional ID:", accountId, "JWT Token:", jwtToken);
 
-        if (rolId === '1' && professionalId) {
+        if (role === 'ROLE_PROFESSIONAL' && accountId) {
           this.options = [
             { path: '/patient-management', name: 'patient-management' },
             { path: '/appointment-list', name: 'appointments' },
-            { path: `/professional/profile/${professionalId}`, name: 'profile' },
+            { path: `/professional/profile/${accountId}`, name: 'profile' },
             { path: '/login', name: 'logout' }
           ];
-        } else if (rolId === '2' && patientId) {
+        } else if (role === 'ROLE_PATIENT' && accountId) {
           this.options = [
             { path: '/mood-state', name: 'mood-state' },
             { path: '/biological-functions', name: 'biological-functions' },
-            { path: `/patient/prescription/${patientId}`, name: 'prescription' },
+            { path: `/patient/prescription/${accountId}`, name: 'prescription' },
             { path: `/patient/clinical-history`, name: 'clinical-history' },
             { path: `/patient/appointment-list`, name: 'appointments' },
-            { path: `/patient/profile/${patientId}`, name: 'profile' },
+            { path: `/patient/profile/${accountId}`, name: 'profile' },
             { path: '/login', name: 'logout' }
           ];
         } else {
