@@ -7,8 +7,8 @@ import {setJwtToken, setProfileId, setRole} from '../../../store/auth/auth.actio
 import { MatCard, MatCardContent, MatCardTitle } from "@angular/material/card";
 import { TranslateModule } from "@ngx-translate/core";
 import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
-import {AuthenticationService} from "../../services/authentication.service";
-import {SignInRequest} from "../../models/sign-in.request";
+import {SignInRequest} from "../../../iam/models/sign-in.request";
+import {AuthenticationService} from "../../../iam/services/authentication.service";
 
 /**
  * Login Component
@@ -30,51 +30,18 @@ import {SignInRequest} from "../../models/sign-in.request";
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  loginForm = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl('')
-  });
-
   // Constructor injecting the store and router services
   constructor(private store: Store, private router: Router, private authenticationService: AuthenticationService) {}
 
   /**
    * Sends professional data to the store and navigates to the home page.
    * @param rolId - The role ID (Professional).
-   * @param profileId
-   * @param jwtToken
    */
-  sendProfileDataToStore(rolId: string, profileId: number, jwtToken: string): void {
+  sendProfileDataToStore(rolId: string): void {
+    // Dispatch the role to store
     this.store.dispatch(setRole({ rolId }));
-    this.store.dispatch(setProfileId({profileId}));
-    this.store.dispatch(setJwtToken({ jwtToken }))
-    this.router.navigate(['/home']);
-  }
 
-  /**
-   * Sends patient data (role and patient ID) to the store and navigates to the home page.
-   * @param rolId - The role ID (Patient).
-   * @param patientId - The patient ID.
-   */
-  // sendPatientDataToStore(rolId: string, patientId: number): void {
-  //   this.store.dispatch(setRole({ rolId }));
-  //   this.store.dispatch(setPatientId({ patientId }));
-  //   this.router.navigate(['/home']);
-  // }
-
-  /**
-   * Updates the current patient in the store.
-   * @param patientId - The patient ID.
-   */
-  // sendActualPatientToStore(patientId: number): void {
-  //   this.store.dispatch(setPatientId({ patientId }));
-  // }
-  onSubmit() {
-
-    let username = this.loginForm.value.username!.toString();
-    let password = this.loginForm.value.password!.toString();
-    const signInRequest = new SignInRequest(username, password);
-    this.authenticationService.signIn(signInRequest);
-    this.router.navigate(['/home']);
+    // Navigate to sign-up page after setting the role
+    this.router.navigate(['authentication'], { queryParams: { role: rolId } });
   }
 }

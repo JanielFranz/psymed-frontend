@@ -1,25 +1,24 @@
 <div class="card-container">
   <!-- Card for mental health professionals -->
+  <!-- Card for mental health professionals -->
   <mat-card>
     <p>{{"pages.login.medic.description" | translate}}</p>
     <mat-card-content>
-      <!-- Button to select professional role, calls the sendProfessionalDataToStore method -->
-      <button (click)="sendProfileDataToStore('ROLE_PATIENT',1, 'asdasd')">
+      <!-- Button to select professional role -->
+      <button (click)="sendProfileDataToStore('ROLE_PROFESSIONAL')">
         <h3>{{"pages.login.button" | translate }}</h3> <!-- Button text -->
       </button>
     </mat-card-content>
   </mat-card>
 
   <!-- Card for patients -->
-
-  <div class="login-form">
-    <h2>Login</h2>
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <label for="username">Username: </label>
-      <input id="username" type="text" formControlName="username">
-      <label for="password">Password: </label>
-      <input id="password" type="password" formControlName="password">
-      <button type="submit">Log in</button>
-    </form>
-  </div>
+  <mat-card>
+    <p>{{"pages.login.patient.description" | translate}}</p>
+    <mat-card-content>
+      <!-- Button to select patient role -->
+      <button (click)="sendProfileDataToStore('ROLE_PATIENT')">
+        <h3>{{"pages.login.button" | translate }}</h3> <!-- Button text -->
+      </button>
+    </mat-card-content>
+  </mat-card>
 </div>
