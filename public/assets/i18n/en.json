@@ -240,5 +240,49 @@
       "end-date": "End date",
       "interval": "Interval"
     }
+  },
+  "sign-up": {
+    "title": "Welcome",
+    "username": "Username",
+    "password": "Password",
+    "placeholder": {
+      "username": "Enter your username",
+      "password": "Enter your password"
+    },
+    "error": {
+      "usernameRequired": "Username is required",
+      "passwordRequired": "Password is required"
+    },
+    "button": "Login",
+    "signup": "Don't have an account yet?",
+    "signIn": "Sign In",
+    "forgotPassword": "Forgot your password?",
+    "alert": {
+      "roleMismatch": "Role mismatch detected. You signed up as {{storedRole}}, but this account belongs to {{accountRole}}. Please use the correct account.",
+      "signInFailed": "Account does not exist or invalid credentials. Please try again."
+    }
+  },
+  "forgot-password": {
+    "title": "Forgot Password",
+    "username": "Username",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm Password",
+    "placeholder": {
+      "username": "Enter your username",
+      "newPassword": "Enter your new password",
+      "confirmPassword": "Confirm your new password"
+    },
+    "error": {
+      "usernameRequired": "Username is required",
+      "passwordRequired": "Password is required",
+      "confirmPasswordRequired": "Confirm password is required",
+      "passwordMismatch": "Passwords do not match"
+    },
+    "button": "Reset Password",
+    "backToSignUp": "Back to Sign Up",
+    "alert": {
+      "success": "Password successfully updated. Please log in.",
+      "failure": "Failed to reset password. Please try again."
+    }
   }
 }

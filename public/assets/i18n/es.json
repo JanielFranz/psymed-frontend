@@ -243,5 +243,50 @@
       "end-date": "Fecha de finalización",
       "interval": "Intervalo"
     }
+  },
+  "sign-up": {
+    "title": "Bienvenido",
+    "username": "Usuario",
+    "password": "Contraseña",
+    "placeholder": {
+      "username": "Ingrese su usuario",
+      "password": "Ingrese su contraseña"
+    },
+    "error": {
+      "usernameRequired": "El usuario es obligatorio",
+      "passwordRequired": "La contraseña es obligatoria"
+    },
+    "button": "Iniciar sesión",
+    "signup": "¿No tienes una cuenta aún?",
+    "signIn": "Regístrate",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "alert": {
+      "roleMismatch": "Se detectó un conflicto de roles. Te registraste como {{storedRole}}, pero esta cuenta pertenece a {{accountRole}}. Usa la cuenta correcta.",
+      "signInFailed": "La cuenta no existe o las credenciales no son válidas. Por favor, inténtalo de nuevo."
+    }
+  },
+  "forgot-password": {
+    "title": "Restablecer Contraseña",
+    "username": "Nombre de Usuario",
+    "newPassword": "Nueva Contraseña",
+    "confirmPassword": "Confirmar Contraseña",
+    "placeholder": {
+      "username": "Ingresa tu nombre de usuario",
+      "newPassword": "Ingresa tu nueva contraseña",
+      "confirmPassword": "Confirma tu nueva contraseña"
+    },
+    "error": {
+      "usernameRequired": "El nombre de usuario es obligatorio",
+      "passwordRequired": "La contraseña es obligatoria",
+      "confirmPasswordRequired": "Confirmar contraseña es obligatorio",
+      "passwordMismatch": "Las contraseñas no coinciden"
+    },
+    "button": "Restablecer Contraseña",
+    "backToSignUp": "Volver a Registrarse",
+    "alert": {
+      "success": "Contraseña actualizada exitosamente. Por favor, inicia sesión.",
+      "failure": "No se pudo restablecer la contraseña. Inténtalo de nuevo."
+    }
   }
+
 }
