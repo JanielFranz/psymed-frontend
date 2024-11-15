@@ -1,0 +1,11 @@
+<div class="authentication-container">
+  <!-- Show Sign Up Form -->
+  <ng-container *ngIf="!isForgetPassword; else forgotPasswordForm">
+    <app-sign-up-form (forgotPasswordClicked)="showForgotPasswordForm()"></app-sign-up-form>
+  </ng-container>
+
+  <!-- Show Forgot Password Form -->
+  <ng-template #forgotPasswordForm>
+    <app-forget-password-form (backToSignUpClicked)="showSignUpForm()"></app-forget-password-form>
+  </ng-template>
+</div>
