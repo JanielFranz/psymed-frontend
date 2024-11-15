@@ -1,0 +1,33 @@
+<mat-card class="login-card">
+  <mat-card-title class="title">{{ 'sign-up.title' | translate }}</mat-card-title>
+
+  <!-- Form for login -->
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill" class="username-field">
+      <mat-label>{{ 'sign-up.username' | translate }}</mat-label>
+      <input matInput formControlName="username" type="text" [placeholder]="'sign-up.placeholder.username' | translate">
+      <mat-error *ngIf="loginForm.get('username')?.hasError('required')">{{ 'sign-up.error.usernameRequired' | translate }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="password-field">
+      <mat-label>{{ 'sign-up.password' | translate }}</mat-label>
+      <input matInput formControlName="password" type="password" [placeholder]="'sign-up.placeholder.password' | translate">
+      <button mat-icon-button matSuffix (click)="togglePasswordVisibility($event)">
+        <mat-icon>visibility_off</mat-icon>
+      </button>
+      <mat-error *ngIf="loginForm.get('password')?.hasError('required')">{{ 'sign-up.error.passwordRequired' | translate }}</mat-error>
+    </mat-form-field>
+
+    <!-- Login Button in a separate row -->
+    <div class="login-button-container">
+      <button mat-flat-button color="primary" type="submit" class="login-button">{{ 'sign-up.button' | translate }}</button>
+    </div>
+  </form>
+
+  <!-- Forgot Password Link -->
+  <div class="extra-links">
+    <button mat-button color="primary" (click)="onForgotPasswordClick()">
+      {{ 'sign-up.forgotPassword' | translate }}
+    </button>
+  </div>
+</mat-card>

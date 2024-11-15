@@ -1,0 +1,123 @@
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #b0e0e6; /* light cyan background */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for better visibility */
+}
+
+.title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 30px 0; /* Padding around the title */
+}
+
+.mat-form-field {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.email-field input,
+.password-field input {
+  padding-left: 10px; /* Consistent padding for inputs */
+  width: 100%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button {
+  margin-top: 10px;
+}
+
+.login-button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center; /* Center the button */
+  margin-top: 20px;
+}
+
+.login-button {
+  background-color: #091133; /* Dark blue */
+  color: white;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-weight: bold;
+  font-size: 16px;
+  width: auto;
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.login-button:hover {
+  background-color: #002244; /* Slightly darker blue on hover */
+}
+
+.extra-links {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.extra-links a {
+  color: #0000ff;
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.forgot-password-link {
+  margin-left: 10px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .login-card {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .title {
+    font-size: 20px;
+    padding: 20px 0;
+  }
+
+  .mat-form-field {
+    margin-bottom: 8px;
+  }
+
+  .login-button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .extra-links {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  .title {
+    font-size: 18px;
+    padding: 15px 0;
+  }
+
+  .login-button {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+
+  .extra-links {
+    font-size: 10px;
+  }
+}
