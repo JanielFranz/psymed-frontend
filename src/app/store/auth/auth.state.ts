@@ -1,3 +1,6 @@
+import { createReducer, on } from '@ngrx/store';
+import { setJwtToken, setProfileId, setRole } from './auth.actions';
+
 export interface AuthState {
   rolId: string | null;
   profileId: number | null;
@@ -7,5 +10,12 @@ export interface AuthState {
 export const initialAuthState: AuthState = {
   rolId: null,
   profileId: null,
-  jwtToken: null  // Initialize professionalId
-}
+  jwtToken: null,
+};
+
+export const authReducer = createReducer(
+  initialAuthState,
+  on(setJwtToken, (state, { jwtToken }) => ({ ...state, jwtToken })),
+  on(setProfileId, (state, { profileId }) => ({ ...state, profileId })),
+  on(setRole, (state, { rolId }) => ({ ...state, rolId }))
+);

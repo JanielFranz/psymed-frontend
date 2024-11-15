@@ -1,20 +1,20 @@
 import { createReducer, on } from '@ngrx/store';
-import {setRole, reset, setProfileId, setJwtToken} from './auth.actions'; // Import the new action
-import {initialAuthState } from './auth.state';
+import { setRole, reset, setProfileId, setJwtToken } from './auth.actions'; // Import actions
+import { initialAuthState } from './auth.state'; // Import initial state
 
 export const authReducer = createReducer(
-  initialAuthState,
+  initialAuthState, // Start with the initial state
   on(setRole, (state, { rolId }) => ({
     ...state,
-    rolId
+    rolId, // Update role
   })),
   on(setProfileId, (state, { profileId }) => ({
     ...state,
-    profileId
+    profileId, // Update profile ID
   })),
   on(setJwtToken, (state, { jwtToken }) => ({
     ...state,
-    jwtToken
+    jwtToken, // Update JWT token
   })),
-  on(reset, () => initialAuthState)
+  on(reset, () => initialAuthState) // Reset state to initial
 );

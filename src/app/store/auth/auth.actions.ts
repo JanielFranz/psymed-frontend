@@ -1,19 +1,19 @@
 import { createAction, props } from '@ngrx/store';
 
-export const setRole = createAction(
-  '[Auth] Set Role',
-  props<{ rolId: string }>()
-)
+export const setJwtToken = createAction(
+  '[Auth] Set JWT Token',
+  props<{ jwtToken: string | null }>() // Allow string or null
+);
 
 export const setProfileId = createAction(
-  '[Auth] Set Patient ID',
-  props<{ profileId: number }>()
-)
+  '[Auth] Set Profile ID',
+  props<{ profileId: number | null }>() // Allow number or null
+);
 
-export const setJwtToken = createAction(
-  '[Auth] Set Jwt Token',
-  props<{ jwtToken: string }>()
-)
+export const setRole = createAction(
+  '[Auth] Set Role',
+  props<{ rolId: string | null }>() // Allow string or null
+);
 
 export const reset = createAction(
   '[Auth] Reset'
