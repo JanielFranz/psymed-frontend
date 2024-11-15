@@ -4,7 +4,7 @@ import { MoodStateService } from '../../services/mood-state.service';
 import { Store } from '@ngrx/store';
 import { AuthState } from '../../../store/auth/auth.state';
 import { Observable, Subject } from 'rxjs';
-import { selectPatientId } from '../../../store/auth/auth.selectors';
+import { selectProfileId } from '../../../store/auth/auth.selectors';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { takeUntil } from 'rxjs/operators';
 
@@ -39,7 +39,7 @@ export class MoodFormComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.patientId$ = this.store.select(selectPatientId);
+    this.patientId$ = this.store.select(selectProfileId);
     this.patientId$
       .pipe(takeUntil(this.destroy$))
       .subscribe(patientId => {

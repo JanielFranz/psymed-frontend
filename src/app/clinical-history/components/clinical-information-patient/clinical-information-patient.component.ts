@@ -4,7 +4,7 @@ import { Patient } from '../../../shared/model/patient.entity';
 import { PatientService } from '../../../shared/services/patient.service';
 import { ClinicalHistory } from '../../models/clinical-history.entity';
 import { ClinicalHistoryService } from '../../services/clinical-history.service';
-import { selectPatientId } from '../../../store/auth/auth.selectors';
+import { selectProfileId } from '../../../store/auth/auth.selectors';
 import { AuthState } from '../../../store/auth/auth.state';
 import { take } from 'rxjs/operators';
 import {TranslateModule} from "@ngx-translate/core";
@@ -31,7 +31,7 @@ export class ClinicalInformationPatientComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.store.select(selectPatientId).pipe(take(1)).subscribe(patientId => {
+    this.store.select(selectProfileId).pipe(take(1)).subscribe(patientId => {
       if (patientId) {
         this.patientService.getById(patientId).subscribe((patient: Patient) => {
           this.clinicalService.getById(patient.idClinicalHistory).subscribe((clinical: ClinicalHistory) => {

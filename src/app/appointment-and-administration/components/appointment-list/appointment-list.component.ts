@@ -7,7 +7,7 @@ import {DatePipe, NgForOf} from "@angular/common";
 import {TranslateModule} from "@ngx-translate/core";
 import {MatButtonModule} from "@angular/material/button";
 import {Store} from "@ngrx/store";
-import {selectPatientId} from "../../../store/auth/auth.selectors";
+import {selectProfileId} from "../../../store/auth/auth.selectors";
 import {AuthState} from "../../../store/auth/auth.state";
 import {take} from "rxjs/operators";
 
@@ -34,7 +34,7 @@ export class AppointmentListComponent implements OnInit {
   }
 
   private getPatientSessions(): void {
-    this.store.select(selectPatientId).pipe(take(1)).subscribe({
+    this.store.select(selectProfileId).pipe(take(1)).subscribe({
       next: (patientId) => {
         console.log("Fetched patient ID:", patientId); // Debugging log
         if (patientId) {

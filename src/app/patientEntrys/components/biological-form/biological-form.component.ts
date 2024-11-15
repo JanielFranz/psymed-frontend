@@ -6,7 +6,7 @@ import { FormsModule } from "@angular/forms";
 import { Observable, Subject } from "rxjs";
 import { AuthState } from "../../../store/auth/auth.state";
 import { Store } from "@ngrx/store";
-import { selectPatientId } from "../../../store/auth/auth.selectors";
+import { selectProfileId } from "../../../store/auth/auth.selectors";
 import { TranslateModule, TranslateService } from "@ngx-translate/core";
 import { takeUntil } from 'rxjs/operators';
 
@@ -44,7 +44,7 @@ export class BiologicalFormComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.patientId$ = this.store.select(selectPatientId);
+    this.patientId$ = this.store.select(selectProfileId);
 
     // Subscribe to patientId$ with takeUntil to ensure cleanup on logout
     this.patientId$
