@@ -12,6 +12,7 @@ import { NgForOf, NgOptimizedImage } from "@angular/common";
 import { LanguageSwitcherComponent } from "../language-switcher/language-switcher.component";
 import { MatAnchor } from "@angular/material/button";
 import { TranslateModule } from "@ngx-translate/core";
+import {AuthenticationService} from "../../../iam/services/authentication.service";
 
 @Component({
   selector: 'app-toolbar',
@@ -64,8 +65,10 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   constructor(
     private appointmentService: SessionService,
     private store: Store<AuthState>,
-    private router: Router // Inject Router service here
+    private router: Router, // Inject Router service here
+    private authService: AuthenticationService // Inject AuthenticationService
   ) {}
+
 
   //#endregion
 
@@ -122,15 +125,17 @@ export class ToolbarComponent implements OnInit, OnDestroy {
    * Ensures all active subscriptions are unsubscribed to prevent multiple alerts.
    */
   protected onLogout(): void {
-    // Dispatch the reset action to clear the store state immediately
-    this.store.select(state => state).subscribe(state => console.log("State after reset:", state));
+    console.log("Logging out...");
 
-    // Navigate to the login page and handle any navigation errors
-    this.router.navigate(['/login']).catch(error => {
-      console.error("Navigation to login failed:", error);
+    // Call the logout method in AuthenticationService
+    this.authService.signOut();
+
+    // Navigate to the login page
+    this.router.navigate(['/home']).catch((error) => {
+      console.error('Navigation to login failed:', error);
     });
-    this.store.dispatch(reset());
   }
+
   /**
    * ngOnDestroy lifecycle hook - Cleans up subscriptions to prevent memory leaks.
    * Ensures destroy$ is unsubscribed and completes any active subscriptions.
