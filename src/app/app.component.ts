@@ -9,12 +9,12 @@ import {
   AppointmentFormComponent
 } from "./appointment-and-administration/components/appointment-form/appointment-form.component";
 import {TranslateService} from "@ngx-translate/core";
-import {AuthenticationSectionComponent} from "./iam/components/authentication-section/authentication-section.component";
+// import {AuthenticationSectionComponent} from "./iam/components/authentication-section/authentication-section.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, MatToolbar, MatAnchor, MatIconButton, MatMenuTrigger, MatIcon, MatMenu, ToolbarComponent, AppointmentFormComponent, AuthenticationSectionComponent],
+  imports: [RouterOutlet, RouterLink, MatToolbar, MatAnchor, MatIconButton, MatMenuTrigger, MatIcon, MatMenu, ToolbarComponent, AppointmentFormComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

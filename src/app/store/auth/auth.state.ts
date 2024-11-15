@@ -1,11 +1,11 @@
 export interface AuthState {
   rolId: string | null;
-  patientId: number | null;
-  professionalId: number | null; // Add professionalId here
+  profileId: number | null;
+  jwtToken: string | null;
 }
 
 export const initialAuthState: AuthState = {
   rolId: null,
-  patientId: null,
-  professionalId: null  // Initialize professionalId
+  profileId: null,
+  jwtToken: null  // Initialize professionalId
 }

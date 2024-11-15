@@ -25,8 +25,8 @@ import {EditProfileComponent} from "./profile/pages/edit-profile/edit-profile.co
 import {AccountProfileComponent} from "./profile/pages/account-profile/account-profile.component";
 import {PatientsAppointmentPageComponent} from "./appointment-and-administration/pages/patients-appointment-page/patients-appointment-page.component";
 import {PatientViewTaskComponent} from "./session-notes/pages/patient-view-task/patient-view-task.component";
-import {SingUpComponent} from "./iam/pages/sing-up/sing-up.component";
-import {SingInComponent} from "./iam/pages/sing-in/sing-in.component";
+// import {SingUpComponent} from "./iam/pages/sing-up/sing-up.component";
+// import {SingInComponent} from "./iam/pages/sing-in/sing-in.component";
 
 export const routes: Routes = [
   { path: ''                                                        , redirectTo: 'home', pathMatch: 'full' },  // Default route that redirects to HomeComponent
@@ -56,7 +56,7 @@ export const routes: Routes = [
   { path: 'professional/profile/:id'                                            , component: AccountProfileComponent },
   { path: 'patient/edit-profile/:id'                                            , component: EditProfileComponent },
   { path: 'professional/edit-profile/:id'                                            , component: EditProfileComponent },
-  { path: 'sing-up', component: SingUpComponent },
-  { path: 'sing-in', component: SingInComponent },
+  // { path: 'sing-up', component: SingUpComponent },
+  // { path: 'sing-in', component: SingInComponent },
   { path: '**'                                                      , redirectTo: 'home' },  // Wildcard route for invalid paths, redirects to HomeComponent
 ];

@@ -8,12 +8,12 @@ export const selectRolId = createSelector(
   (state: AuthState) => state.rolId
 );
 
-export const selectPatientId = createSelector(
+export const selectProfileId = createSelector(
   selectAuthState,
-  (state: AuthState) => state.patientId
+  (state: AuthState) => state.profileId
 );
 
-export const selectProfessionalId = createSelector(  // New selector for professionalId
+export const selectJwtToken = createSelector(  // New selector for professionalId
   selectAuthState,
-  (state: AuthState) => state.professionalId
+  (state: AuthState) => state.jwtToken
 );

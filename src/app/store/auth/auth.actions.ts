@@ -5,15 +5,16 @@ export const setRole = createAction(
   props<{ rolId: string }>()
 )
 
-export const setPatientId = createAction(
+export const setProfileId = createAction(
   '[Auth] Set Patient ID',
-  props<{ patientId: number }>()
+  props<{ profileId: number }>()
 )
 
-export const setProfessionalId = createAction(  // New action for professionalId
-  '[Auth] Set Professional ID',
-  props<{ professionalId: number }>()
+export const setJwtToken = createAction(
+  '[Auth] Set Jwt Token',
+  props<{ jwtToken: string }>()
 )
+
 export const reset = createAction(
   '[Auth] Reset'
 );
