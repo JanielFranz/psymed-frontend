@@ -4,6 +4,8 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Store } from "@ngrx/store";
 import { SignInRequest } from "../models/sign-in.request";
 import { SignInResponse } from "../models/sign-in.response";
+import { SignUpRequest} from "../models/sign-up.request";
+import { SignUpResponse} from "../models/sign-up.response";
 import { setJwtToken, setProfileId, setRole } from "../../store/auth/auth.actions";
 import { tap } from "rxjs/operators";
 
@@ -26,6 +28,18 @@ export class AuthenticationService {
 
         // Store token, role, and profile ID
         this.storeSessionData(response);
+      })
+    );
+  }
+  signUp(signUpRequest: SignUpRequest) {
+    return this.http.post<SignUpResponse>(`${this.basePath}/authentication/sign-up`, signUpRequest, this.httpOptions).pipe(
+      tap((response: SignUpResponse) => {
+        // Store role and profile ID
+        localStorage.setItem('role', response.role);
+        localStorage.setItem('profileId', response.id.toString());
+
+        this.store.dispatch(setRole({ rolId: response.role }));
+        this.store.dispatch(setProfileId({ profileId: response.id }));
       })
     );
   }

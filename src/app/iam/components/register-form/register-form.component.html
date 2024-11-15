@@ -1,0 +1,39 @@
+<mat-card class="register-card">
+  <mat-card-title class="title">{{ 'register.title' | translate }}</mat-card-title>
+
+  <!-- Form for registration -->
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill" class="username-field">
+      <mat-label>{{ 'register.username' | translate }}</mat-label>
+      <input matInput formControlName="username" type="text" [placeholder]="'register.placeholder.username' | translate">
+      <mat-error *ngIf="registerForm.get('username')?.hasError('required')">{{ 'register.error.usernameRequired' | translate }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="password-field">
+      <mat-label>{{ 'register.password' | translate }}</mat-label>
+      <input matInput formControlName="password" type="password" [placeholder]="'register.placeholder.password' | translate">
+      <button mat-icon-button matSuffix (click)="togglePasswordVisibility($event)">
+        <mat-icon>visibility_off</mat-icon>
+      </button>
+      <mat-error *ngIf="registerForm.get('password')?.hasError('required')">{{ 'register.error.passwordRequired' | translate }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="role-field">
+      <mat-label>{{ 'register.role' | translate }}</mat-label>
+      <input matInput formControlName="role" type="text" [placeholder]="'register.placeholder.role' | translate">
+      <mat-error *ngIf="registerForm.get('role')?.hasError('required')">{{ 'register.error.roleRequired' | translate }}</mat-error>
+    </mat-form-field>
+
+    <!-- Register Button in a separate row -->
+    <div class="register-button-container">
+      <button mat-flat-button color="primary" type="submit" class="register-button">{{ 'register.button' | translate }}</button>
+    </div>
+  </form>
+
+  <!-- Forgot Password Link -->
+  <div class="extra-links">
+    <button mat-button color="primary" (click)="onForgotPasswordClick()">
+      {{ 'register.forgotPassword' | translate }}
+    </button>
+  </div>
+</mat-card>

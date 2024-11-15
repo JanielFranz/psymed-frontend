@@ -26,7 +26,8 @@ import {AccountProfileComponent} from "./profile/pages/account-profile/account-p
 import {PatientsAppointmentPageComponent} from "./appointment-and-administration/pages/patients-appointment-page/patients-appointment-page.component";
 import {PatientViewTaskComponent} from "./session-notes/pages/patient-view-task/patient-view-task.component";
 import {authenticationGuard} from "./iam/services/authentication.guard";
-import {AuthenticationComponent} from "./iam/pages/authentication/authentication.component";
+import {AuthenticationComponent} from "./iam/pages/authentication/authentication.component"
+import {SignUpPageComponent} from "./iam/pages/sign-up-page/sign-up-page.component";
 // import {SingInComponent} from "./iam/pages/sing-in/sing-in.component";
 
 export const routes: Routes = [
@@ -34,6 +35,7 @@ export const routes: Routes = [
   { path: 'home'                                                    , component: HomeComponent },
   { path: 'login'                                                   , component: LoginComponent },
   { path: 'authentication', component: AuthenticationComponent },
+  { path: 'signup', component: SignUpPageComponent },
   { path: 'patient-management/:id/dashboard-analytics'             , component: AnalyticsDashboardComponent,canActivate:[authenticationGuard] },
   { path: 'patient-management'                                      , component: PatientManagementComponent ,canActivate:[authenticationGuard]},
   { path: 'patient-management/:id/medication-management'     , component: MedicationManagementComponent,canActivate:[authenticationGuard] }, // we use the :patientId to pass the patient ID as a parameter
