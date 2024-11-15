@@ -25,38 +25,39 @@ import {EditProfileComponent} from "./profile/pages/edit-profile/edit-profile.co
 import {AccountProfileComponent} from "./profile/pages/account-profile/account-profile.component";
 import {PatientsAppointmentPageComponent} from "./appointment-and-administration/pages/patients-appointment-page/patients-appointment-page.component";
 import {PatientViewTaskComponent} from "./session-notes/pages/patient-view-task/patient-view-task.component";
-// import {SingUpComponent} from "./iam/pages/sing-up/sing-up.component";
+import {authenticationGuard} from "./iam/services/authentication.guard";
+import {AuthenticationComponent} from "./iam/pages/authentication/authentication.component";
 // import {SingInComponent} from "./iam/pages/sing-in/sing-in.component";
 
 export const routes: Routes = [
   { path: ''                                                        , redirectTo: 'home', pathMatch: 'full' },  // Default route that redirects to HomeComponent
   { path: 'home'                                                    , component: HomeComponent },
-  { path: 'patient-management/:id/dashboard-analytics'             , component: AnalyticsDashboardComponent },
   { path: 'login'                                                   , component: LoginComponent },
-  { path: 'patient-management'                                      , component: PatientManagementComponent },
-  { path: 'patient-management/:id/medication-management'     , component: MedicationManagementComponent }, // we use the :patientId to pass the patient ID as a parameter
-  { path: 'mood-state'                                              , component: MoodStatementEntryComponent },
-  { path: 'patient-management/:id/patient-appointment-list'         , component: PatientAppointmentPageComponent },
-  { path: 'patient/patient-appointment-list'         , component: PatientAppointmentPageComponent },
-  { path: 'patient-management/:id/clinical-history/:clinicalHistoryId'          , component: ClinicalViewComponent },
-  { path: 'patient-management/:id/clinical-history/:clinicalHistoryId/admin-edit'          , component: ClinicalEditComponent },
-  { path: 'patient/clinical-history'          , component: ClinicalInformationPatientComponent },
-  { path: 'patient-management/:id/clinical-history/:clinicalHistoryId/diagnostic'          , component: ProfessionalDiagnosticViewComponent },
-  { path: 'patient-management/:id/clinical-history/:clinicalHistoryId/diagnostic/admin-edit'          , component: DiagnosticEditViewComponent },
-  { path: 'biological-functions'                                    , component: BiologicalFunctionsEntryComponent },
+  { path: 'authentication', component: AuthenticationComponent },
+  { path: 'patient-management/:id/dashboard-analytics'             , component: AnalyticsDashboardComponent,canActivate:[authenticationGuard] },
+  { path: 'patient-management'                                      , component: PatientManagementComponent ,canActivate:[authenticationGuard]},
+  { path: 'patient-management/:id/medication-management'     , component: MedicationManagementComponent,canActivate:[authenticationGuard] }, // we use the :patientId to pass the patient ID as a parameter
+  { path: 'mood-state'                                              , component: MoodStatementEntryComponent,canActivate:[authenticationGuard] },
+  { path: 'patient-management/:id/patient-appointment-list'         , component: PatientAppointmentPageComponent,canActivate:[authenticationGuard] },
+  { path: 'patient/patient-appointment-list'         , component: PatientAppointmentPageComponent,canActivate:[authenticationGuard] },
+  { path: 'patient-management/:id/clinical-history/:clinicalHistoryId'          , component: ClinicalViewComponent,canActivate:[authenticationGuard] },
+  { path: 'patient-management/:id/clinical-history/:clinicalHistoryId/admin-edit'          , component: ClinicalEditComponent,canActivate:[authenticationGuard] },
+  { path: 'patient/clinical-history'          , component: ClinicalInformationPatientComponent,canActivate:[authenticationGuard] },
+  { path: 'patient-management/:id/clinical-history/:clinicalHistoryId/diagnostic'          , component: ProfessionalDiagnosticViewComponent,canActivate:[authenticationGuard] },
+  { path: 'patient-management/:id/clinical-history/:clinicalHistoryId/diagnostic/admin-edit'          , component: DiagnosticEditViewComponent,canActivate:[authenticationGuard] },
+  { path: 'biological-functions'                                    , component: BiologicalFunctionsEntryComponent,canActivate:[authenticationGuard] },
   { path: 'patient/prescription/:id', component: PatientMedicationComponent },
-  { path: 'appointment-list'                                        , component: ProfessionalAppointmentPageComponent,/*canActivate: [authenticationGuard]*/},
-  { path: 'patient-management/:id/patient-appointment-list/:appointmentId/notes'         , component: SessionNotesComponent },
-  { path: 'patient-management/:id/patient-appointment-list/:appointmentId/task'         , component: ProfessionalViewTaskComponent },
-  { path: 'patient/appointment-list'         , component: PatientsAppointmentPageComponent },
-  { path: 'patient/appointment-list/tasks/:appointmentId'         , component: PatientViewTaskComponent },
-  { path: ':id/appointment-list/:appointmentId/task'  , component: ProfessionalViewTaskComponent },
-  { path: ':id/appointment-list/:appointmentId/note'  , component: SessionNotesComponent },
-  { path: 'patient/profile/:id'                                            , component: AccountProfileComponent },
-  { path: 'professional/profile/:id'                                            , component: AccountProfileComponent },
-  { path: 'patient/edit-profile/:id'                                            , component: EditProfileComponent },
-  { path: 'professional/edit-profile/:id'                                            , component: EditProfileComponent },
-  // { path: 'sing-up', component: SingUpComponent },
+  { path: 'appointment-list'                                        , component: ProfessionalAppointmentPageComponent,canActivate: [authenticationGuard]},
+  { path: 'patient-management/:id/patient-appointment-list/:appointmentId/notes'         , component: SessionNotesComponent,canActivate:[authenticationGuard] },
+  { path: 'patient-management/:id/patient-appointment-list/:appointmentId/task'         , component: ProfessionalViewTaskComponent,canActivate:[authenticationGuard] },
+  { path: 'patient/appointment-list'         , component: PatientsAppointmentPageComponent,canActivate:[authenticationGuard] },
+  { path: 'patient/appointment-list/tasks/:appointmentId'         , component: PatientViewTaskComponent,canActivate:[authenticationGuard] },
+  { path: ':id/appointment-list/:appointmentId/task'  , component: ProfessionalViewTaskComponent,canActivate:[authenticationGuard] },
+  { path: ':id/appointment-list/:appointmentId/note'  , component: SessionNotesComponent,canActivate:[authenticationGuard] },
+  { path: 'patient/profile/:id'                                            , component: AccountProfileComponent,canActivate:[authenticationGuard] },
+  { path: 'professional/profile/:id'                                            , component: AccountProfileComponent,canActivate:[authenticationGuard] },
+  { path: 'patient/edit-profile/:id'                                            , component: EditProfileComponent,canActivate:[authenticationGuard] },
+  { path: 'professional/edit-profile/:id'                                            , component: EditProfileComponent,canActivate:[authenticationGuard] },
   // { path: 'sing-in', component: SingInComponent },
   { path: '**'                                                      , redirectTo: 'home' },  // Wildcard route for invalid paths, redirects to HomeComponent
 ];
