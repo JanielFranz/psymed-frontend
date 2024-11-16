@@ -27,15 +27,12 @@ import {PatientsAppointmentPageComponent} from "./appointment-and-administration
 import {PatientViewTaskComponent} from "./session-notes/pages/patient-view-task/patient-view-task.component";
 import {authenticationGuard} from "./iam/services/authentication.guard";
 import {AuthenticationComponent} from "./iam/pages/authentication/authentication.component"
-import {SignUpPageComponent} from "./iam/pages/sign-up-page/sign-up-page.component";
-// import {SingInComponent} from "./iam/pages/sing-in/sing-in.component";
 
 export const routes: Routes = [
   { path: ''                                                        , redirectTo: 'home', pathMatch: 'full' },  // Default route that redirects to HomeComponent
   { path: 'home'                                                    , component: HomeComponent },
   { path: 'login'                                                   , component: LoginComponent },
   { path: 'authentication', component: AuthenticationComponent },
-  { path: 'signup', component: SignUpPageComponent },
   { path: 'patient-management/:id/dashboard-analytics'             , component: AnalyticsDashboardComponent,canActivate:[authenticationGuard] },
   { path: 'patient-management'                                      , component: PatientManagementComponent ,canActivate:[authenticationGuard]},
   { path: 'patient-management/:id/medication-management'     , component: MedicationManagementComponent,canActivate:[authenticationGuard] }, // we use the :patientId to pass the patient ID as a parameter
@@ -60,6 +57,5 @@ export const routes: Routes = [
   { path: 'professional/profile/:id'                                            , component: AccountProfileComponent,canActivate:[authenticationGuard] },
   { path: 'patient/edit-profile/:id'                                            , component: EditProfileComponent,canActivate:[authenticationGuard] },
   { path: 'professional/edit-profile/:id'                                            , component: EditProfileComponent,canActivate:[authenticationGuard] },
-  // { path: 'sing-in', component: SingInComponent },
   { path: '**'                                                      , redirectTo: 'home' },  // Wildcard route for invalid paths, redirects to HomeComponent
 ];
