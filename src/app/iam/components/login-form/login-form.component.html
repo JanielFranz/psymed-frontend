@@ -31,11 +31,11 @@
         {{ 'sign-up.forgotPassword' | translate }}
       </button>
     </div>
-    <div class="link-row">
+    <!-- Show Register Button only for ROLE_PROFESSIONAL -->
+    <div class="link-row" *ngIf="role === 'ROLE_PROFESSIONAL'">
       <button mat-button color="primary" (click)="onRegisterClick()">
         {{ 'sign-up.register' | translate }}
       </button>
     </div>
   </div>
-
 </mat-card>

@@ -21,8 +21,8 @@ import {MatCard, MatCardTitle} from "@angular/material/card";
     NgIf,
     MatError,
     MatIcon,
-    MatSuffix,
     MatIconButton,
+    MatSuffix,
     ReactiveFormsModule,
     MatInput,
     MatLabel,
@@ -35,6 +35,7 @@ import {MatCard, MatCardTitle} from "@angular/material/card";
 export class LoginFormComponent implements OnInit {
   @Output() forgotPasswordClicked = new EventEmitter<void>(); // Notify parent when Forgot Password is clicked
   @Output() registerClicked = new EventEmitter<void>(); // Emit register click event
+
   loginForm = new FormGroup({
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
@@ -46,14 +47,14 @@ export class LoginFormComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private router: Router,
     private route: ActivatedRoute,
-    private translate: TranslateService // Inject TranslateService
+    private translate: TranslateService
   ) {}
 
   ngOnInit(): void {
-    // Retrieve the role from query parameters
+    // Retrieve the role from query parameters or other sources
     this.route.queryParams.subscribe(params => {
       this.role = params['role'] || ''; // Default to an empty string if not provided
-      localStorage.setItem('role', this.role); // Store the role locally
+      localStorage.setItem('role', this.role); // Store the role locally for session persistence
     });
   }
 
@@ -69,7 +70,6 @@ export class LoginFormComponent implements OnInit {
           const accountRole = response.role; // Role returned from the backend
 
           if (storedRole && storedRole !== accountRole) {
-            // Fetch i18n text for role mismatch with dynamic placeholders
             this.translate.get('sign-up.alert.roleMismatch', { storedRole, accountRole }).subscribe((translatedText) => {
               alert(translatedText); // Show translated alert
             });
@@ -81,7 +81,6 @@ export class LoginFormComponent implements OnInit {
           this.router.navigate(['home']);
         },
         error: (error: any) => {
-          // Fetch i18n text for sign-in failure
           this.translate.get('sign-up.alert.signInFailed').subscribe((translatedText) => {
             alert(translatedText); // Show translated alert
           });
@@ -108,5 +107,4 @@ export class LoginFormComponent implements OnInit {
   onRegisterClick() {
     this.registerClicked.emit(); // Notify parent
   }
-
 }
