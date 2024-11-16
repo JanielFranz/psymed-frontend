@@ -3,6 +3,43 @@
 
   <!-- Form for registration -->
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill" class="first-name-field">
+      <mat-label>{{ 'register.firstName' | translate }}</mat-label>
+      <input matInput formControlName="firstName" type="text" [placeholder]="'register.placeholder.firstName' | translate">
+      <mat-error *ngIf="registerForm.get('firstName')?.hasError('required')">{{ 'register.error.firstNameRequired' | translate }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="last-name-field">
+      <mat-label>{{ 'register.lastName' | translate }}</mat-label>
+      <input matInput formControlName="lastName" type="text" [placeholder]="'register.placeholder.lastName' | translate">
+      <mat-error *ngIf="registerForm.get('lastName')?.hasError('required')">{{ 'register.error.lastNameRequired' | translate }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="street-field">
+      <mat-label>{{ 'register.street' | translate }}</mat-label>
+      <input matInput formControlName="street" type="text" [placeholder]="'register.placeholder.street' | translate">
+      <mat-error *ngIf="registerForm.get('street')?.hasError('required')">{{ 'register.error.streetRequired' | translate }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="city-field">
+      <mat-label>{{ 'register.city' | translate }}</mat-label>
+      <input matInput formControlName="city" type="text" [placeholder]="'register.placeholder.city' | translate">
+      <mat-error *ngIf="registerForm.get('city')?.hasError('required')">{{ 'register.error.cityRequired' | translate }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="country-field">
+      <mat-label>{{ 'register.country' | translate }}</mat-label>
+      <input matInput formControlName="country" type="text" [placeholder]="'register.placeholder.country' | translate">
+      <mat-error *ngIf="registerForm.get('country')?.hasError('required')">{{ 'register.error.countryRequired' | translate }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="email-field">
+      <mat-label>{{ 'register.email' | translate }}</mat-label>
+      <input matInput formControlName="email" type="email" [placeholder]="'register.placeholder.email' | translate">
+      <mat-error *ngIf="registerForm.get('email')?.hasError('required')">{{ 'register.error.emailRequired' | translate }}</mat-error>
+      <mat-error *ngIf="registerForm.get('email')?.hasError('email')">{{ 'register.error.emailInvalid' | translate }}</mat-error>
+    </mat-form-field>
+
     <mat-form-field appearance="fill" class="username-field">
       <mat-label>{{ 'register.username' | translate }}</mat-label>
       <input matInput formControlName="username" type="text" [placeholder]="'register.placeholder.username' | translate">
@@ -16,12 +53,6 @@
         <mat-icon>visibility_off</mat-icon>
       </button>
       <mat-error *ngIf="registerForm.get('password')?.hasError('required')">{{ 'register.error.passwordRequired' | translate }}</mat-error>
-    </mat-form-field>
-
-    <mat-form-field appearance="fill" class="role-field">
-      <mat-label>{{ 'register.role' | translate }}</mat-label>
-      <input matInput formControlName="role" type="text" [placeholder]="'register.placeholder.role' | translate">
-      <mat-error *ngIf="registerForm.get('role')?.hasError('required')">{{ 'register.error.roleRequired' | translate }}</mat-error>
     </mat-form-field>
 
     <!-- Register Button in a separate row -->

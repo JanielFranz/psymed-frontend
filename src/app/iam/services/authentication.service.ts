@@ -32,7 +32,7 @@ export class AuthenticationService {
     );
   }
   signUp(signUpRequest: SignUpRequest) {
-    return this.http.post<SignUpResponse>(`${this.basePath}/authentication/sign-up`, signUpRequest, this.httpOptions).pipe(
+    return this.http.post<SignUpResponse>(`${this.basePath}/professional-profiles`, signUpRequest, this.httpOptions).pipe(
       tap((response: SignUpResponse) => {
         // Store role and profile ID
         localStorage.setItem('role', response.role);
@@ -53,6 +53,8 @@ export class AuthenticationService {
     this.store.dispatch(setRole({ rolId: response.role }));
     this.store.dispatch(setProfileId({ profileId: response.id }));
   }
+
+
 
   signOut(): void {
     localStorage.removeItem('authToken');
