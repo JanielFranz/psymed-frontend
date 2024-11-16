@@ -34,7 +34,7 @@ import { MatCard, MatCardTitle } from "@angular/material/card";
 })
 export class RegisterFormComponent implements OnInit {
   @Input() role: string = 'ROLE_PROFESSIONAL'; // Role passed to the component
-  @Output() forgotPasswordClicked = new EventEmitter<void>(); // Notify parent when Forgot Password is clicked
+  @Output() backToSignUpClicked = new EventEmitter<void>();
 
   registerForm = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
@@ -44,8 +44,9 @@ export class RegisterFormComponent implements OnInit {
     country: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     username: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required])
+    password: new FormControl('', [Validators.required, Validators.minLength(8)])
   });
+
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -56,34 +57,51 @@ export class RegisterFormComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    if (this.registerForm.valid) {
-      const registerRequest = new SignUpRequest(
-        this.registerForm.value.firstName!,
-        this.registerForm.value.lastName!,
-        this.registerForm.value.street!,
-        this.registerForm.value.city!,
-        this.registerForm.value.country!,
-        this.registerForm.value.email!,
-        this.registerForm.value.username!,
-        this.registerForm.value.password!
-      );
+    if (this.registerForm.invalid) {
+      if (this.registerForm.get('email')?.hasError('email')) {
+        this.translate.get('register.alert.invalidEmail').subscribe((translatedText) => {
+          alert(translatedText); // Show translated alert
+        });
+      }
 
-      this.authenticationService.signUp(registerRequest).subscribe({
-        next: (response) => {
-          // Store session data and navigate to home
-          this.router.navigate(['login']);
-        },
-        error: (error: any) => {
-          // Fetch i18n text for registration failure
-          this.translate.get('register.alert.registerFailed').subscribe((translatedText) => {
+      if (this.registerForm.get('password')?.hasError('minlength')) {
+        this.translate.get('register.alert.shortPassword').subscribe((translatedText) => {
+          alert(translatedText); // Show translated alert
+        });
+      }
+
+      this.registerForm.markAllAsTouched(); // Highlight all errors
+      return;
+    }
+
+    const registerRequest = new SignUpRequest(
+      this.registerForm.value.firstName!,
+      this.registerForm.value.lastName!,
+      this.registerForm.value.street!,
+      this.registerForm.value.city!,
+      this.registerForm.value.country!,
+      this.registerForm.value.email!,
+      this.registerForm.value.username!,
+      this.registerForm.value.password!
+    );
+
+    this.authenticationService.signUp(registerRequest).subscribe({
+      next: (response) => {
+        this.router.navigate(['login']); // Redirect to login on success
+      },
+      error: (error: any) => {
+        if (error.status === 409) { // Conflict status for duplicated email or username
+          this.translate.get('register.alert.duplicateAccount').subscribe((translatedText) => {
             alert(translatedText); // Show translated alert
           });
-          console.error('Registration failed:', error);
+        } else {
+          this.translate.get('register.alert.registerFailed').subscribe((translatedText) => {
+            alert(translatedText); // Show generic registration failure alert
+          });
         }
-      });
-    } else {
-      this.registerForm.markAllAsTouched();
-    }
+        console.error('Registration failed:', error);
+      }
+    });
   }
 
   togglePasswordVisibility(event: Event) {
@@ -94,7 +112,7 @@ export class RegisterFormComponent implements OnInit {
     }
   }
 
-  onForgotPasswordClick() {
-    this.forgotPasswordClicked.emit(); // Emit event to parent component
+  onBackToSignUpClick() {
+    this.backToSignUpClicked.emit(); // Notify parent
   }
 }

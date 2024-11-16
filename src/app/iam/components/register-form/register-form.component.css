@@ -1,3 +1,4 @@
+.register-card,
 .login-card {
   width: 100%;
   max-width: 400px;
@@ -36,6 +37,7 @@ button {
   margin-top: 10px;
 }
 
+.register-button-container,
 .login-button-container {
   width: 100%;
   display: flex;
@@ -43,6 +45,7 @@ button {
   margin-top: 20px;
 }
 
+.register-button,
 .login-button {
   background-color: #091133; /* Dark blue */
   color: white;
@@ -54,6 +57,7 @@ button {
   transition: background-color 0.3s ease; /* Smooth transition for hover effect */
 }
 
+.register-button:hover,
 .login-button:hover {
   background-color: #002244; /* Slightly darker blue on hover */
 }
@@ -76,6 +80,7 @@ button {
 
 /* Responsive styles */
 @media (max-width: 768px) {
+  .register-card,
   .login-card {
     width: 90%;
     padding: 15px;
@@ -90,6 +95,7 @@ button {
     margin-bottom: 8px;
   }
 
+  .register-button,
   .login-button {
     font-size: 14px;
     padding: 8px 16px;
@@ -101,6 +107,7 @@ button {
 }
 
 @media (max-width: 480px) {
+  .register-card,
   .login-card {
     width: 100%;
     padding: 10px;
@@ -112,6 +119,7 @@ button {
     padding: 15px 0;
   }
 
+  .register-button,
   .login-button {
     font-size: 12px;
     padding: 6px 12px;
