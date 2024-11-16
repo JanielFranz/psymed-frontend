@@ -260,7 +260,8 @@
     "alert": {
       "roleMismatch": "Role mismatch detected. You signed up as {{storedRole}}, but this account belongs to {{accountRole}}. Please use the correct account.",
       "signInFailed": "Account does not exist or invalid credentials. Please try again."
-    }
+    },
+    "register": "Don't have an account? Register"
   },
   "forgot-password": {
     "title": "Forgot Password",
@@ -283,6 +284,47 @@
     "alert": {
       "success": "Password successfully updated. Please log in.",
       "failure": "Failed to reset password. Please try again."
+    }
+  },
+  "register": {
+    "title": "Register",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "street": "Street",
+    "city": "City",
+    "country": "Country",
+    "email": "Email",
+    "username": "Username",
+    "password": "Password",
+    "placeholder": {
+      "firstName": "Enter your first name",
+      "lastName": "Enter your last name",
+      "street": "Enter your street",
+      "city": "Enter your city",
+      "country": "Enter your country",
+      "email": "Enter your email",
+      "username": "Enter your username",
+      "password": "Enter your password"
+    },
+    "error": {
+      "firstNameRequired": "First name is required",
+      "lastNameRequired": "Last name is required",
+      "streetRequired": "Street is required",
+      "cityRequired": "City is required",
+      "countryRequired": "Country is required",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email",
+      "usernameRequired": "Username is required",
+      "passwordRequired": "Password is required"
+    },
+    "button": "Register",
+    "forgotPassword": "Forgot your password?",
+    "backToLogin": "Back to Login",
+    "alert": {
+      "invalidEmail": "Please enter a valid email address in the format: text@text",
+      "shortPassword": "The password must be at least 8 characters long.",
+      "duplicateAccount": "The email or username is already in use. Please try another.",
+      "registerFailed": "Registration failed. Please try again."
     }
   }
 }

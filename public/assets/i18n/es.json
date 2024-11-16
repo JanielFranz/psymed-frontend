@@ -263,7 +263,8 @@
     "alert": {
       "roleMismatch": "Se detectó un conflicto de roles. Te registraste como {{storedRole}}, pero esta cuenta pertenece a {{accountRole}}. Usa la cuenta correcta.",
       "signInFailed": "La cuenta no existe o las credenciales no son válidas. Por favor, inténtalo de nuevo."
-    }
+    },
+    "register": "¿No tienes cuenta? Regístrate"
   },
   "forgot-password": {
     "title": "Restablecer Contraseña",
@@ -286,6 +287,47 @@
     "alert": {
       "success": "Contraseña actualizada exitosamente. Por favor, inicia sesión.",
       "failure": "No se pudo restablecer la contraseña. Inténtalo de nuevo."
+    }
+  },
+  "register": {
+    "title": "Registro",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "street": "Calle",
+    "city": "Ciudad",
+    "country": "País",
+    "email": "Correo Electrónico",
+    "username": "Usuario",
+    "password": "Contraseña",
+    "placeholder": {
+      "firstName": "Ingresa tu nombre",
+      "lastName": "Ingresa tu apellido",
+      "street": "Ingresa tu calle",
+      "city": "Ingresa tu ciudad",
+      "country": "Ingresa tu país",
+      "email": "Ingresa tu correo electrónico",
+      "username": "Ingresa tu usuario",
+      "password": "Ingresa tu contraseña"
+    },
+    "error": {
+      "firstNameRequired": "El nombre es obligatorio",
+      "lastNameRequired": "El apellido es obligatorio",
+      "streetRequired": "La calle es obligatoria",
+      "cityRequired": "La ciudad es obligatoria",
+      "countryRequired": "El país es obligatorio",
+      "emailRequired": "El correo electrónico es obligatorio",
+      "emailInvalid": "Por favor ingresa un correo electrónico válido",
+      "usernameRequired": "El usuario es obligatorio",
+      "passwordRequired": "La contraseña es obligatoria"
+    },
+    "button": "Registrarse",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "backToLogin": "Volver al inicio de sesión",
+    "alert": {
+      "invalidEmail": "Por favor, introduce un correo electrónico válido en el formato: texto@texto",
+      "shortPassword": "La contraseña debe tener al menos 8 caracteres.",
+      "duplicateAccount": "El correo o usuario ya está en uso. Por favor intenta con otro.",
+      "registerFailed": "El registro falló. Por favor, inténtalo de nuevo."
     }
   }
 
