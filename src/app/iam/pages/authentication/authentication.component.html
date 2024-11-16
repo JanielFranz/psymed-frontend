@@ -1,11 +1,19 @@
 <div class="authentication-container">
-  <!-- Show Sign Up Form -->
-  <ng-container *ngIf="!isForgetPassword; else forgotPasswordForm">
-    <app-sign-up-form (forgotPasswordClicked)="showForgotPasswordForm()"></app-sign-up-form>
+  <!-- Show Login Form -->
+  <ng-container *ngIf="activeForm === 'login'; else otherForms">
+    <app-login-form
+      (forgotPasswordClicked)="showForgotPasswordForm()"
+      (registerClicked)="showRegisterForm()">
+    </app-login-form>
   </ng-container>
 
-  <!-- Show Forgot Password Form -->
-  <ng-template #forgotPasswordForm>
-    <app-forget-password-form (backToSignUpClicked)="showSignUpForm()"></app-forget-password-form>
+  <!-- Other Forms -->
+  <ng-template #otherForms>
+    <ng-container *ngIf="activeForm === 'forgotPassword'">
+      <app-forget-password-form (backToSignUpClicked)="showLoginForm()"></app-forget-password-form>
+    </ng-container>
+    <ng-container *ngIf="activeForm === 'register'">
+      <app-register-form (backToSignUpClicked)="showLoginForm()"></app-register-form>
+    </ng-container>
   </ng-template>
 </div>

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import {ForgetPasswordFormComponent} from "../../components/forget-password-form/forget-password-form.component";
-import {SignUpFormComponent} from "../../components/sign-up-form/sign-up-form.component";
-import {NgIf} from "@angular/common";
+import { ForgetPasswordFormComponent } from "../../components/forget-password-form/forget-password-form.component";
+import { LoginFormComponent } from "../../components/login-form/login-form.component";
+import { RegisterFormComponent } from "../../components/register-form/register-form.component";
+import { NgIf } from "@angular/common";
 
 @Component({
   selector: 'app-authentication',
@@ -9,21 +10,27 @@ import {NgIf} from "@angular/common";
   templateUrl: './authentication.component.html',
   imports: [
     ForgetPasswordFormComponent,
-    SignUpFormComponent,
+    LoginFormComponent,
+    RegisterFormComponent,
     NgIf
   ],
   styleUrls: ['./authentication.component.css']
 })
 export class AuthenticationComponent {
-  isForgetPassword = false; // Controls which form is displayed
+  activeForm: string = 'login'; // Controls which form is displayed
 
-  // Handle Forgot Password button click
+  // Switch to Forgot Password form
   showForgotPasswordForm() {
-    this.isForgetPassword = true;
+    this.activeForm = 'forgotPassword';
   }
 
-  // Handle Back to Sign Up button click
-  showSignUpForm() {
-    this.isForgetPassword = false;
+  // Switch to Register form
+  showRegisterForm() {
+    this.activeForm = 'register';
+  }
+
+  // Switch back to Login form
+  showLoginForm() {
+    this.activeForm = 'login';
   }
 }
