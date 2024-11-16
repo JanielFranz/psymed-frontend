@@ -64,6 +64,15 @@ button {
   margin-top: 10px;
 }
 
+.link-row {
+  margin: 10px 0; /* Add space between rows */
+}
+
+.link-row button {
+  width: 100%; /* Ensure buttons span the full width if needed */
+}
+
+
 .extra-links a {
   color: #0000ff;
   text-decoration: none;

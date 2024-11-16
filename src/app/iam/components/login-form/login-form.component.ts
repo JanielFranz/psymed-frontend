@@ -12,9 +12,9 @@ import {MatInput} from "@angular/material/input";
 import {MatCard, MatCardTitle} from "@angular/material/card";
 
 @Component({
-  selector: 'app-sign-up-form',
+  selector: 'app-login-form',
   standalone: true,
-  templateUrl: './sign-up-form.component.html',
+  templateUrl: './login-form.component.html',
   imports: [
     TranslateModule,
     MatButton,
@@ -30,11 +30,11 @@ import {MatCard, MatCardTitle} from "@angular/material/card";
     MatCardTitle,
     MatCard
   ],
-  styleUrls: ['./sign-up-form.component.css']
+  styleUrls: ['./login-form.component.css']
 })
-export class SignUpFormComponent implements OnInit {
+export class LoginFormComponent implements OnInit {
   @Output() forgotPasswordClicked = new EventEmitter<void>(); // Notify parent when Forgot Password is clicked
-
+  @Output() registerClicked = new EventEmitter<void>(); // Emit register click event
   loginForm = new FormGroup({
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
@@ -102,6 +102,11 @@ export class SignUpFormComponent implements OnInit {
   }
 
   onForgotPasswordClick() {
-    this.forgotPasswordClicked.emit(); // Emit event to parent component
+    this.forgotPasswordClicked.emit(); // Notify parent
   }
+
+  onRegisterClick() {
+    this.registerClicked.emit(); // Notify parent
+  }
+
 }

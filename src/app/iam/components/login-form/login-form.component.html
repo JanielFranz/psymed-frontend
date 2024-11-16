@@ -24,10 +24,18 @@
     </div>
   </form>
 
-  <!-- Forgot Password Link -->
+  <!-- Extra Links Section -->
   <div class="extra-links">
-    <button mat-button color="primary" (click)="onForgotPasswordClick()">
-      {{ 'sign-up.forgotPassword' | translate }}
-    </button>
+    <div class="link-row">
+      <button mat-button color="primary" (click)="onForgotPasswordClick()">
+        {{ 'sign-up.forgotPassword' | translate }}
+      </button>
+    </div>
+    <div class="link-row">
+      <button mat-button color="primary" (click)="onRegisterClick()">
+        {{ 'sign-up.register' | translate }}
+      </button>
+    </div>
   </div>
+
 </mat-card>
