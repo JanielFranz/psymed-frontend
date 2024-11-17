@@ -27,11 +27,13 @@ import {PatientsAppointmentPageComponent} from "./appointment-and-administration
 import {PatientViewTaskComponent} from "./session-notes/pages/patient-view-task/patient-view-task.component";
 import {authenticationGuard} from "./iam/services/authentication.guard";
 import {AuthenticationComponent} from "./iam/pages/authentication/authentication.component"
+import {SignUpPageComponent} from "./iam/pages/sign-up-page/sign-up-page.component";
 
 export const routes: Routes = [
   { path: ''                                                        , redirectTo: 'home', pathMatch: 'full' },  // Default route that redirects to HomeComponent
   { path: 'home'                                                    , component: HomeComponent },
   { path: 'login'                                                   , component: LoginComponent },
+  { path: 'signup'                                                   , component: SignUpPageComponent },
   { path: 'authentication', component: AuthenticationComponent },
   { path: 'patient-management/:id/dashboard-analytics'             , component: AnalyticsDashboardComponent,canActivate:[authenticationGuard] },
   { path: 'patient-management'                                      , component: PatientManagementComponent ,canActivate:[authenticationGuard]},
