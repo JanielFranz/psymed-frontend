@@ -27,6 +27,7 @@ export class AuthenticationService {
         if (storedRole && storedRole !== response.role) {
           throw new Error(`Role mismatch: Stored role is ${storedRole}, but account role is ${response.role}`);
         }
+        console.log("token for sing in : ", response.token.toString());
 
         // Store token, role, and profile ID
         this.storeSessionData(response);
@@ -48,8 +49,7 @@ export class AuthenticationService {
     );
   }
 
-  getProfileId(accountId: number): Observable<string> {
-    const authToken = localStorage.getItem('authToken');
+  getProfileId(accountId: number, authToken: string): Observable<string> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -57,19 +57,20 @@ export class AuthenticationService {
       })
     };
 
-    return this.http.get<{ id: number }>(`${this.basePath}/professional-profiles/${accountId}`, httpOptions).pipe(
+    return this.http.get<{ id: number }>(`${this.basePath}/professional-profiles/account/${accountId}`, httpOptions).pipe(
       map(response => response.id.toString())
     );
   }
 
-
   storeSessionData(response: SignInResponse): void {
-    this.getProfileId(response.id).subscribe(profileId => {
-      localStorage.setItem('authToken', response.token);
+    localStorage.setItem('authToken', response.token);
+    this.store.dispatch(setJwtToken({ jwtToken: response.token }));
+
+    // Now call getProfileId with the token
+    this.getProfileId(response.id, response.token).subscribe(profileId => {
       localStorage.setItem('role', response.role);
       localStorage.setItem('profileId', profileId);
 
-      this.store.dispatch(setJwtToken({ jwtToken: response.token }));
       this.store.dispatch(setRole({ rolId: response.role }));
       this.store.dispatch(setProfileId({ profileId: Number(profileId) }));
     });
