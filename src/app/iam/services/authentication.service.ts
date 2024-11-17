@@ -1,22 +1,24 @@
-import { Injectable } from '@angular/core';
-import { environment } from "../../../environments/environment.development";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Store } from "@ngrx/store";
-import { SignInRequest } from "../models/sign-in.request";
-import { SignInResponse } from "../models/sign-in.response";
-import { SignUpRequest} from "../models/sign-up.request";
-import { SignUpResponse} from "../models/sign-up.response";
-import { setJwtToken, setProfileId, setRole } from "../../store/auth/auth.actions";
-import { tap } from "rxjs/operators";
+import {Injectable} from '@angular/core';
+import {environment} from "../../../environments/environment.development";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Store} from "@ngrx/store";
+import {SignInRequest} from "../models/sign-in.request";
+import {SignInResponse} from "../models/sign-in.response";
+import {SignUpRequest} from "../models/sign-up.request";
+import {SignUpResponse} from "../models/sign-up.response";
+import {setJwtToken, setProfileId, setRole} from "../../store/auth/auth.actions";
+import {tap} from "rxjs/operators";
+import {map, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
   basePath: string = `${environment.serverBasePath}`;
-  httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+  httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
 
-  constructor(private store: Store, private http: HttpClient) {}
+  constructor(private store: Store, private http: HttpClient) {
+  }
 
   signIn(signInRequest: SignInRequest) {
     return this.http.post<SignInResponse>(`${this.basePath}/authentication/sign-in`, signInRequest, this.httpOptions).pipe(
@@ -31,6 +33,8 @@ export class AuthenticationService {
       })
     );
   }
+
+
   signUp(signUpRequest: SignUpRequest) {
     return this.http.post<SignUpResponse>(`${this.basePath}/professional-profiles`, signUpRequest, this.httpOptions).pipe(
       tap((response: SignUpResponse) => {
@@ -38,34 +42,51 @@ export class AuthenticationService {
         localStorage.setItem('role', response.role);
         localStorage.setItem('profileId', response.id.toString());
 
-        this.store.dispatch(setRole({ rolId: response.role }));
-        this.store.dispatch(setProfileId({ profileId: response.id }));
+        this.store.dispatch(setRole({rolId: response.role}));
+        this.store.dispatch(setProfileId({profileId: response.id}));
       })
     );
   }
 
-  storeSessionData(response: SignInResponse): void {
-    localStorage.setItem('authToken', response.token);
-    localStorage.setItem('role', response.role);
-    localStorage.setItem('profileId', response.id.toString());
+  getProfileId(accountId: number): Observable<string> {
+    const authToken = localStorage.getItem('authToken');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${authToken}`
+      })
+    };
 
-    this.store.dispatch(setJwtToken({ jwtToken: response.token }));
-    this.store.dispatch(setRole({ rolId: response.role }));
-    this.store.dispatch(setProfileId({ profileId: response.id }));
+    return this.http.get<{ id: number }>(`${this.basePath}/professional-profiles/${accountId}`, httpOptions).pipe(
+      map(response => response.id.toString())
+    );
   }
 
+
+  storeSessionData(response: SignInResponse): void {
+    this.getProfileId(response.id).subscribe(profileId => {
+      localStorage.setItem('authToken', response.token);
+      localStorage.setItem('role', response.role);
+      localStorage.setItem('profileId', profileId);
+
+      this.store.dispatch(setJwtToken({ jwtToken: response.token }));
+      this.store.dispatch(setRole({ rolId: response.role }));
+      this.store.dispatch(setProfileId({ profileId: Number(profileId) }));
+    });
+  }
 
 
   signOut(): void {
     localStorage.removeItem('authToken');
     localStorage.removeItem('role');
     localStorage.removeItem('profileId');
-    this.store.dispatch(setJwtToken({ jwtToken: null }));
-    this.store.dispatch(setRole({ rolId: null }));
-    this.store.dispatch(setProfileId({ profileId: null }));
+    this.store.dispatch(setJwtToken({jwtToken: null}));
+    this.store.dispatch(setRole({rolId: null}));
+    this.store.dispatch(setProfileId({profileId: null}));
   }
+
   resetPassword(account: string, newPassword: string) {
-    return this.http.post('/api/reset-password', { account, newPassword });
+    return this.http.post('/api/reset-password', {account, newPassword});
   }
 
 }
