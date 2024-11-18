@@ -44,15 +44,17 @@ export class MedicationListComponent implements OnInit {
 
   ngOnInit(): void {
     this.patientId = +this.route.snapshot.paramMap.get('id')!;
-    this.medicationService.fetchMedicationsByPatientId(this.patientId);  // Initial fetch of medications
-    this.medicationService.medications$.subscribe(medications => {
-      this.medications = medications;
-    });
+    console.log("id for patient in medication management", this.patientId);
+    this.medicationService.getMedicationsByPatientId(this.patientId,localStorage.getItem("authToken")).subscribe((pills: Medication[]) =>{
+      this.medications = pills;
+      console.log("medication por patient: ", JSON.stringify(this.medications));
+    })
+
   }
 
-  toggleStatus(medication: Medication): void {
-    this.medicationService.changeStatusByMedicationId(medication.id);
-  }
+  // toggleStatus(medication: Medication): void {
+  //   this.medicationService.changeStatusByMedicationId(medication.id);
+  // }
 
   openEditModal(medication: Medication): void {
     const dialogRef = this.dialog.open(MedicationEditModalComponent, {

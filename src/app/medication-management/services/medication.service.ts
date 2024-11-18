@@ -17,7 +17,7 @@ export class MedicationService extends BaseService<Medication> {
     this.resourceEndpoint = '/pills';
   }
 
-  public createMedication(medication: Medication, token: string): void {
+  public createMedication(medication: Medication, token: string | null): void {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ export class MedicationService extends BaseService<Medication> {
       .subscribe();
   }
 
-  public getMedicationsByPatientId(patientId: number, token: string): Observable<Medication[]> {
+  public getMedicationsByPatientId(patientId: number, token: string | null): Observable<Medication[]> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

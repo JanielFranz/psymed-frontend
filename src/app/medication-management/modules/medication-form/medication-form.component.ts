@@ -65,22 +65,15 @@ export class MedicationFormComponent implements OnInit {
       const newMedication = new Medication({  // Create a new medication object using the form values
         name: formValues.name,
         description: formValues.description,
-        startDate: formValues.startDate,
-        endDate: formValues.endDate,
+        // startDate: formValues.startDate,
+        // endDate: formValues.endDate,
         interval: formValues.interval,
         quantity: formValues.quantity,
         patientId: this.patientId,
-        status : 0
+        //status : 0
       });
 
-      this.medicationService.createMedication(newMedication, this.patientId).subscribe({
-        next: (response) => {
-          console.log('Medication saved:', response);
-        },
-        error: (error) => {
-          console.error('Error saving medication:', error);
-        }
-      });
+      this.medicationService.createMedication(newMedication, localStorage.getItem("authToken"))
     } else {
       console.error('Form is invalid');
     }
