@@ -102,7 +102,10 @@ export class EditProfileInformationComponent implements OnInit, OnDestroy {
 
   loadProfessionalData(professionalId: number | null): void {
     if (professionalId) {
+      // @ts-ignore
       this.professionalService.getById(professionalId).subscribe({
+        complete(): void {
+        },
         next: (professional: ProfessionalEntity) => {
           this.professional = professional;
           this.loadAccount(professional.idAccount);

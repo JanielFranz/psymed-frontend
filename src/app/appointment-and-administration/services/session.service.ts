@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from "../../shared/services/base.service";
-import {Session} from "../model/sesion.entity";
-import {catchError, Observable, retry} from "rxjs";
+import { Session } from "../model/sesion.entity";
+import { catchError, Observable, retry } from "rxjs";
+import {environment} from "../../../environments/environment.development";
+import {HttpHeaders} from "@angular/common/http";
 
 /**
  * SessionService to manage API calls related to session entities.
@@ -21,15 +23,91 @@ export class SessionService extends BaseService<Session> {
    */
   constructor() {
     super();
-    // Set the endpoint for session-related API requests
-    this.resourceEndpoint = '/sessions';
+    // Set the default resource endpoint for session-related API requests
+    this.resourceEndpoint = `/sessions`;
+  }
+
+  //#endregion
+
+  //#region Methods
+
+  /**
+   * Fetch all sessions for a specific professional.
+   *
+   * @param professionalID - ID of the professional.
+   * @param authToken
+   * @returns Observable containing an array of sessions.
+   */
+  public getSessionsByProfessionalID(professionalID: number, authToken: string): Observable<Session[]> {
+    const url = `${environment.serverBasePath}/professionals/${professionalID}/sessions`; // Full endpoint for fetching sessions by professional ID
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${authToken}` // Include the token for authorization
+      })
+    };
+
+    console.log('Fetching sessions for professional ID with URL:', url);
+
+    return this.http.get<Session[]>(url, httpOptions).pipe(
+      retry(2), // Retry the request in case of transient failures
+      catchError(this.handleError) // Handle errors gracefully
+    );
   }
 
 
-  public getSessionsByPatientID(patientID: number): Observable<Session[]>{
-    const url = `${this.resourcePath()}?idPatient=${patientID}`;
-    return this.http.get<Session[]>(url, this.httpOptions)
-      .pipe(retry(2), catchError(this.handleError));
+  /**
+   * Fetch all sessions for a specific patient.
+   *
+   * @param patientID - ID of the patient.
+   * @param token
+   * @returns Observable containing an array of sessions.
+   */
+  public getSessionsByPatientID(patientID: number, token: string): Observable<Session[]> {
+    const url = `${environment.serverBasePath}/patients/${patientID}/sessions`; // Full endpoint for fetching sessions by patient ID
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}` // Include the token for authorization
+      })
+    };
+
+    console.log('Fetching sessions for patient ID with URL:', url);
+
+    return this.http.get<Session[]>(url, httpOptions).pipe(
+      retry(2), // Retry the request in case of transient failures
+      catchError(this.handleError) // Handle errors gracefully
+    );
+  }
+
+
+  /**
+   * Make a reservation for a patient with a specific professional.
+   *
+   * @param professionalID - ID of the professional.
+   * @param patientID - ID of the patient.
+   * @param sessionData - The session object containing details of the reservation.
+   * @param token
+   * @returns Observable containing the created session object.
+   */
+  public makeReservation(professionalID: number, patientID: number, sessionData: Session, token: string): Observable<Session> {
+    const url = `${environment.serverBasePath}/professionals/${professionalID}/patients/${patientID}/sessions`;
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}` // Include the token for authorization
+      })
+    };
+
+    console.log('Making reservation with URL:', url, 'and data:', sessionData);
+
+    return this.http.post<Session>(url, JSON.stringify(sessionData), httpOptions).pipe(
+      retry(2), // Retry on failure
+      catchError(this.handleError) // Handle errors gracefully
+    );
   }
 
   //#endregion

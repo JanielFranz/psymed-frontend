@@ -89,7 +89,10 @@ export class ProfileDescriptionComponent implements OnInit, OnDestroy {
    * Fetch professional data based on the URL.
    */
   fetchProfessionalData(): void {
+    // @ts-ignore
     this.professionalService.getAll().pipe(takeUntil(this.destroy$)).subscribe({
+      complete(): void {
+      },
       next: (professionals: ProfessionalEntity[]) => {
         if (professionals.length > 0) {
           this.professional = professionals[0]; // Assign the first professional

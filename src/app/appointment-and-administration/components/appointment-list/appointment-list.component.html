@@ -1,5 +1,7 @@
 <div class="appointment-list">
-  <h2>{{"pages.patient-management.actions.appointment.title" | translate }}</h2>
+  <div class="header">
+    <h2>{{ "pages.patient-management.actions.appointment.title" | translate }}</h2>
+  </div>
   <div class="card-container">
     <div *ngFor="let session of dataSource.data" class="session-card">
       <div class="appointment-details">
@@ -10,10 +12,22 @@
         </p>
       </div>
       <div class="professional-details">
-        <p><strong>{{"pages.patient-management.actions.appointment.data.patient" | translate }}:</strong> {{ session.patient.name }} {{ session.patient.lastName }}</p>
-        <p>{{"pages.patient-management.actions.appointment.data.therapy" | translate }}</p>
+        <p *ngIf="userRole === 'ROLE_PROFESSIONAL'">
+          <strong>{{ "pages.appointments.data.patient"  | translate }}</strong> {{ session.patientName || 'Loading...' }}
+        </p>
+        <p *ngIf="userRole === 'ROLE_PATIENT'">
+          <strong>{{ "pages.appointments.data.patient"  | translate }}</strong> {{ entityName }}
+        </p>
+        <p>{{ "pages.patient-management.actions.appointment.data.therapy" | translate }}</p>
       </div>
-      <button mat-raised-button color="primary" (click)="redirectToTask(session.id)">{{"pages.patient-management.actions.appointment.data.tasks" | translate}}</button>
+      <div class="notes-button">
+        <button mat-raised-button color="primary" (click)="redirectToTask(session.id)">
+          {{ "pages.patient-management.actions.appointment.data.tasks" | translate }}
+        </button>
+        <button mat-raised-button color="accent" (click)="onNoteSelected(session.id)">
+          {{ "pages.patient-management.actions.appointment.data.notes" | translate }}
+        </button>
+      </div>
     </div>
   </div>
 </div>

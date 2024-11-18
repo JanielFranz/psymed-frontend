@@ -11,8 +11,8 @@ import { Patient } from "../../../shared/model/patient.entity";
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgIf } from "@angular/common";
 import { NotificationService } from "../../services/notification.service";
-import {Session} from "../../model/sesion.entity";
-import {TranslateModule} from "@ngx-translate/core";
+import { Session } from "../../model/sesion.entity";
+import { TranslateModule } from "@ngx-translate/core";
 
 @Component({
   selector: 'app-appointment-form',
@@ -31,161 +31,97 @@ import {TranslateModule} from "@ngx-translate/core";
   styleUrls: ['./appointment-form.component.css']
 })
 export class AppointmentFormComponent implements OnInit {
-
-  //#region Attributes
-
-  /**
-   * @property {FormGroup} appointmentForm - Form group to handle the appointment form controls and validations.
-   */
   appointmentForm!: FormGroup;
-
-  /**
-   * @property {Patient | null} patientDetails - Holds the details of the selected patient.
-   */
   patientDetails: Patient | null = null;
-
-  /**
-   * @property {number} patientId - Holds the patient ID extracted from the URL.
-   */
   patientId!: number;
+  professionalId: number = 1;
 
-  /**
-   * @property {number} idProfessional - Hardcoded professional ID, defaulted to 1.
-   */
-  idProfessional: number = 1;
-
-  /**
-   * @property {number} lastSessionId - Stores the last used session ID, retrieved from localStorage.
-   */
-  private lastSessionId: number = 0;
-
-  //#endregion
-
-  //#region Constructor
-
-  /**
-   * Constructor for AppointmentFormComponent.
-   * Injects required services such as form builder, session service, patient service, router, and notification service.
-   */
   constructor(
     private fb: FormBuilder,
     private sessionService: SessionService,
     private patientService: PatientService,
-    private route: ActivatedRoute, // For extracting patient ID from URL
-    private router: Router, // For navigation after submission
-    private notificationService: NotificationService // For managing notifications
-  ) {}
+    private route: ActivatedRoute,
+    private router: Router,
+    private notificationService: NotificationService
+  ) {
+  }
 
-  //#endregion
-
-  //#region Lifecycle Methods
-
-  /**
-   * ngOnInit lifecycle hook. Initializes the form and loads necessary data (like patient ID and last session ID).
-   */
   ngOnInit(): void {
-    // Load the lastSessionId from localStorage (if available)
-    const storedLastSessionId = localStorage.getItem('lastSessionId');
-    this.lastSessionId = storedLastSessionId ? +storedLastSessionId : 0;
-
-    // Get the patientId from the URL
+    console.log('Initializing Appointment Form Component...');
     const patientIdFromUrl = this.route.snapshot.paramMap.get('id');
+    console.log('Patient ID from URL:', patientIdFromUrl);
 
     if (patientIdFromUrl) {
-      this.patientId = +patientIdFromUrl; // Convert the patientId from string to number
+      this.patientId = +patientIdFromUrl;
+      console.log('Patient ID successfully parsed:', this.patientId);
 
-      // Initialize the form with form controls and validators
       this.appointmentForm = this.fb.group({
-        idProfessional: [this.idProfessional, Validators.required], // Professional ID, fixed
-        appointmentDate: ['', Validators.required],
-        appointmentTime: ['', Validators.required],
-        sessionTime: ['', [Validators.required, Validators.min(1)]]
+        appointmentDate: ['', Validators.required], // Date of appointment
+        appointmentTime: ['', Validators.required], // Time of appointment
+        sessionTime: ['', [Validators.required, Validators.min(1)]] // Duration of session
       });
 
-      // Fetch the patient details using the patientId from the URL
+      console.log('Appointment form initialized:', this.appointmentForm);
       this.fetchPatientDetails(this.patientId);
     } else {
       console.error('Patient ID not found in URL');
     }
   }
 
-  //#endregion
-
-  //#region Methods
-
-  /**
-   * Fetch patient details based on the patient ID.
-   * @param {number} patientId - The ID of the patient to fetch details for.
-   */
   fetchPatientDetails(patientId: number): void {
+    console.log('Fetching patient details for ID:', patientId);
     this.patientService.getById(patientId).subscribe({
       next: (patient: Patient) => {
-        this.patientDetails = patient; // Store patient details
+        console.log('Patient details fetched successfully:', patient);
+        this.patientDetails = patient;
       },
       error: (error) => {
         console.error('Error fetching patient details:', error);
-        this.patientDetails = null; // Reset patient details on error
+        this.patientDetails = null;
       }
     });
   }
-
-  /**
-   * Handle form submission. Creates a new session based on the form data and saves it using the session service.
-   */
   onSubmit(): void {
-    if (this.appointmentForm.valid && this.patientDetails) {
-      const formValues = this.appointmentForm.value;
-      const appointmentDateTime = new Date(formValues.appointmentDate);
+    console.log('Submitting form...');
+    if (this.appointmentForm.valid) {
+      console.log('Form is valid. Form values:', this.appointmentForm.value);
 
-      // Parse the time from the form input
+      const formValues = this.appointmentForm.value;
+
+      // Combine date and time
+      const appointmentDate = new Date(formValues.appointmentDate);
       const [hours, minutes] = formValues.appointmentTime.split(':');
-      if (!hours || !minutes) {
-        console.error('Invalid time format');
+      appointmentDate.setHours(parseInt(hours, 10), parseInt(minutes, 10), 0, 0);
+
+      // Generate a unique ID for the session
+      const newSessionId = Date.now(); // Use a timestamp or UUID for uniqueness
+      console.log('Generated session ID:', newSessionId);
+
+      const newSession: Session = {
+        id: newSessionId, // Assign the generated ID
+        idProfessional: this.professionalId,
+        idPatient: this.patientId,
+        sessionTime: formValues.sessionTime,
+        appointmentDate: appointmentDate.toISOString(),
+      };
+      const authToken = localStorage.getItem('authToken'); // Get the token from localStorage
+      if (!authToken) {
+        console.error('Authorization token is missing');
         return;
       }
-      appointmentDateTime.setHours(parseInt(hours, 10), parseInt(minutes, 10), 0, 0);
+      console.log('Submitting new session with ID:', newSession);
 
-      // Increment the last session ID
-      this.lastSessionId++;
-
-      // Save the last session ID to localStorage for future sessions
-      localStorage.setItem('lastSessionId', this.lastSessionId.toString());
-
-      // Create a new Session object using the form data and patient details
-      const newSession = new Session({
-        id: this.lastSessionId, // Assign a new session ID
-        idProfessional: this.idProfessional, // Fixed value for professional ID
-        patient: {
-          id: this.patientId, // Use the patient ID from the URL
-          name: this.patientDetails?.name || '',
-          lastName: this.patientDetails?.lastName || ''
-        },
-        idPatient: this.patientId, // Assign the patient ID
-        idNote: this.patientId, // Use patientId as idNote (adjust if necessary)
-        appointmentDate: appointmentDateTime.toISOString(),
-        sessionTime: formValues.sessionTime,
-        createdAt: new Date().toISOString(), // Set the created time
-        updatedAt: new Date().toISOString()  // Set the updated time
-      });
-
-      // Save the session through the sessionService
-      this.sessionService.create(newSession).subscribe({
+      this.sessionService.makeReservation(this.professionalId, this.patientId, newSession, authToken).subscribe({
         next: (response) => {
-          console.log('Session saved:', response);
-
-          // Increment the notification counter for new appointments
-          this.notificationService.incrementCounter();
-
-          // Manually reload the page by redirecting to the desired URL
-          window.location.href = `http://localhost:4200/patient-management/${this.patientId}/patient-appointment-list`;
+          console.log('Session created successfully:', response);
+          this.router.navigate([`/patient-management/${this.patientId}/patient-appointment-list`]);
         },
         error: (error) => {
-          console.error('Error saving session:', error);
+          console.error('Error creating session:', error);
         }
       });
     } else {
-      console.error('Form is invalid or patient details are missing');
+      console.error('Form is invalid:', this.appointmentForm.errors);
     }
   }
-  //#endregion
 }

@@ -1,36 +1,4 @@
-<div class="main-content">
-  <!-- Header section -->
-  <div class="header">
-    <h2>{{"pages.appointments.title" | translate}}</h2> <!-- Title for the appointment calendar -->
-  </div>
-
-  <!-- Container for the session cards -->
-  <div class="card-container">
-    <!-- Loop through each session in the dataSource to display the session details -->
-    <div *ngFor="let session of dataSource.data" class="session-card">
-
-      <!-- Appointment details (date and time) -->
-      <div class="appointment-details">
-        <p class="date">{{ session.appointmentDate | date: 'fullDate' }}</p> <!-- Full appointment date -->
-        <p class="time">
-          {{ session.appointmentDate | date: 'shortTime' }} - <!-- Start time of the session -->
-          {{ calculateEndTime(session.appointmentDate, session.sessionTime) }} <!-- End time of the session, calculated dynamically -->
-        </p>
-      </div>
-
-      <!-- Professional (patient) details -->
-      <div class="professional-details">
-        <p><strong>{{"pages.appointments.data.patient" | translate}}</strong> {{ session.patient.name }} {{ session.patient.lastName }}</p> <!-- Patient's name -->
-        <p>{{"pages.appointments.data.therapy" | translate}}</p> <!-- Placeholder text (Therapy) -->
-      </div>
-
-      <!-- Button to view notes related to the session -->
-      <div class="notes-button">
-        <button mat-raised-button color="primary" (click)="redirectToNotes(session.id, session.idPatient)" >{{"pages.appointments.data.notes" | translate}}</button> <!-- Material button styled with primary color -->
-      </div>
-      <div class="notes-button">
-        <button mat-raised-button color="primary" (click)="redirectToTask(session.id, session.idPatient)">{{"pages.appointments.data.tasks" | translate}}</button> <!-- Material button styled with primary color -->
-      </div>
-    </div>
-  </div>
+<div class="content">
+  <!-- Appointment List Component -->
+  <app-appointment-list></app-appointment-list>
 </div>

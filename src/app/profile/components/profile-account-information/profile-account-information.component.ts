@@ -87,7 +87,10 @@ export class ProfileAccountInformationComponent implements OnInit, OnDestroy {
   }
 
   loadProfessionalData(professionalId: number): void {
+    // @ts-ignore
     this.professionalService.getById(professionalId).subscribe({
+      complete(): void {
+      },
       next: (professional: ProfessionalEntity) => {
         this.professional = professional;
       },
