@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { Medication } from "../models/medication.entity";
 import { BaseService } from '../../shared/services/base.service';
 import { catchError, retry, tap } from "rxjs/operators";
+import {HttpHeaders} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -13,44 +14,39 @@ export class MedicationService extends BaseService<Medication> {
 
   constructor() {
     super();
-    this.resourceEndpoint = '/medications';
+    this.resourceEndpoint = '/pills';
   }
 
-  public createMedication(medication: Medication, patientId: number): Observable<Medication> {
-    medication.patientId = patientId;
-    return this.create(medication).pipe(
-      tap(() => this.fetchMedicationsByPatientId(patientId))  // Refresh list after creating a medication
-    );
-  }
+  public createMedication(medication: Medication, token: string): void {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      })
+    };
 
-  public fetchMedicationsByPatientId(patientId: number): void {
-    const url = `${this.resourcePath()}?patientId=${patientId}`;
-    this.http.get<Medication[]>(url, this.httpOptions)
+    this.http.post<Medication>(`${this.resourcePath()}`, JSON.stringify(medication), httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
-      .subscribe(medications => this.medicationsSubject.next(medications));
+      .subscribe();
   }
 
-  public getMedicationsByPatientId(patientId: number): Observable<Medication[]> {
-    return this.http.get<Medication[]>(`${this.resourcePath()}?patientId=${patientId}`, this.httpOptions)
+  public getMedicationsByPatientId(patientId: number, token: string): Observable<Medication[]> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      })
+    };
+
+    return this.http.get<Medication[]>(`${this.resourcePath()}/patient/${patientId}`, httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
       );
   }
 
-  public changeStatusByMedicationId(medicationId: number): void {
-    this.getById(medicationId).subscribe({
-      next: (medication: Medication) => {
-        if (!medication) return;
-        medication.status = medication.status === 0 ? 1 : 0;
-        this.update(medication.id, medication).pipe(
-          tap(() => this.fetchMedicationsByPatientId(medication.patientId))  // Refresh list after status change
-        ).subscribe();
-      },
-      error: (error) => console.error(`Error fetching medication:`, error)
-    });
-  }
+
 }
