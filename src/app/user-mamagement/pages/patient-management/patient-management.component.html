@@ -1,7 +1,8 @@
-
 <app-patient-list
-  (patientSelected)="onFeatureSelected($event)" [patients]="patients"
-/>
-<button (click)="openForm()">Add Patient Profile</button>
+  [patients]="(patients$ | async) ?? []"
+  (patientSelected)="onFeatureSelected($event)">
+</app-patient-list>
 
-
+<div class="button-container">
+  <button class="add-patient-btn" (click)="openForm()">Add Patient Profile</button>
+</div>

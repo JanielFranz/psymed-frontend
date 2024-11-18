@@ -1,0 +1,40 @@
+/* Adjusted container for positioning the button just below the list */
+.button-container {
+  display: flex; /* Use flexbox */
+  justify-content: center; /* Center horizontally */
+  margin-top: 20px; /* Add spacing between the list and the button */
+}
+
+/* Base button styles */
+.add-patient-btn {
+  display: inline-block;
+  background-color: #091133; /* Primary blue */
+  color: white; /* Text color */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px 20px; /* Padding for better click area */
+  font-size: 16px; /* Font size */
+  font-weight: bold; /* Bold text */
+  cursor: pointer; /* Pointer cursor on hover */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+}
+
+/* Hover effect */
+.add-patient-btn:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .add-patient-btn {
+    width: 100%; /* Full-width button on smaller screens */
+    font-size: 14px; /* Slightly smaller font size */
+    padding: 12px; /* Adjust padding */
+  }
+
+  .button-container {
+    margin-top: 10px; /* Smaller spacing for compact screens */
+  }
+}

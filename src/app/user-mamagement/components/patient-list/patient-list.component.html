@@ -1,8 +1,11 @@
 <mat-list>
-  <div mat-subheader class="container-tittle">{{"pages.patient-management.title" | translate}}</div>
+  <div mat-subheader class="container-tittle">{{ "pages.patient-management.title" | translate }}</div>
   <mat-card>
-    <ng-container *ngFor="let patientProfile of patients">
-      <app-patient-item (patientSelected)="onPatientSelected($event)" [patient]="patientProfile"></app-patient-item>
+    <ng-container *ngFor="let patient of (patients$ | async)">
+      <app-patient-item
+        (patientSelected)="onPatientSelected($event)"
+        [patient]="patient">
+      </app-patient-item>
     </ng-container>
   </mat-card>
 </mat-list>

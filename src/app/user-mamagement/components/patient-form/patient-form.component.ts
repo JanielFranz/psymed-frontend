@@ -3,12 +3,29 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/
 import {PatientProfile} from "../../../shared/model/patient-profile.entity";
 import {UserManagementService} from "../../services/user-management.service";
 import {MatDialog} from "@angular/material/dialog";
+import {MatButton, MatIconButton} from "@angular/material/button";
+import {NgIf} from "@angular/common";
+import {MatError, MatFormField, MatLabel, MatSuffix} from "@angular/material/form-field";
+import {MatIcon} from "@angular/material/icon";
+import {MatInput} from "@angular/material/input";
+import {MatCard, MatCardTitle} from "@angular/material/card";
 
 @Component({
   selector: 'app-patient-form',
   standalone: true,
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButton,
+    NgIf,
+    MatError,
+    MatIcon,
+    MatIconButton,
+    MatSuffix,
+    MatInput,
+    MatLabel,
+    MatFormField,
+    MatCardTitle,
+    MatCard
   ],
   templateUrl: './patient-form.component.html',
   styleUrl: './patient-form.component.css'
@@ -56,6 +73,13 @@ export class PatientFormComponent {
           console.error('Error creating patient profile:', error);
         }
       });
+    }
+  }
+  togglePasswordVisibility(event: Event) {
+    event.preventDefault();
+    const passwordInput: HTMLInputElement | null = document.querySelector('[formControlName="password"]');
+    if (passwordInput) {
+      passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
     }
   }
 

@@ -1,22 +1,23 @@
 <mat-list-item>
   <div class="item">
-    <div matListItemLine class="name-row">| {{ patient.fullName }} | {{ patient.email }} | {{patient.street}}</div>
+    <div matListItemLine class="name-row">
+      | {{ patient.fullName }} | {{ patient.email }} | {{ patient.street }}
+    </div>
     <span class="mat-spacer"></span>
-    <button (click)="onGoToFeature('edit')" mat-icon-button  aria-label="Edit patient data">
+    <button (click)="onGoToFeature('edit')" mat-icon-button aria-label="Edit patient data">
       <mat-icon>edit</mat-icon>
     </button>
-    <button (click)="onGoToFeature('medication')" mat-icon-button  aria-label="Manage prescription">
+    <button (click)="onGoToFeature('medication')" mat-icon-button aria-label="Manage prescription">
       <mat-icon>medication</mat-icon>
     </button>
-    <button (click)="onGoToFeature('statistics')" mat-icon-button  aria-label="View Statistics">
+    <button (click)="onGoToFeature('statistics')" mat-icon-button aria-label="View Statistics">
       <mat-icon>bar_chart</mat-icon>
     </button>
-    <button (click)="onGoToFeature('appointments')" mat-icon-button  aria-label="Manage Appointments">
+    <button (click)="onGoToFeature('appointments')" mat-icon-button aria-label="Manage Appointments">
       <mat-icon>calendar_month</mat-icon>
     </button>
-    <button (click)="onGoToFeature('history')" mat-icon-button  aria-label="View Clinical History">
+    <button (click)="onGoToFeature('history')" mat-icon-button aria-label="View Clinical History">
       <mat-icon>assignment</mat-icon>
     </button>
   </div>
-
 </mat-list-item>
