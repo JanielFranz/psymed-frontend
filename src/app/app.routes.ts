@@ -33,7 +33,6 @@ export const routes: Routes = [
   { path: ''                                                        , redirectTo: 'home', pathMatch: 'full' },  // Default route that redirects to HomeComponent
   { path: 'home'                                                    , component: HomeComponent },
   { path: 'login'                                                   , component: LoginComponent },
-  { path: 'signup'                                                   , component: SignUpPageComponent },
   { path: 'authentication', component: AuthenticationComponent },
   { path: 'patient-management/:id/dashboard-analytics'             , component: AnalyticsDashboardComponent,canActivate:[authenticationGuard] },
   { path: 'patient-management'                                      , component: PatientManagementComponent ,canActivate:[authenticationGuard]},

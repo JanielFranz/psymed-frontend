@@ -110,8 +110,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         } else {
           this.options = [
             { path: '/home', name: 'home' },
-            { path: '/login', name: 'login' },
-            { path: '/signup', name: 'register' }
+            { path: '/login', name: 'login' }
           ];
         }
       });
