@@ -5,6 +5,8 @@ import { PatientListComponent } from "../../components/patient-list/patient-list
 import { Router } from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {PatientFormComponent} from "../../components/patient-form/patient-form.component";
+import {UserManagementService} from "../../services/user-management.service";
+import {PatientProfile} from "../../../shared/model/patient-profile.entity";
 
 @Component({
   selector: 'app-patient-management',
@@ -16,19 +18,20 @@ import {PatientFormComponent} from "../../components/patient-form/patient-form.c
   styleUrls: ['./patient-management.component.css']
 })
 export class PatientManagementComponent implements OnInit {
-  protected patients!: Array<Patient>;
+  protected patients!: Array<PatientProfile>;
 
-  constructor(private patientService: PatientService, private router: Router, private dialog: MatDialog) {}
+  constructor(private router: Router, private dialog: MatDialog, private patientService: UserManagementService) {}
 
   ngOnInit(): void {
     this.getAllPatients();
   }
 
   getAllPatients() {
-    this.patientService.getAll().subscribe((response: Array<Patient>) => {
-      this.patients = response;
-      console.log(this.patients);
-    });
+    this.patientService.getPatientsByProfessionalId(localStorage.getItem("profileId"), localStorage.getItem("authToken"))
+      .subscribe((profiles: Array<PatientProfile>) => {
+        this.patients = profiles;
+        console.log("profiles obtenidos to list", JSON.stringify(profiles));
+      });
   }
   openForm(): void {
     const dialogRef = this.dialog.open(PatientFormComponent);
@@ -40,9 +43,8 @@ export class PatientManagementComponent implements OnInit {
   }
 
 
-  onFeatureSelected(feature: { patient: Patient, feature: string }) {
+  onFeatureSelected(feature: { patient: PatientProfile, feature: string }) {
     const { patient, feature: featureName } = feature;
-    console.log('patientSelected', patient.id);
     console.log('feature selected', featureName);
 
     switch (featureName) {
@@ -59,8 +61,8 @@ export class PatientManagementComponent implements OnInit {
         this.router.navigate([`/patient-management/${patient.id}/patient-appointment-list`]).then();
         break;
       case 'history':
-        if (patient.idClinicalHistory) {
-          this.router.navigate([`/patient-management/${patient.id}/clinical-history/${patient.idClinicalHistory}`]).then();
+        if (patient.professionalId) {
+          this.router.navigate([`/patient-management/${patient.id}/clinical-history/${patient.id}`]).then();
         } else {
           console.error(`Clinical history ID is missing for patient ID: ${patient.id}`);
           // Optionally, add user feedback here if needed

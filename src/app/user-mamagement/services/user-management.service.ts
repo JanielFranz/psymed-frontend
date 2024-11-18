@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {BaseService} from "../../shared/services/base.service";
 import {PatientProfile} from "../../shared/model/patient-profile.entity";
-import {Store} from "@ngrx/store";
 import {catchError, Observable, retry} from "rxjs";
 import {HttpHeaders} from "@angular/common/http";
 
@@ -27,7 +26,7 @@ export class UserManagementService extends BaseService<PatientProfile>{
       .pipe(retry(2), catchError(this.handleError));
   }
 
-  public getPatientsByProfessionalId(professionalId: number, token: string): Observable<PatientProfile> {
+  public getPatientsByProfessionalId(professionalId: string | null, token: string | null): Observable<PatientProfile[]> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -35,9 +34,8 @@ export class UserManagementService extends BaseService<PatientProfile>{
       })
     };
 
-    return this.http.get<PatientProfile>(`${this.resourcePath()}/professional/${professionalId}`, httpOptions);
+    return this.http.get<PatientProfile[]>(`${this.resourcePath()}/professional/${professionalId}`, httpOptions);
   }
-
 
 
 }

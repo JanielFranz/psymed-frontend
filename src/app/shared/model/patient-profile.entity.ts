@@ -1,4 +1,5 @@
 export class PatientProfile {
+  id: number;
   firstName: string;
   lastName: string;
   street: string;
@@ -8,8 +9,10 @@ export class PatientProfile {
   username: string;
   password: string;
   professionalId: number;
+  fullName: string;
 
   constructor(data: {
+    id: number,
     firstName: string,
     lastName: string,
     street: string,
@@ -18,8 +21,10 @@ export class PatientProfile {
     email: string,
     username: string,
     password: string,
-    professionalId: number
+    professionalId: number,
+    fullName: string
   }) {
+    this.id = data.id;
     this.firstName = data.firstName;
     this.lastName = data.lastName;
     this.street = data.street;
@@ -29,5 +34,6 @@ export class PatientProfile {
     this.username = data.username;
     this.password = data.password;
     this.professionalId = data.professionalId;
+    this.fullName = data.fullName;
   }
 }

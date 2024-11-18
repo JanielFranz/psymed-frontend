@@ -1,6 +1,6 @@
 <mat-list-item>
   <div class="item">
-    <div matListItemLine class="name-row">{{ patient.firstName }} <span>  </span> {{ patient.lastName }}</div>
+    <div matListItemLine class="name-row">{{ patient.fullName }} | {{ patient.email }}</div>
     <span class="mat-spacer"></span>
     <button (click)="onGoToFeature('edit')" mat-icon-button  aria-label="Edit patient data">
       <mat-icon>edit</mat-icon>

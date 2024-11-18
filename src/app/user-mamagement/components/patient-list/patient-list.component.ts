@@ -4,6 +4,8 @@ import {MatList, MatListSubheaderCssMatStyler} from "@angular/material/list";
 import {PatientItemComponent} from "../patient-item/patient-item.component";
 import {MatCard} from "@angular/material/card";
 import {TranslateModule} from "@ngx-translate/core";
+import {NgForOf} from "@angular/common";
+import {PatientProfile} from "../../../shared/model/patient-profile.entity";
 
 @Component({
   selector: 'app-patient-list',
@@ -13,18 +15,19 @@ import {TranslateModule} from "@ngx-translate/core";
     PatientItemComponent,
     MatListSubheaderCssMatStyler,
     MatCard,
-    TranslateModule
+    TranslateModule,
+    NgForOf
   ],
   templateUrl: './patient-list.component.html',
   styleUrl: './patient-list.component.css'
 })
 export class PatientListComponent {
 
-  @Input() patients!: Array<Patient>
-  @Output() patientSelected = new EventEmitter<{patient: Patient, feature: string}>();
+  @Input() patients!: Array<PatientProfile>
+  @Output() patientSelected = new EventEmitter<{patient: PatientProfile, feature: string}>();
 
-  onPatientSelected(feature: {patient: Patient, feature: string}) {
-    this.patientSelected.emit(feature)
+  onPatientSelected(feature: {patient: PatientProfile, feature: string}) {
+    this.patientSelected.emit(feature);
   }
 /*
 
@@ -71,7 +74,6 @@ export class PatientListComponent {
     this.getAllPatients();
   }
 */
-
 
 
 }
