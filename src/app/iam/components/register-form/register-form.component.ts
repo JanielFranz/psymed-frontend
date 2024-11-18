@@ -85,7 +85,8 @@ export class RegisterFormComponent implements OnInit {
       this.registerForm.value.password!
     );
 
-    this.authenticationService.signUp(registerRequest).subscribe({
+    // Pass the role to signUp
+    this.authenticationService.signUp(registerRequest, this.role).subscribe({
       next: (response) => {
         this.router.navigate(['login']); // Redirect to login on success
       },

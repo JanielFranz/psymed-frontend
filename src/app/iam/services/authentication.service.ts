@@ -36,20 +36,29 @@ export class AuthenticationService {
   }
 
 
-  signUp(signUpRequest: SignUpRequest) {
-    return this.http.post<SignUpResponse>(`${this.basePath}/professional-profiles`, signUpRequest, this.httpOptions).pipe(
+  signUp(signUpRequest: SignUpRequest, role: string) {
+    // Determine the correct endpoint based on the role
+    const endpoint =
+      role === 'ROLE_PROFESSIONAL'
+        ? `${this.basePath}/professional-profiles`
+        : `${this.basePath}/patient-profiles`;
+
+    return this.http.post<SignUpResponse>(endpoint, signUpRequest, this.httpOptions).pipe(
       tap((response: SignUpResponse) => {
-        // Store role and profile ID
+        // Store role and profile ID from the response
         localStorage.setItem('role', response.role);
         localStorage.setItem('profileId', response.id.toString());
 
-        this.store.dispatch(setRole({rolId: response.role}));
-        this.store.dispatch(setProfileId({profileId: response.id}));
+        // Dispatch to NgRx Store
+        this.store.dispatch(setRole({ rolId: response.role }));
+        this.store.dispatch(setProfileId({ profileId: response.id }));
       })
     );
   }
 
-  getProfileId(accountId: number, authToken: string): Observable<string> {
+
+
+  getProfileId(accountId: number, authToken: string, role: string): Observable<string> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -57,17 +66,24 @@ export class AuthenticationService {
       })
     };
 
-    return this.http.get<{ id: number }>(`${this.basePath}/professional-profiles/account/${accountId}`, httpOptions).pipe(
+    // Determine the endpoint based on the role
+    const endpoint =
+      role === 'ROLE_PROFESSIONAL'
+        ? `${this.basePath}/professional-profiles/account/${accountId}`
+        : `${this.basePath}/patient-profiles/account/${accountId}`;
+
+    return this.http.get<{ id: number }>(endpoint, httpOptions).pipe(
       map(response => response.id.toString())
     );
   }
+
 
   storeSessionData(response: SignInResponse): void {
     localStorage.setItem('authToken', response.token);
     this.store.dispatch(setJwtToken({ jwtToken: response.token }));
 
     // Now call getProfileId with the token
-    this.getProfileId(response.id, response.token).subscribe(profileId => {
+    this.getProfileId(response.id, response.token,response.role).subscribe(profileId => {
       localStorage.setItem('role', response.role);
       localStorage.setItem('profileId', profileId);
 
