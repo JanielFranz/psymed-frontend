@@ -26,9 +26,10 @@ export class BiologicalListComponent implements OnInit{
 
   ngOnInit() {
     const patientId = Number(this.route.snapshot.paramMap.get("id"));
-    this.biologicalFunctionsService.getBiologicalFunctionsByPatientId(patientId)
+    this.biologicalFunctionsService.getBiologicalFunctionsByPatientId(patientId,localStorage.getItem("authToken"))
       .subscribe((biologicalFunctions: BiologicalFunctions[] ) =>{
         this.biologicalFunctions = biologicalFunctions;
+        console.log(JSON.stringify(biologicalFunctions));
       });
   }
 }

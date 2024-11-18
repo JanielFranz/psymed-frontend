@@ -14,7 +14,7 @@ import {TranslateModule} from "@ngx-translate/core";
   styleUrl: './mood-list.component.css'
 })
 export class MoodListComponent implements OnInit{
-  @Input() moodStates!: MoodState[];
+  @Input() moodStates!: any[];
 
   constructor(private moodService: MoodStateService,
               private route: ActivatedRoute
@@ -24,9 +24,9 @@ export class MoodListComponent implements OnInit{
   ngOnInit() {
     const patientId = Number(this.route.snapshot.paramMap.get("id"));
 
-    this.moodService.getMoodStatesByPatientId(patientId, localStorage.getItem("authToken")).subscribe((moodstates: MoodState[]) => {
+    this.moodService.getMoodStatesByPatientId(patientId, localStorage.getItem("authToken")).subscribe((moodstates: any) => {
       this.moodStates = moodstates;
-      console.log("Mood States Loaded:", this.moodStates);
+      console.log("Mood States Loaded:", JSON.stringify(this.moodStates));
     });
   }
   getImageUrl(mood: number): string {

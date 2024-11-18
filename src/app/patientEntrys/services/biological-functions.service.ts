@@ -55,10 +55,16 @@ export class BiologicalFunctionsService extends BaseService<BiologicalFunctions>
   }
 
   // Fetch biological functions for a specific patient
-  public getBiologicalFunctionsByPatientId(patientId: number): Observable<BiologicalFunctions[]> {
+  public getBiologicalFunctionsByPatientId(patientId: number, token: string | null): Observable<any[]> {
     console.log(`Fetching biological functions for patientId: ${patientId}...`);
-    const url = `${this.resourcePath()}?idPatient=${patientId}`;
-    return this.http.get<BiologicalFunctions[]>(url, this.httpOptions)
+    const url = `${this.resourcePath()}/${patientId}/biological-functions`;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      })
+    };
+    return this.http.get<any[]>(url, httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 }

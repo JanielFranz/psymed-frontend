@@ -3,6 +3,8 @@ import { Profile } from "../models/profile.entity";
 import { BaseService } from '../../shared/services/base.service';
 import { Observable } from "rxjs";
 import { catchError, retry } from "rxjs/operators";
+import {PatientProfile} from "../../shared/model/patient-profile.entity";
+import {HttpHeaders} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -29,11 +31,29 @@ export class AccountService extends BaseService<Profile> {
    * @param {number} accountId - The ID of the account
    * @returns {Observable<Profile>} An observable with the account details
    */
-  public getAccountById(accountId: number): Observable<Profile> {
+  public getAccountById(accountId: number | null, token: string | null): Observable<PatientProfile> {
     console.log(`Fetching account for accountId: ${accountId}...`);
-    const url = `${this.resourcePath()}/${accountId}`;
-    return this.http.get<Profile>(url, this.httpOptions)
-      .pipe(retry(2), catchError(this.handleError));
+    const role = localStorage.getItem("role");
+
+    let url = '';
+    if (role === "ROLE_PROFESSIONAL") {
+      url = `${this.basePath}/professional-profiles/account/${accountId}`;
+    } else {
+      url = `${this.basePath}/patient-profiles/account/${accountId}`;
+    }
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      })
+    };
+
+    return this.http.get<PatientProfile>(url, httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      );
   }
 
   /**

@@ -40,16 +40,18 @@ export class MoodStateService extends BaseService<MoodState> {
 
 
   // Method to fetch all mood states by patient ID
-  public getMoodStatesByPatientId(patientId: number | null, token: String | null): Observable<MoodState[]> {
+  public getMoodStatesByPatientId(patientId: number | null, token: string | null): Observable<any> {
     console.log(`Fetching mood states for patientId: ${patientId}...`);
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
-      })
+      }),
+      responseType: 'json' as 'json'
     };
     const url = `${this.resourcePath()}/${patientId}/mood-states`;
-    return this.http.get<MoodState[]>(url, httpOptions)
+
+    return this.http.get<any>(url, httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
