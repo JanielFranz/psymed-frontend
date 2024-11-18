@@ -9,6 +9,8 @@ import {SignUpResponse} from "../models/sign-up.response";
 import {setJwtToken, setProfileId, setRole} from "../../store/auth/auth.actions";
 import {tap} from "rxjs/operators";
 import {map, Observable} from "rxjs";
+import {ActivatedRoute} from "@angular/router";
+import {routes} from "../../app.routes";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +19,7 @@ export class AuthenticationService {
   basePath: string = `${environment.serverBasePath}`;
   httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
 
-  constructor(private store: Store, private http: HttpClient) {
+  constructor(private store: Store, private http: HttpClient, private route: ActivatedRoute) {
   }
 
   signIn(signInRequest: SignInRequest) {
@@ -36,29 +38,20 @@ export class AuthenticationService {
   }
 
 
-  signUp(signUpRequest: SignUpRequest, role: string) {
-    // Determine the correct endpoint based on the role
-    const endpoint =
-      role === 'ROLE_PROFESSIONAL'
-        ? `${this.basePath}/professional-profiles`
-        : `${this.basePath}/patient-profiles`;
-
-    return this.http.post<SignUpResponse>(endpoint, signUpRequest, this.httpOptions).pipe(
+  signUp(signUpRequest: SignUpRequest) {
+    return this.http.post<SignUpResponse>(`${this.basePath}/professional-profiles`, signUpRequest, this.httpOptions).pipe(
       tap((response: SignUpResponse) => {
-        // Store role and profile ID from the response
+        // Store role and profile ID
         localStorage.setItem('role', response.role);
         localStorage.setItem('profileId', response.id.toString());
 
-        // Dispatch to NgRx Store
-        this.store.dispatch(setRole({ rolId: response.role }));
-        this.store.dispatch(setProfileId({ profileId: response.id }));
+        this.store.dispatch(setRole({rolId: response.role}));
+        this.store.dispatch(setProfileId({profileId: response.id}));
       })
     );
   }
 
-
-
-  getProfileId(accountId: number, authToken: string, role: string): Observable<string> {
+  getProfileId(accountId: number, authToken: string): Observable<string> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -66,30 +59,51 @@ export class AuthenticationService {
       })
     };
 
-    // Determine the endpoint based on the role
-    const endpoint =
-      role === 'ROLE_PROFESSIONAL'
-        ? `${this.basePath}/professional-profiles/account/${accountId}`
-        : `${this.basePath}/patient-profiles/account/${accountId}`;
-
-    return this.http.get<{ id: number }>(endpoint, httpOptions).pipe(
+    return this.http.get<{ id: number }>(`${this.basePath}/professional-profiles/account/${accountId}`, httpOptions).pipe(
       map(response => response.id.toString())
     );
   }
 
+  getProfileIdPatient(accountId: number, authToken: string): Observable<string> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${authToken}`
+      })
+    };
+
+    return this.http.get<{ id: number }>(`${this.basePath}/patient-profiles/account/${accountId}`, httpOptions).pipe(
+      map(response => response.id.toString())
+    );
+  }
 
   storeSessionData(response: SignInResponse): void {
     localStorage.setItem('authToken', response.token);
     this.store.dispatch(setJwtToken({ jwtToken: response.token }));
 
-    // Now call getProfileId with the token
-    this.getProfileId(response.id, response.token,response.role).subscribe(profileId => {
-      localStorage.setItem('role', response.role);
-      localStorage.setItem('profileId', profileId);
+    const role = this.route.snapshot.queryParamMap.get('role');
+    console.log("role del sign-in : ", role);
+    if(role == "ROLE_PROFESSIONAL")
+    {
+      this.getProfileId(response.id, response.token).subscribe(profileId => {
+        localStorage.setItem('role', response.role);
+        localStorage.setItem('profileId', profileId);
 
-      this.store.dispatch(setRole({ rolId: response.role }));
-      this.store.dispatch(setProfileId({ profileId: Number(profileId) }));
-    });
+        this.store.dispatch(setRole({ rolId: response.role }));
+        this.store.dispatch(setProfileId({ profileId: Number(profileId) }));
+      });
+
+    }
+    else {
+      this.getProfileIdPatient(response.id,response.token).subscribe(profileId => {
+        localStorage.setItem('role', response.role);
+        localStorage.setItem('profileId', profileId);
+
+        this.store.dispatch(setRole({ rolId: response.role }));
+        this.store.dispatch(setProfileId({ profileId: Number(profileId) }));
+      });
+    }
+
   }
 
 

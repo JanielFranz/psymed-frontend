@@ -3,12 +3,8 @@
     <h2 class="subtitle">{{ "pages.mood-state.description" | translate }}</h2>
     <div class="images">
       <div *ngFor="let moodState of moodStates" class="mood-image-item">
-        <img
-          [src]="getImageUrl(moodState.mood)"
-          [alt]="'Mood ' + moodState.mood"
-        />
+        <span>{{moodState.status}}</span>
         <div class="mood-info">
-          <small class="text-muted">{{ moodState.createdAt }}</small>
         </div>
       </div>
     </div>

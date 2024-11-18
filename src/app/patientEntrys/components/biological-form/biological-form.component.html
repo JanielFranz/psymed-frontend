@@ -2,19 +2,19 @@
   <form (ngSubmit)="onSubmit()" #biologicalForm="ngForm">
     <div>
       <label for="hunger">{{"pages.biological-functions.form-data.hunger" | translate}}:</label>
-      <input type="number" id="hunger" name="hunger" min="1" max="10" required [(ngModel)]="biologicalFunctions.hunger">
+      <input type="number" id="hunger" name="hunger" min="1" max="5" required [(ngModel)]="biologicalFunctions.hunger">
     </div>
     <div>
       <label for="hydration">{{"pages.biological-functions.form-data.hydration" | translate}}</label>
-      <input type="number" id="hydration" name="hydration" min="1" max="10" required [(ngModel)]="biologicalFunctions.hydration">
+      <input type="number" id="hydration" name="hydration" min="5" max="10" required [(ngModel)]="biologicalFunctions.hydration">
     </div>
     <div>
       <label for="sleep">{{"pages.biological-functions.form-data.sleep" | translate}}:</label>
-      <input type="number" id="sleep" name="sleep" min="1" max="10" required [(ngModel)]="biologicalFunctions.sleep">
+      <input type="number" id="sleep" name="sleep" min="1" max="5" required [(ngModel)]="biologicalFunctions.sleep">
     </div>
     <div>
       <label for="energy">{{"pages.biological-functions.form-data.energy" | translate}}:</label>
-      <input type="number" id="energy" name="energy" min="1" max="10" required [(ngModel)]="biologicalFunctions.energy">
+      <input type="number" id="energy" name="energy" min="1" max="5" required [(ngModel)]="biologicalFunctions.energy">
     </div>
     <div>
       <label for="createdAt">{{"pages.biological-functions.form-data.created-at" | translate}}:</label>

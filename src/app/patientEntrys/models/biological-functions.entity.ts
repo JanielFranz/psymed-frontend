@@ -4,8 +4,6 @@ export class BiologicalFunctions {
   hydration: number;
   sleep: number;
   energy: number;
-  createdAt: string;
-  updatedAt: string;
   idPatient: number;
 
   constructor(
@@ -14,8 +12,6 @@ export class BiologicalFunctions {
     hydration: number,
     sleep: number,
     energy: number,
-    createdAt: string,
-    updatedAt: string,
     idPatient: number
   ) {
     this.id = id;
@@ -23,8 +19,6 @@ export class BiologicalFunctions {
     this.hydration = hydration;
     this.sleep = sleep;
     this.energy = energy;
-    this.createdAt = createdAt;
-    this.updatedAt = updatedAt;
     this.idPatient = idPatient;
   }
 }
