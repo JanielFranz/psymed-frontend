@@ -54,36 +54,13 @@ export class MoodFormComponent implements OnInit, OnDestroy {
   }
 
   selectMood(mood: number) {
-    if (this.isMoodRecordedToday) {
-      console.log("Mood already recorded for today.");
-      return; // Prevent further action if today's mood is already recorded
-    }
-
-    this.patientId$
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(patientId => {
-        if (patientId !== null) {
-          this.moodStateService.getMoodStatesByPatientId(patientId)
-            .pipe(takeUntil(this.destroy$))
-            .subscribe(moodStates => {
-              const existingMood = moodStates.find(m => this.formatDate(new Date(m.createdAt)) === this.currentDate);
-              if (existingMood) {
-                this.isMoodRecordedToday = true; // Set flag to prevent further attempts
-                this.translateService.get("pages.mood-state.error.already-mood-recorded").subscribe((text: string) => {
-                  alert(text);
-                });
-              } else {
-                const newMood = new MoodState(1, patientId, mood, this.currentDate);
-                this.moodStateService.createMoodState(newMood, patientId).subscribe(() => {
-                  this.isMoodRecordedToday = true; // Set flag after successful creation
-                  this.translateService.get("pages.mood-state.success.mood-recorded").subscribe((text: string) => {
-                    alert(text); // Display success message
-                  });
-                });
-              }
-            });
-        }
-      });
+    const profileId = localStorage.getItem("profileId");
+    const token = localStorage.getItem("authToken");
+    const parsedProfileId = profileId ? Number(profileId) : null;
+    console.log("profile id en mood fomr : ", parsedProfileId);
+    console.log("mood value into mood form : ", mood);
+    const moodState = new MoodState(0, parsedProfileId, mood);
+    this.moodStateService.createMoodState(moodState, token);
   }
 
   ngOnDestroy(): void {

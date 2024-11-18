@@ -1,13 +1,11 @@
 export class MoodState {
   id: number;
-  idPatient: number;
+  idPatient: number | null;
   mood: number;
-  createdAt: string;
 
-  constructor(id: number, idPatient: number, mood: number, createdAt: string) {
+  constructor(id: number, idPatient: number | null, mood: number) {
     this.id = id;
     this.idPatient = idPatient;
     this.mood = mood;
-    this.createdAt = createdAt;
   }
 }
