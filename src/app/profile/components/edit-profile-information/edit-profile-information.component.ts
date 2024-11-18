@@ -62,37 +62,37 @@ export class EditProfileInformationComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.store.select(selectRolId).pipe(takeUntil(this.destroy$)).subscribe({
-      next: (roleId: string | null) => {
-        if (roleId !== null) {
-          this.role = roleId;
-        } else {
-          console.error('Role ID is null');
-        }
-      },
-      error: (error) => {
-        console.error('Error fetching role ID:', error);
-      }
-    });
-
-    const currentUrl = this.router.url;
-    if (currentUrl.includes('professional/edit-profile')) {
-      const professionalId = this.extractIdFromUrl(currentUrl);
-      if (professionalId) {
-        this.loadProfessionalData(Number(professionalId));
-      } else {
-        console.error('Professional ID is missing in the URL.');
-      }
-    } else if (currentUrl.includes('patient/edit-profile')) {
-      const patientId = this.extractIdFromUrl(currentUrl);
-      if (patientId) {
-        this.loadPatientData(Number(patientId));
-      } else {
-        console.error('Patient ID is missing in the URL.');
-      }
-    } else {
-      console.error('Invalid URL - Unable to determine profile type.');
-    }
+    // this.store.select(selectRolId).pipe(takeUntil(this.destroy$)).subscribe({
+    //   next: (roleId: string | null) => {
+    //     if (roleId !== null) {
+    //       this.role = roleId;
+    //     } else {
+    //       console.error('Role ID is null');
+    //     }
+    //   },
+    //   error: (error) => {
+    //     console.error('Error fetching role ID:', error);
+    //   }
+    // });
+    //
+    // const currentUrl = this.router.url;
+    // if (currentUrl.includes('professional/edit-profile')) {
+    //   const professionalId = this.extractIdFromUrl(currentUrl);
+    //   if (professionalId) {
+    //     this.loadProfessionalData(Number(professionalId));
+    //   } else {
+    //     console.error('Professional ID is missing in the URL.');
+    //   }
+    // } else if (currentUrl.includes('patient/edit-profile')) {
+    //   const patientId = this.extractIdFromUrl(currentUrl);
+    //   if (patientId) {
+    //     this.loadPatientData(Number(patientId));
+    //   } else {
+    //     console.error('Patient ID is missing in the URL.');
+    //   }
+    // } else {
+    //   console.error('Invalid URL - Unable to determine profile type.');
+    // }
   }
 
   extractIdFromUrl(url: string): string | null {
@@ -100,41 +100,40 @@ export class EditProfileInformationComponent implements OnInit, OnDestroy {
     return segments.length > 2 ? segments[segments.length - 1] : null;
   }
 
-  loadProfessionalData(professionalId: number | null): void {
-    if (professionalId) {
-      this.professionalService.getById(professionalId).subscribe({
-        next: (professional: ProfessionalEntity) => {
-          this.professional = professional;
-          this.loadAccount(professional.idAccount);
-          this.editForm.patchValue({
-            idAccount: professional.idAccount,
-            dni: professional.dni,
-            name: professional.name,
-            lastName: professional.lastName,
-            email: professional.email,
-            phone: professional.phone,
-            address: professional.address,
-            birthday: professional.birthday,
-            description: professional.description,
-            image: professional.image
-          });
-          this.imagePreview = professional.image;
-        },
-        error: (error) => {
-          console.error('Error fetching professional data.', error);
-        }
-      });
-    } else {
-      console.error('No professional ID found.');
-    }
-  }
+  // loadProfessionalData(professionalId: number | null): void {
+  //   if (professionalId) {
+  //     this.professionalService.getById(professionalId).subscribe({
+  //       next: (professional: ProfessionalEntity) => {
+  //         this.professional = professional;
+  //         this.loadAccount(professional.idAccount);
+  //         this.editForm.patchValue({
+  //           idAccount: professional.idAccount,
+  //           dni: professional.dni,
+  //           name: professional.name,
+  //           lastName: professional.lastName,
+  //           email: professional.email,
+  //           phone: professional.phone,
+  //           address: professional.address,
+  //           birthday: professional.birthday,
+  //           description: professional.description,
+  //           image: professional.image
+  //         });
+  //         this.imagePreview = professional.image;
+  //       },
+  //       error: (error) => {
+  //         console.error('Error fetching professional data.', error);
+  //       }
+  //     });
+  //   } else {
+  //     console.error('No professional ID found.');
+  //   }
+  // }
 
   loadPatientData(patientId: number | null): void {
     if (patientId) {
       this.patientService.getById(patientId).subscribe({
         next: (patient: Patient) => {
           this.patient = patient;
-          this.loadAccount(patient.idAccount);
           this.editForm.patchValue({
             idAccount: patient.idAccount,
             dni: patient.dni,
@@ -159,21 +158,7 @@ export class EditProfileInformationComponent implements OnInit, OnDestroy {
     }
   }
 
-  loadAccount(accountId: number): void {
-    this.accountService.getAccountById(accountId).subscribe({
-      next: (account: Profile) => {
-        this.account = account;
-        this.editForm.patchValue({
-          idAccount: account.id,
-          userName: account.userName,
-          password: account.password
-        });
-      },
-      error: (error) => {
-        console.error('Error fetching account details:', error);
-      }
-    });
-  }
+
 
   onSubmit(): void {
     if (this.editForm.valid) {

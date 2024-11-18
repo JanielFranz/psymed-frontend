@@ -109,16 +109,7 @@ export class ProfileAccountInformationComponent implements OnInit, OnDestroy {
   }
 
 
-  loadAccount(accountId: number): void {
-    this.accountService.getAccountById(accountId).subscribe({
-      next: (account: Profile) => {
-        this.account = account;
-      },
-      error: (error) => {
-        console.error('Error fetching account details:', error);
-      }
-    });
-  }
+
 
   ngOnDestroy(): void {
     this.destroy$.next(true);
