@@ -88,7 +88,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     combineLatest([this.role$, this.accountId$, this.jwtToken$])
       .pipe(takeUntil(this.destroy$))
       .subscribe(([role, accountId, jwtToken]) => {
-        console.log("Role:", role, "Professional ID:", accountId, "JWT Token:", jwtToken);
+        console.log("Role:", role, "Profile ID:", accountId, "JWT Token:", jwtToken);
 
         if (role === 'ROLE_PROFESSIONAL' && accountId) {
           this.options = [
