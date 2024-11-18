@@ -1,9 +1,5 @@
 import {AfterViewInit, Component, EventEmitter, inject, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {Patient} from "../../../shared/model/patient.entity";
-import {PatientService} from "../../../shared/services/patient.service";
-import {MatPaginator} from "@angular/material/paginator";
-import {MatSort} from "@angular/material/sort";
-import {MatTableDataSource} from "@angular/material/table";
 import {MatList, MatListSubheaderCssMatStyler} from "@angular/material/list";
 import {PatientItemComponent} from "../patient-item/patient-item.component";
 import {MatCard} from "@angular/material/card";

@@ -3,6 +3,8 @@ import { Patient } from "../../../shared/model/patient.entity";
 import { PatientService } from "../../../shared/services/patient.service";
 import { PatientListComponent } from "../../components/patient-list/patient-list.component";
 import { Router } from "@angular/router";
+import {MatDialog} from "@angular/material/dialog";
+import {PatientFormComponent} from "../../components/patient-form/patient-form.component";
 
 @Component({
   selector: 'app-patient-management',
@@ -16,7 +18,7 @@ import { Router } from "@angular/router";
 export class PatientManagementComponent implements OnInit {
   protected patients!: Array<Patient>;
 
-  constructor(private patientService: PatientService, private router: Router) {}
+  constructor(private patientService: PatientService, private router: Router, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.getAllPatients();
@@ -28,6 +30,15 @@ export class PatientManagementComponent implements OnInit {
       console.log(this.patients);
     });
   }
+  openForm(): void {
+    const dialogRef = this.dialog.open(PatientFormComponent);
+
+    dialogRef.componentInstance.formClosed.subscribe(() => {
+      dialogRef.close();
+      // Handle form closed event (e.g., refresh the list)
+    });
+  }
+
 
   onFeatureSelected(feature: { patient: Patient, feature: string }) {
     const { patient, feature: featureName } = feature;
