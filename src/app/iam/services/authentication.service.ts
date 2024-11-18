@@ -81,7 +81,7 @@ export class AuthenticationService {
     localStorage.setItem('authToken', response.token);
     this.store.dispatch(setJwtToken({ jwtToken: response.token }));
 
-    const role = this.route.snapshot.paramMap.get('role');
+    const role = this.route.snapshot.queryParamMap.get('role');
     console.log("role del sign-in : ", role);
     if(role == "ROLE_PROFESSIONAL")
     {

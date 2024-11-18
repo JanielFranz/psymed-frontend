@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BiologicalFunctions } from "../models/biological-functions.entity";
 import { BaseService } from "../../shared/services/base.service";
-import { catchError, map, Observable, of, switchMap } from "rxjs";
+import {catchError, map, Observable, of, switchMap, throwError} from "rxjs";
 import { retry } from "rxjs/operators";
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -12,44 +12,38 @@ export class BiologicalFunctionsService extends BaseService<BiologicalFunctions>
 
   constructor(override http: HttpClient) {
     super();
-    this.resourceEndpoint = '/biologicalFunctions';
+    this.resourceEndpoint = '/patients';
   }
 
-  private formatDate(date: Date): string {
-    return date.toISOString().split('T')[0]; // Format to "yyyy-MM-dd"
-  }
 
-  public createBiologicalFunctions(biologicalFunctions: BiologicalFunctions, patientId: number): Observable<any> {
-    const today = this.formatDate(new Date());
 
-    return this.getBiologicalFunctionsByPatientId(patientId).pipe(
-      switchMap((patientFunctions) => {
-        // Ensure all dates are in "yyyy-MM-dd" format and check if an entry exists for today
-        const existsToday = patientFunctions.some(func => {
-          const createdAtFormatted = this.formatDate(new Date(func.createdAt));
-          return createdAtFormatted === today;
-        });
+  public createBiologicalFunctions(biologicalFunctions: BiologicalFunctions, token: string | null): void {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      })
+    };
 
-        if (existsToday) {
-          return of({ error: 'An entry for today already exists for this patient' });
-        }
+    const url = `${this.resourcePath()}/${biologicalFunctions.idPatient}/biological-functions`;
+    const requestBody = {
+      hunger: biologicalFunctions.hunger,
+      hydration: biologicalFunctions.hydration,
+      sleep: biologicalFunctions.sleep,
+      energy: biologicalFunctions.energy
+    };
 
-        // Get all functions to find the highest ID and assign the next sequential ID
-        return this.getAllBiologicalFunctions().pipe(
-          switchMap((allFunctions) => {
-            const maxId = allFunctions.length > 0 ? Math.max(...allFunctions.map(f => f.id)) : 0;
-            biologicalFunctions.id = maxId + 1;
-            biologicalFunctions.idPatient = patientId;
-            biologicalFunctions.createdAt = today;
-            biologicalFunctions.updatedAt = today;
-
-            // Create the new entry
-            return this.create(biologicalFunctions);
-          })
-        );
-      }),
-      catchError(this.handleError)
-    );
+    this.http.post(url, JSON.stringify(requestBody), httpOptions)
+      .pipe(
+        retry(2),
+        catchError(error => {
+          alert("Only one biological report by Day.");
+          return throwError(error);
+        })
+      )
+      .subscribe(() => {
+        console.log("Biological functions created successfully.");
+      });
   }
 
   // Fetch all biological functions to find the highest ID
