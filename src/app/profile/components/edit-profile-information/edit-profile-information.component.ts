@@ -18,6 +18,7 @@ import { MatInput } from "@angular/material/input";
 import { MatCard, MatCardContent } from "@angular/material/card";
 import { MatButton } from "@angular/material/button";
 import { TranslateModule } from "@ngx-translate/core";
+import {PatientProfile} from "../../../shared/model/patient-profile.entity";
 
 @Component({
   standalone: true,
@@ -161,22 +162,32 @@ export class EditProfileInformationComponent implements OnInit, OnDestroy {
       console.error('No patient ID found.');
     }
   }
-
   loadAccount(accountId: number): void {
-    this.accountService.getAccountById(accountId).subscribe({
-      next: (account: Profile) => {
-        this.account = account;
-        this.editForm.patchValue({
-          idAccount: account.id,
-          userName: account.userName,
-          password: account.password
-        });
-      },
-      error: (error) => {
-        console.error('Error fetching account details:', error);
-      }
-    });
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.accountService.getAccountById(accountId, token).subscribe({
+        next: (account: Profile | PatientProfile) => {
+          if ('userName' in account) {
+            this.account = account as Profile; // Type narrowing
+            this.editForm.patchValue({
+              idAccount: account.id,
+              userName: account.userName,
+              password: account.password
+            });
+          } else {
+            console.error('Unexpected account type.');
+          }
+        },
+        error: (error) => {
+          console.error('Error fetching account details:', error);
+        }
+      });
+    } else {
+      console.error('No token found in local storage.');
+    }
   }
+
+
 
   onSubmit(): void {
     if (this.editForm.valid) {

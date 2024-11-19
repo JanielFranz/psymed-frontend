@@ -1,16 +1,19 @@
-<div class="page-background" *ngIf="role === '1' || role === '2'">
+<div class="page-background" *ngIf="role === 'ROLE_PROFESSIONAL' || role === 'ROLE_PATIENT'">
   <!-- Professional Information Card -->
   <mat-card *ngIf="isProfessional" class="professional-card">
     <!-- Profile Image Container -->
     <div class="profile-image-container">
-      <!-- Fallback to placeholder image if professional image is not available -->
-      <img [src]="professional?.image ? professional?.image : '/assets/img/default-placeholder.png'"
-           alt="{{ professional?.name }}'s photo"
-           class="profile-image">
+      <img
+        [src]="professional?.image ? professional?.image : '/assets/img/default-placeholder.png'"
+        alt="{{ professional?.name }}'s photo"
+        class="profile-image"
+      />
     </div>
 
     <!-- Professional Name -->
-    <mat-card-title class="professional-name">Dr. {{ professional?.name }} {{ professional?.lastName }}</mat-card-title>
+    <mat-card-title class="professional-name">
+      Dr. {{ professional?.name }} {{ professional?.lastName }}
+    </mat-card-title>
 
     <!-- Professional Description -->
     <mat-card-content class="description-content">
@@ -22,14 +25,17 @@
   <mat-card *ngIf="isPatient" class="patient-card">
     <!-- Profile Image Container -->
     <div class="profile-image-container">
-      <!-- Fallback to placeholder image if patient image is not available -->
-      <img [src]="patient?.image ? patient?.image : 'assets/img/image.jpg'"
-           alt="{{ patient?.name }}'s photo"
-           class="profile-image">
+      <img
+        [src]="patient?.image ? patient?.image : '/assets/img/default-placeholder.png'"
+        alt="{{ patient?.name }}'s photo"
+        class="profile-image"
+      />
     </div>
 
     <!-- Patient Name -->
-    <mat-card-title class="patient-name">{{ patient?.name }} {{ patient?.lastName }}</mat-card-title>
+    <mat-card-title class="patient-name">
+      {{ patient?.name }} {{ patient?.lastName }}
+    </mat-card-title>
 
     <!-- Patient Description -->
     <mat-card-content class="description-content">

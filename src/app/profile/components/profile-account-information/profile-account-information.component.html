@@ -1,60 +1,59 @@
-<div class="page-background" *ngIf="role === '1' || role === '2'">
+<div class="page-background" *ngIf="role === 'ROLE_PROFESSIONAL' || role === 'ROLE_PATIENT'">
   <!-- Professional Information Card -->
   <mat-card *ngIf="isProfessional" class="professional-card">
     <!-- Professional Information Fields -->
     <mat-card-content class="description-content">
       <div class="personal-info">
-        <p>{{"pages.profile.title" | translate}}</p>
+        <p>{{ "pages.profile.title" | translate }}</p>
       </div>
       <div class="info-field">
-        <p><strong>{{"pages.profile.dni" | translate}}:</strong></p>
-        <p>{{ professional?.dni }}</p>
+        <p><strong>{{ "pages.profile.dni" | translate }}:</strong></p>
+        <p>{{ professional?.dni || "Not Available" }}</p>
       </div>
       <div class="info-field">
-        <p><strong>{{"pages.profile.phone" | translate}}:</strong></p>
-        <p>{{ professional?.phone }}</p>
+        <p><strong>{{ "pages.profile.phone" | translate }}:</strong></p>
+        <p>{{ professional?.phone || "Not Available" }}</p>
       </div>
       <div class="info-field">
-        <p><strong>{{"pages.profile.email" | translate}}:</strong></p>
-        <p>{{ professional?.email }}</p>
+        <p><strong>{{ "pages.profile.email" | translate }}:</strong></p>
+        <p>{{ professional?.email || "Not Available" }}</p>
       </div>
       <div class="info-field">
-        <p><strong>{{"pages.profile.address" | translate}}:</strong></p>
-        <p>{{ professional?.address }}</p>
+        <p><strong>{{ "pages.profile.address" | translate }}:</strong></p>
+        <p>{{ professional?.address || "Not Available" }}</p>
       </div>
       <div class="info-field">
-        <p><strong>{{"pages.profile.birthday" | translate}}:</strong></p>
-        <p>{{ professional?.birthday }}</p>
+        <p><strong>{{ "pages.profile.birthday" | translate }}:</strong></p>
+        <p>{{ professional?.birthday || "Not Available" }}</p>
       </div>
     </mat-card-content>
   </mat-card>
 
   <!-- Patient Information Card -->
   <mat-card *ngIf="isPatient" class="patient-card">
-    <!-- Patient Information Fields -->
     <mat-card-content class="description-content">
       <div class="personal-info">
-        <p>{{"pages.profile.title" | translate}}</p>
+        <p>{{ "pages.profile.title" | translate }}</p>
       </div>
       <div class="info-field">
-        <p><strong>{{"pages.profile.dni" | translate}}:</strong></p>
-        <p>{{ patient?.dni }}</p>
+        <p><strong>{{ "pages.profile.dni" | translate }}:</strong></p>
+        <p>{{ patient?.dni || "Not Available" }}</p>
       </div>
       <div class="info-field">
-        <p><strong>{{"pages.profile.phone" | translate}}:</strong></p>
-        <p>{{ patient?.phone }}</p>
+        <p><strong>{{ "pages.profile.phone" | translate }}:</strong></p>
+        <p>{{ patient?.phone || "Not Available" }}</p>
       </div>
       <div class="info-field">
-        <p><strong>{{"pages.profile.email" | translate}}:</strong></p>
-        <p>{{ patient?.email }}</p>
+        <p><strong>{{ "pages.profile.email" | translate }}:</strong></p>
+        <p>{{ patient?.email || "Not Available" }}</p>
       </div>
       <div class="info-field">
-        <p><strong>{{"pages.profile.address" | translate}}:</strong></p>
-        <p>{{ patient?.address }}</p>
+        <p><strong>{{ "pages.profile.address" | translate }}:</strong></p>
+        <p>{{ patient?.address || "Not Available" }}</p>
       </div>
       <div class="info-field">
-        <p><strong>{{"pages.profile.birthday" | translate}}:</strong></p>
-        <p>{{ patient?.birthday }}</p>
+        <p><strong>{{ "pages.profile.birthday" | translate }}:</strong></p>
+        <p>{{ patient?.birthday || "Not Available" }}</p>
       </div>
     </mat-card-content>
   </mat-card>

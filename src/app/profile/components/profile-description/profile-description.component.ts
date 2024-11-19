@@ -3,14 +3,15 @@ import { ProfessionalService } from '../../../shared/services/professional.servi
 import { PatientService } from '../../../shared/services/patient.service';
 import { ProfessionalEntity } from '../../../shared/model/professional.entity';
 import { Patient } from '../../../shared/model/patient.entity';
-import { ActivatedRoute, Router } from '@angular/router'; // For route checking
-import { Subject } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { map, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { Store } from '@ngrx/store'; // To get roleId from the store
-import { selectRolId } from "../../../store/auth/auth.selectors"; // Assuming you have a role selector
+import { Store } from '@ngrx/store';
+import { selectRolId } from "../../../store/auth/auth.selectors";
 import { NgIf } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
+import { ProfessionalProfileEntity } from "../../../shared/model/professional-profile.entity";
 
 @Component({
   standalone: true,
@@ -29,113 +30,101 @@ import { MatCardModule, MatCardContent, MatCardHeader, MatCardTitle } from '@ang
 export class ProfileDescriptionComponent implements OnInit, OnDestroy {
   professional: ProfessionalEntity | undefined;
   patient: Patient | undefined;
-  isProfessional: boolean = false; // Flag to determine if the URL is for professional
-  isPatient: boolean = false; // Flag to determine if the URL is for patient
-  isLoading: boolean = true; // Show a loader while fetching data
-  role: string | null = null; // This stores the roleId
-  private destroy$ = new Subject<boolean>(); // To handle unsubscription
+  isProfessional: boolean = false;
+  isPatient: boolean = false;
+  isLoading: boolean = true;
+  role: string | null = null;
+  private destroy$ = new Subject<boolean>();
 
-  /**
-   * Constructor for ProfileDescriptionComponent.
-   * @param professionalService - Service used to fetch professional details.
-   * @param patientService - Service used to fetch patient details.
-   * @param route - Activated route to check the current route.
-   * @param router - Router to navigate.
-   * @param store - NgRx store to get the roleId
-   */
   constructor(
     private professionalService: ProfessionalService,
     private patientService: PatientService,
     private route: ActivatedRoute,
-    private router: Router,
-    private store: Store // Inject store to get role
+    private store: Store
   ) {}
 
-  /**
-   * OnInit lifecycle hook to initialize the component.
-   * Determines whether the current URL is for a professional or patient and loads data accordingly.
-   * Also checks the user's role before showing the information.
-   */
   ngOnInit(): void {
-    // Fetch roleId from the store and assign to role variable
     this.store.select(selectRolId).pipe(takeUntil(this.destroy$)).subscribe({
       next: (roleId: string | null) => {
-        if (roleId !== null) {
+        if (roleId) {
           this.role = roleId;
+          this.initializeData();
         } else {
           console.error('Role ID is null');
         }
       },
-      error: (error) => {
-        console.error('Error fetching role ID:', error);
-      }
+      error: (error) => console.error('Error fetching role ID:', error)
     });
+  }
 
-    const currentUrl = this.router.url; // Get the current URL
+  private initializeData(): void {
+    const entityId = this.route.snapshot.paramMap.get('id');
+    const token = localStorage.getItem('authToken');
+    console.log('Extracted ID:', entityId);
+    console.log('Auth Token:', token);
 
-    if (currentUrl.includes('professional/profile')) {
+    if (!entityId || !token) {
+      console.error('Entity ID or token is missing.');
+      this.isLoading = false;
+      return;
+    }
+
+    if (this.role === 'ROLE_PROFESSIONAL') {
       this.isProfessional = true;
-      this.fetchProfessionalData(); // Load professional data if URL contains 'professional/profile'
-    } else if (currentUrl.includes('patient/profile')) {
+      this.fetchProfessionalData(Number(entityId), token);
+    } else if (this.role === 'ROLE_PATIENT') {
       this.isPatient = true;
-      this.fetchPatientData(); // Load patient data if URL contains 'patient/profile'
+      //this.fetchPatientData(Number(entityId), token);
     } else {
-      console.error('Invalid URL - Unable to determine if professional or patient');
+      console.error('Invalid role.');
       this.isLoading = false;
     }
   }
-
-  /**
-   * Fetch professional data based on the URL.
-   */
-  fetchProfessionalData(): void {
-    // @ts-ignore
-    this.professionalService.getAll().pipe(takeUntil(this.destroy$)).subscribe({
-      complete(): void {
-      },
-      next: (professionals: ProfessionalEntity[]) => {
-        if (professionals.length > 0) {
-          this.professional = professionals[0]; // Assign the first professional
-        } else {
-          console.error('No professionals found.');
-        }
-        this.isLoading = false; // Stop loader
+  private fetchProfessionalData(professionalId: number, token: string): void {
+    this.professionalService.getProfessionalByProfileId(professionalId, token).pipe(
+      takeUntil(this.destroy$),
+      map((profile: ProfessionalProfileEntity) => ({
+        id: profile.id,
+        name: profile.fullName, // Use `fullName` from the endpoint
+        email: profile.email || '', // Provide default values if necessary
+        lastName: '', // Optional if not provided by the endpoint
+      } as ProfessionalEntity)) // Explicitly cast to `ProfessionalEntity`
+    ).subscribe({
+      next: (professional: ProfessionalEntity) => {
+        this.professional = professional;
       },
       error: (error) => {
         console.error('Error fetching professional data:', error);
-        this.isLoading = false; // Stop loader on error
+        this.professional = undefined;
       }
     });
   }
 
-  /**
-   * Fetch patient data based on the URL.
-   */
-  fetchPatientData(): void {
-    const patientId = this.route.snapshot.paramMap.get('id');
-    if (patientId) {
-      this.patientService.getById(Number(patientId)).pipe(takeUntil(this.destroy$)).subscribe({
-        next: (patient: Patient) => {
-          this.patient = patient
-          this.isLoading = false;
-        },
-        error: (error) => {
-          console.error('Error fetching patient data:', error);
-          this.isLoading = false;
-        }
-      });
-    } else {
-      console.error('Patient ID not found in URL.');
-      this.isLoading = false;
-    }
+
+
+  /*private fetchPatientData(patientId: number, token: string): void {
+    this.patientService.getById(patientId).pipe(
+      takeUntil(this.destroy$),
+      map((patient: Patient) => ({
+        id: patient.id,
+        name: patient.name,
+        lastName: patient.lastName,
+      }))
+    ).subscribe({
+      next: (patient: Patient) => {
+        this.patient = patient;
+        this.isLoading = false;
+      },
+      error: (error) => {
+        console.error('Error fetching patient data:', error);
+        this.patient = undefined;
+        this.isLoading = false;
+      }
+    });
   }
-
-
-  /**
-   * ngOnDestroy lifecycle hook to clean up subscriptions.
-   */
+*/
   ngOnDestroy(): void {
-    this.destroy$.next(true); // Emit destroy signal
-    this.destroy$.unsubscribe(); // Unsubscribe from observables
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }

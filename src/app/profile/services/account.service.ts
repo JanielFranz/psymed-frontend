@@ -29,32 +29,24 @@ export class AccountService extends BaseService<Profile> {
   /**
    * @description Fetches an account by its ID
    * @param {number} accountId - The ID of the account
+   * @param token
    * @returns {Observable<Profile>} An observable with the account details
    */
-  public getAccountById(accountId: number | null, token: string | null): Observable<PatientProfile> {
-    console.log(`Fetching account for accountId: ${accountId}...`);
-    const role = localStorage.getItem("role");
-
-    let url = '';
-    if (role === "ROLE_PROFESSIONAL") {
-      url = `${this.basePath}/professional-profiles/account/${accountId}`;
-    } else {
-      url = `${this.basePath}/patient-profiles/account/${accountId}`;
-    }
-
+  public getAccountById(accountId: number, token: string): Observable<Profile> {
+    const url = `${this.basePath}/accounts/${accountId}`;
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
       })
     };
 
-    return this.http.get<PatientProfile>(url, httpOptions)
-      .pipe(
-        retry(2),
-        catchError(this.handleError)
-      );
+    return this.http.get<Profile>(url, httpOptions).pipe(
+      retry(2),
+      catchError(this.handleError)
+    );
   }
+
 
   /**
    * @description Logs in a user with their username and password
